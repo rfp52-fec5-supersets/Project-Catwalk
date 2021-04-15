@@ -81,6 +81,9 @@ typings/
 # Nuxt.js build / generate output
 .nuxt
 
+# API Key
+client/src/config.js
+
 # Webpack bundle files
 client/dist/bundle.js
 client/dist/bundle.js.map
