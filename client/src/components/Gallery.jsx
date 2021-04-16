@@ -28,7 +28,11 @@ class Gallery extends React.Component {
       <div className = "gallery">
         GALLERY
         RENDER CURRENT IMAGE BIG
-        {this.imageRender()}
+        {/* {this.imageRender()} */}
+        {this.props.currentStylePhotos.length > 0 &&
+        (<img src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}></img>)}
+        {/* {console.log(this.props.currentStylePhotos[this.state.currentImageIndex])} */}
+
         RENDER THUMBNAILS
         </div>
     )
