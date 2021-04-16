@@ -5,7 +5,6 @@ class Gallery extends React.Component {
     super(props);
 
     this.state = {
-      photos: [],
       currentImageIndex: 0
     };
 
@@ -17,24 +16,22 @@ class Gallery extends React.Component {
   //   //console.log(this.props.currentStylePhotos);
   // }
 
-  imageRender() {
-    if (this.props.currentStylePhotos.length > 0) {
-      return (<img src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}></img>)
-    }
-  }
+  // imageRender() {
+  //   if (this.props.currentStylePhotos.length > 0) {
+  //     return (<img src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}></img>)
+  //   }
+  // }
 
   render() {
     return (
       <div className = "gallery">
         GALLERY
-        RENDER CURRENT IMAGE BIG
-        {/* {this.imageRender()} */}
+        <div className = "main-image-window">
         {this.props.currentStylePhotos.length > 0 &&
-        (<img src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}></img>)}
-        {/* {console.log(this.props.currentStylePhotos[this.state.currentImageIndex])} */}
-
-        RENDER THUMBNAILS
+        (<img className = "main-image" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}></img>)}
         </div>
+        RENDER THUMBNAILS
+      </div>
     )
   }
 }

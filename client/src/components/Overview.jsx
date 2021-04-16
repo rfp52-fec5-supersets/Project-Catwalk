@@ -16,7 +16,8 @@ class Overview extends React.Component {
       currentStyle: {},
       currentStylePhotos: [],
       currentProductFull: {},
-      ratings: {}
+      ratings: {},
+      averageRating: 0
     };
   }
 
@@ -27,8 +28,8 @@ class Overview extends React.Component {
       headers: {'Authorization': API_KEY}
     })
     .then(({data: stylesObj} = res) => {
-      this.setState({styles: stylesObj.results, currentStyle: stylesObj.results[0], currentStylePhotos: stylesObj.results[0].photos});
-      console.log(this.state);
+      this.setState({styles: stylesObj.results, currentStyle: stylesObj.results[2], currentStylePhotos: stylesObj.results[2].photos});
+      // console.log(this.state);
     })
     .catch((err) => {
       console.error(err);
@@ -43,7 +44,7 @@ class Overview extends React.Component {
     })
     .then(({data: productObj} = res) => {
       this.setState({currentProductFull: productObj});
-      console.log(this.state);
+      // console.log(this.state);
     })
     .catch((err) => {
       console.error(err);
@@ -60,7 +61,20 @@ class Overview extends React.Component {
       }
     })
     .then(({data: metaObj} = res) => {
-      this.setState({ratings: metaObj.ratings});
+      var ratings = metaObj.ratings
+      var ratingKeys = Object.keys(ratings);
+
+      var sum = 0;
+      var divisor = 0;
+      for (var i = 0; i < ratingKeys.length; i++) {
+        var rating = Number(ratingKeys[i]);
+
+        sum = sum + (rating * ratings[rating]);
+        divisor = divisor + Number(ratings[rating]);
+
+      }
+
+      this.setState({ratings: ratings, averageRating: sum/divisor});
       console.log(this.state);
     })
     .catch((err) => {
@@ -72,7 +86,6 @@ class Overview extends React.Component {
     this.getStyles();
     this.getFeatures();
     this.getRatings();
-    // console.log(this.state);
   }
 
   render() {
@@ -80,7 +93,7 @@ class Overview extends React.Component {
       <div className = "overview">OVERVIEW
       {/* {console.log(this.props.currentProduct)} */}
       <Gallery currentStylePhotos = {this.state.currentStylePhotos}/>
-      <ProductInfo currentProduct = {this.props.currentProduct} currentStyle = {this.state.currentStyle} ratings = {this.state.ratings}/>
+      <ProductInfo currentProduct = {/*this.props.currentProduct*/this.state.currentProductFull} currentStyle = {this.state.currentStyle} rating = {this.state.averageRating}/>
       <StyleSelector styles = {this.state.styles}/>
       <Checkout currentStyle = {this.state.currentStyle}/>
       </div>

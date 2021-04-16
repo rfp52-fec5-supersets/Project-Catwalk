@@ -1,0 +1,16 @@
+.gallery {
+  height: 400px;
+  width: 400px;
+}
+
+.main-image {
+  max-height: 300px;
+}
+
+.original-price-strikethrough {
+  text-decoration: line-through;
+}
+
+.sale-price {
+  color: red;
+}
