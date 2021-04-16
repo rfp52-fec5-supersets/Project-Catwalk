@@ -25,11 +25,11 @@
   background-color: gold;
   width: 200px;
   text-align: center;
-=======
+}
+
 .grid-container {
   display: grid;
 }
-
 
 /* REVIEWS AND RATINGS CSS */
 #reviews-add {
