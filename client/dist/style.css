@@ -1,0 +1,29 @@
+.grid-container {
+  display: grid;
+}
+
+
+/* REVIEWS AND RATINGS CSS */
+#reviews-add {
+  grid-area: reviews-add;
+}
+#reviews-breakdown {
+  grid-area: reviews-breakdown;
+}
+#reviews-list {
+  grid-area: reviews-list;
+}
+#reviews-sort {
+  grid-area: reviews-sort;
+}
+
+#reviews {
+  padding: 2em;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 50px 25% auto 50px;
+  grid-template-areas:
+    "reviews-breakdown reviews-sort ."
+    "review-breakdown reviews-list reviews-list"
+    ". reviews-list reviews-list"
+    ". . reviews-add";
+}

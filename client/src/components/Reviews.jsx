@@ -56,13 +56,14 @@ class Reviews extends React.Component {
   }
 
   render() {
+    console.log(this.props.product);
     return (
-      <div id='reviews'>
+      <div id='reviews' className='grid-container reviews'>
         REVIEWS WRAPPER
         <ReviewBreakdown />
         <ReviewSort />
         <ReviewList reviews = {this.state.reviews}/>
-        <div> Add Review </div>
+        <div id='reviews-add'> Add Review </div>
       </div>
     );
   }
