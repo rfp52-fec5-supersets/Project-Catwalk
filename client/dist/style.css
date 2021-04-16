@@ -21,8 +21,11 @@
 }
 
 #reviews {
-  height: 20%;
+  /* vh = viewport height */
+  height: 50vh;
+  width: auto;
   padding: 2em;
+  /* overflow: hidden; */
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 50px 25% auto 50px;
   grid-template-areas:

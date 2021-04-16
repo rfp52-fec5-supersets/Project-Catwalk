@@ -56,7 +56,6 @@ class Reviews extends React.Component {
   }
 
   render() {
-    console.log(this.props.product);
     return (
       <div id='reviews' className='grid-container reviews'>
         REVIEWS WRAPPER
