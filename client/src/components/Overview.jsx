@@ -15,6 +15,7 @@ class Overview extends React.Component {
       styles: [],
       currentStyle: {},
       currentStylePhotos: [],
+      currentStyleSkus: [],
       currentProductFull: {},
       ratings: {},
       averageRating: 0
@@ -29,6 +30,14 @@ class Overview extends React.Component {
     })
     .then(({data: stylesObj} = res) => {
       this.setState({styles: stylesObj.results, currentStyle: stylesObj.results[2], currentStylePhotos: stylesObj.results[2].photos});
+      var skusObj = this.state.currentStyle.skus;
+      var skusObjKeys = Object.keys(skusObj);
+      var skusArray = [];
+      for (var i = 0; i < skusObjKeys.length ; i++) {
+        var key = skusObjKeys[i];
+        skusArray.push({sku: key, size: skusObj[key].size, quantity: skusObj[key].quantity})
+      }
+      this.setState({currentStyleSkus: skusArray});
       // console.log(this.state);
     })
     .catch((err) => {
@@ -95,7 +104,7 @@ class Overview extends React.Component {
       <Gallery currentStylePhotos = {this.state.currentStylePhotos}/>
       <ProductInfo currentProduct = {/*this.props.currentProduct*/this.state.currentProductFull} currentStyle = {this.state.currentStyle} rating = {this.state.averageRating}/>
       <StyleSelector styles = {this.state.styles} currentStyle = {this.state.currentStyle}/>
-      <Checkout currentStyle = {this.state.currentStyle}/>
+      <Checkout currentStyleSkus = {this.state.currentStyleSkus}/>
       </div>
 
     )

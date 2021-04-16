@@ -20,3 +20,9 @@
   width: 90px;
   border-radius: 50%;
 }
+
+.add-to-cart {
+  background-color: gold;
+  width: 200px;
+  text-align: center;
+}
