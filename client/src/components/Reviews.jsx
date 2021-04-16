@@ -1,15 +1,17 @@
 import React from 'react';
 import API_KEY from './../config.js'
 import axios from 'axios';
+import ReviewList from './ReviewList.jsx';
 
 class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       reviews: [],
-      meta: {}
+      meta: {},
+      sortType: 'relevant'
     };
-    // 17067
+    // sortTypes are either newest, helpful, or relevant
   }
 
   componentDidUpdate(prevProps) {
@@ -24,14 +26,10 @@ class Reviews extends React.Component {
         url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
         headers: {'Authorization': API_KEY},
         params: {
-          product_id: `${this.props.product.id}`
+          product_id: `${this.props.product.id}`,
+          sort: `${this.state.sortType}`
         }
       }));
-      // .then((results)=> {
-      //   this.setState({
-      //     reviews: results.data.results
-      //   });
-      // })
       promises.push(axios({
         method: 'get',
         url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta',
@@ -58,7 +56,7 @@ class Reviews extends React.Component {
       <div id='reviews'>
         REVIEWS WRAPPER
         <div> Breakdown </div>
-        <div> Reviews List </div>
+        <ReviewList reviews = {this.state.reviews}/>
         <div> Review Tile </div>
         <div> Add Review </div>
       </div>
