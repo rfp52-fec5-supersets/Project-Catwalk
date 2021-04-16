@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import API_KEY from './config.js'
+import API_KEY from './config.js';
+import Reviews from './components/Reviews.jsx';
 import Overview from './components/Overview.jsx'
 
 class App extends React.Component {
@@ -31,9 +32,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      HELLO
+      <h1>HELLO<h1/>
       <Overview currentProduct = {this.state.currentProduct}/>
-
+      <Reviews product = {this.state.currentProduct}/>}
       </div>
     )
   }
