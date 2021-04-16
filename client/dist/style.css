@@ -37,6 +37,8 @@
 }
 #reviews-breakdown {
   grid-area: reviews-breakdown;
+  /* grid-column: 1;
+  grid-row: 1 / 4; */
 }
 #reviews-more {
   grid-area: reviews-more;
@@ -49,9 +51,11 @@
 }
 #reviews-sort {
   grid-area: reviews-sort;
+  /* grid-column: 2;
+  grid-row: 1; */
 }
 
-#reviews {
+#reviews.reviews {
   /* vh = viewport height */
   height: 50vh;
   width: auto;
@@ -64,4 +68,16 @@
     "review-breakdown reviews-list reviews-list"
     ". reviews-list reviews-list"
     ". reviews-more reviews-add";
+}
+#reviews.no-reviews {
+  height: 50vh;
+  width: auto;
+  padding: 2em;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 50px 25% auto 50px;
+  grid-template-areas:
+    "reviews-breakdown reviews-sort ."
+    "review-breakdown reviews-add ."
+    ". . ."
+    ". . .";
 }

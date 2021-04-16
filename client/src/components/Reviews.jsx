@@ -69,7 +69,8 @@ class Reviews extends React.Component {
   handleMore() {
     let count = this.state.currentCount + 2;
     this.setState({
-      currentCount: count
+      // currentCount: count
+      currentCount: 0
     });
   }
 
@@ -77,15 +78,23 @@ class Reviews extends React.Component {
     // entire premise of finding from totalCount is off.
     // maybe try to find all reviews at the beginning? arbitrary count of 1000, in hopes that reviews list is not greater than 1000. If it is, send another axios request that doubles that count.
     // if currentCount is >= views.length do not render more.
+    let reviewsClass;
+    if (this.state.reviews.slice(0, this.state.currentCount).length === 0) {
+      reviewsClass = 'grid-container no-reviews';
+    } else {
+      reviewsClass = 'grid-container reviews';
+    }
     return (
-      <div id='reviews' className='grid-container reviews'>
+      <div id='reviews' className={reviewsClass}>
         REVIEWS WRAPPER
         <ReviewBreakdown />
         <ReviewSort />
-        <ReviewList reviews = {this.state.reviews.slice(0, this.state.currentCount)}/>
-        {(this.state.currentCount < this.state.reviews.length)
-        ? <MoreReviews handleClick = {this.handleMore}/>
+        {(this.state.reviews.slice(0, this.state.currentCount).length !== 0)
+        ? <ReviewList reviews = {this.state.reviews.slice(0, this.state.currentCount)}/>
         : null}
+        {(this.state.currentCount >= this.state.reviews.length || this.state.reviews.slice(0, this.state.currentCount).length === 0)
+        ? null
+        : <MoreReviews handleClick = {this.handleMore}/>}
         <div id='reviews-add'> Add Review </div>
       </div>
     );
