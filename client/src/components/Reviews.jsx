@@ -12,7 +12,7 @@ class Reviews extends React.Component {
       reviews: [],
       meta: {},
       sortType: 'relevant',
-      count: 2
+      currentCount: 2
     };
     // sortTypes are either newest, helpful, or relevant
   }
@@ -29,7 +29,7 @@ class Reviews extends React.Component {
     // can set up so both axios request go asynchronously, or set it up so it goes one at a time.
     // prefer to have it so that this.setState works at the same time.
     // Promise.all.
-    // updates component if the props changes.
+    // updates component if the props changes. Count as 1000 to ensure gets all reviews.
     if (this.props.product !== prevProps.product) {
       let promises = [];
       promises.push(axios({
@@ -38,7 +38,8 @@ class Reviews extends React.Component {
         headers: {'Authorization': API_KEY},
         params: {
           product_id: `${this.props.product.id}`,
-          sort: `${this.state.sortType}`
+          sort: `${this.state.sortType}`,
+          count: 1000
         }
       }));
       promises.push(axios({
@@ -64,19 +65,14 @@ class Reviews extends React.Component {
 
   render() {
     // entire premise of finding from totalCount is off.
-    // maybe try to find all reviews at the beginning?
-    let totalCount = 0;
-    if (this.state.meta.recommended) {
-      let recommended = this.state.meta.recommended
-      totalCount = parseInt(recommended.false) + parseInt(recommended.true);
-    }
+    // maybe try to find all reviews at the beginning? arbitrary count of 1000, in hopes that reviews list is not greater than 1000. If it is, send another axios request that doubles that count.
+    // Currently:
     return (
       <div id='reviews' className='grid-container reviews'>
         REVIEWS WRAPPER
         <ReviewBreakdown />
         <ReviewSort />
-        <ReviewList reviews = {this.state.reviews}/>
-        {(count >= totalCount) }
+        <ReviewList reviews = {this.state.reviews.slice(0, this.state.currentCount)}/>
         <div id='reviews-add'> Add Review </div>
       </div>
     );
