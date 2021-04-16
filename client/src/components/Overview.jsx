@@ -94,7 +94,7 @@ class Overview extends React.Component {
       {/* {console.log(this.props.currentProduct)} */}
       <Gallery currentStylePhotos = {this.state.currentStylePhotos}/>
       <ProductInfo currentProduct = {/*this.props.currentProduct*/this.state.currentProductFull} currentStyle = {this.state.currentStyle} rating = {this.state.averageRating}/>
-      <StyleSelector styles = {this.state.styles}/>
+      <StyleSelector styles = {this.state.styles} currentStyle = {this.state.currentStyle}/>
       <Checkout currentStyle = {this.state.currentStyle}/>
       </div>
 
