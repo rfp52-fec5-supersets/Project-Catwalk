@@ -1,3 +1,31 @@
+.gallery {
+  height: 400px;
+  width: 400px;
+}
+
+.main-image {
+  max-height: 300px;
+}
+
+.original-price-strikethrough {
+  text-decoration: line-through;
+}
+
+.sale-price {
+  color: red;
+}
+
+.style-thumbnail {
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+}
+
+.add-to-cart {
+  background-color: gold;
+  width: 200px;
+  text-align: center;
+=======
 .grid-container {
   display: grid;
 }
