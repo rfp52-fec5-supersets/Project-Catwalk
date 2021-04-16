@@ -84,7 +84,7 @@ class Overview extends React.Component {
       }
 
       this.setState({ratings: ratings, averageRating: sum/divisor});
-      console.log(this.state);
+      // console.log(this.state);
     })
     .catch((err) => {
       console.error(err);
