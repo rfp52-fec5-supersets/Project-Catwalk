@@ -32,9 +32,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <h1>HELLO<h1/>
+      <h1/>HELLO<h1/>
       <Overview currentProduct = {this.state.currentProduct}/>
-      <Reviews product = {this.state.currentProduct}/>}
+      <Reviews product = {this.state.currentProduct}/>
       </div>
     )
   }
