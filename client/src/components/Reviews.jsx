@@ -6,30 +6,50 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: []
+      reviews: [],
+      meta: {}
     };
     // 17067
   }
 
   componentDidUpdate(prevProps) {
-    // Component only mounts once. When it renders again due to other items changing props, it goes into render.
+    // Component updates when changes to prop or state.
+    // can set up so both axios request go asynchronously, or set it up so it goes one at a time.
+    // prefer to have it so that this.setState works at the same time.
+    // Promise.all.
     if (this.props.product !== prevProps.product) {
-      axios({
+      let promises = [];
+      promises.push(axios({
         method: 'get',
         url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
         headers: {'Authorization': API_KEY},
         params: {
           product_id: `${this.props.product.id}`
         }
-      })
-      .then((results)=> {
-        this.setState({
-          reviews: results.data.results
+      }));
+      // .then((results)=> {
+      //   this.setState({
+      //     reviews: results.data.results
+      //   });
+      // })
+      promises.push(axios({
+        method: 'get',
+        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta',
+        headers: {'Authorization': API_KEY},
+        params: {
+          product_id: `${this.props.product.id}`
+        }
+      }));
+      Promise.all(promises)
+        .then((values)=> {
+          this.setState({
+            reviews: values[0].data.results,
+            meta: values[1].data
+          });
+        })
+        .catch((err)=> {
+          console.log('err in trying to update reviews status', err);
         });
-      })
-      .catch((err) => {
-        console.error(err);
-      })
     }
   }
 
@@ -40,6 +60,7 @@ class Reviews extends React.Component {
         <div> Breakdown </div>
         <div> Reviews List </div>
         <div> Review Tile </div>
+        <div> Add Review </div>
       </div>
     );
   }
