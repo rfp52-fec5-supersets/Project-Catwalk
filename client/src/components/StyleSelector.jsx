@@ -11,8 +11,8 @@ class StyleSelector extends React.Component {
     return (
       <div className = "style-selector">
         Style Selector
-        {this.props.styles.map((style) => {
-          return (<img className = "style-thumbnail" src = {style.photos[0].thumbnail_url}></img>)
+        {this.props.styles.map((style, index) => {
+          return (<img className = "style-thumbnail" src = {style.photos[0].thumbnail_url} key = {index}></img>)
         })}
       </div>
     )
