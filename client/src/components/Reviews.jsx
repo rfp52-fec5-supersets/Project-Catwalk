@@ -2,6 +2,8 @@ import React from 'react';
 import API_KEY from './../config.js'
 import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
+import ReviewSort from './ReviewSort.jsx';
+import ReviewBreakdown from './ReviewBreakdown.jsx';
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -19,6 +21,8 @@ class Reviews extends React.Component {
     // can set up so both axios request go asynchronously, or set it up so it goes one at a time.
     // prefer to have it so that this.setState works at the same time.
     // Promise.all.
+    // updates component if the props changes.
+    // What if state changes? More specifically, the state for sortType?
     if (this.props.product !== prevProps.product) {
       let promises = [];
       promises.push(axios({
@@ -55,9 +59,9 @@ class Reviews extends React.Component {
     return (
       <div id='reviews'>
         REVIEWS WRAPPER
-        <div> Breakdown </div>
+        <ReviewBreakdown />
+        <ReviewSort />
         <ReviewList reviews = {this.state.reviews}/>
-        <div> Review Tile </div>
         <div> Add Review </div>
       </div>
     );

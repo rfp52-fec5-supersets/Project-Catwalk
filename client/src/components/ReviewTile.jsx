@@ -6,9 +6,8 @@ class ReviewTile extends React.Component {
   }
 
   render() {
-    console.log(this.props.review);
     return (
-      <div id='reviews-tile'>
+      <div id='reviews-tile' className='reviews-component'>
         {JSON.stringify(this.props.review)}
       </div>
     );

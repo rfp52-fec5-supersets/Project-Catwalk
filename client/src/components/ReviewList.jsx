@@ -11,7 +11,7 @@ class ReviewList extends React.Component {
       return <ReviewTile key={review.review_id} review={review}/>
     });
     return (
-      <div id='reviews-list'>
+      <div id='reviews-list' className='reviews-component'>
         ReviewList:
         {ReviewTiles}
       </div>
