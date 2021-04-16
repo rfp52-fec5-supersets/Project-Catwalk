@@ -38,6 +38,9 @@
 #reviews-breakdown {
   grid-area: reviews-breakdown;
 }
+#reviews-more {
+  grid-area: reviews-more;
+}
 #reviews-list {
   grid-area: reviews-list;
   overflow-y: auto;
@@ -60,5 +63,5 @@
     "reviews-breakdown reviews-sort ."
     "review-breakdown reviews-list reviews-list"
     ". reviews-list reviews-list"
-    ". . reviews-add";
+    ". reviews-more reviews-add";
 }

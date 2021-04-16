@@ -4,6 +4,7 @@ import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
 import ReviewSort from './ReviewSort.jsx';
 import ReviewBreakdown from './ReviewBreakdown.jsx';
+import MoreReviews from './MoreReviews.jsx';
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -15,14 +16,16 @@ class Reviews extends React.Component {
       currentCount: 2
     };
     // sortTypes are either newest, helpful, or relevant
+    this.handleMore = this.handleMore.bind(this);
   }
 
   // on more reviews button click, count goes up by two.
-  // overall reviews count = meta.recommended.false + .true;
-  // if meta.recommended.false + meta.recommended.true < count, remove the count button.
+  // overall reviews = reviews.length;
+  // if reviews.length < count, remove the count button.
   // updates component if state changes. Maybe check for a specific state change to prevent infinite loop of changing due to state.
   // OR
   // can handle axios request on the button click rather than only on the componentDidUpdate!
+  // no axios request necessary with this setup, only need to change currentCount
 
   componentDidUpdate(prevProps, prevState) {
     // Component updates when changes to prop or state.
@@ -63,16 +66,26 @@ class Reviews extends React.Component {
     }
   }
 
+  handleMore() {
+    let count = this.state.currentCount + 2;
+    this.setState({
+      currentCount: count
+    });
+  }
+
   render() {
     // entire premise of finding from totalCount is off.
     // maybe try to find all reviews at the beginning? arbitrary count of 1000, in hopes that reviews list is not greater than 1000. If it is, send another axios request that doubles that count.
-    // Currently:
+    // if currentCount is >= views.length do not render more.
     return (
       <div id='reviews' className='grid-container reviews'>
         REVIEWS WRAPPER
         <ReviewBreakdown />
         <ReviewSort />
         <ReviewList reviews = {this.state.reviews.slice(0, this.state.currentCount)}/>
+        {(this.state.currentCount < this.state.reviews.length)
+        ? <MoreReviews handleClick = {this.handleMore}/>
+        : null}
         <div id='reviews-add'> Add Review </div>
       </div>
     );
