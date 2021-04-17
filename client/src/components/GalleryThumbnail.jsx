@@ -30,8 +30,10 @@ class GalleryThumbnail extends React.Component {
 
   render() {
     return (
-      this.props.clicked ?
-      <img className = "gallery-thumbnail-clicked" src = {this.props.photo.thumbnail_url} onClick = {this.handleClick} name = {this.props.index}></img> : <img className = "gallery-thumbnail" src = {this.props.photo.thumbnail_url} onClick = {this.handleClick} name = {this.props.index}></img>
+      <div>
+      {this.props.clicked ?
+      <img className = "gallery-thumbnail-clicked" src = {this.props.photo.thumbnail_url} onClick = {this.handleClick} name = {this.props.index}></img> : <img className = "gallery-thumbnail" src = {this.props.photo.thumbnail_url} onClick = {this.handleClick} name = {this.props.index}></img>}
+      </div>
     )
   }
 }

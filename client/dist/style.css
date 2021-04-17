@@ -2,7 +2,18 @@
 
 .gallery {
   height: 400px;
-  width: 400px;
+  width: 500px;
+  padding-bottom: 40px;
+}
+
+.main-image {
+  position: absolute;
+  max-height: 400px;
+}
+
+.main-image-window {
+  position: absolute;
+  left: 100px;
 }
 
 .gallery-thumbnail {
@@ -14,19 +25,16 @@
 .gallery-thumbnail-clicked {
   height: 60px;
   width: 60px;
-  border: 1px dotted black;
+  border: 1.5px dotted black;
   margin-right: 10px;
 }
 
 .gallery-thumbnails {
   position: absolute;
+  top: 165px;
 }
 
 /* Product Info */
-
-.main-image {
-  max-height: 300px;
-}
 
 .original-price-strikethrough {
   text-decoration: line-through;
