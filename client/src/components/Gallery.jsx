@@ -6,9 +6,9 @@ class Gallery extends React.Component {
     super(props);
 
     this.state = {
-      currentImageIndex: 1,
-      minThumbnailIndex: 1,
-      maxThumbnailIndex: 3
+      currentImageIndex: 0,
+      minThumbnailIndex: 0,
+      maxThumbnailIndex: 4
     };
 
     // console.log(this.props);

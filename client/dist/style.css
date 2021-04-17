@@ -25,7 +25,7 @@
 .gallery-thumbnail-clicked {
   height: 60px;
   width: 60px;
-  border: 1.5px dotted black;
+  border: 2.5px solid orange;
   margin-right: 10px;
 }
 
