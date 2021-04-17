@@ -22,7 +22,7 @@ class App extends React.Component {
       headers: {'Authorization': API_KEY}
     })
     .then(({data: products} = res) => {
-      this.setState({products: products, currentProduct: products[0]});
+      this.setState({products: products, currentProduct: products[1]});
     })
     .catch((err) => {
       console.error(err);
