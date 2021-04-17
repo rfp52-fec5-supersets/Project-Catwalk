@@ -6,7 +6,9 @@ class Gallery extends React.Component {
     super(props);
 
     this.state = {
-      currentImageIndex: 1
+      currentImageIndex: 1,
+      minThumbnailIndex: 1,
+      maxThumbnailIndex: 3
     };
 
     // console.log(this.props);
@@ -30,7 +32,7 @@ class Gallery extends React.Component {
   }
 
   handleButtonClick(event) {
-
+    event.preventDefault();
     if (event.target.name === 'left') {
       if (this.state.currentImageIndex !== 0) {
         this.setState({currentImageIndex: this.state.currentImageIndex - 1});
@@ -43,21 +45,37 @@ class Gallery extends React.Component {
       }
     }
 
+    if (event.target.name === 'up') {
+      if (this.state.minThumbnailIndex !== 0) {
+        this.setState({minThumbnailIndex: this.state.minThumbnailIndex - 1, maxThumbnailIndex: this.state.maxThumbnailIndex - 1});
+      }
+    }
+
+    if (event.target.name === 'down') {
+      if (this.state.maxThumbnailIndex < this.props.currentStylePhotos.length - 1) {
+        this.setState({minThumbnailIndex: this.state.minThumbnailIndex + 1, maxThumbnailIndex: this.state.maxThumbnailIndex + 1});
+      }
+    }
   }
 
 
   render() {
+    var thumbnailsToRender = this.props.currentStylePhotos.slice(this.state.minThumbnailIndex, this.state.maxThumbnailIndex + 1);
+    //console.log(thumbnailsToRender);
+
     return (
       <div className = "gallery">
         GALLERY
         <div className = "main-image-window">
-          <button name = "left" onClick = {this.handleButtonClick}>{'<'}</button>
-          <button name = "right" onClick = {this.handleButtonClick}>{'>'}</button>
+          {this.state.currentImageIndex !== 0 && <button name = "left" onClick = {this.handleButtonClick}>{'<'}</button>}
+          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && <button name = "right" onClick = {this.handleButtonClick}>{'>'}</button>}
           {this.props.currentStylePhotos.length > 0 &&
           (<img className = "main-image" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}/>)}
         </div>
         <div className = "gallery-thumbnails">
-        {this.props.currentStylePhotos.map((photo, index) => <GalleryThumbnail photo = {photo} key = {index} index = {index} selectPhoto = {this.selectPhoto} clicked = {this.state.currentImageIndex == index}/>)}
+        {this.state.minThumbnailIndex !== 0 && <button name = "up" onClick = {this.handleButtonClick}>{'^'}</button>}
+        {thumbnailsToRender.map((photo, index) => <GalleryThumbnail photo = {photo} key = {index + this.state.minThumbnailIndex} index = {index + this.state.minThumbnailIndex} selectPhoto = {this.selectPhoto} clicked = {this.state.currentImageIndex == index + this.state.minThumbnailIndex}/>)}
+        {this.state.maxThumbnailIndex < this.props.currentStylePhotos.length - 1 && <button name = "down" onClick = {this.handleButtonClick}>{'v'}</button>}
         </div>
       </div>
     )

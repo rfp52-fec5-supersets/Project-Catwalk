@@ -24,7 +24,7 @@ class GalleryThumbnail extends React.Component {
   //   }
   // }
   handleClick(event) {
-    this.props.selectPhoto(event.target.name)
+    this.props.selectPhoto(Number(event.target.name))
     // console.log(event.target.name);
   }
 
