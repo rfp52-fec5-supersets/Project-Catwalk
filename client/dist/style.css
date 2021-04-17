@@ -1,7 +1,28 @@
+
+
 .gallery {
   height: 400px;
   width: 400px;
 }
+
+.gallery-thumbnail {
+  height: 60px;
+  width: 60px;
+  margin-right: 10px;
+}
+
+.gallery-thumbnail-clicked {
+  height: 60px;
+  width: 60px;
+  border: 1px dotted black;
+  margin-right: 10px;
+}
+
+.gallery-thumbnails {
+  position: absolute;
+}
+
+/* Product Info */
 
 .main-image {
   max-height: 300px;
@@ -15,6 +36,8 @@
   color: red;
 }
 
+/* Style Selector */
+
 .style-thumbnail {
   height: 90px;
   width: 90px;
@@ -27,6 +50,8 @@
   border-radius: 50%;
   border: 3px solid limegreen;
 }
+
+/* Add to Cart */
 
 .add-to-cart {
   background-color: gold;

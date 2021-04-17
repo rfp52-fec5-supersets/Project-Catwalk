@@ -100,6 +100,10 @@ class Overview extends React.Component {
     console.log(this.state);
   }
 
+  // selectPhoto(index) {
+  //   this.setState({currentStylePhotoIndex: index});
+  // }
+
   componentDidMount() {
     this.getStyles();
     this.getFeatures();

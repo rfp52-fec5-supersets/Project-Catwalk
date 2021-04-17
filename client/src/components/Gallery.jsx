@@ -1,14 +1,16 @@
 import React from 'react';
+import GalleryThumbnail from './GalleryThumbnail';
 
 class Gallery extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentImageIndex: 0
+      currentImageIndex: 1
     };
 
     // console.log(this.props);
+    this.selectPhoto = this.selectPhoto.bind(this);
   }
 
   // componentDidMount() {
@@ -22,6 +24,12 @@ class Gallery extends React.Component {
   //   }
   // }
 
+  selectPhoto(index) {
+    this.setState({currentImageIndex: index});
+  }
+
+
+
   render() {
     return (
       <div className = "gallery">
@@ -30,7 +38,9 @@ class Gallery extends React.Component {
         {this.props.currentStylePhotos.length > 0 &&
         (<img className = "main-image" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}/>)}
         </div>
-        RENDER THUMBNAILS
+        <div className = "gallery-thumbnails">
+        {this.props.currentStylePhotos.map((photo, index) => <GalleryThumbnail photo = {photo} key = {index} index = {index} selectPhoto = {this.selectPhoto} clicked = {this.state.currentImageIndex == index}/>)}
+        </div>
       </div>
     )
   }
