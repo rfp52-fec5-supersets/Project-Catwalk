@@ -21,6 +21,13 @@
   border-radius: 50%;
 }
 
+.style-thumbnail-clicked {
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  border: 3px solid limegreen;
+}
+
 .add-to-cart {
   background-color: gold;
   width: 200px;

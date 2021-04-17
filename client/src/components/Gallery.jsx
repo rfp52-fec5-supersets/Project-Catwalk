@@ -28,7 +28,7 @@ class Gallery extends React.Component {
         GALLERY
         <div className = "main-image-window">
         {this.props.currentStylePhotos.length > 0 &&
-        (<img className = "main-image" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}></img>)}
+        (<img className = "main-image" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}/>)}
         </div>
         RENDER THUMBNAILS
       </div>
