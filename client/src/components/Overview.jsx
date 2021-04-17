@@ -13,13 +13,17 @@ class Overview extends React.Component {
 
     this.state = {
       styles: [],
+      currentStyleIndex: 2,
       currentStyle: {},
       currentStylePhotos: [],
+      currentStylePhotoIndex: 0,
       currentStyleSkus: [],
       currentProductFull: {},
       ratings: {},
       averageRating: 0
     };
+
+    this.setStyle = this.setStyle.bind(this);
   }
 
   getStyles() {
@@ -29,7 +33,7 @@ class Overview extends React.Component {
       headers: {'Authorization': API_KEY}
     })
     .then(({data: stylesObj} = res) => {
-      this.setState({styles: stylesObj.results, currentStyle: stylesObj.results[2], currentStylePhotos: stylesObj.results[2].photos});
+      this.setState({styles: stylesObj.results, currentStyle: stylesObj.results[this.state.currentStyleIndex], currentStylePhotos: stylesObj.results[this.state.currentStyleIndex].photos});
       var skusObj = this.state.currentStyle.skus;
       var skusObjKeys = Object.keys(skusObj);
       var skusArray = [];
@@ -91,6 +95,11 @@ class Overview extends React.Component {
     })
   }
 
+  setStyle(index) {
+    this.setState({currentStyleIndex: index, currentStyle: this.state.styles[index], currentStylePhotos: this.state.styles[index].photos})
+    console.log(this.state);
+  }
+
   componentDidMount() {
     this.getStyles();
     this.getFeatures();
@@ -103,7 +112,7 @@ class Overview extends React.Component {
       {/* {console.log(this.props.currentProduct)} */}
       <Gallery currentStylePhotos = {this.state.currentStylePhotos}/>
       <ProductInfo currentProduct = {/*this.props.currentProduct*/this.state.currentProductFull} currentStyle = {this.state.currentStyle} rating = {this.state.averageRating}/>
-      <StyleSelector styles = {this.state.styles} currentStyle = {this.state.currentStyle}/>
+      <StyleSelector styles = {this.state.styles} currentStyle = {this.state.currentStyle} setStyle = {this.setStyle} currentStyleIndex = {this.state.currentStyleIndex}/>
       <Checkout currentStyleSkus = {this.state.currentStyleSkus}/>
       </div>
 
