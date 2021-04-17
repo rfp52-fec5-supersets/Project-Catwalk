@@ -97,6 +97,7 @@ class Overview extends React.Component {
 
   setStyle(index) {
     this.setState({currentStyleIndex: index, currentStyle: this.state.styles[index], currentStylePhotos: this.state.styles[index].photos})
+    console.log(this.state);
   }
 
   componentDidMount() {
@@ -111,7 +112,7 @@ class Overview extends React.Component {
       {/* {console.log(this.props.currentProduct)} */}
       <Gallery currentStylePhotos = {this.state.currentStylePhotos}/>
       <ProductInfo currentProduct = {/*this.props.currentProduct*/this.state.currentProductFull} currentStyle = {this.state.currentStyle} rating = {this.state.averageRating}/>
-      <StyleSelector styles = {this.state.styles} currentStyle = {this.state.currentStyle} setStyle = {this.setStyle}/>
+      <StyleSelector styles = {this.state.styles} currentStyle = {this.state.currentStyle} setStyle = {this.setStyle} currentStyleIndex = {this.state.currentStyleIndex}/>
       <Checkout currentStyleSkus = {this.state.currentStyleSkus}/>
       </div>
 
