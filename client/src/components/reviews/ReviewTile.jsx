@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import ReviewTileBody from './ReviewTileBody.jsx';
+import API_KEY from './../../config.js'
+import axios from 'axios';
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -13,16 +15,44 @@ class ReviewTile extends React.Component {
   }
 
   handleReport() {
-    console.log('reported!!');
-    this.setState({
-      voted: 'voted-no'
+    // api call to report
+    let id = this.props.review.review_id;
+    axios({
+      method: 'put',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${id}/report`,
+      headers: {'Authorization': API_KEY},
+      params: {
+        review_id: id
+      }
+    })
+    .then(()=> {
+      this.setState({
+        voted: 'voted-no'
+      });
+    })
+    .catch(()=> {
+      console.log('err in reporting review');
     });
   }
 
   handleHelpful() {
-    console.log('helpful? YES');
-    this.setState({
-      voted: 'voted-yes'
+    // api call to increment helpful
+    let id = this.props.review.review_id;
+    axios({
+      method: 'put',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${id}/helpful`,
+      headers: {'Authorization': API_KEY},
+      params: {
+        review_id: id
+      }
+    })
+    .then(()=> {
+      this.setState({
+        voted: 'voted-yes'
+      });
+    })
+    .catch(()=> {
+      console.log('err in reporting review');
     });
   }
 
@@ -66,7 +96,7 @@ class ReviewTile extends React.Component {
           <p>Was this helpful?</p>
           {(voted)
           ? <p>
-              <span className={(voted === 'voted-yes') ? 'voted-yes': 'voted'}>Yes ({review.helpfulness})</span>
+              <span className={(voted === 'voted-yes') ? 'voted-yes': 'voted'}>Yes ({(voted === 'voted-yes') ? review.helpfulness + 1: review.helpfulness})</span>
               &nbsp;&nbsp;
               <span className={(voted === 'voted-no') ? 'voted-no': 'voted'}>Report</span>
             </p>
