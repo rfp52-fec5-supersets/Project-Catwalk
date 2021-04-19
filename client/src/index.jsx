@@ -18,7 +18,8 @@ class App extends React.Component {
       currentStyle: {},
       currentProductId: '17071', // initialized value, shouldn't matter
       currentStylePhotos: [],
-      currentStyleSkus: [],
+      currentStyleSkusObj: {},
+      // currentStyleSkus: [],
       currentStyleTotalQuantity: 0,
       currentProductFull: {},
       ratings: {},
@@ -36,17 +37,15 @@ class App extends React.Component {
       headers: {'Authorization': API_KEY}
     })
     .then(({data: stylesObj} = res) => {
-      this.setState({styles: stylesObj.results, currentStyle: stylesObj.results[this.state.currentStyleIndex], currentStylePhotos: stylesObj.results[this.state.currentStyleIndex].photos});
+      this.setState({styles: stylesObj.results, currentStyle: stylesObj.results[this.state.currentStyleIndex], currentStyleSkusObj: stylesObj.results[this.state.currentStyleIndex].skus, currentStylePhotos: stylesObj.results[this.state.currentStyleIndex].photos});
       var skusObj = this.state.currentStyle.skus;
       var skusObjKeys = Object.keys(skusObj);
-      var skusArray = [];
       var currentStyleTotalQuantity = 0;
       for (var i = 0; i < skusObjKeys.length ; i++) {
         var key = skusObjKeys[i];
-        skusArray.push({sku: key, size: skusObj[key].size, quantity: skusObj[key].quantity})
         currentStyleTotalQuantity += skusObj[key].quantity;
       }
-      this.setState({currentStyleSkus: skusArray, currentStyleTotalQuantity: currentStyleTotalQuantity});
+      this.setState({currentStyleTotalQuantity: currentStyleTotalQuantity});
       console.log(this.state);
     })
     .catch((err) => {
@@ -101,18 +100,16 @@ class App extends React.Component {
   }
 
   setStyle(index) {
-    this.setState({currentStyleIndex: index, currentStyle: this.state.styles[index], currentStylePhotos: this.state.styles[index].photos})
+    this.setState({currentStyleIndex: index, currentStyle: this.state.styles[index], currentStylePhotos: this.state.styles[index].photos, currentStyleSkusObj: this.state.styles[index].skus})
     // console.log(this.state);
     var skusObj = this.state.currentStyle.skus;
     var skusObjKeys = Object.keys(skusObj);
-    var skusArray = [];
     var currentStyleTotalQuantity = 0;
     for (var i = 0; i < skusObjKeys.length ; i++) {
       var key = skusObjKeys[i];
-      skusArray.push({sku: key, size: skusObj[key].size, quantity: skusObj[key].quantity})
       currentStyleTotalQuantity += skusObj[key].quantity;
     }
-    this.setState({currentStyleSkus: skusArray, currentStyleTotalQuantity: currentStyleTotalQuantity});
+    this.setState({currentStyleTotalQuantity: currentStyleTotalQuantity});
     console.log(this.state);
   }
 
@@ -138,7 +135,7 @@ class App extends React.Component {
     return (
       <div>
       <h1/>HELLO<h1/>
-      <Overview currentProduct = {this.state.currentProduct} currentProductId = {this.state.currentProductId} currentStylePhotos = {this.state.currentStylePhotos} currentProductFull = {this.state.currentProductFull} currentStyle = {this.state.currentStyle} averageRating = {this.state.averageRating} styles = {this.state.styles} currentStyleIndex = {this.state.currentStyleIndex} setStyle = {this.setStyle} currentStyleSkus = {this.state.currentStyleSkus} currentStyleTotalQuantity = {this.state.currentStyleTotalQuantity}/>
+      <Overview currentProduct = {this.state.currentProduct} currentProductId = {this.state.currentProductId} currentStylePhotos = {this.state.currentStylePhotos} currentProductFull = {this.state.currentProductFull} currentStyle = {this.state.currentStyle} averageRating = {this.state.averageRating} styles = {this.state.styles} currentStyleIndex = {this.state.currentStyleIndex} setStyle = {this.setStyle} currentStyleSkusObj = {this.state.currentStyleSkusObj} currentStyleTotalQuantity = {this.state.currentStyleTotalQuantity}/>
       <Reviews product = {this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating}/>
       </div>
     )

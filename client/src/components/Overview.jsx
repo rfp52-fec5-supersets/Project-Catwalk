@@ -121,7 +121,7 @@ class Overview extends React.Component {
       <Gallery currentStylePhotos = {this.props.currentStylePhotos}/>
       <ProductInfo currentProduct = {this.props.currentProductFull} currentStyle = {this.props.currentStyle} rating = {this.props.averageRating}/>
       <StyleSelector styles = {this.props.styles} currentStyle = {this.props.currentStyle} setStyle = {this.props.setStyle} currentStyleIndex = {this.props.currentStyleIndex}/>
-      <Checkout currentStyleSkus = {this.props.currentStyleSkus} currentStyleTotalQuantity = {this.props.currentStyleTotalQuantity}/>
+      <Checkout currentStyleSkus = {this.props.currentStyleSkus} currentStyleSkusObj = {this.props.currentStyleSkusObj} currentStyleTotalQuantity = {this.props.currentStyleTotalQuantity}/>
       </div>
 
     )
