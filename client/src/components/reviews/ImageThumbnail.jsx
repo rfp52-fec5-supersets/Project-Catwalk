@@ -11,7 +11,10 @@ class ImageThumbnail extends React.Component {
   }
 
   handleToggle() {
-    console.log('clicked');
+    let newState = !this.state.showModal;
+    this.setState({
+      showModal: newState
+    });
   }
 
   render() {
@@ -19,9 +22,10 @@ class ImageThumbnail extends React.Component {
     return (
       <>
         <img onClick={this.handleToggle} src={imgSource} className='reviews-thumbnail'/>
-        <ModalImage onCloseRequest={() => this.handleToggleModal()}>
+        {this.state.showModal &&
+        <ModalImage onCloseRequest={() => this.handleToggle()}>
           <img src={imgSource} />
-        </ModalImage>
+        </ModalImage>}
       </>
     );
   }

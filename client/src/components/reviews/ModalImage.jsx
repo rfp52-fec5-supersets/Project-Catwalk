@@ -13,15 +13,12 @@ class ModalImage extends React.Component {
     } = this.props;
     return (
       <div className='modal-overlay'>
+        <button type="button" className='close-button' onClick={onCloseRequest}>
+          X
+        </button>
         <div className='modal-content'>
           {children}
         </div>
-
-        <button
-          type="button"
-          className='close-button'
-          onClick={onCloseRequest}
-        />
       </div>
     );
   }

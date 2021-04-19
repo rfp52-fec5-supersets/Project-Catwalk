@@ -132,7 +132,7 @@
 }
 /* The Modal (background) */
 .modal-overlay {
-  display: none; /* Hidden by default */
+  /* display: none; Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -155,6 +155,7 @@
 /* The Close Button */
 .close-button {
   color: #aaa;
+  /* color: red; */
   float: right;
   font-size: 28px;
   font-weight: bold;
