@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import ReviewTileBody from './ReviewTileBody.jsx';
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -8,7 +9,6 @@ class ReviewTile extends React.Component {
 
   render() {
     let review = this.props.review;
-    console.log(review.photos)
     return (
       <div id='reviews-tile' className='reviews-component'>
         <div className='reviews star-rating'>
@@ -18,29 +18,15 @@ class ReviewTile extends React.Component {
           Date: {moment(review.date).format('MMMM DD, YYYY')}
         </div>
         <div className='review-summary'>
+          {/* Unsure if need to ensure title is 60 chars or less */}
+          {/* Also unsure if want to implement line break wraps like in the example */}
           <h4>
             <b>Summary: {review.summary}</b>
           </h4>
         </div>
-        <div className='review-body'>
-          Body: {review.body}
-          {/* Images: {review.photos} */}
-          {/* What if no images */}
-        </div>
-        {(review.photos)
-          ? <div className='review-images'>
-              Images:
-              {review.photos.map((image)=> {
-                return (
-                <div key={image.id}>
-                  {image.url}
-                </div>
-                );
-              })}
-            </div>
-          : null}
+        <ReviewTileBody body={review.body} photos={review.photos}/>
         {(review.recommend)
-        ? 'I recommend this'
+        ? 'I recommend this, checkmark icon'
         : null}
         <div className='review-username'>
           username: {review.reviewer_name}
