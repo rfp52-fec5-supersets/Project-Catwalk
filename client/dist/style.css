@@ -91,6 +91,9 @@
   overflow-x: hidden;
   width: 100%;
 }
+#reviews-tile {
+  border-bottom: 2px solid black;
+}
 #reviews-sort {
   grid-area: reviews-sort;
   /* grid-column: 2;
@@ -111,7 +114,7 @@
     ". reviews-more reviews-add";
 }
 #reviews.no-reviews {
-  height: 50vh;
+  height: 75vh;
   width: auto;
   padding: 2em;
   grid-template-columns: 1fr 1fr 1fr;
