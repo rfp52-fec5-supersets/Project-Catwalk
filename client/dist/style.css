@@ -133,8 +133,10 @@
 /* The Modal (background) */
 .modal-overlay {
   /* display: none; Hidden by default */
+  /* display will always show. The react state will take care of the display
+  by choosing to render the component or not depending on its state */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 1; /* Sit on top. Can set to 9999 if paranoid about other components */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -147,7 +149,7 @@
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 5% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
@@ -155,9 +157,9 @@
 /* The Close Button */
 .close-button {
   color: #aaa;
-  /* color: red; */
   float: right;
-  font-size: 28px;
+  /* font-size: 28px; */
+  font-size: 2em;
   font-weight: bold;
 }
 .close-button:hover,

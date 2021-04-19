@@ -40,7 +40,7 @@ class ReviewTileBody extends React.Component {
             : <span onClick={this.handleMoreText}>Show More...</span>}
           <div className='review-images'>
             {(photos.length !== 0)
-            ? <div className='review-images'>
+            ? <div>
                 Images:
                 {imageThumbnails}
               </div>
