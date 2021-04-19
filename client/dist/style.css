@@ -83,6 +83,8 @@
   grid-area: reviews-breakdown;
   /* grid-column: 1;
   grid-row: 1 / 4; */
+  /* overflow-y is here temporarily */
+  overflow-y: auto;
 }
 #reviews-more {
   grid-area: reviews-more;
@@ -109,8 +111,8 @@
   grid-template-rows: 50px 25% auto 50px;
   grid-template-areas:
     "reviews-breakdown reviews-sort ."
-    "review-breakdown reviews-list reviews-list"
-    ". reviews-list reviews-list"
+    "reviews-breakdown reviews-list reviews-list"
+    "reviews-breakdown reviews-list reviews-list"
     ". reviews-more reviews-add";
 }
 #reviews.no-reviews {
