@@ -8,7 +8,6 @@ class ProductBreakdown extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     let characteristics = this.props.characteristics;
     let productQualities = null;
     if (characteristics) {

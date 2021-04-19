@@ -1,5 +1,5 @@
 import React from 'react';
-import API_KEY from './../config.js'
+import API_KEY from './../../config.js'
 import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
 import ReviewSort from './ReviewSort.jsx';

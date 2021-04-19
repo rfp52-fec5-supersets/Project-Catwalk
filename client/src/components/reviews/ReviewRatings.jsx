@@ -24,7 +24,6 @@ class RatingsBreakdown extends React.Component {
       recommendTrue = parseInt(recommended.true);
       total = parseInt(recommended.false) + recommendTrue;
     }
-    console.log(this.props.ratings);
     return (
       <div id='reviews-ratings-breakdown'>
         Ratings Breakdown:
