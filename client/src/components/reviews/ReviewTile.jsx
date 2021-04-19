@@ -5,10 +5,30 @@ import ReviewTileBody from './ReviewTileBody.jsx';
 class ReviewTile extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      voted: false
+    }
+    this.handleReport = this.handleReport.bind(this);
+    this.handleHelpful = this.handleHelpful.bind(this);
+  }
+
+  handleReport() {
+    console.log('reported!!');
+    this.setState({
+      voted: 'voted-no'
+    });
+  }
+
+  handleHelpful() {
+    console.log('helpful? YES');
+    this.setState({
+      voted: 'voted-yes'
+    });
   }
 
   render() {
     let review = this.props.review;
+    let voted = this.state.voted;
     return (
       <div id='reviews-tile' className='reviews-component'>
         <div className='reviews star-rating'>
@@ -43,7 +63,18 @@ class ReviewTile extends React.Component {
           </div>)
         : null}
         <div className='review-helpfulness'>
-          Helpfulness: {review.helpfulness}
+          <p>Was this helpful?</p>
+          {(voted)
+          ? <p>
+              <span className={(voted === 'voted-yes') ? 'voted-yes': 'voted'}>Yes ({review.helpfulness})</span>
+              &nbsp;&nbsp;
+              <span className={(voted === 'voted-no') ? 'voted-no': 'voted'}>Report</span>
+            </p>
+          : <p>
+              <span onClick={this.handleHelpful}>Yes ({review.helpfulness})</span>
+              &nbsp;&nbsp;
+              <span onClick={this.handleReport} >Report</span>
+            </p>}
         </div>
         <br />
       </div>

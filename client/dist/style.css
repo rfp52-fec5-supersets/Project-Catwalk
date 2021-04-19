@@ -111,6 +111,15 @@
   background-color: lightslategray;
   color: black;
 }
+.voted-yes {
+  color: lime;
+}
+.voted-no {
+  color: red;
+}
+.voted {
+  color: gray;
+}
 
 #reviews.reviews {
   /* vh = viewport height */
