@@ -17,7 +17,6 @@ class RatingsBreakdown extends React.Component {
     //   hover on bar changes background color
     //   click on star count turns on filter
     // Recommendations: shows percentage of reviews that recommend product
-    // console.log(this.props);
     let total = 0;
     let recommendTrue = 0;
     if (this.props.recommended) {
@@ -25,14 +24,20 @@ class RatingsBreakdown extends React.Component {
       recommendTrue = parseInt(recommended.true);
       total = parseInt(recommended.false) + recommendTrue;
     }
+    console.log(this.props.ratings);
     return (
       <div id='reviews-ratings-breakdown'>
         Ratings Breakdown:
         <div className='ratings-summary'>
-
+          <p>Overall Star Rating: {this.props.averageRating}</p>
+          <p>Stars here</p>
         </div>
         <div className='ratings-breakdown'>
-
+          {Object.keys(this.props.ratings).map((star)=> {
+            return (<p key={star}>
+              {star} star ratings: {this.props.ratings[star]}
+            </p>);
+          })}
         </div>
         <div className='ratings-recommendation'>
           <h4>
