@@ -5,6 +5,7 @@ import API_KEY from './config.js';
 import Reviews from './components/reviews/Reviews.jsx';
 import Overview from './components/Overview.jsx'
 import QuestionsList from './components/QuestionsList.jsx'
+import Related from './components/Related.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -121,6 +122,14 @@ class App extends React.Component {
     })
   }
 
+
+
+  handleProductCardClick() {
+    event.preventDefault();
+
+  }
+
+
   // Renders our question list once we have received our products and current product
   questionListRender() {
     // Check that our products state isn't empty - indicates we have recevied our current product
@@ -134,6 +143,7 @@ class App extends React.Component {
     return (
       <div>
       <Overview currentProduct = {this.state.currentProduct} currentProductId = {this.state.currentProductId} currentStylePhotos = {this.state.currentStylePhotos} currentProductFull = {this.state.currentProductFull} currentStyle = {this.state.currentStyle} averageRating = {this.state.averageRating} styles = {this.state.styles} currentStyleIndex = {this.state.currentStyleIndex} setStyle = {this.setStyle} currentStyleSkus = {this.state.currentStyleSkus}/>
+      <Related/>
       <Reviews product = {this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating} ratings={this.state.ratings}/>
       {/* Invoke our conditional render of QuestionList component*/}
       {this.questionListRender()}
