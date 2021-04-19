@@ -6,18 +6,28 @@ class Checkout extends React.Component {
 
     this.state = {
       sizeSelected: false,
+      pleaseSelectSize: false,
       currentSizeQuantity: 0
     };
 
     this.handleSelectSize = this.handleSelectSize.bind(this);
+    this.handleClick = this.handleClick.bind(this);
 
   }
 
   handleSelectSize(event) {
-    if (this.props.currentStyleSkusObj[event.target.value]) {
-      this.setState({sizeSelected: true, currentSizeQuantity: this.props.currentStyleSkusObj[event.target.value].quantity})
-    } else {
+    if (event.target.value === 'select-size') {
       this.setState({sizeSelected: false, currentSizeQuantity: 0});
+    }
+
+    if (this.props.currentStyleSkusObj[event.target.value]) {
+      this.setState({sizeSelected: event.target.value, currentSizeQuantity: this.props.currentStyleSkusObj[event.target.value].quantity, pleaseSelectSize: false});
+    }
+  }
+
+  handleClick(event) {
+    if (this.state.sizeSelected === false) {
+      this.setState({pleaseSelectSize: true});
     }
   }
 
@@ -29,7 +39,6 @@ class Checkout extends React.Component {
     for (var i = 1; i < 16 && i < this.state.currentSizeQuantity + 1; i++) {
       quantityArray.push(i);
     }
-    console.log(quantityArray);
 
     return (
       <div className = "checkout">
@@ -37,9 +46,10 @@ class Checkout extends React.Component {
         <form>
           <label>
             Pick a size:
+            {this.state.pleaseSelectSize && <div id = "please-select-size">Please select size!</div>}
             {this.props.currentStyleTotalQuantity > 0 ?
             <select onChange = {this.handleSelectSize}>
-              <option defaultValue>Select Size</option>
+              <option value = "select-size" defaultValue>Select Size</option>
               {skusArray.map((sku, index) => {
                 return (<option value = {sku} key = {index}>{this.props.currentStyleSkusObj[sku].size}</option>);
               } )}
@@ -62,7 +72,7 @@ class Checkout extends React.Component {
             <option defaultValue>-</option>
           </select> }
           </label>
-          <div className = "add-to-cart">Add to Cart</div>
+          <div className = "add-to-cart" onClick = {this.handleClick}>Add to Cart</div>
         </form>
       </div>
     )
