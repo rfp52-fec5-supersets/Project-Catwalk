@@ -6,7 +6,24 @@ class ModalImage extends React.Component {
   }
 
   render() {
-    return ();
+    const {
+      onCloseRequest,
+      children,
+      classes,
+    } = this.props;
+    return (
+      <div className='modal-overlay'>
+        <div className='modal-content'>
+          {children}
+        </div>
+
+        <button
+          type="button"
+          className='close-button'
+          onClick={onCloseRequest}
+        />
+      </div>
+    );
   }
 }
 export default ModalImage;

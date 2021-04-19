@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import ImageThumbnail from './ImageThumbnail.jsx'
 
 class ReviewTileBody extends React.Component {
   constructor(props) {
@@ -23,10 +24,8 @@ class ReviewTileBody extends React.Component {
     let limit = this.state.bodyLimit;
     let imageThumbnails = photos.map((image)=> {
       return (
-      // <div key={image.id}>
-      //   {image.url}
-      // </div>
-      <img key={image.id} src={image.url} className='reviews-thumbnail'/>
+
+      <ImageThumbnail key={image.id} source={image.url} />
       );
     });
     return (
