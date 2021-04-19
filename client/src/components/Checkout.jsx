@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import API_KEY from '../config.js';
 
 class Checkout extends React.Component {
   constructor(props) {
@@ -7,11 +9,13 @@ class Checkout extends React.Component {
     this.state = {
       sizeSelected: false,
       pleaseSelectSize: false,
-      currentSizeQuantity: 0
+      currentSizeQuantity: 0,
+      selectedQuantity: 1
     };
 
     this.handleSelectSize = this.handleSelectSize.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleSelectQuantity = this.handleSelectQuantity.bind(this);
 
   }
 
@@ -22,13 +26,48 @@ class Checkout extends React.Component {
 
     if (this.props.currentStyleSkusObj[event.target.value]) {
       this.setState({sizeSelected: event.target.value, currentSizeQuantity: this.props.currentStyleSkusObj[event.target.value].quantity, pleaseSelectSize: false});
+      console.log(this.state);
     }
+  }
+
+  handleSelectQuantity(event) {
+    this.setState({selectedQuantity: event.target.value});
+    console.log(this.state);
   }
 
   handleClick(event) {
     if (this.state.sizeSelected === false) {
       this.setState({pleaseSelectSize: true});
+      return;
     }
+
+    var promises = [];
+    // console.log(this.state.selectedQuantity);
+    for (var i = 0; i < this.state.selectedQuantity; i++) {
+
+      var promise = axios({
+        method: 'post',
+        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart',
+        data: {sku_id: this.state.sizeSelected},
+        headers: {Authorization: API_KEY}
+      });
+
+      promises.push(promise);
+    }
+
+    Promise.all(promises)
+    .then(() => {
+      axios({
+        method: 'get',
+        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart',
+        data: {sku_id: this.state.sizeSelected},
+        headers: {Authorization: API_KEY}
+      })
+      .then((results) => {
+        console.log('Cart:', results.data);
+      })
+    })
+
   }
 
   render() {
@@ -62,7 +101,7 @@ class Checkout extends React.Component {
           <label>
             Pick a quantity:
             {this.state.sizeSelected ?
-            <select>
+            <select onChange = {this.handleSelectQuantity}>
               {quantityArray.map((quantity, index) => {
                 return (<option value = {quantity} key = {index}>{quantity}</option>)
               })}
