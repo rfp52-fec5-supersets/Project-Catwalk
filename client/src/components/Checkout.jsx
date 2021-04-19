@@ -72,7 +72,7 @@ class Checkout extends React.Component {
             <option defaultValue>-</option>
           </select> }
           </label>
-          <div className = "add-to-cart" onClick = {this.handleClick}>Add to Cart</div>
+          {this.props.currentStyleTotalQuantity > 0 && <div className = "add-to-cart" onClick = {this.handleClick}>Add to Cart</div>}
         </form>
       </div>
     )
