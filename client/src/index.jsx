@@ -4,6 +4,7 @@ import axios from 'axios';
 import API_KEY from './config.js';
 import Reviews from './components/Reviews.jsx';
 import Overview from './components/Overview.jsx'
+import QuestionsList from './components/QuestionsList.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -120,12 +121,23 @@ class App extends React.Component {
     })
   }
 
+  // Renders our question list once we have received our products and current product
+  questionListRender() {
+    // Check that our products state isn't empty - indicates we have recevied our current product
+    if (this.state.products.length > 0) {
+      // Render our QuestionsList component while passing in the product ID
+      return <QuestionsList productID={this.state.currentProduct.id} />
+    }
+  }
+
   render() {
     return (
       <div>
-      <h1/>HELLO<h1/>
       <Overview currentProduct = {this.state.currentProduct} currentProductId = {this.state.currentProductId} currentStylePhotos = {this.state.currentStylePhotos} currentProductFull = {this.state.currentProductFull} currentStyle = {this.state.currentStyle} averageRating = {this.state.averageRating} styles = {this.state.styles} currentStyleIndex = {this.state.currentStyleIndex} setStyle = {this.setStyle} currentStyleSkus = {this.state.currentStyleSkus}/>
       <Reviews product = {this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating} ratings={this.state.ratings}/>
+      {/* Invoke our conditional render of QuestionList component*/}
+      {this.questionListRender()}
+      <Reviews product = {this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating}/>
       </div>
     )
   }
