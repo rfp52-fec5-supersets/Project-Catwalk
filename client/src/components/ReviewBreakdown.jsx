@@ -6,6 +6,7 @@ class ReviewBreakdown extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div id='reviews-breakdown' className='reviews-component'>
         Review Breakdown

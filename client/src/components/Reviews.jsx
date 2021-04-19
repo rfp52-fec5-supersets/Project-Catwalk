@@ -84,7 +84,7 @@ class Reviews extends React.Component {
     }
     return (
       <div id='reviews' className={reviewsClass}>
-        <ReviewBreakdown />
+        <ReviewBreakdown averageRating = {this.props.averageRating} meta = {this.props.reviewMeta}/>
         <ReviewSort handleChange = {this.handleSort} currentSort = {this.state.sortType}/>
         {(this.state.reviews.slice(0, this.state.currentCount).length !== 0)
         ? <ReviewList reviews = {this.state.reviews.slice(0, this.state.currentCount)}/>
