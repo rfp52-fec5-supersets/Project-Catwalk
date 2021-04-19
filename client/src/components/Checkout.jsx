@@ -13,16 +13,23 @@ class Checkout extends React.Component {
   render() {
     return (
       <div className = "checkout">
-        {/* {JSON.stringify(this.props.currentStyleSkus)} */}
+        {console.log(JSON.stringify(this.props.currentStyleSkus))}
         Checkout
         <form>
           <label>
             Pick a size:
+            {this.props.currentStyleTotalQuantity > 0 ?
             <select>
+              <option selected>Select Size</option>
               {this.props.currentStyleSkus.map((skuObj, index) => {
                 return (<option value = {skuObj.size} key = {index}>{skuObj.size}</option>);
               } )}
+            </select> :
+            <select disabled>
+              <option selected>OUT OF STOCK</option>
             </select>
+            }
+
           </label>
           <label>
             Pick a quantity:
