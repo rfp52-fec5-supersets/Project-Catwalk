@@ -67,10 +67,11 @@ class Reviews extends React.Component {
     });
   }
 
-  handleSort(newSort) {
+  handleSort(e) {
+    console.log(e.target.value);
     // handleChange of ReviewSort, changing sortType.
     this.setState({
-      sortType: newSort
+      sortType: e.target.value
     });
   }
 
@@ -84,7 +85,7 @@ class Reviews extends React.Component {
     return (
       <div id='reviews' className={reviewsClass}>
         <ReviewBreakdown />
-        <ReviewSort handleSort = {this.handleSort}/>
+        <ReviewSort handleChange = {this.handleSort} currentSort = {this.state.sortType}/>
         {(this.state.reviews.slice(0, this.state.currentCount).length !== 0)
         ? <ReviewList reviews = {this.state.reviews.slice(0, this.state.currentCount)}/>
         : null}

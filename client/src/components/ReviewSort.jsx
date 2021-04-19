@@ -3,16 +3,14 @@ import React from 'react';
 class ReviewSort extends React.Component {
   constructor(props) {
     super(props);
-    this.state= {value:'selected'};
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({
-      value: e.target.value
-    });
-    this.props.handleSort(e.target.value);
-  }
+  // handleChange(e) {
+  //   this.setState({
+  //     value: e.target.value
+  //   });
+  //   this.props.handleSort(e.target.value);
+  // }
 
   render() {
     return (
@@ -21,7 +19,7 @@ class ReviewSort extends React.Component {
         <form>
           <label>
             Sort On:
-            <select value={this.state.value} onChange={this.handleChange}>
+            <select value={this.props.currentSort} onChange={this.props.handleChange}>
               <option value="newest">newest</option>
               <option value="relevant">relevant</option>
               <option value="helpful">helpful</option>
