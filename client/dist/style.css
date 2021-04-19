@@ -104,6 +104,13 @@
   width: auto;
   border-radius: 50%;
 }
+.reviews-checkmark {
+  color: #00CC00;
+}
+.review-response {
+  background-color: lightslategray;
+  color: black;
+}
 
 #reviews.reviews {
   /* vh = viewport height */

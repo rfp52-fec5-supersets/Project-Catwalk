@@ -26,14 +26,20 @@ class ReviewTile extends React.Component {
         </div>
         <ReviewTileBody body={review.body} photos={review.photos}/>
         {(review.recommend)
-        ? 'I recommend this, checkmark icon'
+        ? <p>
+          <span className='reviews-checkmark'>
+              &#10003;
+          </span>
+          &nbsp;I recommend this!
+        </p>
         : null}
         <div className='review-username'>
           username: {review.reviewer_name}
         </div>
         {(review.response !== null)
         ? (<div className='review-response'>
-            Response: {review.response}
+            Response From Seller: <br />
+            {review.response}
           </div>)
         : null}
         <div className='review-helpfulness'>
