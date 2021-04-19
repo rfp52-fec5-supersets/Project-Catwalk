@@ -21,7 +21,8 @@ class App extends React.Component {
       currentStyleSkus: [],
       currentProductFull: {},
       ratings: {},
-      averageRating: 0
+      averageRating: 0,
+      reviewMeta: {}
     };
 
     this.setStyle = this.setStyle.bind(this);
@@ -88,7 +89,7 @@ class App extends React.Component {
 
       }
 
-      this.setState({ratings: ratings, averageRating: sum/divisor});
+      this.setState({ratings: ratings, averageRating: sum/divisor, reviewMeta: metaObj});
       //console.log(this.state);
     })
     .catch((err) => {
@@ -136,7 +137,7 @@ class App extends React.Component {
       <div>
       <h1/>HELLO<h1/>
       <Overview currentProduct = {this.state.currentProduct} currentProductId = {this.state.currentProductId} currentStylePhotos = {this.state.currentStylePhotos} currentProductFull = {this.state.currentProductFull} currentStyle = {this.state.currentStyle} averageRating = {this.state.averageRating} styles = {this.state.styles} currentStyleIndex = {this.state.currentStyleIndex} setStyle = {this.setStyle} currentStyleSkus = {this.state.currentStyleSkus}/>
-      <Reviews product = {this.state.currentProduct}/>
+      <Reviews product = {this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating}/>
       </div>
 >>>>>>> ad68039be1211cfe1cee004f124f6f3f97501858
     )
