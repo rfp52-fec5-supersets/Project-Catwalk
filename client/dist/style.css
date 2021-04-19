@@ -99,15 +99,14 @@
 
 #reviews.reviews {
   /* vh = viewport height */
-  height: 50vh;
+  height: 75vh;
   width: auto;
   padding: 2em;
   /* overflow: hidden; */
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 50px 25% auto 50px;
+  grid-template-rows: 50px auto 50px;
   grid-template-areas:
     "reviews-breakdown reviews-sort ."
-    "reviews-breakdown reviews-list reviews-list"
     "reviews-breakdown reviews-list reviews-list"
     ". reviews-more reviews-add";
 }
@@ -119,7 +118,7 @@
   grid-template-rows: 50px 25% auto 50px;
   grid-template-areas:
     "reviews-breakdown reviews-sort ."
-    "review-breakdown reviews-add ."
-    ". . ."
+    "reviews-breakdown reviews-add ."
+    "reviews-breakdown . ."
     ". . .";
 }
