@@ -27,9 +27,18 @@ class App extends React.Component {
     })
   }
 
+
+
+  handleProductCardClick() {
+    event.preventDefault();
+  }
+
   render() {
     return (
-      <div>HELLO</div>
+      <div>HELLO
+        <RelatedProducts/>
+      </div>
+
     )
   }
 }
