@@ -29,7 +29,7 @@ class ReviewTile extends React.Component {
         <div className='review-username'>
           username: {review.reviewer_name}
         </div>
-        {(review.response)
+        {(review.response !== null)
         ? (<div className='review-response'>
             Response: {review.response}
           </div>)

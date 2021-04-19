@@ -11,21 +11,14 @@ class Reviews extends React.Component {
     super(props);
     this.state = {
       reviews: [],
-      meta: {},
+      // meta: {},
       sortType: 'relevant',
       currentCount: 2
     };
     // sortTypes are either newest, helpful, or relevant
     this.handleMore = this.handleMore.bind(this);
+    this.handleSort = this.handleSort.bind(this);
   }
-
-  // on more reviews button click, count goes up by two.
-  // overall reviews = reviews.length;
-  // if reviews.length < count, remove the count button.
-  // updates component if state changes. Maybe check for a specific state change to prevent infinite loop of changing due to state.
-  // OR
-  // can handle axios request on the button click rather than only on the componentDidUpdate!
-  // no axios request necessary with this setup, only need to change currentCount
 
   componentDidUpdate(prevProps, prevState) {
     // Component updates when changes to prop or state.
@@ -33,7 +26,7 @@ class Reviews extends React.Component {
     // prefer to have it so that this.setState works at the same time.
     // Promise.all.
     // updates component if the props changes. Count as 1000 to ensure gets all reviews.
-    if (this.props.product !== prevProps.product) {
+    if (this.props.product !== prevProps.product || this.state.sortType !== prevState.sortType) {
       let promises = [];
       promises.push(axios({
         method: 'get',
@@ -45,19 +38,19 @@ class Reviews extends React.Component {
           count: 1000
         }
       }));
-      promises.push(axios({
-        method: 'get',
-        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta',
-        headers: {'Authorization': API_KEY},
-        params: {
-          product_id: `${this.props.product.id}`
-        }
-      }));
+      // promises.push(axios({
+      //   method: 'get',
+      //   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta',
+      //   headers: {'Authorization': API_KEY},
+      //   params: {
+      //     product_id: `${this.props.product.id}`
+      //   }
+      // }));
       Promise.all(promises)
         .then((values)=> {
           this.setState({
             reviews: values[0].data.results,
-            meta: values[1].data
+            // meta: values[1].data
           });
         })
         .catch((err)=> {
@@ -74,6 +67,13 @@ class Reviews extends React.Component {
     });
   }
 
+  handleSort(newSort) {
+    // handleChange of ReviewSort, changing sortType.
+    this.setState({
+      sortType: newSort
+    });
+  }
+
   render() {
     let reviewsClass;
     if (this.state.reviews.slice(0, this.state.currentCount).length === 0) {
@@ -84,7 +84,7 @@ class Reviews extends React.Component {
     return (
       <div id='reviews' className={reviewsClass}>
         <ReviewBreakdown />
-        <ReviewSort />
+        <ReviewSort handleSort = {this.handleSort}/>
         {(this.state.reviews.slice(0, this.state.currentCount).length !== 0)
         ? <ReviewList reviews = {this.state.reviews.slice(0, this.state.currentCount)}/>
         : null}
