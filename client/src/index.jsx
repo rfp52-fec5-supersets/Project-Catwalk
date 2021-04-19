@@ -1,14 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-<<<<<<< HEAD
-import API_KEY from './config.js'
-import QuestionsList from './components/QuestionsList.jsx'
-=======
 import API_KEY from './config.js';
 import Reviews from './components/Reviews.jsx';
 import Overview from './components/Overview.jsx'
->>>>>>> 2f1524f6b4f6c407d344a6c6c51abb646a244f05
+import QuestionsList from './components/QuestionsList.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -137,7 +133,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <h1/>HELLO<h1/>
       <Overview currentProduct = {this.state.currentProduct} currentProductId = {this.state.currentProductId} currentStylePhotos = {this.state.currentStylePhotos} currentProductFull = {this.state.currentProductFull} currentStyle = {this.state.currentStyle} averageRating = {this.state.averageRating} styles = {this.state.styles} currentStyleIndex = {this.state.currentStyleIndex} setStyle = {this.setStyle} currentStyleSkus = {this.state.currentStyleSkus}/>
       {/* Invoke our conditional render of QuestionList component*/}
       {this.questionListRender()}
