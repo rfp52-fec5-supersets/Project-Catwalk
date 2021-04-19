@@ -1,0 +1,123 @@
+
+
+.gallery {
+  height: 400px;
+  width: 500px;
+  padding-bottom: 40px;
+}
+
+.main-image {
+  position: absolute;
+  max-height: 400px;
+}
+
+.main-image-window {
+  position: absolute;
+  left: 100px;
+}
+
+.gallery-thumbnail {
+  height: 60px;
+  width: 60px;
+  margin-right: 10px;
+}
+
+.gallery-thumbnail-clicked {
+  height: 60px;
+  width: 60px;
+  border: 2.5px solid orange;
+  margin-right: 10px;
+}
+
+.gallery-thumbnails {
+  position: absolute;
+  top: 165px;
+}
+
+/* Product Info */
+
+.original-price-strikethrough {
+  text-decoration: line-through;
+}
+
+.sale-price {
+  color: red;
+}
+
+/* Style Selector */
+
+.style-thumbnail {
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+}
+
+.style-thumbnail-clicked {
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  border: 3px solid limegreen;
+}
+
+/* Add to Cart */
+
+.add-to-cart {
+  background-color: gold;
+  width: 200px;
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+}
+
+/* REVIEWS AND RATINGS CSS */
+#reviews-add {
+  grid-area: reviews-add;
+}
+#reviews-breakdown {
+  grid-area: reviews-breakdown;
+  /* grid-column: 1;
+  grid-row: 1 / 4; */
+}
+#reviews-more {
+  grid-area: reviews-more;
+}
+#reviews-list {
+  grid-area: reviews-list;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+}
+#reviews-sort {
+  grid-area: reviews-sort;
+  /* grid-column: 2;
+  grid-row: 1; */
+}
+
+#reviews.reviews {
+  /* vh = viewport height */
+  height: 50vh;
+  width: auto;
+  padding: 2em;
+  /* overflow: hidden; */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 50px 25% auto 50px;
+  grid-template-areas:
+    "reviews-breakdown reviews-sort ."
+    "review-breakdown reviews-list reviews-list"
+    ". reviews-list reviews-list"
+    ". reviews-more reviews-add";
+}
+#reviews.no-reviews {
+  height: 50vh;
+  width: auto;
+  padding: 2em;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 50px 25% auto 50px;
+  grid-template-areas:
+    "reviews-breakdown reviews-sort ."
+    "review-breakdown reviews-add ."
+    ". . ."
+    ". . .";
+}
