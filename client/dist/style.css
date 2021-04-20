@@ -145,6 +145,7 @@
 }
 
 /* REVIEWS AND RATINGS CSS */
+/* For Overall Reviews Grid */
 #reviews-add {
   grid-area: reviews-add;
 }
@@ -172,6 +173,16 @@
   /* grid-column: 2;
   grid-row: 1; */
 }
+/* For Reviews Tile */
+.review-tile-header {
+  display: flex;
+  justify-content: space-between;
+}
+.reviews.flex-child-right {
+  margin-right: 3%;
+  display: flex;
+}
+
 .reviews-thumbnail {
   height: 10vw;
   width: auto;
@@ -193,7 +204,13 @@
 .voted {
   color: gray;
 }
-
+.reviews.average-rating {
+  font-size: 2em;
+}
+.reviews.ratings-and-filter:hover {
+  background-color: steelblue;
+}
+/* For Overall Reviews Grid */
 #reviews.reviews {
   /* vh = viewport height */
   height: 75vh;
