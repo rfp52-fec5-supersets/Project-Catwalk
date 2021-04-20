@@ -7,8 +7,20 @@
 }
 
 .main-image {
-  position: absolute;
+  /* position: absolute; */
   max-height: 400px;
+}
+
+.main-image-container {
+  width: 650px;
+  display: flex;
+  justify-content: center;
+}
+
+.main-image-window {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #main-image-expanded-window {
@@ -29,6 +41,7 @@
 
 .expanded-button-div {
   min-width: 30px;
+  min-height: 30px;
 }
 
 .main-image-expanded {
@@ -77,7 +90,10 @@
 
 .gallery-thumbnails {
   position: absolute;
-  top: 165px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .gallery-thumbnails-expanded {
