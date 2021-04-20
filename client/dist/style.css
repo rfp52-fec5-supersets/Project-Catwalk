@@ -11,9 +11,25 @@
   max-height: 400px;
 }
 
+.main-image-expanded {
+  max-height: 600px;
+}
+
+.main-image:hover {
+  cursor: zoom-in;
+}
+
+.main-image-expanded:hover {
+  cursor: crosshair;
+}
+
 .main-image-window {
   position: absolute;
   left: 100px;
+}
+
+.add-to-cart:hover {
+  cursor: pointer;
 }
 
 .gallery-thumbnail {
@@ -32,6 +48,11 @@
 .gallery-thumbnails {
   position: absolute;
   top: 165px;
+}
+
+.gallery-thumbnails-expanded {
+  display: flex;
+  flex-direction: row;
 }
 
 #please-select-size {

@@ -1,5 +1,6 @@
 import React from 'react';
 import GalleryThumbnail from './GalleryThumbnail';
+import ModalImage from './reviews/ModalImage';
 
 class Gallery extends React.Component {
   constructor(props) {
@@ -8,12 +9,14 @@ class Gallery extends React.Component {
     this.state = {
       currentImageIndex: 0,
       minThumbnailIndex: 0,
-      maxThumbnailIndex: 4
+      maxThumbnailIndex: 4,
+      renderModal: false
     };
 
     // console.log(this.props);
     this.selectPhoto = this.selectPhoto.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   // componentDidMount() {
@@ -58,6 +61,11 @@ class Gallery extends React.Component {
     }
   }
 
+  toggleModal() {
+    let newState = {renderModal: !this.state.renderModal};
+    this.setState(newState);
+  }
+
 
   render() {
     var thumbnailsToRender = this.props.currentStylePhotos.slice(this.state.minThumbnailIndex, this.state.maxThumbnailIndex + 1);
@@ -70,13 +78,24 @@ class Gallery extends React.Component {
           {this.state.currentImageIndex !== 0 && <button name = "left" onClick = {this.handleButtonClick}>{'<'}</button>}
           {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && <button name = "right" onClick = {this.handleButtonClick}>{'>'}</button>}
           {this.props.currentStylePhotos.length > 0 &&
-          (<img className = "main-image" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}/>)}
+          (<img className = "main-image" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleModal}/>)}
         </div>
         <div className = "gallery-thumbnails">
         {this.state.minThumbnailIndex !== 0 && <button name = "up" onClick = {this.handleButtonClick}>{'^'}</button>}
         {thumbnailsToRender.map((photo, index) => <GalleryThumbnail photo = {photo} key = {index + this.state.minThumbnailIndex} index = {index + this.state.minThumbnailIndex} selectPhoto = {this.selectPhoto} clicked = {this.state.currentImageIndex == index + this.state.minThumbnailIndex}/>)}
         {this.state.maxThumbnailIndex < this.props.currentStylePhotos.length - 1 && <button name = "down" onClick = {this.handleButtonClick}>{'v'}</button>}
         </div>
+        {this.state.renderModal &&
+        <ModalImage onCloseRequest = {this.toggleModal}>
+          {this.state.currentImageIndex !== 0 && <button name = "left" onClick = {this.handleButtonClick}>{'<'}</button>}
+          <div className = "main-image-expanded-window">
+            <img className = "main-image-expanded" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}/>
+          </div>
+          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && <button name = "right" onClick = {this.handleButtonClick}>{'>'}</button>}
+          <div className = "gallery-thumbnails-expanded">
+            {this.props.currentStylePhotos.map((photo, index) => <GalleryThumbnail photo = {photo} key = {index} index = {index} selectPhoto = {this.selectPhoto} clicked = {this.state.currentImageIndex == index}/>)}
+          </div>
+        </ModalImage>}
       </div>
     )
   }
