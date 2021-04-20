@@ -11,7 +11,17 @@
   max-height: 400px;
 }
 
+.main-image-expanded-window {
+  max-height: 600px;
+  overflow: auto;
+}
+
 .main-image-expanded {
+  max-height: 600px;
+}
+
+.main-image-expanded-zoomed {
+  zoom: 2.5;
   max-height: 600px;
 }
 
@@ -21,6 +31,10 @@
 
 .main-image-expanded:hover {
   cursor: crosshair;
+}
+
+.main-image-expanded-zoomed:hover {
+  cursor: zoom-out;
 }
 
 .main-image-window {
@@ -193,7 +207,8 @@
   margin: 5% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  /* width: 80%; Could be more or less, depending on screen size */
+  width: 1300px;
 }
 /* The Close Button */
 .close-button {

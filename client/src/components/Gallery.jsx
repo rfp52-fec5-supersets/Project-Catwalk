@@ -10,13 +10,15 @@ class Gallery extends React.Component {
       currentImageIndex: 0,
       minThumbnailIndex: 0,
       maxThumbnailIndex: 4,
-      renderModal: false
+      renderModal: false,
+      expandedImageZoomed: false
     };
 
     // console.log(this.props);
     this.selectPhoto = this.selectPhoto.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.toggleZoom = this.toggleZoom.bind(this);
   }
 
   // componentDidMount() {
@@ -66,6 +68,11 @@ class Gallery extends React.Component {
     this.setState(newState);
   }
 
+  toggleZoom() {
+    let newState = {expandedImageZoomed: !this.state.expandedImageZoomed};
+    this.setState(newState);
+  }
+
 
   render() {
     var thumbnailsToRender = this.props.currentStylePhotos.slice(this.state.minThumbnailIndex, this.state.maxThumbnailIndex + 1);
@@ -87,14 +94,21 @@ class Gallery extends React.Component {
         </div>
         {this.state.renderModal &&
         <ModalImage onCloseRequest = {this.toggleModal}>
-          {this.state.currentImageIndex !== 0 && <button name = "left" onClick = {this.handleButtonClick}>{'<'}</button>}
+          {this.state.currentImageIndex !== 0 && !this.state.expandedImageZoomed && <button name = "left" onClick = {this.handleButtonClick}>{'<'}</button>}
           <div className = "main-image-expanded-window">
-            <img className = "main-image-expanded" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}/>
+            {this.state.expandedImageZoomed ?
+            <img className = "main-image-expanded-zoomed" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleZoom}/>
+            :
+            <img className = "main-image-expanded" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleZoom}/>
+            }
+
           </div>
-          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && <button name = "right" onClick = {this.handleButtonClick}>{'>'}</button>}
+          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && !this.state.expandedImageZoomed && <button name = "right" onClick = {this.handleButtonClick}>{'>'}</button>}
+          {!this.state.expandedImageZoomed &&
           <div className = "gallery-thumbnails-expanded">
             {this.props.currentStylePhotos.map((photo, index) => <GalleryThumbnail photo = {photo} key = {index} index = {index} selectPhoto = {this.selectPhoto} clicked = {this.state.currentImageIndex == index}/>)}
           </div>
+          }
         </ModalImage>}
       </div>
     )
