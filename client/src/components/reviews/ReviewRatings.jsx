@@ -38,7 +38,7 @@ class RatingsBreakdown extends React.Component {
           {([1,2,3,4,5]).map((star)=> {
             return (
               <div key={star}>
-                <span onClick={()=>(this.props.handleClick(star))}>
+                <span onClick={()=>(this.props.handleClick(star))} className='reviews ratings-and-filter'>
                   {star} star ratings:
                   <meter value={this.props.ratings[star]} max={total}></meter>
                   {this.props.ratings[star] || 0}

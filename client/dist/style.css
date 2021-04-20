@@ -138,7 +138,9 @@
 .reviews.average-rating {
   font-size: 2em;
 }
-
+.reviews.ratings-and-filter:hover {
+  background-color: steelblue;
+}
 /* For Overall Reviews Grid */
 #reviews.reviews {
   /* vh = viewport height */
