@@ -11,8 +11,9 @@ class QuestionAnswer extends React.Component {
 
   render() {
     const {answer} = this.props;
+    // const {helpfulness} = answer
     // const {answerer_name: user} = answer;
-    console.log(answer.date)
+    // console.log(helpfulness)
     return (
       <div className="answers">
       <p>
@@ -20,8 +21,8 @@ class QuestionAnswer extends React.Component {
       </p>
       <div className="userHelpfulness">
       <QuestionAnswerUser answer={answer} />
-      <p>{moment(answer.date).format('MMMM Do YYYY')}</p>
-      <QuestionAnswerHelpfulness />
+      <p>| {moment(answer.date).format('MMMM Do YYYY')} |</p>
+      <QuestionAnswerHelpfulness helpfulness={answer}/>
       </div>
       </div>
     )
