@@ -33,6 +33,7 @@ class QuestionAnswerHelpfulness extends React.Component {
   }
 
   onClickReport() {
+    if (this.state.reported === 'no') {
     const {id} = this.props.helpfulness;
      axios({
       method: 'put',
@@ -47,10 +48,10 @@ class QuestionAnswerHelpfulness extends React.Component {
     .catch((err) => {
       throw err
     })
+    }
   }
 
   onClickReportRender() {
-    // console.log(this.state.reported)
     if (this.state.reported === 'no') {
       return ('Report')
     } else {

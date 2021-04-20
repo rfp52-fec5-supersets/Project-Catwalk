@@ -16,6 +16,7 @@ class Question extends React.Component {
     if (this.props.loadMoreAnswers === 'no') {
       answersArray = answersArray.slice(0, 2)
     }
+    answersArray.sort((a, b) => b.helpfulness - a.helpfulness)
     const answers = answersArray.map((answer) =>
       <QuestionAnswer key={answer.id} answer={answer}/>
     )
