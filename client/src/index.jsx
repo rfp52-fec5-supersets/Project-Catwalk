@@ -24,7 +24,7 @@ class App extends React.Component {
       currentProductFull: {},
       ratings: {},
       averageRating: 0,
-      reviewMeta: {}
+      reviewMeta: {},
     };
 
     this.setStyle = this.setStyle.bind(this);
@@ -124,11 +124,6 @@ class App extends React.Component {
 
 
 
-  handleProductCardClick() {
-    event.preventDefault();
-
-  }
-
 
   // Renders our question list once we have received our products and current product
   questionListRender() {
@@ -143,7 +138,7 @@ class App extends React.Component {
     return (
       <div>
       <Overview currentProduct = {this.state.currentProduct} currentProductId = {this.state.currentProductId} currentStylePhotos = {this.state.currentStylePhotos} currentProductFull = {this.state.currentProductFull} currentStyle = {this.state.currentStyle} averageRating = {this.state.averageRating} styles = {this.state.styles} currentStyleIndex = {this.state.currentStyleIndex} setStyle = {this.setStyle} currentStyleSkus = {this.state.currentStyleSkus}/>
-      <Related/>
+      <Related products={this.state.products} currentProduct={this.state.currentProduct}/>
       <Reviews product = {this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating} ratings={this.state.ratings}/>
       {/* Invoke our conditional render of QuestionList component*/}
       {this.questionListRender()}
