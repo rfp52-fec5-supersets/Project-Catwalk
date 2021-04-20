@@ -7,13 +7,72 @@
 }
 
 .main-image {
-  position: absolute;
+  /* position: absolute; */
   max-height: 400px;
+}
+
+.main-image-container {
+  width: 650px;
+  display: flex;
+  justify-content: center;
+}
+
+.main-image-window {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#main-image-expanded-window {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 600px;
+  overflow: hidden;
+}
+
+#main-image-expanded-container {
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  width: 1000px;
+  min-height: 650px;
+}
+
+.expanded-button-div {
+  min-width: 30px;
+  min-height: 30px;
+}
+
+.main-image-expanded {
+  max-width: 800px;
+  max-height: 600px;
+}
+
+.main-image-expanded-zoomed {
+  zoom: 2.5;
+  max-height: 600px;
+}
+
+.main-image:hover {
+  cursor: zoom-in;
+}
+
+.main-image-expanded:hover {
+  cursor: crosshair;
+}
+
+.main-image-expanded-zoomed:hover {
+  cursor: zoom-out;
 }
 
 .main-image-window {
   position: absolute;
   left: 100px;
+}
+
+.add-to-cart:hover {
+  cursor: pointer;
 }
 
 .gallery-thumbnail {
@@ -31,7 +90,17 @@
 
 .gallery-thumbnails {
   position: absolute;
-  top: 165px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gallery-thumbnails-expanded {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #please-select-size {
@@ -173,6 +242,7 @@
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+
 }
 /* The Close Button */
 .close-button {
