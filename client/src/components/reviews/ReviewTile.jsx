@@ -60,6 +60,7 @@ class ReviewTile extends React.Component {
   render() {
     let review = this.props.review;
     let voted = this.state.voted;
+    let practiceResponse = 'you suck';
     return (
       <div id='reviews-tile' className='reviews-component'>
         <div className='review-tile-header'>
@@ -79,7 +80,7 @@ class ReviewTile extends React.Component {
           {/* Unsure if need to ensure title is 60 chars or less */}
           {/* Also unsure if want to implement line break wraps like in the example */}
           <h4>
-            <b>Summary: {review.summary}</b>
+            <b>{review.summary}</b>
           </h4>
         </div>
         <ReviewTileBody body={review.body} photos={review.photos}/>
@@ -93,7 +94,7 @@ class ReviewTile extends React.Component {
         : null}
         {(review.response !== null)
         ? (<div className='review-response'>
-            Response From Seller: <br />
+            <h5>Response From Seller: </h5>
             {review.response}
           </div>)
         : null}
