@@ -68,7 +68,6 @@ class Reviews extends React.Component {
   }
 
   handleSort(e) {
-    console.log(e.target.value);
     // handleChange of ReviewSort, changing sortType.
     this.setState({
       sortType: e.target.value

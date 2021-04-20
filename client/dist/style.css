@@ -103,6 +103,15 @@
   /* grid-column: 2;
   grid-row: 1; */
 }
+.review-tile-header {
+  display: flex;
+  justify-content: space-between;
+}
+.reviews.flex-child-right {
+  display: flex;
+}
+
+
 .reviews-thumbnail {
   height: 10vw;
   width: auto;

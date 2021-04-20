@@ -12,7 +12,9 @@ class ReviewList extends React.Component {
     });
     return (
       <div id='reviews-list' className='reviews-component'>
-        ReviewList:
+        <h4>
+          ReviewList:
+        </h4>
         {ReviewTiles}
       </div>
     );

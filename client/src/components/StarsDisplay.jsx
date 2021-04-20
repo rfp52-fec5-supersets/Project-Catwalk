@@ -66,8 +66,6 @@ class StarsDisplay extends React.Component {
     }
     return (
       <div className='stars-display'>
-        Number of Stars: {this.props.stars}
-        <br />
         {/* {wholeStar}{emptyStar}{halfStar}{quarterStar}{threeQuarterStar} */}
         {wholeStars}
         {fragmentStars}

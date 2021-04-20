@@ -62,12 +62,18 @@ class ReviewTile extends React.Component {
     let voted = this.state.voted;
     return (
       <div id='reviews-tile' className='reviews-component'>
-        <StarsDisplay stars={review.rating} />
-        <div className='review-username'>
-          username: {review.reviewer_name}
-        </div>
-        <div className='review-date'>
-          Date: {moment(review.date).format('MMMM DD, YYYY')}
+        <div className='review-tile-header'>
+          <div className='reviews flex-child-left'>
+            <StarsDisplay stars={review.rating} />
+          </div>
+          <div className='reviews flex-child-right'>
+            <div className='review-username'>
+              {review.reviewer_name}, &nbsp;
+            </div>
+            <div className='review-date'>
+              {moment(review.date).format('MMMM DD, YYYY')}
+            </div>
+          </div>
         </div>
         <div className='review-summary'>
           {/* Unsure if need to ensure title is 60 chars or less */}
