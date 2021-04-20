@@ -204,8 +204,26 @@
 .voted {
   color: gray;
 }
+
+.flex-box {
+  display: flex;
+}
+
+.ratings-summary {
+  /* justify-content: space-between; */
+  margin: 0.25em;
+}
+
+.ratings.total-reviews-count {
+  margin: 0.25em;
+  margin-bottom: 1em;
+}
+
 .reviews.average-rating {
   font-size: 2em;
+}
+.reviews.ratings-and-filter {
+  justify-content: space-evenly;
 }
 .reviews.ratings-and-filter:hover {
   background-color: steelblue;
