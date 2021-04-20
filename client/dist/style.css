@@ -34,6 +34,10 @@
   top: 165px;
 }
 
+#please-select-size {
+  color: red;
+}
+
 /* Product Info */
 
 .original-price-strikethrough {
