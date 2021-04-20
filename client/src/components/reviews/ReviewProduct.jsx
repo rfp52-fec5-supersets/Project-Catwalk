@@ -18,15 +18,16 @@ class ProductBreakdown extends React.Component {
         let characteristic = characteristics[quality];
         console.log(characteristic);
         return (
-          <div key= {characteristic.id} className='product-characteristic' style={{width:'90%'}}>
+          <div key= {characteristic.id} className='product-characteristic' style={{position:'relative', width:'90%'}}>
             <p>
               {quality}
             </p>
             bar with {characteristic.value}
             <br />
-            {/* <span className="characteristic-pointer" style={{ position: 'relative', left: `${(characteristic.value - 1) * 100 / 4}%` }}>&#x25BE;</span> */}
-            <span className="characteristic-pointer" style={{ float: 'left', marginLeft: `${(characteristic.value - 1) * 100 / 4}%`, marginTop:'0.4em', zIndex:'1'}}>&#x25BE;</span>
             <br />
+            <span className="characteristic-pointer" style={{ position: 'absolute', marginLeft:'-5.11px', left: `${(characteristic.value - 1) * 100 / 4}%`, marginTop:'-0.75em'}}>&#x25BE;</span>
+            {/* <span className="characteristic-pointer" style={{ float: 'left', marginLeft: `${(characteristic.value - 1) * 100 / 4}%`, marginTop:'0.4em', zIndex:'1'}}>&#x25BE;</span> */}
+            {/* transform:'translateX(-5.11px)' */}
             <div style={{backgroundColor: 'gray', width: '100%', height: '.5em'}}>&nbsp;</div>
           </div>
         );
