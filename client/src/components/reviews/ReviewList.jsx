@@ -4,6 +4,9 @@ import ReviewTile from './ReviewTile.jsx';
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      filter:[]
+    }
   }
 
   render() {

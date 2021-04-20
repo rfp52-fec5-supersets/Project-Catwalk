@@ -25,23 +25,31 @@ class RatingsBreakdown extends React.Component {
       recommendTrue = parseInt(recommended.true);
       total = parseInt(recommended.false) + recommendTrue;
     }
+    // console.log(this.props);
     return (
       <div id='reviews-ratings-breakdown'>
         Ratings Breakdown:
         <div className='ratings-summary'>
           <p className='reviews average-rating'><b>{this.props.averageRating}</b></p>
           <StarsDisplay key={this.props.averageRating} stars={this.props.averageRating} />
+          <p>Total Reviews: {total}</p>
         </div>
         <div className='ratings-breakdown'>
-          {Object.keys(this.props.ratings).map((star)=> {
-            return (<p key={star}>
-              {star} star ratings: {this.props.ratings[star]}
-            </p>);
+          {([1,2,3,4,5]).map((star)=> {
+            return (
+              <div key={star}>
+                <span onClick={()=>(this.props.handleClick(star))}>
+                  {star} star ratings:
+                  <meter value={this.props.ratings[star]} max={total}></meter>
+                  {this.props.ratings[star] || 0}
+                </span>
+              </div>
+            );
           })}
         </div>
         <div className='ratings-recommendation'>
           <h4>
-            {recommendTrue/total*100}% of reviewers recommend this item.
+            {recommendTrue/total*100}% of reviewers recommend this product.
           </h4>
         </div>
       </div>

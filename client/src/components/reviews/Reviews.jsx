@@ -10,14 +10,18 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: [],
+      allReviews: [],
+      currentReviews: [],
       // meta: {},
       sortType: 'relevant',
-      currentCount: 2
+      currentCount: 2,
+      // filter is an array to make toggling filters easier
+      filter: {1: false, 2: false, 3:false, 4:false, 5:false}
     };
     // sortTypes are either newest, helpful, or relevant
     this.handleMore = this.handleMore.bind(this);
     this.handleSort = this.handleSort.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -26,7 +30,9 @@ class Reviews extends React.Component {
     // prefer to have it so that this.setState works at the same time.
     // Promise.all.
     // updates component if the props changes. Count as 1000 to ensure gets all reviews.
-    if (this.props.product !== prevProps.product || this.state.sortType !== prevState.sortType) {
+    if (this.props.product !== prevProps.product
+      || this.state.sortType !== prevState.sortType
+      || this.state.filter !== prevState.filter) {
       let promises = [];
       promises.push(axios({
         method: 'get',
@@ -48,9 +54,16 @@ class Reviews extends React.Component {
       // }));
       Promise.all(promises)
         .then((values)=> {
+          let allReviews = values[0].data.results;
+          let filterObj = this.state.filter;
+          let filter = Object.keys(filterObj).filter((star)=> filterObj[star]);
+          if (filter.length === 0) {
+            filter = [1,2,3,4,5];
+          }
+          let currentReviews = allReviews.filter((review) => filter.includes(review.rating));
           this.setState({
-            reviews: values[0].data.results,
-            // meta: values[1].data
+            allReviews: allReviews,
+            currentReviews: currentReviews
           });
         })
         .catch((err)=> {
@@ -74,23 +87,42 @@ class Reviews extends React.Component {
     });
   }
 
+  handleFilter(rating) {
+    let toggle = !this.state.filter[rating];
+    let filter = this.state.filter;
+    filter[rating] = toggle;
+    this.setState({
+      filter: filter
+    });
+  }
+
   render() {
     let reviewsClass;
-    if (this.state.reviews.slice(0, this.state.currentCount).length === 0) {
+    if (this.state.allReviews.slice(0, this.state.currentCount).length === 0) {
       reviewsClass = 'grid-container no-reviews';
     } else {
       reviewsClass = 'grid-container reviews';
     }
+    // maybe do the currentViews here.
+    let filterObj = this.state.filter;
+    let filter = Object.keys(filterObj).filter((star)=> filterObj[star]);
+    filter = filter.map((item)=> parseInt(item));
+    console.log('filter', filter);
+    if (filter.length === 0) {
+      filter = [1,2,3,4,5];
+    }
+    let currentReviews = this.state.allReviews.filter((review) => filter.includes(review.rating));
+    console.log(currentReviews);
     return (
       <>
         <h2>Ratings and Reviews</h2>
         <div id='reviews' className={reviewsClass}>
-          <ReviewBreakdown averageRating={this.props.averageRating} meta={this.props.reviewMeta} ratings={this.props.ratings}/>
+          <ReviewBreakdown averageRating={this.props.averageRating} meta={this.props.reviewMeta} ratings={this.props.ratings} handleClick = {this.handleFilter}/>
           <ReviewSort handleChange = {this.handleSort} currentSort = {this.state.sortType}/>
-          {(this.state.reviews.slice(0, this.state.currentCount).length !== 0)
-          ? <ReviewList reviews = {this.state.reviews.slice(0, this.state.currentCount)}/>
+          {(currentReviews.slice(0, this.state.currentCount).length !== 0)
+          ? <ReviewList reviews = {currentReviews.slice(0, this.state.currentCount)}/>
           : null}
-          {(this.state.currentCount >= this.state.reviews.length || this.state.reviews.slice(0, this.state.currentCount).length === 0)
+          {(this.state.currentCount >= currentReviews.length || currentReviews.slice(0, this.state.currentCount).length === 0)
           ? null
           : <MoreReviews handleClick = {this.handleMore}/>}
           <div id='reviews-add'> Add Review </div>

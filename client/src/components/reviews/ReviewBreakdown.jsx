@@ -13,7 +13,7 @@ class ReviewBreakdown extends React.Component {
     return (
       <div id='reviews-breakdown' className='reviews-component'>
         Review Breakdown
-        <RatingsBreakdown averageRating={this.props.averageRating} ratings={this.props.ratings} recommended={this.props.meta.recommended}/>
+        <RatingsBreakdown handleClick={this.props.handleClick} averageRating={this.props.averageRating} ratings={this.props.ratings} recommended={this.props.meta.recommended}/>
         <ProductBreakdown characteristics = {this.props.meta.characteristics}/>
       </div>
     );
