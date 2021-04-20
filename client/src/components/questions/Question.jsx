@@ -17,10 +17,10 @@ class Question extends React.Component {
       answersArray = answersArray.slice(0, 2)
     }
     const answers = answersArray.map((answer) =>
-      <QuestionAnswer key={answer.id} answer={answer.body}/>
+      <QuestionAnswer key={answer.id} answer={answer}/>
     )
     return (
-      <div>
+      <div className="questionList">
         <div className="questionBody">
         <h1 className="questionHeader">Q: {question.question_body}</h1>
         </div>
