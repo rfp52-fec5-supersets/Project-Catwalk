@@ -93,7 +93,7 @@ class QuestionsList extends React.Component {
     const question = questions.map((question) => (
       <Question key={question.question_id} question={question} loadMoreAnswers={this.state.loadMoreAnswers}/>
     ));
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div>
         <h1>QuestionsList</h1>
