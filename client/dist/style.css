@@ -34,6 +34,10 @@
   top: 165px;
 }
 
+#please-select-size {
+  color: red;
+}
+
 /* Product Info */
 
 .original-price-strikethrough {
@@ -91,35 +95,96 @@
   overflow-x: hidden;
   width: 100%;
 }
+#reviews-tile {
+  border-bottom: 2px solid black;
+}
 #reviews-sort {
   grid-area: reviews-sort;
   /* grid-column: 2;
   grid-row: 1; */
 }
+.reviews-thumbnail {
+  height: 10vw;
+  width: auto;
+  border-radius: 50%;
+}
+.reviews-checkmark {
+  color: #00CC00;
+}
+.review-response {
+  background-color: lightslategray;
+  color: black;
+}
+.voted-yes {
+  color: lime;
+}
+.voted-no {
+  color: red;
+}
+.voted {
+  color: gray;
+}
 
 #reviews.reviews {
   /* vh = viewport height */
-  height: 50vh;
+  height: 75vh;
   width: auto;
   padding: 2em;
   /* overflow: hidden; */
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 50px 25% auto 50px;
+  grid-template-rows: 50px auto 50px;
   grid-template-areas:
     "reviews-breakdown reviews-sort ."
-    "reviews-breakdown reviews-list reviews-list"
     "reviews-breakdown reviews-list reviews-list"
     ". reviews-more reviews-add";
 }
 #reviews.no-reviews {
-  height: 50vh;
+  height: 75vh;
   width: auto;
   padding: 2em;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 50px 25% auto 50px;
   grid-template-areas:
     "reviews-breakdown reviews-sort ."
-    "review-breakdown reviews-add ."
-    ". . ."
+    "reviews-breakdown reviews-add ."
+    "reviews-breakdown . ."
     ". . .";
+}
+/* The Modal (background) */
+.modal-overlay {
+  /* display: none; Hidden by default */
+  /* display will always show. The react state will take care of the display
+  by choosing to render the component or not depending on its state */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top. Can set to 9999 if paranoid about other components */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  /* animation: 'show .5s ease', */
+}
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button */
+.close-button {
+  color: #aaa;
+  float: right;
+  /* font-size: 28px; */
+  font-size: 2em;
+  font-weight: bold;
+}
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
