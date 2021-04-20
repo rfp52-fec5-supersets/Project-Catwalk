@@ -12,7 +12,6 @@ class Reviews extends React.Component {
     this.state = {
       allReviews: [],
       currentReviews: [],
-      // meta: {},
       sortType: 'relevant',
       currentCount: 2,
       // filter is an array to make toggling filters easier
@@ -25,14 +24,8 @@ class Reviews extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // Component updates when changes to prop or state.
-    // can set up so both axios request go asynchronously, or set it up so it goes one at a time.
-    // prefer to have it so that this.setState works at the same time.
-    // Promise.all.
     // updates component if the props changes. Count as 1000 to ensure gets all reviews.
-    if (this.props.product !== prevProps.product
-      || this.state.sortType !== prevState.sortType
-      || this.state.filter !== prevState.filter) {
+    if (this.props.product !== prevProps.product|| this.state.sortType !== prevState.sortType) {
       let promises = [];
       promises.push(axios({
         method: 'get',
@@ -55,15 +48,8 @@ class Reviews extends React.Component {
       Promise.all(promises)
         .then((values)=> {
           let allReviews = values[0].data.results;
-          let filterObj = this.state.filter;
-          let filter = Object.keys(filterObj).filter((star)=> filterObj[star]);
-          if (filter.length === 0) {
-            filter = [1,2,3,4,5];
-          }
-          let currentReviews = allReviews.filter((review) => filter.includes(review.rating));
           this.setState({
-            allReviews: allReviews,
-            currentReviews: currentReviews
+            allReviews: allReviews
           });
         })
         .catch((err)=> {
@@ -88,12 +74,18 @@ class Reviews extends React.Component {
   }
 
   handleFilter(rating) {
-    let toggle = !this.state.filter[rating];
-    let filter = this.state.filter;
-    filter[rating] = toggle;
-    this.setState({
-      filter: filter
-    });
+    if (rating !== 'clear') {
+      let toggle = !this.state.filter[rating];
+      let filter = this.state.filter;
+      filter[rating] = toggle;
+      this.setState({
+        filter: filter
+      });
+    } else {
+      this.setState({
+        filter: {1: false, 2: false, 3:false, 4:false, 5:false}
+      })
+    }
   }
 
   render() {
@@ -107,17 +99,15 @@ class Reviews extends React.Component {
     let filterObj = this.state.filter;
     let filter = Object.keys(filterObj).filter((star)=> filterObj[star]);
     filter = filter.map((item)=> parseInt(item));
-    console.log('filter', filter);
     if (filter.length === 0) {
       filter = [1,2,3,4,5];
     }
     let currentReviews = this.state.allReviews.filter((review) => filter.includes(review.rating));
-    console.log(currentReviews);
     return (
       <>
         <h2>Ratings and Reviews</h2>
         <div id='reviews' className={reviewsClass}>
-          <ReviewBreakdown averageRating={this.props.averageRating} meta={this.props.reviewMeta} ratings={this.props.ratings} handleClick = {this.handleFilter}/>
+          <ReviewBreakdown filter={this.state.filter} averageRating={this.props.averageRating} meta={this.props.reviewMeta} ratings={this.props.ratings} handleClick = {this.handleFilter}/>
           <ReviewSort handleChange = {this.handleSort} currentSort = {this.state.sortType}/>
           {(currentReviews.slice(0, this.state.currentCount).length !== 0)
           ? <ReviewList reviews = {currentReviews.slice(0, this.state.currentCount)}/>

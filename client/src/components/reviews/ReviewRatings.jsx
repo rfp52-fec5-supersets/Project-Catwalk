@@ -13,7 +13,6 @@ class RatingsBreakdown extends React.Component {
   }
 
   render() {
-    // Ratings summary: Display avg rating with number and star icon, total count of reviews
     // Breakdown: bars for each star rating, left of bar: star rating #, right of bar: count
     //   hover on bar changes background color
     //   click on star count turns on filter
@@ -25,7 +24,8 @@ class RatingsBreakdown extends React.Component {
       recommendTrue = parseInt(recommended.true);
       total = parseInt(recommended.false) + recommendTrue;
     }
-    // console.log(this.props);
+    let filter = Object.keys(this.props.filter).filter((star)=> this.props.filter[star]);
+    filter = filter.join(', ');
     return (
       <div id='reviews-ratings-breakdown'>
         Ratings Breakdown:
@@ -47,6 +47,14 @@ class RatingsBreakdown extends React.Component {
             );
           })}
         </div>
+        {filter &&
+        <div className='ratings-filter-view'>
+          <p>
+            Current Filters: {filter}
+          </p>
+          <button onClick={()=>(this.props.handleClick('clear'))}>Remove All Filters</button>
+        </div>
+        }
         <div className='ratings-recommendation'>
           <h4>
             {recommendTrue/total*100}% of reviewers recommend this product.
