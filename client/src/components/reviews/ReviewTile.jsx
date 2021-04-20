@@ -3,6 +3,7 @@ import moment from 'moment';
 import ReviewTileBody from './ReviewTileBody.jsx';
 import API_KEY from './../../config.js'
 import axios from 'axios';
+import StarsDisplay from './../StarsDisplay.jsx';
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -61,8 +62,9 @@ class ReviewTile extends React.Component {
     let voted = this.state.voted;
     return (
       <div id='reviews-tile' className='reviews-component'>
-        <div className='reviews star-rating'>
-          Stars: {review.rating} stars
+        <StarsDisplay stars={review.rating} />
+        <div className='review-username'>
+          username: {review.reviewer_name}
         </div>
         <div className='review-date'>
           Date: {moment(review.date).format('MMMM DD, YYYY')}
@@ -83,9 +85,6 @@ class ReviewTile extends React.Component {
           &nbsp;I recommend this!
         </p>
         : null}
-        <div className='review-username'>
-          username: {review.reviewer_name}
-        </div>
         {(review.response !== null)
         ? (<div className='review-response'>
             Response From Seller: <br />

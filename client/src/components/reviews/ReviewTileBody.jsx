@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import ImageThumbnail from './ImageThumbnail.jsx'
+import ImageThumbnail from './ImageThumbnail.jsx';
 
 class ReviewTileBody extends React.Component {
   constructor(props) {
