@@ -82,17 +82,20 @@ class Reviews extends React.Component {
       reviewsClass = 'grid-container reviews';
     }
     return (
-      <div id='reviews' className={reviewsClass}>
-        <ReviewBreakdown averageRating={this.props.averageRating} meta={this.props.reviewMeta} ratings={this.props.ratings}/>
-        <ReviewSort handleChange = {this.handleSort} currentSort = {this.state.sortType}/>
-        {(this.state.reviews.slice(0, this.state.currentCount).length !== 0)
-        ? <ReviewList reviews = {this.state.reviews.slice(0, this.state.currentCount)}/>
-        : null}
-        {(this.state.currentCount >= this.state.reviews.length || this.state.reviews.slice(0, this.state.currentCount).length === 0)
-        ? null
-        : <MoreReviews handleClick = {this.handleMore}/>}
-        <div id='reviews-add'> Add Review </div>
-      </div>
+      <>
+        <h2>Ratings and Reviews</h2>
+        <div id='reviews' className={reviewsClass}>
+          <ReviewBreakdown averageRating={this.props.averageRating} meta={this.props.reviewMeta} ratings={this.props.ratings}/>
+          <ReviewSort handleChange = {this.handleSort} currentSort = {this.state.sortType}/>
+          {(this.state.reviews.slice(0, this.state.currentCount).length !== 0)
+          ? <ReviewList reviews = {this.state.reviews.slice(0, this.state.currentCount)}/>
+          : null}
+          {(this.state.currentCount >= this.state.reviews.length || this.state.reviews.slice(0, this.state.currentCount).length === 0)
+          ? null
+          : <MoreReviews handleClick = {this.handleMore}/>}
+          <div id='reviews-add'> Add Review </div>
+        </div>
+      </>
     );
   }
 }

@@ -1,6 +1,7 @@
 // Ratings Breakdown in ReviewBreakdown parent
 
 import React from 'react';
+import StarsDisplay from './../StarsDisplay';
 
 class RatingsBreakdown extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class RatingsBreakdown extends React.Component {
         Ratings Breakdown:
         <div className='ratings-summary'>
           <p>Overall Star Rating: {this.props.averageRating}</p>
-          <p>Stars here</p>
+          <StarsDisplay key={this.props.averageRating} stars={this.props.averageRating} />
         </div>
         <div className='ratings-breakdown'>
           {Object.keys(this.props.ratings).map((star)=> {

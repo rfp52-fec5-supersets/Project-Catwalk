@@ -48,7 +48,7 @@ class App extends React.Component {
         currentStyleTotalQuantity += skusObj[key].quantity;
       }
       this.setState({currentStyleTotalQuantity: currentStyleTotalQuantity});
-      console.log(this.state);
+      // console.log(this.state);
     })
     .catch((err) => {
       console.error(err);
