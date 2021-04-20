@@ -7,7 +7,10 @@ class QuestionSearchAnswer extends React.Component {
 
   render() {
     return (
-      <h1>Search Answers</h1>
+      <div>
+        <h1>Search Answers</h1>
+        <input type="text" placeholder="Search.." name="search"/>
+      </div>
     )
   }
 }

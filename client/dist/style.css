@@ -1,5 +1,3 @@
-
-
 .gallery {
   height: 400px;
   width: 500px;
@@ -122,4 +120,19 @@
     "review-breakdown reviews-add ."
     ". . ."
     ". . .";
+}
+
+.questionAnswer {
+  display: flex;
+  align-items: baseline;
+  padding: 0;
+}
+
+.answerColumn {
+  margin-left: 15px;
+  height: 50px
+}
+
+.questionHeader {
+  margin: 2px
 }

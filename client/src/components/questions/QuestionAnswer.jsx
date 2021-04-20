@@ -6,8 +6,11 @@ class QuestionAnswer extends React.Component {
   }
 
   render() {
+    const {answer} = this.props;
     return (
-      <h1>Question Answers</h1>
+      <p>
+        {answer}
+      </p>
     )
   }
 }

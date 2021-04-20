@@ -1,5 +1,5 @@
 import React from 'react';
-
+import QuestionAnswer from './QuestionAnswer.jsx'
 class Question extends React.Component {
   constructor(props) {
     super(props);
@@ -17,15 +17,18 @@ class Question extends React.Component {
       answersArray = answersArray.slice(0, 2)
     }
     const answers = answersArray.map((answer) =>
-      <h1 key={answer.id} >{answer.body}</h1>
+      <QuestionAnswer key={answer.id} answer={answer.body}/>
     )
     return (
       <div>
         <div className="questionBody">
-        <h1>{question.question_body}</h1>
+        <h1 className="questionHeader">Q: {question.question_body}</h1>
         </div>
         <div className="questionAnswer">
+        <h1 className="questionHeader">A:</h1>
+        <div className="answerColumn">
         {answers}
+        </div>
         </div>
       </div>
     )

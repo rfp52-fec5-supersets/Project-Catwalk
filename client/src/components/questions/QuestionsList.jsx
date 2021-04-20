@@ -1,7 +1,8 @@
 import React from 'react';
 import Question from './Question.jsx'
 import axios from 'axios';
-import API_KEY from '../config.js'
+import API_KEY from './../../config.js';
+import QuestionSearchAnswer from './QuestionSearchAnswer.jsx'
 
 class QuestionsList extends React.Component {
   constructor(props) {
@@ -93,10 +94,11 @@ class QuestionsList extends React.Component {
     const question = questions.map((question) => (
       <Question key={question.question_id} question={question} loadMoreAnswers={this.state.loadMoreAnswers}/>
     ));
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div>
         <h1>QuestionsList</h1>
+        <QuestionSearchAnswer />
         {question}
       </div>
     );
