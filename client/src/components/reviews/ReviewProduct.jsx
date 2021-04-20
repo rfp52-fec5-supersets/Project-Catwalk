@@ -7,18 +7,27 @@ class ProductBreakdown extends React.Component {
     super(props);
   }
 
+  // <span className="characteristic-pointer" style={{ left: `${(characteristic.value - 1) * 100 / 4}%` }}>&#x25BE;</span>
+
   render() {
     let {characteristics} = this.props;
     let productQualities = null;
     if (characteristics) {
       let qualities = Object.keys(characteristics);
       productQualities = qualities.map((quality)=> {
+        let characteristic = characteristics[quality];
+        console.log(characteristic);
         return (
-          <div key= {characteristics[quality].id} className='product-characteristic'>
+          <div key= {characteristic.id} className='product-characteristic' style={{width:'90%'}}>
             <p>
               {quality}
             </p>
-            bar with {characteristics[quality].value}
+            bar with {characteristic.value}
+            <br />
+            {/* <span className="characteristic-pointer" style={{ position: 'relative', left: `${(characteristic.value - 1) * 100 / 4}%` }}>&#x25BE;</span> */}
+            <span className="characteristic-pointer" style={{ float: 'left', marginLeft: `${(characteristic.value - 1) * 100 / 4}%`, marginTop:'0.4em', zIndex:'1'}}>&#x25BE;</span>
+            <br />
+            <div style={{backgroundColor: 'gray', width: '100%', height: '.5em'}}>&nbsp;</div>
           </div>
         );
       })
