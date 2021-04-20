@@ -102,16 +102,23 @@ class Gallery extends React.Component {
         </div>
         {this.state.renderModal &&
         <ModalImage onCloseRequest = {this.toggleModal}>
-          {this.state.currentImageIndex !== 0 && !this.state.expandedImageZoomed && <button name = "left" onClick = {this.handleButtonClick}>{'<'}</button>}
+
           <div id = "main-image-expanded-window">
+            <div className = "expanded-button-div">
+          {this.state.currentImageIndex !== 0 && !this.state.expandedImageZoomed && <button name = "left" onClick = {this.handleButtonClick}>{'<'}</button>}
+            </div>
+          <div id = "main-image-expanded-container">
             {this.state.expandedImageZoomed ?
             <img className = "main-image-expanded-zoomed" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleZoom} onMouseMove = {this.handleMouseMove}/>
             :
             <img className = "main-image-expanded" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleZoom}/>
             }
-
           </div>
+          <div className = "expanded-button-div">
           {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && !this.state.expandedImageZoomed && <button name = "right" onClick = {this.handleButtonClick}>{'>'}</button>}
+          </div>
+          </div>
+
           {!this.state.expandedImageZoomed &&
           <div className = "gallery-thumbnails-expanded">
             {this.props.currentStylePhotos.map((photo, index) => <GalleryThumbnail photo = {photo} key = {index} index = {index} selectPhoto = {this.selectPhoto} clicked = {this.state.currentImageIndex == index}/>)}
