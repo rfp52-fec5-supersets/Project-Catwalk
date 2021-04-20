@@ -24,26 +24,54 @@ let threeQuarterStar = <svg width="12" height="12" viewBox="0 0 12 12" fill="non
 class StarsDisplay extends React.Component {
   constructor(props) {
     super(props);
+    this.state={
+      wholeCount: 0,
+      emptyCount: 0,
+      starFragment: 0
+    }
   }
 
   componentDidMount() {
     let starCount = this.props.stars;
-    let wholeStars = Math.floor(starCount);
-    let emptyStars = (5 - Math.ceil(starCount));
+    let wholeCount = Math.floor(starCount);
+    let emptyCount = (5 - Math.ceil(starCount));
     let starFragment = starCount % 1;
+    // below should round starFragment to closest .25
+    starFragment = Math.round(starFragment*4)/4;
+    if (starFragment === 1) {
+      wholeCount = wholeCount + 1;
+      starFragment = 0;
+    }
+    // sets state as number of whole stars, number of empty stars, and starfragment is the decimal to the closest quarter. will only be 0, .25, or .75
     this.setState({
-      wholeStars: wholeStars,
-      emptyStars: emptyStars,
+      wholeCount: wholeCount,
+      emptyCount: emptyCount,
       starFragment: starFragment
     });
   }
 
   render() {
+    let wholeStars = Array(this.state.wholeCount).fill(wholeStar);
+    let emptyStars = Array(this.state.emptyCount).fill(emptyStar);
+    let starFragment = this.state.starFragment;
+    let fragmentStars;
+    if (starFragment === 0) {
+      fragmentStars = null;
+    } else if (starFragment === 0.25) {
+      fragmentStars = quarterStar;
+    } else if (starFragment === 0.5) {
+      fragmentStars = halfStar;
+    } else if (starFragment === 0.75) {
+      fragmentStars = threeQuarterStar;
+    }
     return (
       <div className='stars-display'>
         Number of Stars: {this.props.stars}
         <br />
-        {wholeStar}{emptyStar}{halfStar}{quarterStar}{threeQuarterStar}
+        {/* {wholeStar}{emptyStar}{halfStar}{quarterStar}{threeQuarterStar} */}
+        {wholeStars}
+        {fragmentStars}
+        {emptyStars}
       </div>
     );
   }
