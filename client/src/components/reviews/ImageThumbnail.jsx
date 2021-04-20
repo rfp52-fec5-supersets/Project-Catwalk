@@ -23,7 +23,7 @@ class ImageThumbnail extends React.Component {
       <>
         <img onClick={this.handleToggle} src={imgSource} className='reviews-thumbnail'/>
         {this.state.showModal &&
-        <ModalImage onCloseRequest={() => this.handleToggle()}>
+        <ModalImage onCloseRequest={this.handleToggle}>
           <img src={imgSource} />
         </ModalImage>}
       </>

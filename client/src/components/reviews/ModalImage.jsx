@@ -8,8 +8,7 @@ class ModalImage extends React.Component {
   render() {
     const {
       onCloseRequest,
-      children,
-      classes,
+      children
     } = this.props;
     return (
       <div className='modal-overlay'>
