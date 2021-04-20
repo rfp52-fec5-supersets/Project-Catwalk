@@ -19,6 +19,7 @@ class Gallery extends React.Component {
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleZoom = this.toggleZoom.bind(this);
+    this.handleMouseMove = this.handleMouseMove.bind(this);
   }
 
   // componentDidMount() {
@@ -73,6 +74,13 @@ class Gallery extends React.Component {
     this.setState(newState);
   }
 
+  handleMouseMove(event) {
+    let element = document.getElementById('main-image-expanded-window');
+
+    element.scrollTop = element.scrollTop + event.movementY*2.5;
+    element.scrollLeft = element.scrollLeft + event.movementX*2.5;
+  }
+
 
   render() {
     var thumbnailsToRender = this.props.currentStylePhotos.slice(this.state.minThumbnailIndex, this.state.maxThumbnailIndex + 1);
@@ -95,9 +103,9 @@ class Gallery extends React.Component {
         {this.state.renderModal &&
         <ModalImage onCloseRequest = {this.toggleModal}>
           {this.state.currentImageIndex !== 0 && !this.state.expandedImageZoomed && <button name = "left" onClick = {this.handleButtonClick}>{'<'}</button>}
-          <div className = "main-image-expanded-window">
+          <div id = "main-image-expanded-window">
             {this.state.expandedImageZoomed ?
-            <img className = "main-image-expanded-zoomed" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleZoom}/>
+            <img className = "main-image-expanded-zoomed" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleZoom} onMouseMove = {this.handleMouseMove}/>
             :
             <img className = "main-image-expanded" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleZoom}/>
             }
