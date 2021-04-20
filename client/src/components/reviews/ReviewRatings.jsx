@@ -29,7 +29,7 @@ class RatingsBreakdown extends React.Component {
       <div id='reviews-ratings-breakdown'>
         Ratings Breakdown:
         <div className='ratings-summary'>
-          <p>Overall Star Rating: {this.props.averageRating}</p>
+          <p className='reviews average-rating'><b>{this.props.averageRating}</b></p>
           <StarsDisplay key={this.props.averageRating} stars={this.props.averageRating} />
         </div>
         <div className='ratings-breakdown'>
