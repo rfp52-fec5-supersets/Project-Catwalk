@@ -20,7 +20,9 @@ class App extends React.Component {
       currentStyle: {},
       currentProductId: '17071', // initialized value, shouldn't matter
       currentStylePhotos: [],
-      currentStyleSkus: [],
+      currentStyleSkusObj: {},
+      // currentStyleSkus: [],
+      currentStyleTotalQuantity: 0,
       currentProductFull: {},
       ratings: {},
       averageRating: 0,
@@ -33,20 +35,20 @@ class App extends React.Component {
   getStyles() {
     axios({
       method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/'+ this.state.currentProductId +'/styles', /*TODO: Make this actually pull the product ID*/
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/'+ this.state.currentProductId +'/styles',
       headers: {'Authorization': API_KEY}
     })
     .then(({data: stylesObj} = res) => {
-      this.setState({styles: stylesObj.results, currentStyle: stylesObj.results[this.state.currentStyleIndex], currentStylePhotos: stylesObj.results[this.state.currentStyleIndex].photos});
+      this.setState({styles: stylesObj.results, currentStyle: stylesObj.results[this.state.currentStyleIndex], currentStyleSkusObj: stylesObj.results[this.state.currentStyleIndex].skus, currentStylePhotos: stylesObj.results[this.state.currentStyleIndex].photos});
       var skusObj = this.state.currentStyle.skus;
       var skusObjKeys = Object.keys(skusObj);
-      var skusArray = [];
+      var currentStyleTotalQuantity = 0;
       for (var i = 0; i < skusObjKeys.length ; i++) {
         var key = skusObjKeys[i];
-        skusArray.push({sku: key, size: skusObj[key].size, quantity: skusObj[key].quantity})
+        currentStyleTotalQuantity += skusObj[key].quantity;
       }
-      this.setState({currentStyleSkus: skusArray});
-      // console.log(this.state);
+      this.setState({currentStyleTotalQuantity: currentStyleTotalQuantity});
+      console.log(this.state);
     })
     .catch((err) => {
       console.error(err);
@@ -56,7 +58,7 @@ class App extends React.Component {
   getFeatures() {
     axios({
       method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/' + this.state.currentProductId + '/', /*TODO: Make this actually pull the product ID*/
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/' + this.state.currentProductId + '/',
       headers: {'Authorization': API_KEY}
     })
     .then(({data: productObj} = res) => {
@@ -71,7 +73,7 @@ class App extends React.Component {
   getRatings() {
     axios({
       method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', /*TODO: Make this actually pull the product ID*/
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta',
       headers: {'Authorization': API_KEY},
       params: {
         product_id: this.state.currentProductId
@@ -100,8 +102,17 @@ class App extends React.Component {
   }
 
   setStyle(index) {
-    this.setState({currentStyleIndex: index, currentStyle: this.state.styles[index], currentStylePhotos: this.state.styles[index].photos})
+    this.setState({currentStyleIndex: index, currentStyle: this.state.styles[index], currentStylePhotos: this.state.styles[index].photos, currentStyleSkusObj: this.state.styles[index].skus})
     // console.log(this.state);
+    var skusObj = this.state.currentStyle.skus;
+    var skusObjKeys = Object.keys(skusObj);
+    var currentStyleTotalQuantity = 0;
+    for (var i = 0; i < skusObjKeys.length ; i++) {
+      var key = skusObjKeys[i];
+      currentStyleTotalQuantity += skusObj[key].quantity;
+    }
+    this.setState({currentStyleTotalQuantity: currentStyleTotalQuantity});
+    console.log(this.state);
   }
 
   componentDidMount() {
@@ -142,7 +153,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <Overview currentProduct = {this.state.currentProduct} currentProductId = {this.state.currentProductId} currentStylePhotos = {this.state.currentStylePhotos} currentProductFull = {this.state.currentProductFull} currentStyle = {this.state.currentStyle} averageRating = {this.state.averageRating} styles = {this.state.styles} currentStyleIndex = {this.state.currentStyleIndex} setStyle = {this.setStyle} currentStyleSkus = {this.state.currentStyleSkus}/>
+      {/* <Overview currentProduct = {this.state.currentProduct} currentProductId = {this.state.currentProductId} currentStylePhotos = {this.state.currentStylePhotos} currentProductFull = {this.state.currentProductFull} currentStyle = {this.state.currentStyle} averageRating = {this.state.averageRating} styles = {this.state.styles} currentStyleIndex = {this.state.currentStyleIndex} setStyle = {this.setStyle} currentStyleSkus = {this.state.currentStyleSkus}/> */}
+      <Overview currentProduct = {this.state.currentProduct} currentProductId = {this.state.currentProductId} currentStylePhotos = {this.state.currentStylePhotos} currentProductFull = {this.state.currentProductFull} currentStyle = {this.state.currentStyle} averageRating = {this.state.averageRating} styles = {this.state.styles} currentStyleIndex = {this.state.currentStyleIndex} setStyle = {this.setStyle} currentStyleSkusObj = {this.state.currentStyleSkusObj} currentStyleTotalQuantity = {this.state.currentStyleTotalQuantity}/>
       <Related/>
       <Reviews product = {this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating} ratings={this.state.ratings}/>
       {/* Invoke our conditional render of QuestionList component*/}
