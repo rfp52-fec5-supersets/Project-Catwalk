@@ -8,12 +8,14 @@ class RelatedProductsCard extends React.Component {
     }
   }
 
-
-
   render() {
-    return <li> A Product</li>
+    return <ul>
+      {this.props.relatedProduct.category}
+      {this.props.relatedProduct.name}
+      {this.props.relatedProduct.price}
+      {this.props.relatedProduct.rating}
+    </ul>
   }
 }
-
 
 export default RelatedProductsCard;

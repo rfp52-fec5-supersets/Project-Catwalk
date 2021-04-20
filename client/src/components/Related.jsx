@@ -1,109 +1,78 @@
 import React from 'react';
+import axios from 'axios';
 import RelatedProducts from './RelatedProducts.jsx';
 import RelatedOutfits from './RelatedOutfits.jsx';
+import API_KEY from '../config.js';
 
 class Related extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedProducts: [],
-      relatedOutfits: []
-
+      relatedProductsId: [],
+      relatedProducts: []
     }
-
+    this.getRelatedProductsId = this.getRelatedProductsId.bind(this);
+    // this.getRelatedProducts = this.getRelatedProducts.bind(this);
   }
+
 
   componentDidMount() {
-    // getRelatedProducts();
-
+    this.getRelatedProductsId(this.props.currentProductId);
   }
-  // var data = [
-  //   {
-  //       "id": 17067,
-  //       "campus": "hr-rfp",
-  //       "name": "Camo Onesie",
-  //       "slogan": "Blend in to your crowd",
-  //       "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
-  //       "category": "Jackets",
-  //       "default_price": "140.00",
-  //       "created_at": "2021-02-23T04:22:44.728Z",
-  //       "updated_at": "2021-02-23T04:22:44.728Z"
-  //   },
-  //   {
-  //       "id": 17068,
-  //       "campus": "hr-rfp",
-  //       "name": "Bright Future Sunglasses",
-  //       "slogan": "You've got to wear shades",
-  //       "description": "Where you're going you might not need roads, but you definitely need some shades. Give those baby blues a rest and let the future shine bright on these timeless lenses.",
-  //       "category": "Accessories",
-  //       "default_price": "69.00",
-  //       "created_at": "2021-02-23T04:22:44.728Z",
-  //       "updated_at": "2021-02-23T04:22:44.728Z"
-  //   },
-  //   {
-  //       "id": 17069,
-  //       "campus": "hr-rfp",
-  //       "name": "Morning Joggers",
-  //       "slogan": "Make yourself a morning person",
-  //       "description": "Whether you're a morning person or not.  Whether you're gym bound or not.  Everyone looks good in joggers.",
-  //       "category": "Pants",
-  //       "default_price": "40.00",
-  //       "created_at": "2021-02-23T04:22:44.728Z",
-  //       "updated_at": "2021-02-23T04:22:44.728Z"
-  //   },
-  //   {
-  //       "id": 17070,
-  //       "campus": "hr-rfp",
-  //       "name": "Slacker's Slacks",
-  //       "slogan": "Comfortable for everything, or nothing",
-  //       "description": "I'll tell you how great they are after I nap for a bit.",
-  //       "category": "Pants",
-  //       "default_price": "65.00",
-  //       "created_at": "2021-02-23T04:22:44.728Z",
-  //       "updated_at": "2021-02-23T04:22:44.728Z"
-  //   },
-  //   {
-  //       "id": 17071,
-  //       "campus": "hr-rfp",
-  //       "name": "Heir Force Ones",
-  //       "slogan": "A sneaker dynasty",
-  //       "description": "Now where da boxes where I keep mine? You should peep mine, maybe once or twice but never three times. I'm just a sneaker pro, I love Pumas and shell toes, but can't nothin compare to a fresh crispy white pearl",
-  //       "category": "Kicks",
-  //       "default_price": "99.00",
-  //       "created_at": "2021-02-23T04:22:44.728Z",
-  //       "updated_at": "2021-02-23T04:22:44.728Z"
-  //   }
-  // ]
 
-  // getRelatedProducts() {
-  //   let relatedProducts = [];
-  //     props.products.forEach(product => {
-  //       if (product.category === props.currentProduct.category) {
-  //         relatedProducts.push(props.product);
-  //       }
-
-  //     })
-
-  //     this.setState({
-  //       relatedProducts: relatedProducts
-  //     });
-  // }
-
-  getRelatedProducts() {
-    this.props.products.forEach(product => {
-      if (product.category === this.props.currentProduct.category) {
-        return <RelatedProducts relatedProducts={this.state.relatedProducts} />
-      }
+  getRelatedProductsId(id) {
+    axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related`,
+      headers: { 'Authorization': API_KEY }
     })
+      .then(response => {
+        let relatedIds = response.data;
+        let relatedPromises = relatedIds.map(id => {
+          return axios({
+            method: 'get',
+            url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
+            headers: { 'Authorization': API_KEY }
+          })
+        });
+        return Promise.all(relatedPromises)
+      })
+      .then(relatedResponse => {
+        let relatedProducts = relatedResponse.map(response => {
+          return response.data;
+        })
+        this.setState({
+          relatedProducts: relatedProducts
+        })
+        console.log(relatedProducts);
+      })
+      .catch(err => {
+        console.log(err.message);
+      })
   }
+
+
+  // relatedProductsId = [17072, 17072, 17074, 17075, 17067, 17069]
+
+  // relatedProducts[0]
+  //   campus: "hr-rfp"
+  //   category: "Kicks"
+  //   created_at: "2021-02-23T04:22:44.728Z"
+  //   default_price: "89.00"
+  //   description: "The Pumped Up serves up crisp court style with a modern look. These shoes show off tennis-whites shades and are constructed with a supple leather upper and a classic rubber cupsole."
+  //   features: (4) [{…}, {…}, {…}, {…}]
+  //   id: 17072
+  //   name: "Pumped Up Kicks"
+  //   slogan: "Faster than a just about anything"
+  //   updated_at: "2021-02-23T04:22:44.728Z"
+
+
 
   render() {
-
-
     return (
       <div>
-        {this.getRelatedProducts()}
-        <RelatedOutfits relatedOutfits={this.state.relatedOutfits} />
+        <RelatedProducts relatedProducts={this.state.relatedProducts} relatedProductsId={this.state.relatedProductsId} />
+        <RelatedOutfits />
       </div>
     )
   }
