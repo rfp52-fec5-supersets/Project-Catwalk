@@ -24,16 +24,35 @@ class AddStarRating extends React.Component {
     // fills up star up to the currently clicked star. if no star clicked yet, stars are all empty.
     let stars = [];
     let star = wholeStar;
+    let starCount = this.props.starCount;
     for (let i = 1; i <= 5; i++) {
-      if (i > this.props.starCount) {
+      if (i > starCount) {
         star = emptyStar;
       }
       let starName = `star-${i}`;
       stars.push(<span className={starName} onClick={this.handleClick} key={i}>{star}</span>)
     }
+    let starMessage = null;
+    switch(starCount) {
+      case 1:
+        starMessage = 'Poor'
+        break;
+      case 2:
+        starMessage = 'Fair'
+        break;
+      case 3:
+        starMessage = 'Average'
+        break;
+      case 4:
+        starMessage = 'Good'
+        break;
+      case 5:
+        starMessage = 'Great'
+        break;
+    }
     return (
       <div>
-        {stars}
+        {stars} {starMessage}
       </div>
     );
   }
