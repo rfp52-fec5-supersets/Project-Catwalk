@@ -5,19 +5,22 @@ class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedProducts: []
+      relatedPhotos: []
     }
   }
 
+  handleCardClick(event) {
 
+  }
 
   render() {
     return (
       <div>
         <h1>RELATED PRODUCTS</h1>
-        <RelatedProductsCard />
+        {this.props.relatedProducts.map(product => {
+          return <RelatedProductsCard relatedProduct={product} currentPhotos={this.props.currentPhotos} onClick={this.handleCardClick} />
+        })}
       </div>
-
     )
   }
 }
