@@ -115,7 +115,7 @@ class Reviews extends React.Component {
           {(this.state.currentCount >= currentReviews.length || currentReviews.slice(0, this.state.currentCount).length === 0)
           ? null
           : <MoreReviews handleClick = {this.handleMore}/>}
-          <div id='reviews-add'> Add Review </div>
+          <AddReview />
         </div>
       </>
     );
