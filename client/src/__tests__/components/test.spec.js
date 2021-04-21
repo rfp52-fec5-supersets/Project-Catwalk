@@ -6,6 +6,7 @@ import Related from '../../components/Related';
 import QuestionsList from '../../components/QuestionsList';
 import Reviews from '../../components/reviews/Reviews';
 import { expect } from 'chai';
+import sinon from 'sinon';
 
 
 describe('App Component', () => {
@@ -24,6 +25,21 @@ describe('App Component', () => {
 
   });
 
+  test('App calls componentDidMount', () => {
+    sinon.spy(App.prototype, 'componentDidMount');
+    let wrapper = shallow(
+      <App />,
+    );
+    expect(wrapper.exists()).to.equal(true);
+    expect(App.prototype.componentDidMount).to.have.property('callCount', 1);
+
+
+
+  });
+
+});
+
+describe('Overview Component', () => {
   test('Renders Overview Component', () => {
     let wrapper = shallow(
       <Overview />,
@@ -33,6 +49,17 @@ describe('App Component', () => {
 
   });
 
+  test('Tests for click behavior', () => {
+    let wrapper = shallow(
+      <Overview />,
+    );
+    expect(wrapper.exists()).to.equal(true);
+    expect(wrapper.find('.overview')).to.have.lengthOf(1);
+
+  });
+});
+
+describe('Related Component', () => {
   test('Renders Related Component', () => {
     let wrapper = shallow(
       <Related />,
@@ -40,7 +67,9 @@ describe('App Component', () => {
     expect(wrapper.exists()).to.equal(true);
 
   });
+});
 
+describe('Reviews Component', () => {
   test('Renders Reviews Component', () => {
     let wrapper = shallow(
       <Reviews />,
@@ -48,7 +77,9 @@ describe('App Component', () => {
     expect(wrapper.exists()).to.equal(true);
 
   });
+});
 
+describe('QuestionsList Component', () => {
   test('Renders QuestionsList Component', () => {
     let wrapper = shallow(
       <QuestionsList />,
