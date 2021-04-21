@@ -19,7 +19,7 @@ class App extends React.Component {
       styles: [],
       currentStyleIndex: 0,
       currentStyle: {},
-      currentProductId: '17071', // initialized value, shouldn't matter
+      currentProductId: '17070', // initialized value, shouldn't matter
       currentStylePhotos: [],
       currentStyleSkusObj: {},
       // currentStyleSkus: [],
@@ -156,10 +156,12 @@ class App extends React.Component {
     this.setState({
       currentProduct: product,
       currentProductId: product.id
+    }, () => {
+      this.getStyles();
+      this.getFeatures();
+      this.getRatings();
     })
-    this.getStyles();
-    this.getFeatures();
-    this.getRatings();
+
   }
 
 
