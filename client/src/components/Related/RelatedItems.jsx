@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import RelatedProducts from './RelatedProducts.jsx';
 import RelatedOutfits from './RelatedOutfits.jsx';
-import API_KEY from '../config.js';
+import API_KEY from './../../config.js';
 
 class Related extends React.Component {
   constructor(props) {

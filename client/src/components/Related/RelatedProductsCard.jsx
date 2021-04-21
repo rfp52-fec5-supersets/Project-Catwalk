@@ -1,12 +1,12 @@
 import React from 'react';
-import API_KEY from '../config.js';
+import API_KEY from './../../config.js';
 import axios from 'axios';
 
 class RelatedProductsCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      previewPhoto: []
+      previewImage: []
     }
     this.getRelatedProductsImage = this.getRelatedProductsImage.bind(this);
   }
@@ -24,7 +24,7 @@ class RelatedProductsCard extends React.Component {
       .then(response => {
         // console.log('response', response);
         this.setState({
-          previewPhoto: response.data.results[0].photos[0].thumbnail_url
+          previewImage: response.data.results[0].photos[0].thumbnail_url
         })
       })
       .catch(err => {
@@ -34,7 +34,7 @@ class RelatedProductsCard extends React.Component {
 
   render() {
     return <div className="related-products-card">
-      <img src={this.state.previewPhoto}></img>
+      <img src={this.state.previewImage}></img>
       <div>{this.props.relatedProduct.category}</div>
       <div> {this.props.relatedProduct.name}</div>
       <div>{this.props.relatedProduct.default_price}</div>
