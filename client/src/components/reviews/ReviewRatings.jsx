@@ -55,9 +55,9 @@ class RatingsBreakdown extends React.Component {
         </div>
         }
         <div className='ratings-recommendation'>
-          <h4>
+          <p>
             {recommendTrue/total*100}% of reviewers recommend this product.
-          </h4>
+          </p>
         </div>
       </div>
     );
