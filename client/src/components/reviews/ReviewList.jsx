@@ -4,6 +4,9 @@ import ReviewTile from './ReviewTile.jsx';
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      filter:[]
+    }
   }
 
   render() {
@@ -12,7 +15,9 @@ class ReviewList extends React.Component {
     });
     return (
       <div id='reviews-list' className='reviews-component'>
-        ReviewList:
+        <h4>
+          ReviewList:
+        </h4>
         {ReviewTiles}
       </div>
     );
