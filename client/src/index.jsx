@@ -155,10 +155,12 @@ class App extends React.Component {
     this.setState({
       currentProduct: product,
       currentProductId: product.id
+    }, function() {
+      this.getStyles();
+      this.getFeatures();
+      this.getRatings();
     })
-    this.getStyles();
-    this.getFeatures();
-    this.getRatings();
+
   }
 
   // componentDidUpdate(){
