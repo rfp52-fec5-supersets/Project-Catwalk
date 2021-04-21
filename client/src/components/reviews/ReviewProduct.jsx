@@ -1,6 +1,7 @@
 // Product Breakdown in ReviewBreakdown parent
 
 import React from 'react';
+import CharaBar from './CharaBar.jsx'
 
 class ProductBreakdown extends React.Component {
   constructor(props) {
@@ -13,19 +14,15 @@ class ProductBreakdown extends React.Component {
     if (characteristics) {
       let qualities = Object.keys(characteristics);
       productQualities = qualities.map((quality)=> {
+        let characteristic = characteristics[quality];
         return (
-          <div key= {characteristics[quality].id} className='product-characteristic'>
-            <p>
-              {quality}
-            </p>
-            bar with {characteristics[quality].value}
-          </div>
+          <CharaBar key= {characteristic.id} characteristic={characteristic} quality={quality} />
         );
       })
     }
     return (
-      <div id='reviews-product-breakdown'>
-        Product Breakdown
+      <div id='reviews-product-breakdown' className = 'flex-box reviews product-breakdown'>
+        <span>Product Breakdown</span>
         {productQualities}
       </div>
     );
