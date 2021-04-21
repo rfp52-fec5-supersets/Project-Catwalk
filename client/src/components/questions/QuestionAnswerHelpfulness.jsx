@@ -9,27 +9,31 @@ class QuestionAnswerHelpfulness extends React.Component {
     const {helpfulness} = this.props.helpfulness
     this.state = {
       helpfulness: helpfulness,
-      reported: 'no'
+      reported: 'no',
+      voted: 'no'
     }
   }
 
   onClickHelpful() {
     const {id} = this.props.helpfulness;
     // Put request to increase the helpfulness of the answer's id
-     axios({
-      method: 'put',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${id}/helpful`,
-      headers: {'Authorization': API_KEY}
-    })
-    .then((res) => {
-      // Manage helpfulness in state so that when we increase our helpfulness, we aren't also doing a get request.
-      this.setState({
-        helpfulness: this.state.helpfulness + 1
-      })
-    })
-    .catch((err) => {
-      throw err
-    })
+    if (this.state.voted === 'no') {
+      axios({
+       method: 'put',
+       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${id}/helpful`,
+       headers: {'Authorization': API_KEY}
+     })
+     .then((res) => {
+       // Manage helpfulness in state so that when we increase our helpfulness, we aren't also doing a get request.
+       this.setState({
+         helpfulness: this.state.helpfulness + 1,
+         voted: 'yes'
+       })
+     })
+     .catch((err) => {
+       throw err
+     })
+    }
   }
 
   onClickReport() {
