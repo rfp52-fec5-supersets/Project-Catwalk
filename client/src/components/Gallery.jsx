@@ -98,7 +98,7 @@ class Gallery extends React.Component {
           (<img className = "main-image" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleModal}/>)}
           </div>
           <div className = "expanded-button-div">
-          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && <button name = "right" onClick = {this.handleButtonClick}>{'>'}</button>}
+          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && <button className = "right-button" name = "right" onClick = {this.handleButtonClick}>{'>'}</button>}
           </div>
         </div>
         <div className = "gallery-thumbnails">
@@ -107,7 +107,7 @@ class Gallery extends React.Component {
         </div>
         {thumbnailsToRender.map((photo, index) => <GalleryThumbnail photo = {photo} key = {index + this.state.minThumbnailIndex} index = {index + this.state.minThumbnailIndex} selectPhoto = {this.selectPhoto} clicked = {this.state.currentImageIndex == index + this.state.minThumbnailIndex}/>)}
         <div className = "expanded-button-div">
-        {this.state.maxThumbnailIndex < this.props.currentStylePhotos.length - 1 && <button name = "down" onClick = {this.handleButtonClick}>{'v'}</button>}
+        {this.state.maxThumbnailIndex < this.props.currentStylePhotos.length - 1 && <button className = "down-button" name = "down" onClick = {this.handleButtonClick}>{'v'}</button>}
         </div>
         </div>
         {this.state.renderModal &&
