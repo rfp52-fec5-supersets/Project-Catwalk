@@ -166,13 +166,14 @@
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
-  padding: 3%;
+  border-right: 100px;
   border-top: 1px solid steelblue;
   border-right: 1px solid steelblue;
   border-bottom: 1px solid steelblue;
 }
 #reviews-tile {
   border-bottom: 2px solid black;
+  padding: 3%;
 }
 #reviews-sort {
   grid-area: reviews-sort;
