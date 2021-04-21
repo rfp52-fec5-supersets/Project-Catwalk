@@ -27,7 +27,7 @@ class CharaBar extends React.Component {
       rightMessage = 'Too Long';
     }
     return (
-      <div key= {characteristic.id} className='reviews product-characteristic'>
+      <div className='reviews product-characteristic'>
         {/* style={{position:'relative', width:'90%'}} */}
         <p style={{textAlign:'center'}}>
           <em>{quality}</em>

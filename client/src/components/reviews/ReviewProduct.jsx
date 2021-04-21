@@ -16,7 +16,7 @@ class ProductBreakdown extends React.Component {
       productQualities = qualities.map((quality)=> {
         let characteristic = characteristics[quality];
         return (
-          <CharaBar characteristic={characteristic} quality={quality} />
+          <CharaBar key= {characteristic.id} characteristic={characteristic} quality={quality} />
         );
       })
     }
