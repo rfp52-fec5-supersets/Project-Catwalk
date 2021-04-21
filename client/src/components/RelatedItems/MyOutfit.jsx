@@ -1,13 +1,11 @@
 import React from 'react';
-import RelatedOutfitsCard from './RelatedOutfitsCard.jsx';
+import MyOutfitCard from './MyOutfitCard.jsx';
 
-class RelatedOutfits extends React.Component {
+class MyOutfit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
     }
-
   }
 
 
@@ -15,10 +13,10 @@ class RelatedOutfits extends React.Component {
     return (
       <div>
         <h1>YOUR OUTFIT</h1>
-        <RelatedOutfitsCard />
+        <MyOutfitCard />
       </div>
     )
   }
 }
 
-export default RelatedOutfits;
+export default MyOutfit;
