@@ -9,9 +9,13 @@ class Question extends React.Component {
   }
 
   loadMoreRender() {
-    if (Object.keys(this.props.question.answers).length > 2) {
+    if (Object.keys(this.props.question.answers).length > 2 && this.state.loadMoreAnswers === 'no') {
       return (
         <button onClick={() => this.setState({loadMoreAnswers: 'yes'})}type="button">Load More Answers</button>
+      )
+    } else if (Object.keys(this.props.question.answers).length > 2 && this.state.loadMoreAnswers === 'yes'){
+      return (
+        <button onClick={() => this.setState({loadMoreAnswers: 'no'})}type="button">Collapse answers</button>
       )
     }
   }
