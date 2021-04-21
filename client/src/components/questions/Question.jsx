@@ -1,5 +1,6 @@
 import React from 'react';
 import QuestionAnswer from './QuestionAnswer.jsx'
+import QuestionHelpfulness from './QuestionHelpfulness.jsx'
 class Question extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +9,7 @@ class Question extends React.Component {
     }
   }
 
-  loadMoreRender() {
+  loadMoreAnswersRender() {
     if (Object.keys(this.props.question.answers).length > 2 && this.state.loadMoreAnswers === 'no') {
       return (
         <button onClick={() => this.setState({loadMoreAnswers: 'yes'})}type="button">Load More Answers</button>
@@ -38,12 +39,13 @@ class Question extends React.Component {
       <div className="questionList">
         <div className="questionBody">
         <h1 className="questionHeader">Q: {question.question_body}</h1>
+        <QuestionHelpfulness id={question.question_id} helpfulness={question.question_helpfulness}/>
         </div>
         <div className="questionAnswer">
         <h1 className="questionHeader">A:</h1>
         <div className="answerColumn">
         {answers}
-        {this.loadMoreRender()}
+        {this.loadMoreAnswersRender()}
         </div>
         </div>
       </div>

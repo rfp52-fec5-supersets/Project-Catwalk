@@ -10,7 +10,8 @@ class QuestionsList extends React.Component {
     this.state = {
       questions: [],
       loadMoreQuestions: 'no',
-      loadMoreAnswers: 'no'
+      loadMoreAnswers: 'no',
+      sliceIndex: 2
     };
   }
 
@@ -196,20 +197,29 @@ class QuestionsList extends React.Component {
     });
   }
 
+  loadMoreQuestionsRender() {
+    if (this.state.questions.length > 2 && this.state.sliceIndex < this.state.questions.length) {
+      return (
+        <button onClick={() => this.setState({loadMoreQuestions: 'yes', sliceIndex: this.state.sliceIndex + 2})}type="button">More Answered Questions</button>
+      )
+    }
+  }
+
   render() {
     let { questions } = this.state;
-    if (this.state.loadMoreQuestions === 'no') {
-      questions = questions.slice(0, 4)
-      questions.sort((a, b) => a.question_helpfulness < b.question_helpfulness)
-    }
+
+    questions = questions.slice(0, this.state.sliceIndex)
+    questions.sort((a, b) => a.question_helpfulness < b.question_helpfulness)
+
     const question = questions.map((question) => (
-      <Question key={question.question_id} question={question} loadMoreAnswers={this.state.loadMoreAnswers}/>
+      <Question key={question.question_id} question={question}/>
     ));
     return (
       <div>
         <h1>QuestionsList</h1>
         <QuestionSearchAnswer />
         {question}
+        {this.loadMoreQuestionsRender()}
       </div>
     );
   }
