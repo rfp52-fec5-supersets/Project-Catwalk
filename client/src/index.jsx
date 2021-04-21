@@ -146,9 +146,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      {/* <Overview currentProduct = {this.state.currentProduct} currentProductId = {this.state.currentProductId} currentStylePhotos = {this.state.currentStylePhotos} currentProductFull = {this.state.currentProductFull} currentStyle = {this.state.currentStyle} averageRating = {this.state.averageRating} styles = {this.state.styles} currentStyleIndex = {this.state.currentStyleIndex} setStyle = {this.setStyle} currentStyleSkus = {this.state.currentStyleSkus}/> */}
       {/* <Overview currentProduct = {this.state.currentProduct} currentProductId = {this.state.currentProductId} currentStylePhotos = {this.state.currentStylePhotos} currentProductFull = {this.state.currentProductFull} currentStyle = {this.state.currentStyle} averageRating = {this.state.averageRating} styles = {this.state.styles} currentStyleIndex = {this.state.currentStyleIndex} setStyle = {this.setStyle} currentStyleSkusObj = {this.state.currentStyleSkusObj} currentStyleTotalQuantity = {this.state.currentStyleTotalQuantity}/> */}
-      <Related products={this.state.products} currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId}/>
+      <Related currentProductId={this.state.currentProductId} ratings={this.state.ratings} currentPhotos={this.state.currentStylePhotos}/>
       {/* <Reviews product = {this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating} ratings={this.state.ratings}/> */}
       {/* Invoke our conditional render of QuestionList component*/}
       {/* {this.questionListRender()} */}

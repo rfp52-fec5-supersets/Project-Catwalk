@@ -8,19 +8,17 @@ class Related extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedProductsId: [],
       relatedProducts: []
     }
-    this.getRelatedProductsId = this.getRelatedProductsId.bind(this);
-    // this.getRelatedProducts = this.getRelatedProducts.bind(this);
+    this.getRelatedProducts = this.getRelatedProducts.bind(this);
   }
 
 
   componentDidMount() {
-    this.getRelatedProductsId(this.props.currentProductId);
+    this.getRelatedProducts(this.props.currentProductId);
   }
 
-  getRelatedProductsId(id) {
+  getRelatedProducts(id) {
     axios({
       method: 'get',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related`,
@@ -44,13 +42,12 @@ class Related extends React.Component {
         this.setState({
           relatedProducts: relatedProducts
         })
-        console.log(relatedProducts);
+        // console.log(relatedProducts);
       })
       .catch(err => {
         console.log(err.message);
       })
   }
-
 
   // relatedProductsId = [17072, 17072, 17074, 17075, 17067, 17069]
 
@@ -71,7 +68,7 @@ class Related extends React.Component {
   render() {
     return (
       <div>
-        <RelatedProducts relatedProducts={this.state.relatedProducts} relatedProductsId={this.state.relatedProductsId} />
+        <RelatedProducts relatedProducts={this.state.relatedProducts} currentPhotos={this.props.currentPhotos} relatedProductsId={this.state.relatedProductsId} />
         <RelatedOutfits />
       </div>
     )
