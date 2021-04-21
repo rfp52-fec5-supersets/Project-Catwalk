@@ -278,11 +278,43 @@
 
 
 /* RELATED PRODUCTS */
-
-.related-products-card {
-  display: grid;
-  grid-column-start: 1;
-  grid-column-end: 3;
-
+.row > .column {
+  padding: 1 8px;
 }
 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+  /* //border: 1px solid black;
+  //margin: 3px; */
+  width: 25%;
+}
+
+.related-products-card {
+  border: 1px solid black;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.cardInfo {
+  margin: 8px;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+img.hover-shadow {
+  transition: 0.3s;
+  height: 300px;
+  width: 100%;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
