@@ -19,12 +19,16 @@ class AddReview extends React.Component {
   }
 
   render() {
+    let characteristics = [];
+    if (this.props.meta.characteristics) {
+      characteristics = Object.keys(this.props.meta.characteristics)
+    }
     return (
       <div id='reviews-add'>
         <button onClick={this.handleToggle}>Add Review</button>
         {this.state.showModal &&
         <ModalImage onCloseRequest={this.handleToggle}>
-          <AddReviewForm />
+          <AddReviewForm product={this.props.product} characteristics = {characteristics}/>
         </ModalImage>}
       </div>
     );
