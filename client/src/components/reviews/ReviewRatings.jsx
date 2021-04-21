@@ -28,17 +28,19 @@ class RatingsBreakdown extends React.Component {
     filter = filter.join(', ');
     return (
       <div id='reviews-ratings-breakdown'>
-        Ratings Breakdown:
         <div className='ratings-summary'>
-          <p className='reviews average-rating'><b>{this.props.averageRating}</b></p>
-          <StarsDisplay key={this.props.averageRating} stars={this.props.averageRating} />
-          <p>Total Reviews: {total}</p>
+          <div className='reviews average-rating flex-box'>
+            <b>{this.props.averageRating}</b>
+            &nbsp;
+            <StarsDisplay key={this.props.averageRating} stars={this.props.averageRating} />
+          </div>
         </div>
+        <p className='ratings total-reviews-count'>Total Reviews: {total}</p>
         <div className='ratings-breakdown'>
           {([1,2,3,4,5]).map((star)=> {
             return (
               <div key={star}>
-                <span onClick={()=>(this.props.handleClick(star))} className='reviews ratings-and-filter'>
+                <span onClick={()=>(this.props.handleClick(star))} className='reviews ratings-and-filter flex-box'>
                   {star} star ratings:
                   <meter value={this.props.ratings[star]} max={total}></meter>
                   {this.props.ratings[star] || 0}
@@ -56,9 +58,9 @@ class RatingsBreakdown extends React.Component {
         </div>
         }
         <div className='ratings-recommendation'>
-          <h4>
+          <p>
             {recommendTrue/total*100}% of reviewers recommend this product.
-          </h4>
+          </p>
         </div>
       </div>
     );
