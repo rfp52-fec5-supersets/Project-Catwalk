@@ -29,8 +29,11 @@ class RatingsBreakdown extends React.Component {
     return (
       <div id='reviews-ratings-breakdown'>
         <div className='ratings-summary'>
-          <div className='reviews average-rating flex-box'><b>{this.props.averageRating}</b></div>
-          <StarsDisplay key={this.props.averageRating} stars={this.props.averageRating} />
+          <div className='reviews average-rating flex-box'>
+            <b>{this.props.averageRating}</b>
+            &nbsp;
+            <StarsDisplay key={this.props.averageRating} stars={this.props.averageRating} />
+          </div>
         </div>
         <p className='ratings total-reviews-count'>Total Reviews: {total}</p>
         <div className='ratings-breakdown'>

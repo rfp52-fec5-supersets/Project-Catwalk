@@ -21,8 +21,8 @@ class ProductBreakdown extends React.Component {
       })
     }
     return (
-      <div id='reviews-product-breakdown'>
-        Product Breakdown
+      <div id='reviews-product-breakdown' className = 'flex-box reviews product-breakdown'>
+        <span>Product Breakdown</span>
         {productQualities}
       </div>
     );

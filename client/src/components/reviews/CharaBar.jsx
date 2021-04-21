@@ -29,8 +29,8 @@ class CharaBar extends React.Component {
     return (
       <div key= {characteristic.id} className='reviews product-characteristic'>
         {/* style={{position:'relative', width:'90%'}} */}
-        <p>
-          {quality}
+        <p style={{textAlign:'center'}}>
+          <em>{quality}</em>
         </p>
         {/* keep the style in-line to use characteristic.value as variable */}
         <span className="reviews characteristic-pointer" style={{position: 'absolute', marginLeft:'-5.11px', left: `${(characteristic.value - 1) * 100 / 4}%`, marginTop:'-0.75em'}}>&#x25BE;</span>
