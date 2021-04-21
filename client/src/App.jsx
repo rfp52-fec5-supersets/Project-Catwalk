@@ -93,7 +93,7 @@ class App extends React.Component {
       }
 
       this.setState({ratings: ratings, averageRating: sum/divisor, reviewMeta: metaObj});
-      //console.log(this.state);
+      console.log(JSON.stringify(this.state));
     })
     .catch((err) => {
       console.error(err);
