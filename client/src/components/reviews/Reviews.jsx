@@ -5,6 +5,7 @@ import ReviewList from './ReviewList.jsx';
 import ReviewSort from './ReviewSort.jsx';
 import ReviewBreakdown from './ReviewBreakdown.jsx';
 import MoreReviews from './MoreReviews.jsx';
+import AddReview from './AddReview.jsx';
 
 class Reviews extends React.Component {
   constructor(props) {

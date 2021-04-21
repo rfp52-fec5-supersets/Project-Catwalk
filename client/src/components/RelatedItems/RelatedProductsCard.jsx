@@ -74,11 +74,11 @@ class RelatedProductsCard extends React.Component {
     </svg>;
 
     return (
-    <div class="column">
+    <div className="column">
       <div className="related-products-card" onClick={this.props.handleCardClick}>
         <div className="star-button" onClick={this.props.handleStarClick}>{emptyStar}</div>
-        <img class="hover-shadow cursor" src={this.state.previewImage}></img>
-        <div class="cardInfo">
+        <img className="hover-shadow cursor" src={this.state.previewImage}></img>
+        <div className="cardInfo">
           <div>{this.props.relatedProduct.category}</div>
           <div> {this.props.relatedProduct.name}</div>
           <div>{this.props.relatedProduct.default_price}</div>

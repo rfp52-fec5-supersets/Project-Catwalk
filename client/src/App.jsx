@@ -196,7 +196,7 @@ class App extends React.Component {
 
   relatedProductsRender() {
     return (
-      <div class="row">
+      <div className="row">
         <h1>RELATED PRODUCTS</h1>
         {this.state.relatedProducts.map(product => {
           return <RelatedProducts relatedProduct={product} handleCardClick={() => this.handleCardClick(product)} />
