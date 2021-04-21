@@ -51,8 +51,19 @@ class StarsDisplay extends React.Component {
   }
 
   render() {
-    let wholeStars = Array(this.state.wholeCount).fill(wholeStar);
-    let emptyStars = Array(this.state.emptyCount).fill(emptyStar);
+    let idx = 1;
+    let wholeStars=[];
+    let emptyStars=[];
+    for (let whole = 0; whole < this.state.wholeCount; whole++) {
+      wholeStars.push(<span key = {idx}>{wholeStar}</span>)
+      idx += 1;
+    }
+    for (let empty = 0; empty < this.state.emptyCount; empty++) {
+      emptyStars.push(<span key = {idx}>{emptyStar}</span>)
+      idx += 1;
+    }
+    // let wholeStars = Array(this.state.wholeCount).fill(wholeStar);
+    // let emptyStars = Array(this.state.emptyCount).fill(emptyStar);
     let starFragment = this.state.starFragment;
     let fragmentStars;
     if (starFragment === 0) {
