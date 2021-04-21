@@ -1,6 +1,6 @@
 import React from 'react';
 
-class RelatedOutfitsCard extends React.Component {
+class MyOutfitCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,4 +13,5 @@ class RelatedOutfitsCard extends React.Component {
   }
 }
 
-export default RelatedOutfitsCard;
+export default MyOutfitCard
+;
