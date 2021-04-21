@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, render, mount } from '../../../../enzyme.setup';
 import App from '../../App';
 import Overview from '../../components/Overview';
-import Related from '../../components/Related';
+import RelatedItems from '../../components/Related/RelatedItems';
 import QuestionsList from '../../components/QuestionsList';
 import Reviews from '../../components/reviews/Reviews';
 import { expect } from 'chai';
@@ -20,7 +20,7 @@ describe('App Component', () => {
 
     // Expect statements for the render of each widget
     expect(wrapper.find(Overview)).to.have.lengthOf(1);
-    expect(wrapper.find(Related)).to.have.lengthOf(1);
+    expect(wrapper.find(RelatedItems)).to.have.lengthOf(1);
     expect(wrapper.find(Reviews)).to.have.lengthOf(1);
     // expect(wrapper.find(QuestionsList)).to.have.lengthOf(1); // This one currently fails because of the way questionsList is conditionally rendered
 
@@ -66,10 +66,10 @@ describe('Overview Component', () => {
   });
 });
 
-describe('Related Component', () => {
+describe('RelatedItems Component', () => {
   test('Renders Related Component', () => {
     let wrapper = shallow(
-      <Related />,
+      <RelatedItems />,
     );
     expect(wrapper.exists()).to.equal(true);
 

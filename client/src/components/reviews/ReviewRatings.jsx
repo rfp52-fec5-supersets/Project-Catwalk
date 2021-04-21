@@ -1,6 +1,7 @@
 // Ratings Breakdown in ReviewBreakdown parent
 
 import React from 'react';
+import StarsDisplay from './../StarsDisplay';
 
 class RatingsBreakdown extends React.Component {
   constructor(props) {
@@ -12,7 +13,6 @@ class RatingsBreakdown extends React.Component {
   }
 
   render() {
-    // Ratings summary: Display avg rating with number and star icon, total count of reviews
     // Breakdown: bars for each star rating, left of bar: star rating #, right of bar: count
     //   hover on bar changes background color
     //   click on star count turns on filter
@@ -24,24 +24,43 @@ class RatingsBreakdown extends React.Component {
       recommendTrue = parseInt(recommended.true);
       total = parseInt(recommended.false) + recommendTrue;
     }
+    let filter = Object.keys(this.props.filter).filter((star)=> this.props.filter[star]);
+    filter = filter.join(', ');
     return (
       <div id='reviews-ratings-breakdown'>
-        Ratings Breakdown:
         <div className='ratings-summary'>
-          <p>Overall Star Rating: {this.props.averageRating}</p>
-          <p>Stars here</p>
+          <div className='reviews average-rating flex-box'>
+            <b>{this.props.averageRating}</b>
+            &nbsp;
+            <StarsDisplay key={this.props.averageRating} stars={this.props.averageRating} />
+          </div>
         </div>
+        <p className='ratings total-reviews-count'>Total Reviews: {total}</p>
         <div className='ratings-breakdown'>
-          {Object.keys(this.props.ratings).map((star)=> {
-            return (<p key={star}>
-              {star} star ratings: {this.props.ratings[star]}
-            </p>);
+          {([1,2,3,4,5]).map((star)=> {
+            return (
+              <div key={star}>
+                <span onClick={()=>(this.props.handleClick(star))} className='reviews ratings-and-filter flex-box'>
+                  {star} star ratings:
+                  <meter value={this.props.ratings[star]} max={total}></meter>
+                  {this.props.ratings[star] || 0}
+                </span>
+              </div>
+            );
           })}
         </div>
+        {filter &&
+        <div className='ratings-filter-view'>
+          <p>
+            Current Filters: {filter}
+          </p>
+          <button onClick={()=>(this.props.handleClick('clear'))}>Remove All Filters</button>
+        </div>
+        }
         <div className='ratings-recommendation'>
-          <h4>
-            {recommendTrue/total*100}% of reviewers recommend this item.
-          </h4>
+          <p>
+            {recommendTrue/total*100}% of reviewers recommend this product.
+          </p>
         </div>
       </div>
     );
