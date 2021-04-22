@@ -13,7 +13,7 @@ class ComparisonModal extends React.Component {
           X
         </button>
         <div className='modal-content'>
-          {"COMPARISON TABLE"}
+          {this.props.children}
         </div>
       </div>
     )
