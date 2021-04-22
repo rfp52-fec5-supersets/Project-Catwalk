@@ -98,7 +98,7 @@ class AddReviewForm extends React.Component {
           {this.state.photos.length > 0 &&
           this.state.photos.map((photo) => {
             let index = this.state.photos.indexOf(photo);
-            return <span key={index}>{photo.name}</span>
+            return <img key={index} className='reviews-thumbnail' src={URL.createObjectURL(photo)} />
           })}
         </div>
         <div className='add-review-username'>
