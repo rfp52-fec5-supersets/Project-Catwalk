@@ -11,9 +11,10 @@ class ProductInfo2 extends React.Component {
   render() {
     return (
         <div id = "product-info-2">
-          <div id = "product-overview"><b>Description:</b> {this.props.currentProduct.description}</div>
+          <div id = "product-overview"><div><b>Description:</b></div> {this.props.currentProduct.description}</div>
           <div id = "product-features">
           <b>Specifications:</b>
+          <div id = "feature-list">
           {this.props.currentProductFeatures.map((feature) => {
           return (
             <div className = "feature">
@@ -21,6 +22,7 @@ class ProductInfo2 extends React.Component {
             </div>
           )
         })}
+          </div>
           </div>
         </div>
     )

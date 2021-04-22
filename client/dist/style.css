@@ -1,8 +1,7 @@
 #overview {
   display: grid;
   grid-template-columns: 1050px 400px;
-  grid-template-rows: 20% 35% 20% 20%;
-  padding-bottom: 60px;
+  grid-template-rows: 20% 35% 17% 18%;
 }
 
 .gallery {
@@ -152,7 +151,11 @@
   grid-column-end: span 1;
   border-left: solid gray 1px;
   padding-left: 20px;
-  padding-top: 20px;
+  padding-top: 5px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 #price {
