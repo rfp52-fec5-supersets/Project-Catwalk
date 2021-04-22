@@ -38,13 +38,14 @@ class AddStarRating extends React.Component {
     console.log(charaMessage);
     return (
       <div>
-        <p>{this.props.chara}</p>
-        <label>{charaMessage}</label>
+        <div>{this.props.chara}</div>
+        <div>{charaMessage}</div>
         {choices}
         <div>
           {CharaMessages[chara][0]}
           {CharaMessages[chara][4]}
         </div>
+        <br />
       </div>
     );
   }
