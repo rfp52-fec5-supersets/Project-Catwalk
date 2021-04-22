@@ -2,7 +2,8 @@ import React from 'react';
 import { shallow, render, mount } from '../../../../enzyme.setup';
 import App from '../../App';
 import Overview from '../../components/Overview';
-import RelatedItems from '../../components/Related/RelatedItems';
+import RelatedProducts from '../../components/RelatedItems/RelatedProducts';
+import MyOutfit from '../../components/RelatedItems/MyOutfit';
 import QuestionsList from '../../components/QuestionsList';
 import Reviews from '../../components/reviews/Reviews';
 import { expect } from 'chai';
@@ -63,10 +64,10 @@ describe('Overview Component', () => {
   });
 });
 
-describe('RelatedItems Component', () => {
-  test('Renders Related Component', () => {
+describe('RelatedProducts Component', () => {
+  test('Renders RelatedProducts Component', () => {
     let wrapper = shallow(
-      <RelatedItems />,
+      <RelatedProducts />,
     );
     expect(wrapper.exists()).to.equal(true);
 
