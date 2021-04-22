@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow, render, mount } from '../../../../enzyme.setup';
 import App from '../../App';
 import Overview from '../../components/Overview';
+import RelatedProducts from '../../components/RelatedItems/RelatedProducts';
 import MyOutfit from '../../components/RelatedItems/MyOutfit';
 import QuestionsList from '../../components/QuestionsList';
 import Reviews from '../../components/reviews/Reviews';
@@ -63,10 +64,17 @@ describe('Overview Component', () => {
   });
 });
 
+<<<<<<< HEAD
+describe('RelatedProducts Component', () => {
+  test('Renders RelatedProducts Component', () => {
+    let wrapper = shallow(
+      <RelatedProducts />,
+=======
 describe('MyOutfit Component', () => {
   test('Renders MyOutfit Component', () => {
     let wrapper = shallow(
       <MyOutfit />,
+>>>>>>> 6c0028e53f202d1b9b0c0d699d448f6923e05d3b
     );
     expect(wrapper.exists()).to.equal(true);
 
