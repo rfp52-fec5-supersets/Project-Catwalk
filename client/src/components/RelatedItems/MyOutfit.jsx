@@ -12,8 +12,10 @@ class MyOutfit extends React.Component {
       averageRating: ''
     }
     this.addToOutfit = this.addToOutfit.bind(this);
+    this.deleteOutfit = this.deleteOutfit.bind(this);
     this.getOutfitImage = this.getOutfitImage.bind(this);
     this.getOutfitRating = this.getOutfitRating.bind(this);
+
   }
 
   componentDidMount() {
@@ -89,9 +91,13 @@ class MyOutfit extends React.Component {
     }
   }
 
-  deleteOutfit() {
-    console.log('deletedOutfit');
-
+  deleteOutfit(outfit) {
+    console.log('deleteOutfit');
+    var outfitIndex = this.state.outfits.indexOf(outfit);
+    var newOutfitsArray = this.state.outfits.splice(0, outfitIndex, this.state.outfits.length);
+    this.setState({
+      outfits: newOutfitsArray
+    })
   }
 
 
@@ -111,7 +117,9 @@ class MyOutfit extends React.Component {
           <div className="column">
             <div className="outfits-card" >
               <img className="placeholder" src={this.props.previewImage}></img>
+
               <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+
               <div className="cardInfo">
                 <div>{null}</div>
                 <div>{null}</div>
@@ -123,7 +131,7 @@ class MyOutfit extends React.Component {
 
           {this.state.outfits.map(outfit => {
             return <MyOutfitCard
-              outfit={outfit} />
+              outfit={outfit} key={outfit} deleteOutfit={() => this.deleteOutfit(outfit)}/>
           })}
           <a className="next">&#10095;</a>
         </div>

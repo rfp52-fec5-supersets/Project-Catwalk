@@ -13,7 +13,7 @@ class MyOutfitCard extends React.Component {
       <div className="column">
         <div className="my-outfits-card">
           <img className="hover-shadow cursor" src={this.props.outfit.photo}></img>
-          <a className="x-button"> {"X"}</a>
+          <a className="x-button" onClick={this.props.deleteOutfit}> {"X"}</a>
           <div className="cardInfo">
             <div>{this.props.outfit.product.category}</div>
             <div> {this.props.outfit.product.name}</div>
