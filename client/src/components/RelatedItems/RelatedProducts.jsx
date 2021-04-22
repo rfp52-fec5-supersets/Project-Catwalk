@@ -74,7 +74,7 @@ class RelatedProducts extends React.Component {
         <RelatedProductsCard
         relatedProduct={this.props.relatedProduct}
         handleCardClick={this.props.handleCardClick}
-        handleStarClick={this.props.handleStarClick}
+        currentProduct={this.props.currentProduct}
         averageRating={this.state.averageRating}
         previewImage={this.state.previewImage}
         />
