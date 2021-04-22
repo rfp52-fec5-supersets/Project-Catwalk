@@ -51,6 +51,25 @@
   min-height: 30px;
 }
 
+.up-down-button {
+  font-size: 14px;
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.up-down-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.up-down-button:active {
+  background-color: white;
+  color: black;
+}
+
 .arrow-button {
   /* background-color: transparent; */
   /* border-style: none; */
@@ -59,7 +78,17 @@
   width: 36px;
   border-radius: 50%;
   border: 1px solid black;
-  background-color: whitesmoke;
+  background-color: white;
+}
+
+.arrow-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.arrow-button:active {
+  background-color: white;
+  color: black;
 }
 
 .main-image-expanded {
