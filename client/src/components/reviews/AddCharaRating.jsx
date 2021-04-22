@@ -1,35 +1,11 @@
 import React from 'react';
-let CharaMessages = {
-  Size: ['A size too small',
-    '½ a size too small',
-    'Perfect',
-    '½ a size too big',
-    'A size too wide'],
-  Width: ['Too narrow',
-    'Slightly narrow',
-    'Perfect',
-    'Slightly wide',
-    'Too wide'],
-  Comfort: ['Uncomfortable',
-    'Slightly uncomfortable',
-    'Ok',
-    'Comfortable',
-    'Perfect'],
-  Quality: ['Poor',
-    'Below average',
-    'What I expected',
-    'Pretty great',
-    'Perfect'],
-  Length: ['Runs Short',
-    'Runs slightly short',
-    'Perfect',
-    'Runs slightly long',
-    'Runs long'],
-  Fit: ['Runs tight',
-    'Runs slightly tight',
-    'Perfect',
-    'Runs slightly long',
-    'Runs long']
+const CharaMessages = {
+  Size: ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide'],
+  Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
+  Comfort: ['Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'Perfect'],
+  Quality: ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'],
+  Length: ['Runs Short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
+  Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long']
 }
 
 class AddStarRating extends React.Component {
@@ -50,17 +26,25 @@ class AddStarRating extends React.Component {
     let chara = this.props.chara;
     let choices = [];
     let charaRating = this.props.charaRatings[chara];
+    let charaMessage = 'none selected';
     if (charaRating) {
       charaRating = parseInt(charaRating);
+      charaMessage = CharaMessages[chara][charaRating - 1];
     }
     for (let i = 1; i <= 5; i++) {
       let button = <input key={i} type='radio' name={'chara-'+chara} value={i} id={'add-review-char-rating-'+i} checked={charaRating === i} required='required' onChange={this.handleClick}></input>;
       choices.push(button);
     }
+    console.log(charaMessage);
     return (
       <div>
-        <span>{this.props.chara}</span>
+        <p>{this.props.chara}</p>
+        <label>{charaMessage}</label>
         {choices}
+        <div>
+          {CharaMessages[chara][0]}
+          {CharaMessages[chara][4]}
+        </div>
       </div>
     );
   }
