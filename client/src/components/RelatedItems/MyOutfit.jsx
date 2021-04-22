@@ -95,19 +95,32 @@ class MyOutfit extends React.Component {
       return (
         <div>
           <h1>YOUR OUTFIT</h1>
-          <button onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> +Add to Outfit+ </button>
+          <a class="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
         </div>
       )
     } else {
       return (
         <div>
           <h1>YOUR OUTFIT</h1>
-          <button onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> +Add to Outfit+ </button>
+          <a class="prev">&#10094;</a>
+          <div className="column">
+            <div className="outfits-card" >
+              <img className="placeholder" src={this.props.previewImage}></img>
+              <a class="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+              <div className="cardInfo">
+                <div>{null}</div>
+                <div>{null}</div>
+                <div>{null}</div>
+                <div>{null}</div>
+              </div>
+            </div >
+          </div>
 
           {this.state.outfits.map(outfit => {
             return <MyOutfitCard
               outfit={outfit} />
           })}
+          <a class="next">&#10095;</a>
         </div>
       )
 

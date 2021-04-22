@@ -12,8 +12,8 @@ class MyOutfitCard extends React.Component {
     return (
       <div className="column">
         <div className="my-outfits-card">
-          <div className="x-button"> {"X"}</div>
           <img className="hover-shadow cursor" src={this.props.outfit.photo}></img>
+          <a className="x-button"> {"X"}</a>
           <div className="cardInfo">
             <div>{this.props.outfit.product.category}</div>
             <div> {this.props.outfit.product.name}</div>
