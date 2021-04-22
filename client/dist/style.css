@@ -390,10 +390,6 @@ img.hover-shadow {
   background-color: grey
 }
 
-img {
-  position: relative;
-}
-
 .star-button, .x-button {
   padding: 12px;
   margin-left: -50px;

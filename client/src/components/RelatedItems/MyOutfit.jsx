@@ -106,7 +106,7 @@ class MyOutfit extends React.Component {
           <div className="column">
             <div className="outfits-card" >
               <img className="placeholder" src={this.props.previewImage}></img>
-              <a class="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+              <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
               <div className="cardInfo">
                 <div>{null}</div>
                 <div>{null}</div>
