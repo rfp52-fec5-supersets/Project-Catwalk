@@ -18,7 +18,7 @@ describe('App Component', () => {
 
     // Expect statements for the render of each widget
     expect(wrapper.find(Overview)).to.have.lengthOf(1);
-    expect(wrapper.find(RelatedItems)).to.have.lengthOf(1);
+    expect(wrapper.find(MyOutfit)).to.have.lengthOf(1);
     expect(wrapper.find(Reviews)).to.have.lengthOf(1);
     // expect(wrapper.find(QuestionsList)).to.have.lengthOf(1); // This one currently fails because of the way questionsList is conditionally rendered
 
@@ -64,10 +64,17 @@ describe('Overview Component', () => {
   });
 });
 
+<<<<<<< HEAD
 describe('RelatedProducts Component', () => {
   test('Renders RelatedProducts Component', () => {
     let wrapper = shallow(
       <RelatedProducts />,
+=======
+describe('MyOutfit Component', () => {
+  test('Renders MyOutfit Component', () => {
+    let wrapper = shallow(
+      <MyOutfit />,
+>>>>>>> 6c0028e53f202d1b9b0c0d699d448f6923e05d3b
     );
     expect(wrapper.exists()).to.equal(true);
 
