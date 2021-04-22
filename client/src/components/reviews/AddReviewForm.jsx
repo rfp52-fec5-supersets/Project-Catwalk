@@ -7,11 +7,13 @@ class AddReviewForm extends React.Component {
     super(props);
     this.state = {
       starRating: 0,
-      charaRatings: {}
+      charaRatings: {},
+      summary: ''
     }
     this.handleStar = this.handleStar.bind(this);
     this.handleRecommended = this.handleRecommended.bind(this);
     this.handleChara = this.handleChara.bind(this);
+    this.handleTextChange = this.handleTextChange.bind(this);
   }
 
   handleStar(starCount) {
@@ -37,6 +39,12 @@ class AddReviewForm extends React.Component {
     });
   }
 
+  handleTextChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
   render() {
     return (
       <div>
@@ -54,7 +62,8 @@ class AddReviewForm extends React.Component {
         {this.props.characteristics.map((chara)=>{
           return <AddCharaRating key={chara} chara={chara} handleChara = {this.handleChara} charaRatings={this.state.charaRatings}/>;
         })}
-        <p>Review Summary</p>
+        <span>Review Summary</span>
+        <input name='summary' onChange={this.handleTextChange} type='text' placeholder='Example: Best purchase ever!' maxLength={60} value={this.state.summary}></input>
         <p>Review Body</p>
         <p>Upload photos</p>
         <p>nickname?</p>

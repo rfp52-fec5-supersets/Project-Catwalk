@@ -35,7 +35,6 @@ class AddStarRating extends React.Component {
       let button = <input key={i} type='radio' name={'chara-'+chara} value={i} id={'add-review-char-rating-'+i} checked={charaRating === i} required='required' onChange={this.handleClick}></input>;
       choices.push(button);
     }
-    console.log(charaMessage);
     return (
       <div>
         <div>{this.props.chara}</div>
