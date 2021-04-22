@@ -55,7 +55,12 @@
 .arrow-button {
   /* background-color: transparent; */
   /* border-style: none; */
-  font-size: 24px;
+  font-size: 22px;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  border-style: 1px solid black;
+  background-color: transparent;
 }
 
 .main-image-expanded {
@@ -252,6 +257,11 @@
 
 /* REVIEWS AND RATINGS CSS */
 /* For Overall Reviews Grid */
+
+#rating {
+  display: flex;
+}
+
 #reviews-add {
   grid-area: reviews-add;
 }
