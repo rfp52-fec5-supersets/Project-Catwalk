@@ -36,7 +36,7 @@ class AddStarRating extends React.Component {
       choices.push(button);
     }
     return (
-      <div>
+      <div className='add-review-chara'>
         <div>{this.props.chara}</div>
         <div>{charaMessage}</div>
         {choices}

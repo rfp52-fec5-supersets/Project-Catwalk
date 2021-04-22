@@ -60,21 +60,33 @@ class AddReviewForm extends React.Component {
           <label htmlFor='add-review-recommended-no'>No</label>
         </div>
         <p>Characteristic Section</p>
-        {this.props.characteristics.map((chara)=>{
-          return <AddCharaRating key={chara} chara={chara} handleChara = {this.handleChara} charaRatings={this.state.charaRatings}/>;
-        })}
-        <span>Review Summary</span>
-        <input name='summary' onChange={this.handleTextChange} type='text' placeholder='Example: Best purchase ever!' maxLength={60} value={this.state.summary}></input>
-        <p>Review Body</p>
+        <div className='add-review-charas'>
+          {this.props.characteristics.map((chara)=>{
+            return <AddCharaRating key={chara} chara={chara} handleChara = {this.handleChara} charaRatings={this.state.charaRatings}/>;
+          })}
+        </div>
+        <div className='add-review-summary'>
+          <label>Review Summary</label>
+          <br />
+          <input name='summary' onChange={this.handleTextChange} type='text' placeholder='Example: Best purchase ever!' maxLength={60} value={this.state.summary}></input>
+        </div>
         <div className='add-review-body'>
+          <label>Review Body</label>
+          <br />
           <textarea name='body' onChange={this.handleTextChange} placeholder='Why did you like the product or not?' maxLength={1000} minLength={50} value={this.state.body} required='required' cols={40} rows={5}></textarea>
           {(this.state.body.length < 50)
           ? <div>Minimum required characters left: {50 - this.state.body.length}</div>
           : <div>Minimum reached</div>}
         </div>
-        <p>Upload photos</p>
-        <p>nickname?</p>
-        <p>email?</p>
+        <div className='add-review-photos'>
+          <p>Upload photos</p>
+        </div>
+        <div className='add-review-username'>
+          <p>nickname?</p>
+        </div>
+        <div className='add-review-email'>
+          <p>email?</p>
+        </div>
         <p>Submit Button</p>
       </div>
     );
