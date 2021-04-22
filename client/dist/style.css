@@ -305,6 +305,7 @@
   /* flex-direction: column; */
   grid-template-columns: auto auto auto;
 /* The Modal (background) */
+}
 .modal-overlay {
   /* display: none; Hidden by default */
   /* display will always show. The react state will take care of the display
