@@ -65,7 +65,6 @@ class QuestionHelpfulness extends React.Component {
   }
 
   render() {
-    console.log(this.state.helpfulness)
     return (
       <div>
         <p>Helpful? <a onClick={() => this.onClickHelpful()}href="#">Yes</a> ({this.state.helpfulness}) | <a onClick={() => this.onClickReport()} href="#">{this.onClickReportRender()}</a></p>

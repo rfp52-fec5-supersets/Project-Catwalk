@@ -11,9 +11,6 @@ class QuestionAnswer extends React.Component {
 
   render() {
     const {answer} = this.props;
-    // const {helpfulness} = answer
-    // const {answerer_name: user} = answer;
-    // console.log(helpfulness)
     return (
       <div className="answers">
       <p>
