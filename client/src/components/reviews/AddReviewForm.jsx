@@ -64,14 +64,13 @@ class AddReviewForm extends React.Component {
         <h2>Write Your Review</h2>
         <h3>About the {this.props.product.name}</h3>
         <AddStarRating starCount={this.state.starRating} handleClick = {this.handleStar}></AddStarRating>
-        <p>Do you recommend product?</p>
         <div className='add-review recommended-form'>
+          <p>Do you recommend product?</p>
           <input type='radio' name='recommend' value={true} id='add-review-recommended-yes' required='required' checked={this.state.recommended === 'true'} onChange={this.handleRecommended}></input>
           <label htmlFor='add-review-recommended-yes'>Yes</label>
           <input type='radio' name='recommend' value={false} id='add-review-recommended-no' required='required' checked={this.state.recommended === 'false'} onChange={this.handleRecommended}></input>
           <label htmlFor='add-review-recommended-no'>No</label>
         </div>
-        <p>Characteristic Section</p>
         <div className='add-review-charas'>
           {this.props.characteristics.map((chara)=>{
             return <AddCharaRating key={chara} chara={chara} handleChara = {this.handleChara} charaRatings={this.state.charaRatings}/>;
@@ -91,7 +90,7 @@ class AddReviewForm extends React.Component {
           : <div>Minimum reached</div>}
         </div>
         <div className='add-review-photos'>
-          <p>Upload photos</p>
+          <span>Upload photos: </span>
           {this.state.photos.length < 5 &&
           <input type='file' accept='image/*' onChange={this.handlePhotos} ref={this.imageInput}/>}
           {/* photos here */}
@@ -113,7 +112,7 @@ class AddReviewForm extends React.Component {
           <input name='email' onChange={this.handleTextChange} type='email' placeholder='Example: jackson11@email.com' maxLength={60} value={this.state.email} required='required'></input>
           <div>For authentication reasons, you will not be emailed</div>
         </div>
-        <p>Submit Button</p>
+        <button>Submit</button>
       </div>
     );
   }
