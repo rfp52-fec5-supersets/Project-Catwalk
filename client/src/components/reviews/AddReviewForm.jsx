@@ -9,12 +9,15 @@ class AddReviewForm extends React.Component {
       starRating: 0,
       charaRatings: {},
       summary: '',
-      body: ''
+      body: '',
+      photos:[]
     }
     this.handleStar = this.handleStar.bind(this);
     this.handleRecommended = this.handleRecommended.bind(this);
     this.handleChara = this.handleChara.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
+    this.handlePhotos = this.handlePhotos.bind(this);
+    this.imageInput = React.createRef();
   }
 
   handleStar(starCount) {
@@ -43,6 +46,15 @@ class AddReviewForm extends React.Component {
   handleTextChange(e) {
     this.setState({
       [e.target.name]: e.target.value
+    });
+  }
+
+  handlePhotos(e) {
+    // this.imageInput.current === e.target in this case
+    let photos = this.state.photos;
+    photos.push(e.target.files[0]);
+    this.setState({
+      photos: photos
     });
   }
 
@@ -80,6 +92,14 @@ class AddReviewForm extends React.Component {
         </div>
         <div className='add-review-photos'>
           <p>Upload photos</p>
+          {this.state.photos.length < 5 &&
+          <input type='file' accept='image/*' onChange={this.handlePhotos} ref={this.imageInput}/>}
+          {/* photos here */}
+          {this.state.photos.length > 0 &&
+          this.state.photos.map((photo) => {
+            let index = this.state.photos.indexOf(photo);
+            return <span key={index}>{photo.name}</span>
+          })}
         </div>
         <div className='add-review-username'>
           <p>nickname?</p>
