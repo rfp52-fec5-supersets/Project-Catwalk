@@ -149,12 +149,6 @@ class App extends React.Component {
   }
 
 
-  handleStarClick(product) {
-    //POP UP MODAL
-    event.preventDefault();
-    console.log('star button clicked', product);
-  }
-
   handleCardClick(product) {
     //RERENDER WITH SELECTED PRODUCT
     event.preventDefault();
@@ -203,9 +197,11 @@ class App extends React.Component {
     return (
       <div className="row">
         <h1>RELATED PRODUCTS</h1>
+        <a class="prev">&#10094;</a>
         {this.state.relatedProducts.map(product => {
-          return <RelatedProducts relatedProduct={product} handleCardClick={() => this.handleCardClick(product)} handleStarClick={() => this.handleStarClick(product)}/>
+          return <RelatedProducts relatedProduct={product} handleCardClick={() => this.handleCardClick(product)} currentProduct={this.state.currentProduct} />
         })}
+        <a class="next">&#10095;</a>
       </div>
     )
   }
@@ -214,12 +210,12 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} />
+        {/* <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} /> */}
         {this.relatedProductsRender()}
-        <MyOutfit currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} averageRating={this.state.averageRating} currentStylePhotos={this.state.currentStylePhotos}/>
+        <MyOutfit currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} averageRating={this.state.averageRating} currentStylePhotos={this.state.currentStylePhotos} />
         <Reviews product={this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating} ratings={this.state.ratings} />
         {/* Invoke our conditional render of QuestionList component*/}
-        {this.questionListRender()}
+        {/* {this.questionListRender()} */}
       </div>
     )
   }
