@@ -95,17 +95,23 @@ class AddReviewForm extends React.Component {
           {this.state.photos.length < 5 &&
           <input type='file' accept='image/*' onChange={this.handlePhotos} ref={this.imageInput}/>}
           {/* photos here */}
-          {this.state.photos.length > 0 &&
-          this.state.photos.map((photo) => {
-            let index = this.state.photos.indexOf(photo);
-            return <img key={index} className='reviews-thumbnail' src={URL.createObjectURL(photo)} />
-          })}
+          <div>
+            {this.state.photos.length > 0 &&
+            this.state.photos.map((photo) => {
+              let index = this.state.photos.indexOf(photo);
+              return <img key={index} className='reviews-thumbnail' src={URL.createObjectURL(photo)} />
+            })}
+          </div>
         </div>
         <div className='add-review-username'>
-          <p>nickname?</p>
+          <label>Review Nickname</label>
+          <input name='username' onChange={this.handleTextChange} type='text' placeholder='Example: jackson11!' maxLength={60} value={this.state.username} required='required'></input>
+          <div>For privacy reason, do not use your full name or email address</div>
         </div>
         <div className='add-review-email'>
-          <p>email?</p>
+          <label>Review Email</label>
+          <input name='email' onChange={this.handleTextChange} type='email' placeholder='Example: jackson11@email.com' value={this.state.email} required='required'></input>
+          <div>For authentication reasons, you will not be emailed</div>
         </div>
         <p>Submit Button</p>
       </div>
