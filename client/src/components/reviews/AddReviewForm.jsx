@@ -8,7 +8,8 @@ class AddReviewForm extends React.Component {
     this.state = {
       starRating: 0,
       charaRatings: {},
-      summary: ''
+      summary: '',
+      body: ''
     }
     this.handleStar = this.handleStar.bind(this);
     this.handleRecommended = this.handleRecommended.bind(this);
@@ -65,6 +66,12 @@ class AddReviewForm extends React.Component {
         <span>Review Summary</span>
         <input name='summary' onChange={this.handleTextChange} type='text' placeholder='Example: Best purchase ever!' maxLength={60} value={this.state.summary}></input>
         <p>Review Body</p>
+        <div className='add-review-body'>
+          <textarea name='body' onChange={this.handleTextChange} placeholder='Why did you like the product or not?' maxLength={1000} minLength={50} value={this.state.body} required='required' cols={40} rows={5}></textarea>
+          {(this.state.body.length < 50)
+          ? <div>Minimum required characters left: {50 - this.state.body.length}</div>
+          : <div>Minimum reached</div>}
+        </div>
         <p>Upload photos</p>
         <p>nickname?</p>
         <p>email?</p>
