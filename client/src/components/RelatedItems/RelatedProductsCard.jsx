@@ -1,11 +1,22 @@
 import React from 'react';
 import StarsDisplay from '../StarsDisplay.jsx';
+import ComparisonModal from './ComparisonModal.jsx';
 
 class RelatedProductsCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      renderModal: false
     }
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    //POP UP MODAL
+    console.log('toggle Modal');
+    this.setState({
+      renderModal: !this.state.renderModal
+    })
   }
 
   render() {
@@ -17,7 +28,7 @@ class RelatedProductsCard extends React.Component {
       <div className="column">
         <div className="related-products-card" onClick={this.props.handleCardClick}>
           <img className="hover-shadow cursor" src={this.props.previewImage}></img>
-          <a className="star-button" onClick={this.props.handleStarClick}>{wholeStar}</a>
+          <a className="star-button" onClick={this.toggleModal}>{wholeStar}</a>
           <div className="cardInfo">
             <div>{this.props.relatedProduct.category}</div>
             <div> {this.props.relatedProduct.name}</div>
@@ -25,6 +36,9 @@ class RelatedProductsCard extends React.Component {
             <div><StarsDisplay stars={this.props.averageRating} key={this.props.averageRating} /></div>
           </div>
         </div >
+        <div className="comparison-modal">
+          <ComparisonModal renderModal={this.state.renderModal} onClose={this.toggleModal} currentProduct={this.props.currentProduct} relatedProduct={this.props.relatedProduct}/>
+          </div>
       </div>
     )
   }
