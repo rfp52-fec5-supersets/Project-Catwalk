@@ -19,7 +19,6 @@ class StyleSelector extends React.Component {
     render() {
     return (
       <div className = "style-selector">
-        Style Selector
         {this.props.styles.map((style, index) => <StyleSelectorIcon style = {style} setStyle = {this.props.setStyle} index = {index} clicked = {this.props.currentStyleIndex == index} key = {index}/>)}
       </div>
     )

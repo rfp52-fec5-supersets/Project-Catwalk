@@ -88,17 +88,16 @@ class Gallery extends React.Component {
 
     return (
       <div className = "gallery">
-        GALLERY
         <div className = "main-image-window">
           <div className = "expanded-button-div">
-          {this.state.currentImageIndex !== 0 && <button name = "left" onClick = {this.handleButtonClick}>{'<'}</button>}
+          {this.state.currentImageIndex !== 0 && <button className = "arrow-button" name = "left" onClick = {this.handleButtonClick}>{'<'}</button>}
           </div>
           <div className = "main-image-container">
           {this.props.currentStylePhotos.length > 0 &&
           (<img className = "main-image" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleModal}/>)}
           </div>
           <div className = "expanded-button-div">
-          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && <button className = "right-button" name = "right" onClick = {this.handleButtonClick}>{'>'}</button>}
+          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && <button className = "arrow-button" name = "right" onClick = {this.handleButtonClick}>{'>'}</button>}
           </div>
         </div>
         <div className = "gallery-thumbnails">
@@ -107,7 +106,7 @@ class Gallery extends React.Component {
         </div>
         {thumbnailsToRender.map((photo, index) => <GalleryThumbnail photo = {photo} key = {index + this.state.minThumbnailIndex} index = {index + this.state.minThumbnailIndex} selectPhoto = {this.selectPhoto} clicked = {this.state.currentImageIndex == index + this.state.minThumbnailIndex}/>)}
         <div className = "expanded-button-div">
-        {this.state.maxThumbnailIndex < this.props.currentStylePhotos.length - 1 && <button className = "down-button" name = "down" onClick = {this.handleButtonClick}>{'v'}</button>}
+        {this.state.maxThumbnailIndex < this.props.currentStylePhotos.length - 1 && <button name = "down" onClick = {this.handleButtonClick}>{'v'}</button>}
         </div>
         </div>
         {this.state.renderModal &&
@@ -115,7 +114,7 @@ class Gallery extends React.Component {
 
           <div id = "main-image-expanded-window">
             <div className = "expanded-button-div">
-          {this.state.currentImageIndex !== 0 && !this.state.expandedImageZoomed && <button name = "left" onClick = {this.handleButtonClick}>{'<'}</button>}
+          {this.state.currentImageIndex !== 0 && !this.state.expandedImageZoomed && <button className = "arrow-button" name = "left" onClick = {this.handleButtonClick}>{'<'}</button>}
             </div>
           <div id = "main-image-expanded-container">
             {this.state.expandedImageZoomed ?
@@ -125,7 +124,7 @@ class Gallery extends React.Component {
             }
           </div>
           <div className = "expanded-button-div">
-          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && !this.state.expandedImageZoomed && <button name = "right" onClick = {this.handleButtonClick}>{'>'}</button>}
+          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && !this.state.expandedImageZoomed && <button className = "arrow-button" name = "right" onClick = {this.handleButtonClick}>{'>'}</button>}
           </div>
           </div>
 

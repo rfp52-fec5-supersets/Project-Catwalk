@@ -1,18 +1,27 @@
-
+#overview {
+  display: grid;
+  grid-template-columns: 1100px 3fr;
+  grid-template-rows: 60% 20% 20%;
+  padding-bottom: 60px;
+}
 
 .gallery {
   height: 400px;
   width: 500px;
   padding-bottom: 40px;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-row-end: span 1;
+  grid-column-end: span 1;
 }
 
 .main-image {
   /* position: absolute; */
-  max-height: 400px;
+  max-height: 500px;
 }
 
 .main-image-container {
-  width: 650px;
+  width: 860px;
   display: flex;
   justify-content: center;
 }
@@ -44,6 +53,12 @@
   min-height: 30px;
 }
 
+.arrow-button {
+  background-color: transparent;
+  /* border-style: none; */
+  font-size: 24px;
+}
+
 .main-image-expanded {
   max-width: 800px;
   max-height: 600px;
@@ -69,10 +84,6 @@
 .main-image-window {
   position: absolute;
   left: 100px;
-}
-
-.add-to-cart:hover {
-  cursor: pointer;
 }
 
 .gallery-thumbnail {
@@ -108,6 +119,33 @@
 }
 
 /* Product Info */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#product-info-1 {
+  grid-column-start: 2;
+}
+
+#product-info-2 {
+  /* position: absolute; */
+  /* left: 20px;
+  bottom: 300px; */
+  grid-column-start: 1;
+  grid-column-end: span 1;
+  grid-row-start: 2;
+}
+
+.product-overview {
+  grid-column-start: 1;
+  grid-column-end: span 1;
+}
+
+.product-features {
+  grid-column-start: 2;
+  grid-column-end: span 1;
+}
 
 .original-price-strikethrough {
   text-decoration: line-through;
@@ -118,6 +156,10 @@
 }
 
 /* Style Selector */
+.style-selector {
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
 
 .style-thumbnail {
   height: 90px;
@@ -132,12 +174,34 @@
   border: 3px solid limegreen;
 }
 
-/* Add to Cart */
+/* Checkout / Add to Cart */
+
+.checkout {
+  display: flex;
+  justify-content: space-between;
+  grid-column-start: 2;
+  grid-row-start: 4;
+}
+.checkout-form {
+  width: 310px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* grid-column-start: 2; */
+}
 
 .add-to-cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: gold;
   width: 200px;
+  height: 25px;
   text-align: center;
+}
+
+.add-to-cart:hover {
+  cursor: pointer;
 }
 
 .grid-container {

@@ -81,8 +81,7 @@ class Checkout extends React.Component {
 
     return (
       <div className = "checkout">
-        Checkout
-        <form>
+        <form className = "checkout-form">
           <label>
             Pick a size:
             {this.state.pleaseSelectSize && <div id = "please-select-size">Please select size!</div>}
