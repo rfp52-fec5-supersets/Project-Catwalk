@@ -22,7 +22,7 @@ class Overview extends React.Component {
       <div id = "overview">
       {/* {console.log(this.props.currentProduct)} */}
       <Gallery currentStylePhotos = {this.props.currentStylePhotos}/>
-      <ProductInfo currentProduct = {this.props.currentProductFull} currentStyle = {this.props.currentStyle} rating = {this.props.averageRating} currentProductFeatures = {this.props.currentProductFeatures}/>
+      <ProductInfo currentProduct = {this.props.currentProductFull} currentStyle = {this.props.currentStyle} rating = {this.props.averageRating} currentProductFeatures = {this.props.currentProductFeatures} reviewMeta = {this.props.reviewMeta}/>
       <StyleSelector styles = {this.props.styles} currentStyle = {this.props.currentStyle} setStyle = {this.props.setStyle} currentStyleIndex = {this.props.currentStyleIndex}/>
       <Checkout currentStyleSkus = {this.props.currentStyleSkus} currentStyleSkusObj = {this.props.currentStyleSkusObj} currentStyleTotalQuantity = {this.props.currentStyleTotalQuantity}/>
       <ProductInfo2 currentProduct = {this.props.currentProductFull} currentProductFeatures = {this.props.currentProductFeatures}/>
