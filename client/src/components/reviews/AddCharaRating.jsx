@@ -35,6 +35,11 @@ let CharaMessages = {
 class AddStarRating extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    this.props.handleChara(this.props.chara, e.target.value);
   }
 
   render() {
@@ -42,9 +47,20 @@ class AddStarRating extends React.Component {
     // Meaning of lowest and highest selection appear below array of buttons.
     // Default no button selected
     // Above buttons, meaning of current selection explicitly presented, default = none selected.
+    let chara = this.props.chara;
+    let choices = [];
+    let charaRating = this.props.charaRatings[chara];
+    if (charaRating) {
+      charaRating = parseInt(charaRating);
+    }
+    for (let i = 1; i <= 5; i++) {
+      let button = <input key={i} type='radio' name={'chara-'+chara} value={i} id={'add-review-char-rating-'+i} checked={charaRating === i} required='required' onChange={this.handleClick}></input>;
+      choices.push(button);
+    }
     return (
       <div>
-        Add Chara Rating
+        <span>{this.props.chara}</span>
+        {choices}
       </div>
     );
   }
