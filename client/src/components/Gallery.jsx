@@ -41,13 +41,44 @@ class Gallery extends React.Component {
     event.preventDefault();
     if (event.target.name === 'left') {
       if (this.state.currentImageIndex !== 0) {
-        this.setState({currentImageIndex: this.state.currentImageIndex - 1});
+
+        var newMinIndex = this.state.minThumbnailIndex;
+        var newMaxIndex = this.state.maxThumbnailIndex;
+
+        while (this.state.currentImageIndex - 1 < newMinIndex) {
+          newMinIndex--;
+          newMaxIndex--;
+        }
+
+        while (this.state.currentImageIndex - 1  > newMaxIndex) {
+          newMinIndex++;
+          newMaxIndex++;
+        }
+
+        this.setState({currentImageIndex: this.state.currentImageIndex - 1, minThumbnailIndex: newMinIndex, maxThumbnailIndex: newMaxIndex});
+
+        // console.log(this.state.minThumbnailIndex, this.state.maxThumbnailIndex)
+
       }
     }
 
     if (event.target.name === 'right') {
       if (this.state.currentImageIndex < this.props.currentStylePhotos.length - 1) {
-        this.setState({currentImageIndex: this.state.currentImageIndex + 1});
+
+        var newMinIndex = this.state.minThumbnailIndex;
+        var newMaxIndex = this.state.maxThumbnailIndex;
+
+        while (this.state.currentImageIndex + 1 < newMinIndex) {
+          newMinIndex--;
+          newMaxIndex--;
+        }
+
+        while (this.state.currentImageIndex + 1 > newMaxIndex) {
+          newMinIndex++;
+          newMaxIndex++;
+        }
+
+        this.setState({currentImageIndex: this.state.currentImageIndex + 1, minThumbnailIndex: newMinIndex, maxThumbnailIndex: newMaxIndex});
       }
     }
 
