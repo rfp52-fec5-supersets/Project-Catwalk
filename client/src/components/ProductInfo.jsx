@@ -1,4 +1,5 @@
 import React from 'react';
+import StarsDisplay from './StarsDisplay.jsx';
 
 class ProductInfo extends React.Component {
   constructor(props) {
@@ -12,11 +13,12 @@ class ProductInfo extends React.Component {
     return (
       <div className = "product-info">
         <h1 id = "title"> {this.props.currentProduct.name}</h1>
-        <div id = "rating"><b>Rating:</b> {this.props.rating} (LINK TO REVIEWS)</div>
-        <div id = "category"><b>Category:</b> {this.props.currentProduct.category}</div>
         <div id = "price">
-        <b>Price:</b> {this.props.currentStyle.sale_price ? <div className = "original-price-strikethrough">{'$'+this.props.currentStyle.original_price}</div> : <div className = "original-price">{'$'+this.props.currentStyle.original_price}</div>} {this.props.currentStyle.sale_price && <div className = "sale-price">{'$'+this.props.currentStyle.sale_price}</div>}
+        {this.props.currentStyle.sale_price ? <div className = "original-price-strikethrough">{'$'+this.props.currentStyle.original_price}</div> : <div className = "original-price">{'$'+this.props.currentStyle.original_price}</div>} {this.props.currentStyle.sale_price && <div className = "sale-price">{'$'+this.props.currentStyle.sale_price}</div>}
         </div>
+        <div id = "rating"><b>Rating:</b> {this.props.rating} (LINK TO REVIEWS)</div>
+        <StarsDisplay stars = {this.props.rating} key = {this.props.rating}/>
+        <div id = "category"><b>Category:</b> {this.props.currentProduct.category}</div>
         {/* <div id = "product-info-2">
           <div id = "product-overview">Product Overview: {this.props.currentProduct.description}</div>
           <div id = "product-features">

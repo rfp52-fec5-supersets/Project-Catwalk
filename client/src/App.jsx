@@ -199,8 +199,8 @@ class App extends React.Component {
       <div className="row">
         <h1>RELATED PRODUCTS</h1>
         <a className="prev">&#10094;</a>
-        {this.state.relatedProducts.map(product => {
-          return <RelatedProducts relatedProduct={product} handleCardClick={() => this.handleCardClick(product)} currentProduct={this.state.currentProduct} />
+        {this.state.relatedProducts.map((product, index) => {
+          return <RelatedProducts relatedProduct={product} handleCardClick={() => this.handleCardClick(product)} currentProduct={this.state.currentProduct} key = {index}/>
         })}
         <a className="next">&#10095;</a>
       </div>
