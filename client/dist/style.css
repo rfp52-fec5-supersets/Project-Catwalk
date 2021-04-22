@@ -1,7 +1,7 @@
 #overview {
   display: grid;
   grid-template-columns: 1050px 400px;
-  grid-template-rows: 20% 35% 17% 18%;
+  grid-template-rows: 25% 35% 17% 18%;
 }
 
 .gallery {
@@ -122,6 +122,11 @@
 }
 
 /* Product Info */
+#title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
 .product-info {
   display: flex;
   flex-direction: column;
@@ -137,6 +142,15 @@
 
 #rating-number {
   margin-left: 8px;
+}
+
+#socials {
+  display: flex;
+}
+
+
+#share-title {
+  margin-right: 3px;
 }
 
 #product-info-2 {
