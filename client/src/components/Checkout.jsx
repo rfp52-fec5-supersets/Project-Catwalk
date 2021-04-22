@@ -83,7 +83,7 @@ class Checkout extends React.Component {
       <div className = "checkout">
         <form className = "checkout-form">
           <label>
-            Pick a size:
+            Select size:
             {this.state.pleaseSelectSize && <div id = "please-select-size">Please select size!</div>}
             {this.props.currentStyleTotalQuantity > 0 ?
             <select onChange = {this.handleSelectSize}>
@@ -98,7 +98,7 @@ class Checkout extends React.Component {
             }
           </label>
           <label>
-            Pick a quantity:
+            Select quantity:
             {this.state.sizeSelected ?
             <select onChange = {this.handleSelectQuantity}>
               {quantityArray.map((quantity, index) => {

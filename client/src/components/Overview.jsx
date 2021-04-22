@@ -1,6 +1,7 @@
 import React from 'react';
 import Gallery from './Gallery.jsx';
 import ProductInfo from './ProductInfo.jsx';
+import ProductInfo2 from './ProductInfo2.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import Checkout from './Checkout.jsx';
 import axios from 'axios';
@@ -24,6 +25,7 @@ class Overview extends React.Component {
       <ProductInfo currentProduct = {this.props.currentProductFull} currentStyle = {this.props.currentStyle} rating = {this.props.averageRating} currentProductFeatures = {this.props.currentProductFeatures}/>
       <StyleSelector styles = {this.props.styles} currentStyle = {this.props.currentStyle} setStyle = {this.props.setStyle} currentStyleIndex = {this.props.currentStyleIndex}/>
       <Checkout currentStyleSkus = {this.props.currentStyleSkus} currentStyleSkusObj = {this.props.currentStyleSkusObj} currentStyleTotalQuantity = {this.props.currentStyleTotalQuantity}/>
+      <ProductInfo2 currentProduct = {this.props.currentProductFull} currentProductFeatures = {this.props.currentProductFeatures}/>
       </div>
 
     )
