@@ -40,11 +40,14 @@ class QuestionAnswerAdd extends React.Component {
           <button onClick={this.handleCloseModal}>Close Modal</button>
           <h1 style={{textAlign: 'center'}}>Add an Answer</h1>
           <form onSubmit={(event) => event.preventDefault()}>
-            <textarea required="required" maxLength="1000" placeholder="Answer"></textarea><br/>
+            <textarea style={{minHeight: '10em', minWidth: '35em'}} required="required" maxLength="1000" placeholder="Answer"></textarea><br/>
             <label htmlFor="lname">Nickname:</label><br/>
-            <input maxLength="60" type="text" id="fname" name="fname"/><br/>
-            <label htmlFor="lname">Last name:</label><br/>
-            <input type="text" id="lname" name="lname"/><br/>
+            <input placeholder="Example: jack543!" maxLength="60" type="text" id="fname" name="fname"/><br/>
+            <div>For privacy reasons, do not use your full name or email address</div><br/>
+            <label htmlFor="lname">Email:</label><br/>
+            <input placeholder="Example: jack@email.com" maxLength="60" type="text" id="lname" name="lname"/><br/>
+            <div>For authentication reasons, you will not be emailed</div><br/>
+            <input onChange={(event)=> console.log(URL.createObjectURL(event.target.files[0]))} type="file" id="img" name="img" accept="image/*" multiple/><br/>
             <button>Submit</button>
           </form>
         </Modal>
