@@ -71,7 +71,7 @@ class MyOutfit extends React.Component {
 
   addToOutfit(product, rating, photo) {
     // event.preventDefault();
-    console.log('addToOutfit button clicked');
+    console.log('addToOutfit');
     var outfitExists = false;
     for (var i = 0; i < this.state.outfits.length; i++) {
       if (this.state.outfits[i].product.id === product.id) {
@@ -87,6 +87,11 @@ class MyOutfit extends React.Component {
         outfits: outfits
       })
     }
+  }
+
+  deleteOutfit() {
+    console.log('deletedOutfit');
+
   }
 
 
