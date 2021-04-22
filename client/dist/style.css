@@ -53,7 +53,7 @@
 }
 
 .arrow-button {
-  background-color: transparent;
+  /* background-color: transparent; */
   /* border-style: none; */
   font-size: 24px;
 }
@@ -155,7 +155,14 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+#feature-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: red;
 }
 
 #price {
@@ -225,6 +232,10 @@
 .add-to-cart:hover {
   cursor: pointer;
   background-color: orange;
+}
+
+.add-to-cart:active {
+  background-color: gold;
 }
 
 .grid-container {

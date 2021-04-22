@@ -9,7 +9,7 @@ class Gallery extends React.Component {
     this.state = {
       currentImageIndex: 0,
       minThumbnailIndex: 0,
-      maxThumbnailIndex: 4,
+      maxThumbnailIndex: 6,
       renderModal: false,
       expandedImageZoomed: false
     };
