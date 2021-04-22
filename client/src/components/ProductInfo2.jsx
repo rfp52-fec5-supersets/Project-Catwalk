@@ -11,18 +11,18 @@ class ProductInfo2 extends React.Component {
   render() {
     return (
         <div id = "product-info-2">
-          <div id = "product-overview"><div><b>Description</b></div> {this.props.currentProduct.description}</div>
+          <div id = "product-overview"><div><b>Description:</b></div> {this.props.currentProduct.description}</div>
           <div id = "product-features">
-          <b>Specifications</b>
-          <ul>
+          <b>Specifications:</b>
+          <table>
           {this.props.currentProductFeatures.map((feature) => {
           return (
-            <li className = "feature">
-              <b>{feature.feature}:</b> {feature.value}
-            </li>
+            <tr className = "feature-table">
+              <td className = "feature-name"><b>{feature.feature}</b></td> <td className = "feature-value">{feature.value}</td>
+            </tr>
           )
         })}
-          </ul>
+          </table>
           </div>
         </div>
     )
