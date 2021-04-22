@@ -110,7 +110,7 @@ class AddReviewForm extends React.Component {
         </div>
         <div className='add-review-email'>
           <label>Review Email</label>
-          <input name='email' onChange={this.handleTextChange} type='email' placeholder='Example: jackson11@email.com' value={this.state.email} required='required'></input>
+          <input name='email' onChange={this.handleTextChange} type='email' placeholder='Example: jackson11@email.com' maxLength={60} value={this.state.email} required='required'></input>
           <div>For authentication reasons, you will not be emailed</div>
         </div>
         <p>Submit Button</p>
