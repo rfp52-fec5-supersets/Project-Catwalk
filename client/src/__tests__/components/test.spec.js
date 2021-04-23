@@ -113,6 +113,41 @@ describe('Overview Component', () => {
 
   });
 
+  test('Gallery: Clicking the thumbnails toggles the currently selected mainImage', () => {
+
+    let wrapper = mount(
+      <App />,
+    );
+
+    wrapper.setState(testState2);
+
+    expect(wrapper.exists()).to.equal(true);
+    expect(wrapper.find('.gallery')).to.have.lengthOf(1);
+    wrapper.find('#gallery-thumbnail-2').simulate('click');
+    expect(wrapper.find(Gallery).state('currentImageIndex')).to.equal(2);
+    wrapper.find('#gallery-thumbnail-4').simulate('click');
+    expect(wrapper.find(Gallery).state('currentImageIndex')).to.equal(4);
+    wrapper.find('#gallery-thumbnail-6').simulate('click');
+    expect(wrapper.find(Gallery).state('currentImageIndex')).to.equal(6);
+    wrapper.find('#gallery-thumbnail-0').simulate('click');
+    expect(wrapper.find(Gallery).state('currentImageIndex')).to.equal(0);
+
+  });
+
+  test('Gallery: Expanded view renders all available thumbnails', () => {
+
+    let wrapper = mount(
+      <App />,
+    );
+
+    wrapper.setState(testState2);
+
+    wrapper.find('.main-image').simulate('click');
+    expect(wrapper.find('.modal-content')).to.have.lengthOf(1);
+    expect(wrapper.find('.gallery-thumbnails-expanded').children()).to.have.lengthOf(11);
+
+  });
+
   test('Product Info: Component renders along with title, original price, stars display, category, rating, and number of ratings based upon current state and style', () => {
 
     let wrapper = mount(
@@ -148,6 +183,20 @@ describe('Overview Component', () => {
     expect(wrapper.find('.original-price-strikethrough')).to.have.lengthOf(1);
     expect(wrapper.find('.sale-price')).to.have.lengthOf(1);
 
+  });
+
+  test('Product Info 2: Renders a slogan, description, and features from App state', () => {
+
+    let wrapper = mount(
+      <App />,
+    );
+
+    wrapper.setState(testState);
+
+    expect(wrapper.exists()).to.equal(true);
+    expect(wrapper.find('#product-overview').text()).to.include('Blend in');
+    expect(wrapper.find('#product-overview').text()).to.include('So Fatigues');
+    expect(wrapper.find('#features-table-body').children()).to.have.lengthOf(2);
   });
 
   test('Style Selector: Renders a thumbnail for each style available for the given item and also displays the name of the currently selected style', () => {
@@ -193,17 +242,23 @@ describe('Overview Component', () => {
 
   });
 
-  test('Add to Cart: Pressing the button when a valid size/quantity are selected... ', () => {
+  test('Add to Cart: Pressing the button when a valid size/quantity are selected... does not cause the page to render an alert', () => {
 
     let wrapper = mount(
       <App />,
     );
 
+    sinon.spy(console, 'log');
     wrapper.setState(testState);
     expect(wrapper.exists()).to.equal(true);
-    wrapper.find(Checkout).setState();
+    wrapper.find(Checkout).setState({sizeSelected: '522040', selectedQuantity: 2});
     wrapper.find('.add-to-cart').simulate('click');
-    expect(wrapper.find('#please-select-size').text()).to.include('Please select size');
+    // expect(console.log).to.have.property('callCount', 1);
+
+    // Right now, we don't have a great way of evaluating a successful "Add to Cart"
+    // Since this information is currently only displayed in the console
+
+    expect(wrapper.find('#please-select-size')).to.have.lengthOf(0);
 
   });
 });
