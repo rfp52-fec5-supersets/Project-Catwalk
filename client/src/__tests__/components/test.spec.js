@@ -8,6 +8,7 @@ import QuestionsList from '../../components/QuestionsList';
 import Reviews from '../../components/reviews/Reviews';
 import { expect } from 'chai';
 import sinon from 'sinon';
+import StarsDisplay from '../../components/StarsDisplay';
 
 describe('App Component', () => {
   test('Renders App Component', () => {
@@ -63,7 +64,7 @@ describe('Overview Component', () => {
 
   });
 
-  test('Product Info (Section 1)', () => {
+  test('Product Info renders along with title, original price, stars display, category, rating, and number of ratings based upon current state and style', () => {
 
     let wrapper = mount(
       <App />,
@@ -73,10 +74,60 @@ describe('Overview Component', () => {
 
     expect(wrapper.exists()).to.equal(true);
     expect(wrapper.find('.product-info')).to.have.lengthOf(1);
-    // expect(wrapper.find('.expanded-button-div')).to.have.lengthOf(4);
-    expect(wrapper.find('.original-price')).to.have.lengthOf(1);
-    wrapper.find('.main-image').simulate('click');
-    expect(wrapper.find('.modal-content')).to.have.lengthOf(1);
+    expect(wrapper.find('#title').text()).to.include('Camo Onesie');
+    expect(wrapper.find('.original-price').text()).to.include('140');
+    expect(wrapper.find('.product-info').find(StarsDisplay)).to.have.lengthOf(1);
+    expect(wrapper.find('#category').text()).to.include('Jackets');
+    expect(wrapper.find('#rating-number').text()).to.include('3.71');
+    expect(wrapper.find('#rating-number').text()).to.include('(17)');
+    expect(wrapper.find('#socials').children()).to.have.lengthOf(4);
+
+  });
+
+  test('Style Selector renders a thumbnail for each style available for the given item and also displays the name of the currently selected style', () => {
+
+    let wrapper = mount(
+      <App />,
+    );
+
+    wrapper.setState(testState);
+
+    expect(wrapper.exists()).to.equal(true);
+    expect(wrapper.find('.style-selector')).to.have.lengthOf(1);
+    expect(wrapper.find('.style-selector').text()).to.include('Forest Green');
+    expect(wrapper.find('.style-selector').children()).to.have.lengthOf(7);
+  });
+
+  test('Style Selector: Clicking thumbnail updates the currently selected style and re-renders the page accordingly', () => {
+
+    let wrapper = mount(
+      <App />,
+    );
+
+    wrapper.setState(testState);
+
+    expect(wrapper.exists()).to.equal(true);
+
+    expect(wrapper.find('.style-selector')).to.have.lengthOf(1);
+    wrapper.find('#ss-thumbnail-2').simulate('click');
+    expect(wrapper.find('.style-selector').text()).to.include('Ocean Blue');
+
+  });
+
+  test('Sale Price: When sale price exists, it renders alongside a strikethrough of the original price ', () => {
+
+    let wrapper = mount(
+      <App />,
+    );
+
+    wrapper.setState(testState);
+
+    expect(wrapper.exists()).to.equal(true);
+    expect(wrapper.find('.style-selector')).to.have.lengthOf(1);
+    wrapper.find('#ss-thumbnail-2').simulate('click');
+    expect(wrapper.find('.original-price')).to.have.lengthOf(0);
+    expect(wrapper.find('.original-price-strikethrough')).to.have.lengthOf(1);
+    expect(wrapper.find('.sale-price')).to.have.lengthOf(1);
 
   });
 });
