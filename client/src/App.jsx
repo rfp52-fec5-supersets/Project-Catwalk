@@ -25,6 +25,7 @@ class App extends React.Component {
       // currentStyleSkus: [],
       currentStyleTotalQuantity: 0,
       currentProductFull: {},
+      currentProductFeatures: [],
       ratings: {},
       averageRating: 0,
       reviewMeta: {},
@@ -64,7 +65,7 @@ class App extends React.Component {
       headers: { 'Authorization': API_KEY }
     })
       .then(({ data: productObj } = res) => {
-        this.setState({ currentProductFull: productObj });
+        this.setState({ currentProductFull: productObj, currentProductFeatures: productObj.features });
         // console.log(this.state);
       })
       .catch((err) => {
@@ -95,7 +96,7 @@ class App extends React.Component {
 
         }
 
-        this.setState({ ratings: ratings, averageRating: sum / divisor, reviewMeta: metaObj });
+        this.setState({ ratings: ratings, averageRating: (sum / divisor).toFixed(2), reviewMeta: metaObj });
         //console.log(this.state);
       })
       .catch((err) => {
@@ -214,7 +215,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} /> */}
+        <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} currentProductFeatures = {this.state.currentProductFeatures} reviewMeta = {this.state.reviewMeta}/>
         {this.relatedProductsRender()}
         {/* <MyOutfit currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} averageRating={this.state.averageRating} currentStylePhotos={this.state.currentStylePhotos} /> */}
         {/* <Reviews product={this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating} ratings={this.state.ratings} /> */}
