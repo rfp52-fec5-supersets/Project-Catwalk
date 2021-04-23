@@ -42,9 +42,11 @@ class ComparisonModal extends React.Component {
         <button type='button' className='close-button' onClick={this.props.onClose}> X</button>
 
         <div className='comparison-table'>
-          COMPARING
+          <div className="comparison-product">{currentProduct.name}</div>
+          <div className="comparison-title"> FEATURES </div>
+          <div className="comparison-product">{relatedProduct.name}</div>
+
           <div className="left-column">
-            <h1>{currentProduct.name}</h1>
             <div>{featuresArray.map(feature => {
               console.log('current value feature', currentValues);
               if (currentValues[feature] === undefined) {
@@ -58,7 +60,6 @@ class ComparisonModal extends React.Component {
           <div className="middle-column">{featuresArray.map(feature => { return <div>{feature}</div> })}</div>
 
           <div className="right-column">
-            <h1>{relatedProduct.name}</h1>
             <div>{featuresArray.map(feature => {
               if (relatedValues[feature] === undefined) {
                 return <div>{<br />}</div>
