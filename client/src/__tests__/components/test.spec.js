@@ -10,6 +10,7 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import StarsDisplay from '../../components/StarsDisplay';
 import Gallery from '../../components/Gallery';
+import Checkout from '../../components/Checkout';
 
 describe('App Component', () => {
   test('Renders App Component', () => {
@@ -176,6 +177,33 @@ describe('Overview Component', () => {
     expect(wrapper.find('.style-selector')).to.have.lengthOf(1);
     wrapper.find('#ss-thumbnail-2').simulate('click');
     expect(wrapper.find('.style-selector').text()).to.include('Ocean Blue');
+
+  });
+
+  test('Add to Cart: Pressing the button when a valid size is not selected causes the page to render an alert', () => {
+
+    let wrapper = mount(
+      <App />,
+    );
+
+    wrapper.setState(testState);
+    expect(wrapper.exists()).to.equal(true);
+    wrapper.find('.add-to-cart').simulate('click');
+    expect(wrapper.find('#please-select-size').text()).to.include('Please select size');
+
+  });
+
+  test('Add to Cart: Pressing the button when a valid size/quantity are selected... ', () => {
+
+    let wrapper = mount(
+      <App />,
+    );
+
+    wrapper.setState(testState);
+    expect(wrapper.exists()).to.equal(true);
+    wrapper.find(Checkout).setState();
+    wrapper.find('.add-to-cart').simulate('click');
+    expect(wrapper.find('#please-select-size').text()).to.include('Please select size');
 
   });
 });
