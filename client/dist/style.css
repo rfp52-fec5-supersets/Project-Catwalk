@@ -200,6 +200,10 @@
   padding-top: 10px;
 }
 
+#slogan {
+  margin-bottom: 15px;
+}
+
 
 #product-features {
   grid-column-start: 3;
