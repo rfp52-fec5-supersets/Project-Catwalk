@@ -60,7 +60,7 @@ class RatingsBreakdown extends React.Component {
         }
         <div className='ratings-recommendation'>
           <p>
-            {recommendTrue/total*100}% of reviewers recommend this product.
+            {Math.round(recommendTrue/total*100)}% of reviewers recommend this product.
           </p>
         </div>
       </div>
