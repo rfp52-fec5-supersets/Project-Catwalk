@@ -17,6 +17,7 @@ class AddReviewForm extends React.Component {
       summary: '',
       body: '',
       photos:[],
+      photoURLs: [],
       name:'',
       email:''
     }
@@ -65,21 +66,22 @@ class AddReviewForm extends React.Component {
   handlePhotos(e) {
     // this.imageInput.current === e.target in this case
     let photos = this.state.photos;
-    console.log(e.target.files[0] instanceof Blob);
     photos.push(e.target.files[0]);
-    // FileReader sends too long of a string to work well
-    function readFile(file){
-      return new Promise((resolve, reject) => {
-        var fr = new FileReader();
-        fr.onload = () => {
-          resolve(fr.result )
-        };
-        fr.onerror = reject;
-        fr.readAsDataURL(file);
-      });
-    }
-    readFile(e.target.files[0])
-      .then((url)=>{console.log(url)})
+    let imgurFormData = new FormData();
+    imgurFormData.append('image', e.target.files[0]);
+    axios.post('https://api.imgur.com/3/image', imgurFormData, {
+      headers: {
+        'Authorization': 'Client-ID 121adb5801ad1ad'
+      }
+    })
+      .then((response)=> {
+        console.log(response.data.data.link);
+        let photoURLs = this.state.photoURLs;
+        photoURLs.push(response.data.data.link);
+        this.setState({
+          photoURLs: photoURLs
+        })
+      })
       .catch((err)=>{
         console.log('err in readFile', err);
       });
@@ -97,16 +99,16 @@ class AddReviewForm extends React.Component {
     if (this.state.body.length < 50) {
       errorMessage = errorMessage + 'Need to have 50 or more characters in body!\n';
     }
+    if (this.state.photos.length !== this.state.photoURLs.length) {
+      errorMessage = errorMessage + 'Please wait a bit for photos to finish uploading to form!';
+    }
     if (errorMessage) {
       alert(errorMessage);
       return;
     }
-    // mandatory fields are: Overall Star Rating, Product Recommendation, Characteristics, Review Body, Nickname, and email
-    // Need:
-    // photos is array of text urls that link to images to be shown
-    // characteristics is an Object of keys representing characterisitic_id and the review value for that chara
-    let {product_id, starRating, summary, body, recommend, name, email, characteristics, photos} = this.state;
+    let {product_id, starRating, summary, body, recommend, name, email, characteristics, photoURLs} = this.state;
     let rating = starRating;
+    let photos = photoURLs;
     let reviewParams = {product_id, rating, summary, body, recommend, name, email, characteristics, photos};
     console.log(reviewParams);
   }
