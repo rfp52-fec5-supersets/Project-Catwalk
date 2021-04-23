@@ -8,7 +8,8 @@ class RelatedProducts extends React.Component {
     super(props);
     this.state = {
       previewImage: [],
-      averageRating: 0
+      averageRating: 0,
+      currentFeatures: []
     }
     this.getRelatedProductsImage = this.getRelatedProductsImage.bind(this);
     this.getRelatedProductsRating = this.getRelatedProductsRating.bind(this);
@@ -16,7 +17,7 @@ class RelatedProducts extends React.Component {
 
   componentDidMount() {
     this.getRelatedProductsImage(this.props.relatedProduct.id);
-    this.getRelatedProductsRating(this.props.relatedProduct.id)
+    this.getRelatedProductsRating(this.props.relatedProduct.id);
   }
 
   getRelatedProductsImage(id) {
@@ -67,16 +68,16 @@ class RelatedProducts extends React.Component {
       })
   }
 
-
   render() {
     return (
       <div>
         <RelatedProductsCard
-        relatedProduct={this.props.relatedProduct}
-        handleCardClick={this.props.handleCardClick}
-        currentProduct={this.props.currentProduct}
-        averageRating={this.state.averageRating}
-        previewImage={this.state.previewImage}
+          relatedProduct={this.props.relatedProduct}
+          currentProduct={this.props.currentProduct}
+          handleCardClick={this.props.handleCardClick}
+          averageRating={this.state.averageRating}
+          previewImage={this.state.previewImage}
+          currentFeatures={this.props.currentFeatures}
         />
       </div>
     )
