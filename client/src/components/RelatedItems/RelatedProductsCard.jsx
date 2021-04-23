@@ -26,19 +26,28 @@ class RelatedProductsCard extends React.Component {
 
     return (
       <div className="column">
+        <a className="star-button" onClick={this.toggleModal}>{wholeStar}</a>
         <div className="related-products-card" onClick={this.props.handleCardClick}>
           <img className="hover-shadow cursor" src={this.props.previewImage}></img>
-          <a className="star-button" onClick={this.toggleModal}>{wholeStar}</a>
           <div className="cardInfo">
             <div>{this.props.relatedProduct.category}</div>
             <div> {this.props.relatedProduct.name}</div>
             <div>{this.props.relatedProduct.default_price}</div>
-            <div><StarsDisplay stars={this.props.averageRating} key={this.props.averageRating} /></div>
+            <div>
+              <StarsDisplay
+                stars={this.props.averageRating}
+                key={this.props.averageRating} />
+            </div>
           </div>
         </div >
         <div className="comparison-modal">
-          <ComparisonModal renderModal={this.state.renderModal} onClose={this.toggleModal} currentProduct={this.props.currentProduct} relatedProduct={this.props.relatedProduct}/>
-          </div>
+          <ComparisonModal
+            renderModal={this.state.renderModal}
+            onClose={this.toggleModal}
+            currentProduct={this.props.currentProduct}
+            relatedProduct={this.props.relatedProduct}
+            currentFeatures={this.props.currentFeatures} />
+        </div>
       </div>
     )
   }

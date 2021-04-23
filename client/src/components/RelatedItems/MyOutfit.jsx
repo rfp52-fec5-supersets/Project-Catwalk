@@ -91,7 +91,8 @@ class MyOutfit extends React.Component {
     }
   }
 
-  deleteOutfit(outfit) {
+  deleteOutfit(evemt, outfit) {
+    event.preventDefault();
     console.log('deleteOutfit');
     var outfitIndex = this.state.outfits.indexOf(outfit);
     console.log('outfitIndex', outfitIndex)
@@ -130,7 +131,7 @@ class MyOutfit extends React.Component {
 
           {this.state.outfits.map(outfit => {
             return <MyOutfitCard
-              outfit={outfit} key={outfit.photo} deleteOutfit={() => this.deleteOutfit(outfit)}/>
+              outfit={outfit} key={outfit.id} deleteOutfit={() => this.deleteOutfit(outfit)}/>
           })}
           <a className="next">&#10095;</a>
         </div>

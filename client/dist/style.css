@@ -391,7 +391,14 @@ img.hover-shadow {
   background-color: grey
 }
 
-.star-button, .x-button {
+.star-button {
+  margin-top: 15px;
+  margin-left: 275px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.x-button {
   padding: 12px;
   margin-left: -50px;
   position: absolute;
@@ -416,3 +423,14 @@ img.hover-shadow {
   cursor: pointer;
   color: black;
   }
+
+  /* COMPARISON MODAL */
+
+  .comparison-table {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+  }
+
