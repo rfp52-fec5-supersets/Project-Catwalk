@@ -111,6 +111,14 @@ class AddReviewForm extends React.Component {
     let photos = photoURLs;
     let reviewParams = {product_id, rating, summary, body, recommend, name, email, characteristics, photos};
     console.log(reviewParams);
+    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', reviewParams)
+      .then(()=>{
+        alert('submitted!');
+        // should try to reset page to show review.
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
   }
 
   render() {
