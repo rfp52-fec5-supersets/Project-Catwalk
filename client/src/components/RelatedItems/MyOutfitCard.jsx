@@ -8,6 +8,23 @@ class MyOutfitCard extends React.Component {
     }
   }
 
+
+  // render() {
+//     return (
+//         <div className="my-outfits-card">
+//           <img className="hover-shadow cursor" src={this.props.outfit.photo}></img>
+//           <a className="x-button" onClick={this.props.deleteOutfit}> {"X"}</a>
+//           <div className="cardInfo">
+//             <div>{this.props.outfit.product.category}</div>
+//             <div> {this.props.outfit.product.name}</div>
+//             <div>{this.props.outfit.product.default_price}</div>
+//             <div><StarsDisplay stars={this.props.outfit.rating} key={this.props.outfit.rating} /></div>
+//           </div>
+//         </div >
+//     )
+//   }
+// }
+
   render() {
     return (
       <div className="column">
@@ -26,5 +43,4 @@ class MyOutfitCard extends React.Component {
   }
 }
 
-export default MyOutfitCard
-  ;
+export default MyOutfitCard;

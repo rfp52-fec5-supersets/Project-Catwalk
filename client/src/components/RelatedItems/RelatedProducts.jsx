@@ -62,7 +62,7 @@ class RelatedProducts extends React.Component {
         }
 
         this.setState({
-          averageRating: sum / divisor,
+          averageRating: sum / divisor
         });
       })
       .catch((err) => {

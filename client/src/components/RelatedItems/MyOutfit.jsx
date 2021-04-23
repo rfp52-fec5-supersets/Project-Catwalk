@@ -73,7 +73,7 @@ class MyOutfit extends React.Component {
 
   addToOutfit(product, rating, photo) {
     // event.preventDefault();
-    console.log('addToOutfit');
+    console.log('addToOutfit', this.state.outfits);
     var outfitExists = false;
     for (var i = 0; i < this.state.outfits.length; i++) {
       if (this.state.outfits[i].product.id === product.id) {
@@ -91,8 +91,7 @@ class MyOutfit extends React.Component {
     }
   }
 
-  deleteOutfit(evemt, outfit) {
-    event.preventDefault();
+  deleteOutfit(outfit) {
     console.log('deleteOutfit');
     var outfitIndex = this.state.outfits.indexOf(outfit);
     console.log('outfitIndex', outfitIndex)
@@ -101,6 +100,50 @@ class MyOutfit extends React.Component {
       outfits: this.state.outfits
     })
   }
+
+
+  //   render() {
+  //     if (this.state.outfits.length === 0) {
+  //       return (
+  //         <div>
+  //           <h1>YOUR OUTFIT</h1>
+  //           <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+  //         </div>
+  //       )
+  //     } else {
+  //       return (
+  //         <div>
+  //           <h1>YOUR OUTFIT</h1>
+  //           <a className="prev">&#10094;</a>
+
+  //           <div className="outfit-container">
+
+  //             <div className="outfits-card" >
+  //               <img className="placeholder" src={this.props.previewImage}></img>
+  //               <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+  //               <div className="cardInfo">
+  //                 <div>{null}</div>
+  //                 <div>{null}</div>
+  //                 <div>{null}</div>
+  //                 <div>{null}</div>
+  //               </div>
+  //             </div >
+
+  //             {this.state.outfits.map(outfit => {
+  //               return <MyOutfitCard
+  //                 outfit={outfit} key={outfit.id} deleteOutfit={() => this.deleteOutfit(outfit)} />
+  //             })}
+
+  //           </div>
+
+  //           <a className="next">&#10095;</a>
+  //         </div>
+  //       )
+
+  //     }
+
+  //   }
+  // }
 
 
   render() {
@@ -131,15 +174,14 @@ class MyOutfit extends React.Component {
 
           {this.state.outfits.map(outfit => {
             return <MyOutfitCard
-              outfit={outfit} key={outfit.id} deleteOutfit={() => this.deleteOutfit(outfit)}/>
+              outfit={outfit} key={outfit.id} deleteOutfit={() => this.deleteOutfit(outfit)} />
           })}
           <a className="next">&#10095;</a>
         </div>
       )
-
     }
-
   }
 }
+
 
 export default MyOutfit;

@@ -499,47 +499,46 @@ select {
   padding: 1 8px;
 }
 
+.outfits-container{
+  display:grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  /* grid-template-rows: 1fr; */
+  padding: 10px;
+  grid-gap: 5px;
+}
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
-
 .column {
   float: left;
   width: 25%;
-}
-
+ }
 .related-products-card {
   border: 1px solid black;
   margin-left: 5px;
   margin-right: 5px;
 }
-
 .my-outfits-card {
   border: 1px solid black;
   margin-left: 5px;
   margin-right: 5px;
 }
-
 .cardInfo {
   margin: 8px;
 }
-
 .cursor {
   cursor: pointer;
 }
-
 img.hover-shadow {
   transition: 0.3s;
   height: 300px;
   width: 100%;
 }
-
 .hover-shadow:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
 .prev,
 .next {
   cursor: pointer;
@@ -551,23 +550,19 @@ img.hover-shadow {
   font-size: 50px;
   z-index: 9;
 }
-
 .next {
   right: 0;
 }
-
 .prev:hover,
 .next:hover {
   background-color: grey
 }
-
 .star-button {
   margin-top: 15px;
   margin-left: 275px;
   position: absolute;
   cursor: pointer;
 }
-
 .x-button {
   padding: 12px;
   margin-left: -50px;
@@ -577,11 +572,9 @@ img.hover-shadow {
   font-weight: bold;
   font-size: 30px;
 }
-
 .x-button:hover {
   color:cornflowerblue
 }
-
 .add-button {
   width: 8px;
   padding: 16px;
@@ -594,8 +587,8 @@ img.hover-shadow {
   color: black;
   }
 
-  /* COMPARISON MODAL */
 
+  /* COMPARISON MODAL */
   .comparison-table {
     display: grid;
     grid-template-columns: 30% 40% 30%;
