@@ -13,13 +13,11 @@ class RelatedProducts extends React.Component {
     }
     this.getRelatedProductsImage = this.getRelatedProductsImage.bind(this);
     this.getRelatedProductsRating = this.getRelatedProductsRating.bind(this);
-    this.getCurrentProductFeatures = this.getCurrentProductFeatures.bind(this);
   }
 
   componentDidMount() {
     this.getRelatedProductsImage(this.props.relatedProduct.id);
     this.getRelatedProductsRating(this.props.relatedProduct.id);
-    this.getCurrentProductFeatures(this.props.currentProduct.id);
   }
 
   getRelatedProductsImage(id) {
@@ -70,22 +68,6 @@ class RelatedProducts extends React.Component {
       })
   }
 
-  getCurrentProductFeatures(id) {
-    axios({
-      method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
-      headers: { 'Authorization': API_KEY }
-    })
-      .then(response => {
-        this.setState({
-          currentFeatures: response.data.features
-        });
-      })
-      .catch(err => {
-        console.log(err.message);
-      })
-  }
-
   render() {
     return (
       <div>
@@ -95,7 +77,7 @@ class RelatedProducts extends React.Component {
           handleCardClick={this.props.handleCardClick}
           averageRating={this.state.averageRating}
           previewImage={this.state.previewImage}
-          currentFeatures={this.state.currentFeatures}
+          currentFeatures={this.props.currentFeatures}
         />
       </div>
     )

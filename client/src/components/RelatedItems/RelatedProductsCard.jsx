@@ -46,7 +46,7 @@ class RelatedProductsCard extends React.Component {
             onClose={this.toggleModal}
             currentProduct={this.props.currentProduct}
             relatedProduct={this.props.relatedProduct}
-            currentFeatures={this.props.currentFeatures} />
+            currentFeatures={this.props.currentFeatures}/>
         </div>
       </div>
     )

@@ -204,7 +204,8 @@ class App extends React.Component {
           relatedProduct={product}
           handleCardClick={() => this.handleCardClick(product)}
           currentProduct={this.state.currentProduct}
-          currentProductId={this.state.currentProductId}/>
+          currentProductId={this.state.currentProductId}
+          currentFeatures={this.state.currentProductFeatures}/>
         })}
         <a className="next">&#10095;</a>
       </div>
