@@ -17,6 +17,7 @@ class RatingsBreakdown extends React.Component {
     //   hover on bar changes background color
     //   click on star count turns on filter
     // Recommendations: shows percentage of reviews that recommend product
+    let averageRating = Math.round(this.props.averageRating * 10) / 10;
     let total = 0;
     let recommendTrue = 0;
     if (this.props.recommended) {
@@ -30,9 +31,9 @@ class RatingsBreakdown extends React.Component {
       <div id='reviews-ratings-breakdown'>
         <div className='ratings-summary'>
           <div className='reviews average-rating flex-box'>
-            <b>{this.props.averageRating}</b>
+            <b>{averageRating}</b>
             &nbsp;
-            <StarsDisplay key={this.props.averageRating} stars={this.props.averageRating} />
+            <StarsDisplay key={this.props.averageRating} stars={averageRating} />
           </div>
         </div>
         <p className='ratings total-reviews-count'>Total Reviews: {total}</p>
@@ -59,7 +60,7 @@ class RatingsBreakdown extends React.Component {
         }
         <div className='ratings-recommendation'>
           <p>
-            {recommendTrue/total*100}% of reviewers recommend this product.
+            {Math.round(recommendTrue/total*100)}% of reviewers recommend this product.
           </p>
         </div>
       </div>
