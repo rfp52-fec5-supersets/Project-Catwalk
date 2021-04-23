@@ -539,8 +539,8 @@ img.hover-shadow {
 .hover-shadow:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.prev,
-.next {
+.left-button,
+.right-button {
   cursor: pointer;
   position: absolute;
   width: auto;
@@ -550,11 +550,11 @@ img.hover-shadow {
   font-size: 50px;
   z-index: 9;
 }
-.next {
+.right-button {
   right: 0;
 }
-.prev:hover,
-.next:hover {
+.left-button:hover,
+.right-button:hover {
   background-color: grey
 }
 .star-button {
