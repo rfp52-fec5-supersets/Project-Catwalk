@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import AddStarRating from './AddStarRating.jsx';
 import AddCharaRating from './AddCharaRating.jsx';
+import API_KEY from './../../config.js'
 
 // client_id: 121adb5801ad1ad
 // client_secret: c70e64b379cdfb1709afc07ba3214ed577fb2aca
@@ -109,9 +110,16 @@ class AddReviewForm extends React.Component {
     let {product_id, starRating, summary, body, recommend, name, email, characteristics, photoURLs} = this.state;
     let rating = starRating;
     let photos = photoURLs;
+    if (recommend === 'true') {
+      recommend = true;
+    } else {
+      recommend = false;
+    }
     let reviewParams = {product_id, rating, summary, body, recommend, name, email, characteristics, photos};
     console.log(reviewParams);
-    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', reviewParams)
+    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', reviewParams, {
+      headers: {'Authorization': API_KEY}
+    })
       .then(()=>{
         alert('submitted!');
         // should try to reset page to show review.
