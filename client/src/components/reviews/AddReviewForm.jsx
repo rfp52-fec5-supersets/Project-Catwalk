@@ -70,15 +70,17 @@ class AddReviewForm extends React.Component {
     photos.push(e.target.files[0]);
     let imgurFormData = new FormData();
     imgurFormData.append('image', e.target.files[0]);
+    // {image: e.target.files[0]}
     axios.post('https://api.imgur.com/3/image', imgurFormData, {
       headers: {
+        // Authorization: Client-ID {your-client-id}
         'Authorization': 'Client-ID 121adb5801ad1ad'
       }
     })
       .then((response)=> {
-        console.log(response.data.data.link);
         let photoURLs = this.state.photoURLs;
         photoURLs.push(response.data.data.link);
+        console.log(response.data.data.link);
         this.setState({
           photoURLs: photoURLs
         })
@@ -116,7 +118,6 @@ class AddReviewForm extends React.Component {
       recommend = false;
     }
     let reviewParams = {product_id, rating, summary, body, recommend, name, email, characteristics, photos};
-    console.log(reviewParams);
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', reviewParams, {
       headers: {'Authorization': API_KEY}
     })
