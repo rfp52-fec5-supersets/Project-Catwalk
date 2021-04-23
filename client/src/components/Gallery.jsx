@@ -121,23 +121,23 @@ class Gallery extends React.Component {
       <div className = "gallery">
         <div className = "main-image-window">
           <div className = "expanded-button-div">
-          {this.state.currentImageIndex !== 0 && <button className = "arrow-button" name = "left" onClick = {this.handleButtonClick}>{'⇐'}</button>}
+          {this.state.currentImageIndex !== 0 && <button id = "left-arrow-default" className = "arrow-button" name = "left" onClick = {this.handleButtonClick}>{'⇐'}</button>}
           </div>
           <div className = "main-image-container">
           {this.props.currentStylePhotos.length > 0 &&
           (<img className = "main-image" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleModal}/>)}
           </div>
           <div className = "expanded-button-div">
-          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && <button className = "arrow-button" name = "right" onClick = {this.handleButtonClick}>{'⇒'}</button>}
+          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && <button id = "right-arrow-default" className = "arrow-button" name = "right" onClick = {this.handleButtonClick}>{'⇒'}</button>}
           </div>
         </div>
         <div className = "gallery-thumbnails">
         <div className = "expanded-button-div">
-        {this.state.minThumbnailIndex !== 0 && <button className = "up-down-button" name = "up" onClick = {this.handleButtonClick}>{'⤊'}</button>}
+        {this.state.minThumbnailIndex !== 0 && <button id = "up-arrow" className = "up-down-button" name = "up" onClick = {this.handleButtonClick}>{'⤊'}</button>}
         </div>
         {thumbnailsToRender.map((photo, index) => <GalleryThumbnail photo = {photo} key = {index + this.state.minThumbnailIndex} index = {index + this.state.minThumbnailIndex} selectPhoto = {this.selectPhoto} clicked = {this.state.currentImageIndex == index + this.state.minThumbnailIndex}/>)}
         <div className = "expanded-button-div">
-        {this.state.maxThumbnailIndex < this.props.currentStylePhotos.length - 1 && <button name = "down" className = "up-down-button" onClick = {this.handleButtonClick}>{'⤋'}</button>}
+        {this.state.maxThumbnailIndex < this.props.currentStylePhotos.length - 1 && <button id = "down-arrow" name = "down" className = "up-down-button" onClick = {this.handleButtonClick}>{'⤋'}</button>}
         </div>
         </div>
         {this.state.renderModal &&
@@ -145,7 +145,7 @@ class Gallery extends React.Component {
 
           <div id = "main-image-expanded-window">
             <div className = "expanded-button-div">
-          {this.state.currentImageIndex !== 0 && !this.state.expandedImageZoomed && <button className = "arrow-button" name = "left" onClick = {this.handleButtonClick}>{'⇐'}</button>}
+          {this.state.currentImageIndex !== 0 && !this.state.expandedImageZoomed && <button id = "left-arrow-expanded" className = "arrow-button" name = "left" onClick = {this.handleButtonClick}>{'⇐'}</button>}
             </div>
           <div id = "main-image-expanded-container">
             {this.state.expandedImageZoomed ?
@@ -155,7 +155,7 @@ class Gallery extends React.Component {
             }
           </div>
           <div className = "expanded-button-div">
-          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && !this.state.expandedImageZoomed && <button className = "arrow-button" name = "right" onClick = {this.handleButtonClick}>{'⇒'}</button>}
+          {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && !this.state.expandedImageZoomed && <button id = "right-arrow-expanded" className = "arrow-button" name = "right" onClick = {this.handleButtonClick}>{'⇒'}</button>}
           </div>
           </div>
 

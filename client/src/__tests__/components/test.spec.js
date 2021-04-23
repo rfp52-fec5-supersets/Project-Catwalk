@@ -9,6 +9,7 @@ import Reviews from '../../components/reviews/Reviews';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import StarsDisplay from '../../components/StarsDisplay';
+import Gallery from '../../components/Gallery';
 
 describe('App Component', () => {
   test('Renders App Component', () => {
@@ -64,7 +65,54 @@ describe('Overview Component', () => {
 
   });
 
-  test('Product Info renders along with title, original price, stars display, category, rating, and number of ratings based upon current state and style', () => {
+  test('Gallery: Clicking the left and right arrow buttons toggles the currently selected mainImage', () => {
+
+    let wrapper = mount(
+      <App />,
+    );
+
+    wrapper.setState(testState);
+
+    expect(wrapper.exists()).to.equal(true);
+    expect(wrapper.find('.gallery')).to.have.lengthOf(1);
+    wrapper.find('#right-arrow-default').simulate('click');
+    expect(wrapper.find(Gallery).state('currentImageIndex')).to.equal(1);
+    wrapper.find('#right-arrow-default').simulate('click');
+    expect(wrapper.find(Gallery).state('currentImageIndex')).to.equal(2);
+    wrapper.find('#left-arrow-default').simulate('click');
+    expect(wrapper.find(Gallery).state('currentImageIndex')).to.equal(1);
+    wrapper.find('#left-arrow-default').simulate('click');
+    expect(wrapper.find(Gallery).state('currentImageIndex')).to.equal(0);
+
+  });
+
+  test('Gallery: Clicking the up and down arrow buttons causes our rendered thumbnails to "scroll" through the available thumbnails', () => {
+
+    let wrapper = mount(
+      <App />,
+    );
+
+    wrapper.setState(testState2);
+
+    expect(wrapper.exists()).to.equal(true);
+    expect(wrapper.find('.gallery')).to.have.lengthOf(1);
+    wrapper.find('#down-arrow').simulate('click');
+    expect(wrapper.find(Gallery).state('minThumbnailIndex')).to.equal(1);
+    expect(wrapper.find(Gallery).state('maxThumbnailIndex')).to.equal(7);
+
+    wrapper.find('#down-arrow').simulate('click');
+    expect(wrapper.find(Gallery).state('minThumbnailIndex')).to.equal(2);
+    expect(wrapper.find(Gallery).state('maxThumbnailIndex')).to.equal(8);
+    wrapper.find('#up-arrow').simulate('click');
+    expect(wrapper.find(Gallery).state('minThumbnailIndex')).to.equal(1);
+    expect(wrapper.find(Gallery).state('maxThumbnailIndex')).to.equal(7);
+    wrapper.find('#up-arrow').simulate('click');
+    expect(wrapper.find(Gallery).state('minThumbnailIndex')).to.equal(0);
+    expect(wrapper.find(Gallery).state('maxThumbnailIndex')).to.equal(6);
+
+  });
+
+  test('Product Info: Component renders along with title, original price, stars display, category, rating, and number of ratings based upon current state and style', () => {
 
     let wrapper = mount(
       <App />,
@@ -84,7 +132,24 @@ describe('Overview Component', () => {
 
   });
 
-  test('Style Selector renders a thumbnail for each style available for the given item and also displays the name of the currently selected style', () => {
+  test('Product Info: When sale price exists, it renders alongside a strikethrough of the original price ', () => {
+
+    let wrapper = mount(
+      <App />,
+    );
+
+    wrapper.setState(testState);
+
+    expect(wrapper.exists()).to.equal(true);
+    expect(wrapper.find('.style-selector')).to.have.lengthOf(1);
+    wrapper.find('#ss-thumbnail-2').simulate('click');
+    expect(wrapper.find('.original-price')).to.have.lengthOf(0);
+    expect(wrapper.find('.original-price-strikethrough')).to.have.lengthOf(1);
+    expect(wrapper.find('.sale-price')).to.have.lengthOf(1);
+
+  });
+
+  test('Style Selector: Renders a thumbnail for each style available for the given item and also displays the name of the currently selected style', () => {
 
     let wrapper = mount(
       <App />,
@@ -111,23 +176,6 @@ describe('Overview Component', () => {
     expect(wrapper.find('.style-selector')).to.have.lengthOf(1);
     wrapper.find('#ss-thumbnail-2').simulate('click');
     expect(wrapper.find('.style-selector').text()).to.include('Ocean Blue');
-
-  });
-
-  test('Sale Price: When sale price exists, it renders alongside a strikethrough of the original price ', () => {
-
-    let wrapper = mount(
-      <App />,
-    );
-
-    wrapper.setState(testState);
-
-    expect(wrapper.exists()).to.equal(true);
-    expect(wrapper.find('.style-selector')).to.have.lengthOf(1);
-    wrapper.find('#ss-thumbnail-2').simulate('click');
-    expect(wrapper.find('.original-price')).to.have.lengthOf(0);
-    expect(wrapper.find('.original-price-strikethrough')).to.have.lengthOf(1);
-    expect(wrapper.find('.sale-price')).to.have.lengthOf(1);
 
   });
 });
