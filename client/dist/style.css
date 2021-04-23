@@ -427,6 +427,7 @@ select {
   font-size: 80%;
   justify-content: space-between;
 }
+
 /* For Overall Reviews Grid */
 #reviews.reviews {
   /* vh = viewport height */
@@ -453,6 +454,56 @@ select {
     "reviews-breakdown . ."
     ". . .";
 }
+
+.add-star-rating {
+  grid-area: star-rating;
+  padding: 1em;
+}
+.recommended-form {
+  grid-area: recommended;
+  padding: 1em;
+}
+.add-review-charas {
+  grid-area: charas;
+  padding: 1em;
+}
+.add-review-summary {
+  grid-area: summary;
+  padding: 1em;
+}
+.add-review-body {
+  grid-area: body;
+  padding: 1em;
+}
+.add-review-photos {
+  grid-area: photos;
+  padding: 1em;
+}
+.add-review-username {
+  grid-area: username;
+  padding: 1em;
+}
+.add-review-email {
+  grid-area: email;
+  padding: 1em;
+}
+.add-review-submit {
+  grid-area: submit;
+}
+.add-reviews-form {
+  height: 80vh;
+  width: auto;
+  padding: 2em;
+  /* overflow: hidden; */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "star-rating summary charas"
+    "recommended body charas"
+    "username photos charas"
+    "email submit .";
+}
+
 /* The Modal (background) */
 .modal-overlay {
   /* display: none; Hidden by default */
