@@ -115,7 +115,7 @@ class App extends React.Component {
       currentStyleTotalQuantity += skusObj[key].quantity;
     }
     this.setState({ currentStyleTotalQuantity: currentStyleTotalQuantity });
-    console.log(this.state);
+    console.log(JSON.stringify(this.state));
   }
 
   getRelatedProducts(id) {
