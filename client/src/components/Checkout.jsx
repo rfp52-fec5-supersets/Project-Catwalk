@@ -31,7 +31,7 @@ class Checkout extends React.Component {
   }
 
   handleSelectQuantity(event) {
-    this.setState({selectedQuantity: event.target.value});
+    this.setState({selectedQuantity: Number(event.target.value)});
     console.log(this.state);
   }
 
