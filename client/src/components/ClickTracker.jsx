@@ -1,4 +1,6 @@
 import React from 'react';
+import API_KEY from './../config.js'
+import axios from 'axios';
 
 const widgets = ['overview', 'related-items', 'reviews', 'questions-and-answers'];
 
@@ -9,15 +11,23 @@ class ClickTracker extends React.Component {
   }
 
   handleClick(e) {
-    console.log('clicked', e.target);
     let currentTime = new Date();
-    // console.log('parents', e.target.parentNode);
-    console.log('class', e.target.classList);
-    //  widgets have classes overview, related-items, reviews, and questions-and-answers
     let widget;
     let node = e.target;
-    // check to see if node's className has widget.
-    if (node.classList[node.classList.length - 1])
+    while (node.parentNode && widget === undefined) {
+      if (widgets.indexOf(node.classList[0]) !== -1) {
+        widget = widgets[widgets.indexOf(node.classList[0])];
+      } else {
+        node = node.parentNode;
+      }
+    }
+    let clickTrackParams = {element: e.target.outerHTML, widget: widget, time: currentTime};
+    // axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/interactions', clickTrackParams, {
+    //   headers: {'Authorization': API_KEY}
+    // })
+    //   .catch((err)=>{
+    //     console.log(err)
+    //   });
   }
 
   render(){
