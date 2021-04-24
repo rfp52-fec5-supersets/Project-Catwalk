@@ -190,7 +190,7 @@ class App extends React.Component {
     // Check that our products state isn't empty - indicates we have recevied our current product
     if (this.state.products.length > 0) {
       // Render our QuestionsList component while passing in the product ID
-      return <QuestionsList productID={this.state.currentProduct.id} />
+      return <QuestionsList productName={this.state.currentProduct.name} productID={this.state.currentProduct.id} />
     }
   }
 

@@ -3,7 +3,7 @@ import Question from './Question.jsx'
 import axios from 'axios';
 import API_KEY from './../../config.js';
 import QuestionSearchAnswer from './QuestionSearchAnswer.jsx'
-
+import QuestionAdd from './QuestionAdd.jsx'
 class QuestionsList extends React.Component {
   constructor(props) {
     super(props);
@@ -207,7 +207,6 @@ class QuestionsList extends React.Component {
 
   render() {
     let { questions } = this.state;
-
     questions = questions.slice(0, this.state.sliceIndex)
     questions.sort((a, b) => a.question_helpfulness < b.question_helpfulness)
 
@@ -220,6 +219,7 @@ class QuestionsList extends React.Component {
         <QuestionSearchAnswer />
         {question}
         {this.loadMoreQuestionsRender()}
+        <QuestionAdd productID={this.props.productID} productName={this.props.productName}/>
       </div>
     );
   }

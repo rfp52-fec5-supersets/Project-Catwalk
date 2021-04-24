@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionAnswerAddModal from './QuestionAnswerAddModal.jsx';
+import QuestionModal from './QuestionModal.jsx';
 import API_KEY from './../../config.js';
 import axios from 'axios';
 
@@ -112,7 +112,7 @@ class QuestionAnswerAdd extends React.Component {
       <div>
         <button onClick={this.handleToggle}>Add Answer</button>
        {this.state.showModal &&
-        <QuestionAnswerAddModal onCloseRequest={this.handleToggle}>
+        <QuestionModal onCloseRequest={this.handleToggle}>
           <form onSubmit={(event) => this.onSubmitAnswer(event)}>
             <textarea onChange={(event) => this.onChangeTextArea(event)} style={{height: '15em', width: '99%'}} required="required" maxLength="1000" placeholder="Answer"></textarea><br/>
             <label htmlFor="lname">Nickname:</label><br/>
@@ -125,7 +125,7 @@ class QuestionAnswerAdd extends React.Component {
             {renderPreviews}<br/>
             <button>Submit</button>
           </form>
-        </QuestionAnswerAddModal>}
+        </QuestionModal>}
       </div>
     );
   }

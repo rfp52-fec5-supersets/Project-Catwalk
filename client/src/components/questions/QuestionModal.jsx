@@ -1,6 +1,6 @@
 import React from 'react';
 
-class QuestionAnswerAddModal extends React.Component {
+class QuestionModal extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -22,4 +22,4 @@ class QuestionAnswerAddModal extends React.Component {
     );
   }
 }
-export default QuestionAnswerAddModal;
+export default QuestionModal;
