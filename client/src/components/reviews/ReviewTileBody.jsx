@@ -17,15 +17,18 @@ class ReviewTileBody extends React.Component {
       expanded: true
     })
   }
-
   render() {
     let body = this.props.body;
     let photos = this.props.photos;
     let limit = this.state.bodyLimit;
     let imageThumbnails = photos.map((image)=> {
+      let imageUrl = image.url;
+      // if (imageUrl.includes('https')) {
+      //   imageUrl = imageUrl.replace('https', 'http');
+      //   console.log(imageUrl);
+      // }
       return (
-
-      <ImageThumbnail key={image.id} source={image.url} />
+      <ImageThumbnail key={image.id} source={imageUrl} />
       );
     });
     return (
@@ -40,10 +43,10 @@ class ReviewTileBody extends React.Component {
             : <span onClick={this.handleMoreText}>Show More...</span>}
           <div className='review-images'>
             {(photos.length !== 0)
-            ? <div>
+            ? <>
                 Images:
                 {imageThumbnails}
-              </div>
+              </>
             : null}
           </div>
         </div>

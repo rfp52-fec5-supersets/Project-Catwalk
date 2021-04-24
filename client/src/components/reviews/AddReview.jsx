@@ -20,15 +20,17 @@ class AddReview extends React.Component {
 
   render() {
     let characteristics = [];
+    let charaId= [];
     if (this.props.meta.characteristics) {
-      characteristics = Object.keys(this.props.meta.characteristics)
+      characteristics = Object.keys(this.props.meta.characteristics);
+      charaId = characteristics.map((chara)=>{return this.props.meta.characteristics[chara].id});
     }
     return (
       <div id='reviews-add'>
         <button onClick={this.handleToggle}>Add Review</button>
         {this.state.showModal &&
         <ModalImage onCloseRequest={this.handleToggle}>
-          <AddReviewForm product={this.props.product} characteristics = {characteristics}/>
+          <AddReviewForm product={this.props.product} characteristics = {characteristics} charaId = {charaId}/>
         </ModalImage>}
       </div>
     );
