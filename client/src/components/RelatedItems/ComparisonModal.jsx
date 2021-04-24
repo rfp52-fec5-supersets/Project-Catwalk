@@ -48,9 +48,9 @@ class ComparisonModal extends React.Component {
 
           <div className="left-column">
             <div>{featuresArray.map(feature => {
-              console.log('current value feature', currentValues);
+              // console.log('current value feature', currentValues);
               if (currentValues[feature] === undefined) {
-                return <div>{<br />}</div>
+                return <div>{null}</div>
               } else {
                 return <div>{currentValues[feature]}</div>
               }
@@ -62,7 +62,7 @@ class ComparisonModal extends React.Component {
           <div className="right-column">
             <div>{featuresArray.map(feature => {
               if (relatedValues[feature] === undefined) {
-                return <div>{<br />}</div>
+                return <div>{null}</div>
               } else {
                 return <div>{relatedValues[feature]}</div>
               }

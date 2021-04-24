@@ -9,12 +9,15 @@ class MyOutfit extends React.Component {
     this.state = {
       outfits: [],
       previewImage: '',
-      averageRating: ''
+      averageRating: '',
+      leftIndex: 0,
+      rightIndex: 3
     }
     this.addToOutfit = this.addToOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
     this.getOutfitImage = this.getOutfitImage.bind(this);
     this.getOutfitRating = this.getOutfitRating.bind(this);
+    this.handleOutfitScroll = this.handleOutfitScroll.bind(this);
 
   }
 
@@ -101,87 +104,113 @@ class MyOutfit extends React.Component {
     })
   }
 
-
-  //   render() {
-  //     if (this.state.outfits.length === 0) {
-  //       return (
-  //         <div>
-  //           <h1>YOUR OUTFIT</h1>
-  //           <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-  //         </div>
-  //       )
-  //     } else {
-  //       return (
-  //         <div>
-  //           <h1>YOUR OUTFIT</h1>
-  //           <a className="prev">&#10094;</a>
-
-  //           <div className="outfit-container">
-
-  //             <div className="outfits-card" >
-  //               <img className="placeholder" src={this.props.previewImage}></img>
-  //               <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-  //               <div className="cardInfo">
-  //                 <div>{null}</div>
-  //                 <div>{null}</div>
-  //                 <div>{null}</div>
-  //                 <div>{null}</div>
-  //               </div>
-  //             </div >
-
-  //             {this.state.outfits.map(outfit => {
-  //               return <MyOutfitCard
-  //                 outfit={outfit} key={outfit.id} deleteOutfit={() => this.deleteOutfit(outfit)} />
-  //             })}
-
-  //           </div>
-
-  //           <a className="next">&#10095;</a>
-  //         </div>
-  //       )
-
-  //     }
-
-  //   }
-  // }
-
-
-  render() {
-    if (this.state.outfits.length === 0) {
-      return (
-        <div>
-          <h1>YOUR OUTFIT</h1>
-          <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <h1>YOUR OUTFIT</h1>
-          <a className="prev">&#10094;</a>
-          <div className="column">
-            <div className="outfits-card" >
-              <img className="placeholder" src={this.props.previewImage}></img>
-              <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-              <div className="cardInfo">
-                <div>{null}</div>
-                <div>{null}</div>
-                <div>{null}</div>
-                <div>{null}</div>
-              </div>
-            </div >
-          </div>
-
-          {this.state.outfits.map(outfit => {
-            return <MyOutfitCard
-              outfit={outfit} key={outfit.id} deleteOutfit={() => this.deleteOutfit(outfit)} />
-          })}
-          <a className="next">&#10095;</a>
-        </div>
-      )
+  handleOutfitScroll(event) {
+    event.preventDefault();
+    console.log('scroll button clicked', event)
+    if (event.target.className === "left-button" && this.state.leftIndex !== 0) {
+      this.setState({
+        leftIndex: this.state.leftIndex - 1,
+        rightIndex: this.state.rightIndex - 1
+      })
+    }
+    if (event.target.className === "right-button" && this.state.rightIndex < this.state.outfits.length) {
+      this.setState({
+        leftIndex: this.state.leftIndex + 1,
+        rightIndex: this.state.rightIndex + 1
+      })
     }
   }
-}
 
+//   render() {
+//     let outfitsToDisplay = this.state.outfits.map(outfit => {
+//       return <MyOutfitCard
+//         outfit={outfit} key={outfit.rating} deleteOutfit={() => this.deleteOutfit(outfit)} />
+//     })
+
+//     let leftIndex = this.state.leftIndex;
+//     let rightIndex = this.state.rightIndex;
+//     let leftButton = <a className="left-button" onClick={this.handleOutfitScroll}>&#10094;</a>
+//     let rightButton = <a className="right-button" onClick={this.handleOutfitScroll}>&#10095;</a>
+
+//     if (this.state.outfits.length === 0) {
+//       return (
+//         <div>
+//           <h1>YOUR OUTFIT</h1>
+//           <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+//         </div>
+//       )
+//     } else {
+//       return (
+//         <div>
+//           <h1>YOUR OUTFIT</h1>
+//           {leftIndex === 0 ? <div><br /></div> : leftButton}
+
+//           <div className="column">
+//             <div className="outfits-card" >
+//               <img className="placeholder" src=""></img>
+//               <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+//               <div className="cardInfo">
+//                 <div>{null}</div>
+//                 <div>{null}</div>
+//                 <div>{null}</div>
+//                 <div>{null}</div>
+//               </div>
+//             </div >
+//           </div>
+
+//           {outfitsToDisplay.slice(leftIndex, rightIndex)}
+
+//           {rightIndex >= this.state.outfits.length ?  <div><br /></div> : rightButton}
+//         </div>
+//       )
+//     }
+//   }
+// }
+
+render() {
+  let outfitsToDisplay = this.state.outfits.map(outfit => {
+    return <MyOutfitCard
+      outfit={outfit} key={outfit.rating} deleteOutfit={() => this.deleteOutfit(outfit)} />
+  })
+
+  let leftIndex = this.state.leftIndex;
+  let rightIndex = this.state.rightIndex;
+  let leftButton = <a className="left-button" onClick={this.handleOutfitScroll}>&#10094;</a>
+  let rightButton = <a className="right-button" onClick={this.handleOutfitScroll}>&#10095;</a>
+
+  if (this.state.outfits.length === 0) {
+    return (
+      <div>
+        <h1>YOUR OUTFIT</h1>
+        <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <h1>YOUR OUTFIT</h1>
+        {leftIndex === 0 ? <div><br /></div> : leftButton}
+
+        <div className="column">
+          <div className="outfits-card" >
+            <img className="placeholder" src=""></img>
+            <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+            <div className="cardInfo">
+              <div>{null}</div>
+              <div>{null}</div>
+              <div>{null}</div>
+              <div>{null}</div>
+            </div>
+          </div >
+        </div>
+
+        {outfitsToDisplay.slice(leftIndex, rightIndex)}
+
+        {rightIndex >= this.state.outfits.length ?  <div><br /></div> : rightButton}
+      </div>
+    )
+  }
+}
+}
 
 export default MyOutfit;

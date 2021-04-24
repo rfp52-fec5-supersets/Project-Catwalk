@@ -36,7 +36,7 @@ class App extends React.Component {
 
     this.setStyle = this.setStyle.bind(this);
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
-    this.handleScrollClick = this.handleScrollClick.bind(this);
+    this.handleProductScroll = this.handleProductScroll.bind(this);
   }
 
   getStyles() {
@@ -167,6 +167,24 @@ class App extends React.Component {
     })
   }
 
+  handleProductScroll(event) {
+    event.preventDefault();
+    console.log('scroll button clicked', event)
+    if (event.target.className === "left-button" && this.state.leftIndex !== 0) {
+      this.setState({
+        leftIndex: this.state.leftIndex - 1,
+        rightIndex: this.state.rightIndex - 1
+      })
+    }
+    if (event.target.className === "right-button" && this.state.rightIndex < this.state.relatedProducts.length) {
+      this.setState({
+        leftIndex: this.state.leftIndex + 1,
+        rightIndex: this.state.rightIndex + 1
+      })
+    }
+  }
+
+
   componentDidMount() {
     axios({
       method: 'get',
@@ -195,22 +213,6 @@ class App extends React.Component {
     }
   }
 
-  handleScrollClick(event) {
-    event.preventDefault();
-    console.log('scroll button clicked', event)
-    if (event.target.className === "left-button" && this.state.leftIndex !== 0) {
-      this.setState({
-        leftIndex: this.state.leftIndex - 1,
-        rightIndex: this.state.rightIndex - 1
-      })
-    }
-    if (event.target.className === "right-button" && this.state.rightIndex !== this.state.relatedProducts.length) {
-      this.setState({
-        leftIndex: this.state.leftIndex + 1,
-        rightIndex: this.state.rightIndex + 1
-      })
-    }
-  }
 
 
   relatedProductsRender() {
@@ -223,15 +225,27 @@ class App extends React.Component {
         currentFeatures={this.state.currentProductFeatures} />
     })
 
-    let leftButton = <a className="left-button" onClick={this.handleScrollClick}>&#10094;</a>
-    let rightButton = <a className="right-button" onClick={this.handleScrollClick}>&#10095;</a>
+    let leftButton = <a className="left-button" onClick={this.handleProductScroll}>&#10094;</a>
+    let rightButton = <a className="right-button" onClick={this.handleProductScroll}>&#10095;</a>
+    let leftIndex = this.state.leftIndex;
+    let rightIndex = this.state.rightIndex;
 
+    // return (
+    //   <div className="row">
+    //     <h1>RELATED PRODUCTS</h1>
+    //     {leftIndex === 0 ? <div><br /></div> : leftButton}
+    //     {productsToDisplay.slice(leftIndex, rightIndex)}
+    //     {rightIndex === this.state.relatedProducts.length ? <div><br /></div> : rightButton}
+    //   </div>
+    // )
     return (
-      <div className="row">
+      <div>
         <h1>RELATED PRODUCTS</h1>
-        {this.state.leftIndex === 0 ? <div><br /></div> : leftButton}
-        {productsToDisplay.slice(this.state.leftIndex, this.state.rightIndex)}
-        {this.state.rightIndex === this.state.relatedProducts.length ?  <div><br /></div> : rightButton}
+        <div className="related-products">
+          {productsToDisplay.slice(leftIndex, rightIndex)}
+        </div>
+        {rightIndex === this.state.relatedProducts.length ? <div>{null}</div> : rightButton}
+        {leftIndex === 0 ? <div>{null}</div> : leftButton}
       </div>
     )
   }
@@ -244,7 +258,7 @@ class App extends React.Component {
         <MyOutfit currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} averageRating={this.state.averageRating} currentStylePhotos={this.state.currentStylePhotos} />
         <Reviews product={this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating} ratings={this.state.ratings} />
         {/* Invoke our conditional render of QuestionList component*/}
-        {/* {this.questionListRender()} */}
+        {this.questionListRender()}
       </div>
     )
   }

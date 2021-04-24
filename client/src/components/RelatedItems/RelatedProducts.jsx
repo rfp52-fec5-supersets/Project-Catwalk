@@ -33,7 +33,7 @@ class RelatedProducts extends React.Component {
       headers: { 'Authorization': API_KEY }
     })
       .then(response => {
-        console.log('response', response);
+        // console.log('response', response);
         this.setState({
           relatedImage: response.data.results[0].photos[0].thumbnail_url
           // salesPrice:
