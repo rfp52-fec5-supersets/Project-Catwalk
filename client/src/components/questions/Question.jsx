@@ -42,7 +42,7 @@ class Question extends React.Component {
         <div className="questionBody">
         <h1 className="questionHeader">Q: {question.question_body}</h1>
         <QuestionHelpfulness id={question.question_id} helpfulness={question.question_helpfulness}/>
-        <QuestionAnswerAdd />
+        <QuestionAnswerAdd id={question.question_id}/>
         </div>
         <div className="questionAnswer">
         <h1 className="questionHeader">A:</h1>
