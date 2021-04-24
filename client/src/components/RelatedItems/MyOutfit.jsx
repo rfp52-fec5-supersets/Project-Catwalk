@@ -107,13 +107,13 @@ class MyOutfit extends React.Component {
   handleOutfitScroll(event) {
     event.preventDefault();
     console.log('scroll button clicked', event)
-    if (event.target.className === "left-button" && this.state.leftIndex !== 0) {
+    if (event.target.className === "left-outfit-button" && this.state.leftIndex !== 0) {
       this.setState({
         leftIndex: this.state.leftIndex - 1,
         rightIndex: this.state.rightIndex - 1
       })
     }
-    if (event.target.className === "right-button" && this.state.rightIndex < this.state.outfits.length) {
+    if (event.target.className === "right-outfit-button" && this.state.rightIndex < this.state.outfits.length) {
       this.setState({
         leftIndex: this.state.leftIndex + 1,
         rightIndex: this.state.rightIndex + 1
@@ -121,96 +121,99 @@ class MyOutfit extends React.Component {
     }
   }
 
-//   render() {
-//     let outfitsToDisplay = this.state.outfits.map(outfit => {
-//       return <MyOutfitCard
-//         outfit={outfit} key={outfit.rating} deleteOutfit={() => this.deleteOutfit(outfit)} />
-//     })
+  //   render() {
+  //     let outfitsToDisplay = this.state.outfits.map(outfit => {
+  //       return <MyOutfitCard
+  //         outfit={outfit} key={outfit.rating} deleteOutfit={() => this.deleteOutfit(outfit)} />
+  //     })
 
-//     let leftIndex = this.state.leftIndex;
-//     let rightIndex = this.state.rightIndex;
-//     let leftButton = <a className="left-button" onClick={this.handleOutfitScroll}>&#10094;</a>
-//     let rightButton = <a className="right-button" onClick={this.handleOutfitScroll}>&#10095;</a>
+  //     let leftIndex = this.state.leftIndex;
+  //     let rightIndex = this.state.rightIndex;
+  //     let leftButton = <a className="left-button" onClick={this.handleOutfitScroll}>&#10094;</a>
+  //     let rightButton = <a className="right-button" onClick={this.handleOutfitScroll}>&#10095;</a>
 
-//     if (this.state.outfits.length === 0) {
-//       return (
-//         <div>
-//           <h1>YOUR OUTFIT</h1>
-//           <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-//         </div>
-//       )
-//     } else {
-//       return (
-//         <div>
-//           <h1>YOUR OUTFIT</h1>
-//           {leftIndex === 0 ? <div><br /></div> : leftButton}
+  //     if (this.state.outfits.length === 0) {
+  //       return (
+  //         <div>
+  //           <h1>YOUR OUTFIT</h1>
+  //           <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+  //         </div>
+  //       )
+  //     } else {
+  //       return (
+  //         <div>
+  //           <h1>YOUR OUTFIT</h1>
+  //           {leftIndex === 0 ? <div><br /></div> : leftButton}
 
-//           <div className="column">
-//             <div className="outfits-card" >
-//               <img className="placeholder" src=""></img>
-//               <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-//               <div className="cardInfo">
-//                 <div>{null}</div>
-//                 <div>{null}</div>
-//                 <div>{null}</div>
-//                 <div>{null}</div>
-//               </div>
-//             </div >
-//           </div>
+  //           <div className="column">
+  //             <div className="outfits-card" >
+  //               <img className="placeholder" src=""></img>
+  //               <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+  //               <div className="cardInfo">
+  //                 <div>{null}</div>
+  //                 <div>{null}</div>
+  //                 <div>{null}</div>
+  //                 <div>{null}</div>
+  //               </div>
+  //             </div >
+  //           </div>
 
-//           {outfitsToDisplay.slice(leftIndex, rightIndex)}
+  //           {outfitsToDisplay.slice(leftIndex, rightIndex)}
 
-//           {rightIndex >= this.state.outfits.length ?  <div><br /></div> : rightButton}
-//         </div>
-//       )
-//     }
-//   }
-// }
+  //           {rightIndex >= this.state.outfits.length ?  <div><br /></div> : rightButton}
+  //         </div>
+  //       )
+  //     }
+  //   }
+  // }
 
-render() {
-  let outfitsToDisplay = this.state.outfits.map(outfit => {
-    return <MyOutfitCard
-      outfit={outfit} key={outfit.rating} deleteOutfit={() => this.deleteOutfit(outfit)} />
-  })
+  render() {
+    let outfitsToDisplay = this.state.outfits.map(outfit => {
+      return <MyOutfitCard
+        outfit={outfit} key={outfit.rating} deleteOutfit={() => this.deleteOutfit(outfit)} />
+    })
 
-  let leftIndex = this.state.leftIndex;
-  let rightIndex = this.state.rightIndex;
-  let leftButton = <a className="left-button" onClick={this.handleOutfitScroll}>&#10094;</a>
-  let rightButton = <a className="right-button" onClick={this.handleOutfitScroll}>&#10095;</a>
+    let leftIndex = this.state.leftIndex;
+    let rightIndex = this.state.rightIndex;
+    let leftButton = <a className="left-outfit-button" onClick={this.handleOutfitScroll}>&#10094;</a>
+    let rightButton = <a className="right-outfit-button" onClick={this.handleOutfitScroll}>&#10095;</a>
 
-  if (this.state.outfits.length === 0) {
-    return (
-      <div>
-        <h1>YOUR OUTFIT</h1>
-        <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-      </div>
-    )
-  } else {
-    return (
-      <div>
-        <h1>YOUR OUTFIT</h1>
-        {leftIndex === 0 ? <div><br /></div> : leftButton}
-
-        <div className="column">
-          <div className="outfits-card" >
-            <img className="placeholder" src=""></img>
-            <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-            <div className="cardInfo">
-              <div>{null}</div>
-              <div>{null}</div>
-              <div>{null}</div>
-              <div>{null}</div>
+    if (this.state.outfits.length === 0) {
+      return (
+        <div>
+          <h1>YOUR OUTFIT</h1>
+          <div className="outfits-container">
+            <div className="outfits-card" >
+              <div className="placeholder" >a</div>
+              <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
             </div>
-          </div >
+          </div>
         </div>
+      )
+    } else {
+      return (
+        <div>
+          <h1>YOUR OUTFIT</h1>
+          <div className="outfits-container">
+            <div className="outfits-card" >
+              <img className="placeholder" src=""></img>
+              <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+              <div className="card-info">
+                <div>{null}</div>
+                <div>{null}</div>
+                <div>{null}</div>
+                <div>{null}</div>
+              </div>
+            </div >
+            {outfitsToDisplay.slice(leftIndex, rightIndex)}
+          </div>
 
-        {outfitsToDisplay.slice(leftIndex, rightIndex)}
-
-        {rightIndex >= this.state.outfits.length ?  <div><br /></div> : rightButton}
-      </div>
-    )
+          {rightIndex >= this.state.outfits.length ? <div>{null}</div> : rightButton}
+          {leftIndex === 0 ? <div>{null}</div> : leftButton}
+        </div>
+      )
+    }
   }
-}
 }
 
 export default MyOutfit;

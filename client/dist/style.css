@@ -495,45 +495,24 @@ select {
 
 
 /* RELATED PRODUCTS */
-.related-products {
+.related-products,
+.outfits-container {
   display:grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 10px;
   grid-gap: 5px;
+  /* border: 1px solid black; */
 }
 
-.row > .column {
-  padding: 1 8px;
-}
-
-.outfits-container{
-  display:grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  /* grid-template-rows: 1fr; */
-  padding: 10px;
-  grid-gap: 5px;
-}
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.column {
-  float: left;
-  width: 25%;
- }
-.related-products-card {
+.related-products-card,
+.my-outfits-card  {
   border: 1px solid black;
   margin-left: 5px;
   margin-right: 5px;
 }
-.my-outfits-card {
-  border: 1px solid black;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-.cardInfo {
-  margin: 8px;
+
+.card-info {
+  margin: 5px;
 }
 .cursor {
   cursor: pointer;
@@ -563,9 +542,25 @@ img.hover-shadow {
 .right-button:hover {
   background-color: grey
 }
+.left-outfit-button,
+.right-outfit-button {
+  cursor: pointer;
+  position: absolute;
+  margin-top: -250px;
+  color: lightseagreen;
+  border-color: black;
+  font-size: 50px;
+}
+.right-outfit-button {
+  right: 0;
+}
+.left-outfit-button:hover,
+.right-outfit-button:hover {
+  background-color: grey
+}
 .star-button {
   margin-top: 15px;
-  margin-left: 275px;
+  margin-left: 270px;
   position: absolute;
   cursor: pointer;
 }
@@ -583,18 +578,15 @@ img.hover-shadow {
 }
 .add-button {
   width: 8px;
-  padding: 16px;
-  margin-top: 150px;
-  margin-left: 100px;
+  /* padding: 16px; */
+  margin-top: -100px;
+  margin-left: 50px;
   font-weight: bold;
   font-size: 20px;
   position: absolute;
   cursor: pointer;
   color: black;
   }
-
-
-
 
 
   /* COMPARISON MODAL */
@@ -608,17 +600,18 @@ img.hover-shadow {
     border: 1px solid #888;
     width: 50%;
   }
-
   .comparison-product {
     text-align: center;
   }
-
   .comparison-title {
     text-align: center;
   }
-
   .left-column, .middle-column, .right-column {
     text-align: center;
     line-height: 30px;
   }
 
+.placeholder{
+  height: 150px;
+
+}
