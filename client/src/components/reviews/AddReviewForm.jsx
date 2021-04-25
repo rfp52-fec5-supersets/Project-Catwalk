@@ -118,6 +118,7 @@ class AddReviewForm extends React.Component {
       recommend = false;
     }
     let reviewParams = {product_id, rating, summary, body, recommend, name, email, characteristics, photos};
+    console.log(reviewParams);
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', reviewParams, {
       headers: {'Authorization': API_KEY}
     })
@@ -132,10 +133,10 @@ class AddReviewForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='add-review-modal-content'>
         <h2>Write Your Review</h2>
         <h3>About the {this.props.product.name}</h3>
-        <form onSubmit={this.handleSubmit} >
+        <form onSubmit={this.handleSubmit} className='add-reviews-form grid-container'>
           <AddStarRating starCount={this.state.starRating} handleClick = {this.handleStar}></AddStarRating>
           <div className='add-review recommended-form'>
             <p>Do you recommend product?</p>
@@ -184,7 +185,9 @@ class AddReviewForm extends React.Component {
             <input name='email' onChange={this.handleTextChange} type='email' placeholder='Example: jackson11@email.com' maxLength={60} value={this.state.email} required='required'></input>
             <div>For authentication reasons, you will not be emailed</div>
           </div>
-          <input type='submit' value='Submit' />
+          <div className='add-review-submit'>
+            <input type='submit' value='Submit' />
+          </div>
         </form>
       </div>
     );
