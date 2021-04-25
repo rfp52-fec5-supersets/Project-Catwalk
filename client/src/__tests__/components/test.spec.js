@@ -273,14 +273,34 @@ describe('MyOutfit Component', () => {
   });
 });
 
-describe('Reviews Component', () => {
+describe('Reviews Component loads when App loads', () => {
   test('Renders Reviews Component', () => {
-    let wrapper = shallow(
-      <Reviews />,
+    let wrapper = mount(
+      <App />,
     );
+    wrapper.setState(testState);
     expect(wrapper.exists()).to.equal(true);
-
+    // console.log(wrapper.find('.reviews'));
+    expect(wrapper.find('#reviews')).to.have.lengthOf(1);
+    wrapper.unmount();
   });
+
+  test('Review-List: should not exist when no reviews, should exist when reviews', () => {
+    // when mounting App, reviews-list and reviews-more doesn't load
+    let wrapper = shallow(<Reviews />);
+    wrapper.setState({
+      allReviews:['1','2','3'],
+      currentReviews: ['1','2','3'],
+      currentCount: 2
+    });
+    expect(wrapper.find('#reviews-list')).to.have.lengthOf(1);
+    wrapper.unmount();
+  });
+  test.todo('Review-Tile: Should contain expected items');
+  test.todo('Review-Sort: review-list should change when sort changes');
+  test.todo('Ratings-Breakdown: Should contain expected items');
+  test.todo('Product-Breakdown: Should contain expected items');
+  test.todo('Add-Review: Should contain expected items');
 });
 
 describe('QuestionsList Component', () => {
