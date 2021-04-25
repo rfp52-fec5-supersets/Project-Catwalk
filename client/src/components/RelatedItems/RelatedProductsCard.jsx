@@ -12,7 +12,6 @@ class RelatedProductsCard extends React.Component {
   }
 
   toggleModal() {
-    //POP UP MODAL
     console.log('toggle Modal');
     this.setState({
       renderModal: !this.state.renderModal

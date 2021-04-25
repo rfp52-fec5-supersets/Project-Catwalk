@@ -7,7 +7,7 @@ class MyOutfit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      outfits: [],
+      outfits: JSON.parse(localStorage.getItem('key')),
       previewImage: '',
       averageRating: '',
       leftIndex: 0,
@@ -91,7 +91,9 @@ class MyOutfit extends React.Component {
       this.setState({
         outfits: outfits
       })
+      localStorage.setItem('key', JSON.stringify(this.state.outfits));
     }
+    console.log('local storage', localStorage);
   }
 
   deleteOutfit(outfit) {
@@ -102,6 +104,7 @@ class MyOutfit extends React.Component {
     this.setState({
       outfits: this.state.outfits
     })
+    localStorage.setItem('key', JSON.stringify(this.state.outfits));
   }
 
   handleOutfitScroll(event) {
@@ -120,52 +123,6 @@ class MyOutfit extends React.Component {
       })
     }
   }
-
-  //   render() {
-  //     let outfitsToDisplay = this.state.outfits.map(outfit => {
-  //       return <MyOutfitCard
-  //         outfit={outfit} key={outfit.rating} deleteOutfit={() => this.deleteOutfit(outfit)} />
-  //     })
-
-  //     let leftIndex = this.state.leftIndex;
-  //     let rightIndex = this.state.rightIndex;
-  //     let leftButton = <a className="left-button" onClick={this.handleOutfitScroll}>&#10094;</a>
-  //     let rightButton = <a className="right-button" onClick={this.handleOutfitScroll}>&#10095;</a>
-
-  //     if (this.state.outfits.length === 0) {
-  //       return (
-  //         <div>
-  //           <h1>YOUR OUTFIT</h1>
-  //           <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-  //         </div>
-  //       )
-  //     } else {
-  //       return (
-  //         <div>
-  //           <h1>YOUR OUTFIT</h1>
-  //           {leftIndex === 0 ? <div><br /></div> : leftButton}
-
-  //           <div className="column">
-  //             <div className="outfits-card" >
-  //               <img className="placeholder" src=""></img>
-  //               <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-  //               <div className="cardInfo">
-  //                 <div>{null}</div>
-  //                 <div>{null}</div>
-  //                 <div>{null}</div>
-  //                 <div>{null}</div>
-  //               </div>
-  //             </div >
-  //           </div>
-
-  //           {outfitsToDisplay.slice(leftIndex, rightIndex)}
-
-  //           {rightIndex >= this.state.outfits.length ?  <div><br /></div> : rightButton}
-  //         </div>
-  //       )
-  //     }
-  //   }
-  // }
 
   render() {
     let outfitsToDisplay = this.state.outfits.map(outfit => {
