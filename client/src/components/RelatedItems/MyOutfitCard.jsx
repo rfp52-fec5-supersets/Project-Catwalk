@@ -29,8 +29,7 @@ class MyOutfitCard extends React.Component {
 
   render() {
     return (
-      <div className="column">
-        <div className="my-outfits-card">
+        <div className="outfits-card">
           <img className="hover-shadow cursor" src={this.props.outfit.photo}></img>
           <a className="x-button" onClick={this.props.deleteOutfit}> {"X"}</a>
           <div className="card-info">
@@ -40,7 +39,6 @@ class MyOutfitCard extends React.Component {
             <div><StarsDisplay stars={this.props.outfit.rating} key={this.props.outfit.rating} /></div>
           </div>
         </div >
-      </div>
     )
   }
 }

@@ -183,8 +183,7 @@ class MyOutfit extends React.Component {
         <div>
           <h1>YOUR OUTFIT</h1>
           <div className="outfits-container">
-            <div className="outfits-card" >
-              <div className="placeholder" >a</div>
+            <div className="outfits-card-button" >
               <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
             </div>
           </div>
@@ -196,14 +195,7 @@ class MyOutfit extends React.Component {
           <h1>YOUR OUTFIT</h1>
           <div className="outfits-container">
             <div className="outfits-card" >
-              <img className="placeholder" src=""></img>
               <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-              <div className="card-info">
-                <div>{null}</div>
-                <div>{null}</div>
-                <div>{null}</div>
-                <div>{null}</div>
-              </div>
             </div >
             {outfitsToDisplay.slice(leftIndex, rightIndex)}
           </div>

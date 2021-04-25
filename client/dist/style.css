@@ -504,13 +504,23 @@ select {
   /* border: 1px solid black; */
 }
 
-.related-products-card,
-.my-outfits-card  {
+.related-products-card {
   border: 1px solid black;
   margin-left: 5px;
   margin-right: 5px;
 }
 
+.outfits-card  {
+  border: 1px solid black;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.outfits-card-button {
+  height:387px;
+  border: 1px solid black;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 .card-info {
   margin: 5px;
 }
@@ -518,12 +528,12 @@ select {
   cursor: pointer;
 }
 img.hover-shadow {
-  transition: 0.3s;
+  transition: 0.1s;
   height: 300px;
   width: 100%;
 }
 .hover-shadow:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 .left-button,
 .right-button {
@@ -537,7 +547,6 @@ img.hover-shadow {
 .right-button {
   right: 0;
 }
-
 .left-button:hover,
 .right-button:hover {
   background-color: grey
@@ -577,10 +586,8 @@ img.hover-shadow {
   color:cornflowerblue
 }
 .add-button {
-  width: 8px;
-  /* padding: 16px; */
-  margin-top: -100px;
-  margin-left: 50px;
+  margin-top: 180px;
+  margin-left: 100px;
   font-weight: bold;
   font-size: 20px;
   position: absolute;
@@ -610,8 +617,3 @@ img.hover-shadow {
     text-align: center;
     line-height: 30px;
   }
-
-.placeholder{
-  height: 150px;
-
-}
