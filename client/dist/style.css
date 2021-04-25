@@ -501,15 +501,12 @@ select {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 10px;
   grid-gap: 5px;
-  /* border: 1px solid black; */
 }
-
 .related-products-card {
   border: 1px solid black;
   margin-left: 5px;
   margin-right: 5px;
 }
-
 .outfits-card  {
   border: 1px solid black;
   margin-left: 5px;
