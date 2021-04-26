@@ -4,7 +4,7 @@ import axios from 'axios';
 import API_KEY from './config.js';
 import Reviews from './components/reviews/Reviews.jsx';
 import Overview from './components/Overview.jsx'
-import QuestionsList from './components/QuestionsList.jsx'
+import QuestionsList from './components/questions/QuestionsList.jsx'
 import RelatedProducts from './components/RelatedItems/RelatedProducts.jsx';
 import MyOutfit from './components/RelatedItems/MyOutfit.jsx';
 
@@ -208,7 +208,7 @@ class App extends React.Component {
     // Check that our products state isn't empty - indicates we have recevied our current product
     if (this.state.products.length > 0) {
       // Render our QuestionsList component while passing in the product ID
-      return <QuestionsList productID={this.state.currentProduct.id} />
+      return <QuestionsList productName={this.state.currentProduct.name} productID={this.state.currentProduct.id} />
     }
   }
 
@@ -240,6 +240,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.currentProductId)
     return (
       <>
         <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} currentProductFeatures = {this.state.currentProductFeatures} reviewMeta = {this.state.reviewMeta}/>
