@@ -7,7 +7,7 @@ class MyOutfit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      outfits: JSON.parse(localStorage.getItem('key')),
+      outfits: JSON.parse(localStorage.getItem('key')) || [],
       previewImage: '',
       averageRating: '',
       leftIndex: 0,
