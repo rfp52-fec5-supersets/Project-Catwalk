@@ -1,6 +1,26 @@
 // Product Breakdown in ReviewBreakdown parent
-
 import React from 'react';
+
+let CharaMessages = {
+  Size: ['A size too small',
+    'Perfect',
+    'A size too wide'],
+  Width: ['Too narrow',
+    'Perfect',
+    'Too wide'],
+  Comfort: ['Uncomfortable',
+    'Ok',
+    'Perfect'],
+  Quality: ['Poor',
+    'What I expected',
+    'Perfect'],
+  Length: ['Runs Short',
+    'Perfect',
+    'Runs long'],
+  Fit: ['Runs tight',
+    'Perfect',
+    'Runs long']
+}
 
 class CharaBar extends React.Component {
   constructor(props) {
@@ -10,22 +30,9 @@ class CharaBar extends React.Component {
   render() {
     let characteristic = this.props.characteristic;
     let quality = this.props.quality;
-    let leftMessage = 'Poor';
-    let middleMessage = 'Medium';
-    let rightMessage = 'Best';
-    if ((['Size','Width','Length'].includes(quality))) {
-      middleMessage = 'Perfect';
-    }
-    if (quality === 'Size') {
-      leftMessage = 'Too Small';
-      rightMessage = 'Too Big';
-    } else if (quality === 'Width') {
-      leftMessage = 'Too Narrow';
-      rightMessage = 'Too Wide';
-    } else if (quality === 'Length') {
-      leftMessage = 'Too Short';
-      rightMessage = 'Too Long';
-    }
+    let leftMessage = CharaMessages[quality][0];
+    let middleMessage = CharaMessages[quality][1];
+    let rightMessage = CharaMessages[quality][2];
     return (
       <div className='reviews product-characteristic'>
         {/* style={{position:'relative', width:'90%'}} */}

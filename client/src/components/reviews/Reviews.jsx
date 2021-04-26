@@ -5,6 +5,7 @@ import ReviewList from './ReviewList.jsx';
 import ReviewSort from './ReviewSort.jsx';
 import ReviewBreakdown from './ReviewBreakdown.jsx';
 import MoreReviews from './MoreReviews.jsx';
+import AddReview from './AddReview.jsx';
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -105,17 +106,19 @@ class Reviews extends React.Component {
     let currentReviews = this.state.allReviews.filter((review) => filter.includes(review.rating));
     return (
       <>
-        <h2>Ratings and Reviews</h2>
-        <div id='reviews' className={reviewsClass}>
-          <ReviewBreakdown filter={this.state.filter} averageRating={this.props.averageRating} meta={this.props.reviewMeta} ratings={this.props.ratings} handleClick = {this.handleFilter}/>
-          <ReviewSort handleChange = {this.handleSort} currentSort = {this.state.sortType}/>
-          {(currentReviews.slice(0, this.state.currentCount).length !== 0)
-          ? <ReviewList reviews = {currentReviews.slice(0, this.state.currentCount)}/>
-          : null}
-          {(this.state.currentCount >= currentReviews.length || currentReviews.slice(0, this.state.currentCount).length === 0)
-          ? null
-          : <MoreReviews handleClick = {this.handleMore}/>}
-          <div id='reviews-add'> Add Review </div>
+        <div className='reviews'>
+          <h2>Ratings and Reviews</h2>
+          <div id='reviews' className={reviewsClass}>
+            <ReviewBreakdown filter={this.state.filter} averageRating={this.props.averageRating} meta={this.props.reviewMeta} ratings={this.props.ratings} handleClick = {this.handleFilter}/>
+            <ReviewSort handleChange = {this.handleSort} currentSort = {this.state.sortType}/>
+            {(currentReviews.slice(0, this.state.currentCount).length !== 0)
+            ? <ReviewList reviews = {currentReviews.slice(0, this.state.currentCount)}/>
+            : null}
+            {(this.state.currentCount >= currentReviews.length || currentReviews.slice(0, this.state.currentCount).length === 0)
+            ? null
+            : <MoreReviews handleClick = {this.handleMore}/>}
+            <AddReview product={this.props.product} meta={this.props.reviewMeta}/>
+          </div>
         </div>
       </>
     );

@@ -25,6 +25,7 @@ class App extends React.Component {
       // currentStyleSkus: [],
       currentStyleTotalQuantity: 0,
       currentProductFull: {},
+      currentProductFeatures: [],
       ratings: {},
       averageRating: 0,
       reviewMeta: {},
@@ -64,7 +65,7 @@ class App extends React.Component {
       headers: { 'Authorization': API_KEY }
     })
       .then(({ data: productObj } = res) => {
-        this.setState({ currentProductFull: productObj });
+        this.setState({ currentProductFull: productObj, currentProductFeatures: productObj.features });
         // console.log(this.state);
       })
       .catch((err) => {
@@ -95,7 +96,7 @@ class App extends React.Component {
 
         }
 
-        this.setState({ ratings: ratings, averageRating: sum / divisor, reviewMeta: metaObj });
+        this.setState({ ratings: ratings, averageRating: (sum / divisor).toFixed(2), reviewMeta: metaObj });
         //console.log(this.state);
       })
       .catch((err) => {
@@ -114,7 +115,7 @@ class App extends React.Component {
       currentStyleTotalQuantity += skusObj[key].quantity;
     }
     this.setState({ currentStyleTotalQuantity: currentStyleTotalQuantity });
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   getRelatedProducts(id) {
@@ -151,7 +152,7 @@ class App extends React.Component {
 
   handleCardClick(product) {
     //RERENDER WITH SELECTED PRODUCT
-    // event.preventDefault();
+    event.preventDefault();
     console.log('product card clicked', product);
     this.setState({
       currentProduct: product,
@@ -161,7 +162,6 @@ class App extends React.Component {
       this.getFeatures();
       this.getRatings();
     })
-
   }
 
 
@@ -196,11 +196,18 @@ class App extends React.Component {
 
   relatedProductsRender() {
     return (
-      <div class="row">
+      <div className="related-items row">
         <h1>RELATED PRODUCTS</h1>
+        <a className="prev">&#10094;</a>
         {this.state.relatedProducts.map(product => {
-          return <RelatedProducts relatedProduct={product} handleCardClick={() => this.handleCardClick(product)} />
+          return <RelatedProducts
+          relatedProduct={product}
+          handleCardClick={() => this.handleCardClick(product)}
+          currentProduct={this.state.currentProduct}
+          currentProductId={this.state.currentProductId}
+          currentFeatures={this.state.currentProductFeatures}/>
         })}
+        <a className="next">&#10095;</a>
       </div>
     )
   }
@@ -209,14 +216,14 @@ class App extends React.Component {
   render() {
     console.log(this.state.currentProductId)
     return (
-      <div>
-          <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} />
-          {this.relatedProductsRender()}
-          <MyOutfit />
-          <Reviews product={this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating} ratings={this.state.ratings} />
+      <>
+        <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} currentProductFeatures = {this.state.currentProductFeatures} reviewMeta = {this.state.reviewMeta}/>
+        {this.relatedProductsRender()}
+        <MyOutfit currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} averageRating={this.state.averageRating} currentStylePhotos={this.state.currentStylePhotos} />
+        <Reviews product={this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating} ratings={this.state.ratings} />
         {/* Invoke our conditional render of QuestionList component*/}
         {this.questionListRender()}
-      </div>
+      </>
     )
   }
 }
