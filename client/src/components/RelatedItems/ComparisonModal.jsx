@@ -37,11 +37,11 @@ class ComparisonModal extends React.Component {
     console.log('featuresArray', featuresArray)
 
     return (
-      <div className='modal-overlay'>
+      <div className="modal-overlay">
 
-        <button type='button' className='close-button' onClick={this.props.onClose}> X</button>
+        <button type="button" className="close-button" onClick={this.props.onClose}> X</button>
 
-        <div className='comparison-table'>
+        <div className="comparison-table">
           <div className="comparison-product">{currentProduct.name}</div>
           <div className="comparison-title"> FEATURES </div>
           <div className="comparison-product">{relatedProduct.name}</div>

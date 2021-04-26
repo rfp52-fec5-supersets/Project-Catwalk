@@ -229,7 +229,7 @@ class App extends React.Component {
 
     return (
       <div className="related-items row">
-        <h1>RELATED PRODUCTS</h1>
+        <div className="related-title">RELATED PRODUCTS</div>
         <div className="related-products">
           {productsToDisplay.slice(leftIndex, rightIndex)}
         </div>

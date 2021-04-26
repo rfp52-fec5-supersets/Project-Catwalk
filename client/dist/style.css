@@ -571,6 +571,12 @@ select {
 }
 .card-info {
   margin: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.card-info-name {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+
 }
 .cursor {
   cursor: pointer;
@@ -617,7 +623,7 @@ img.hover-shadow {
 }
 .star-button {
   margin-top: 15px;
-  margin-left: 230px;
+  margin-left: 300px;
   position: absolute;
   cursor: pointer;
 }
@@ -626,7 +632,7 @@ img.hover-shadow {
   margin-left: -50px;
   position: absolute;
   cursor: pointer;
-  border:black;
+  color: grey;
   font-weight: bold;
   font-size: 30px;
 }
@@ -641,6 +647,9 @@ img.hover-shadow {
   position: absolute;
   cursor: pointer;
   color: black;
+  }
+  .related-title{
+    font-family: Arial, Helvetica, sans-serif;
   }
 
 
@@ -663,5 +672,8 @@ img.hover-shadow {
   }
   .left-column, .middle-column, .right-column {
     text-align: center;
-    line-height: 30px;
+    line-height: 25px;
+  }
+  .comparison-product {
+    font-family:Arial, Helvetica, sans-serif;
   }

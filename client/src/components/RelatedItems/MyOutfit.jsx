@@ -137,7 +137,7 @@ class MyOutfit extends React.Component {
 
     if (this.state.outfits.length === 0) {
       return (
-        <div className='related-items'>
+        <div className="related-items">
           <h1>YOUR OUTFIT</h1>
           <div className="outfits-container">
             <div className="outfits-card-button" >
@@ -148,8 +148,8 @@ class MyOutfit extends React.Component {
       )
     } else {
       return (
-        <div className='related-items'>
-          <h1>YOUR OUTFIT</h1>
+        <div className="related-items">
+          <div className="related-title">YOUR OUTFIT</div>
           <div className="outfits-container">
             <div className="outfits-card" >
               <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
