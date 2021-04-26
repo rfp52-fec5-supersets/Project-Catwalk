@@ -62,7 +62,7 @@ class ReviewTile extends React.Component {
     let voted = this.state.voted;
     let practiceResponse = 'you suck';
     return (
-      <div id='reviews-tile' className='reviews-component'>
+      <div className='reviews-tile reviews-component'>
         <div className='review-tile-header'>
           <div className='reviews flex-child-left'>
             <StarsDisplay stars={review.rating} />

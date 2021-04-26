@@ -95,7 +95,7 @@ class QuestionsList extends React.Component {
     ));
     // console.log(this.state);
     return (
-      <div>
+      <div className = 'questions-and-answers'>
         <h1>QuestionsList</h1>
         {question}
       </div>

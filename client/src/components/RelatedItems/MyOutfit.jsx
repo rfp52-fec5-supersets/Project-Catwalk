@@ -137,7 +137,7 @@ class MyOutfit extends React.Component {
 
     if (this.state.outfits.length === 0) {
       return (
-        <div>
+        <div className='related-items'>
           <h1>YOUR OUTFIT</h1>
           <div className="outfits-container">
             <div className="outfits-card-button" >
@@ -148,7 +148,7 @@ class MyOutfit extends React.Component {
       )
     } else {
       return (
-        <div>
+        <div className='related-items'>
           <h1>YOUR OUTFIT</h1>
           <div className="outfits-container">
             <div className="outfits-card" >

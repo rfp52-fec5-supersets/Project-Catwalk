@@ -38,7 +38,7 @@ class AddStarRating extends React.Component {
       starMessage = starMessages[starCount - 1];
     }
     return (
-      <div>
+      <div className='add-star-rating'>
         Overall Rating:
         <br />
         {stars} {starMessage}
