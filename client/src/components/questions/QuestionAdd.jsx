@@ -49,6 +49,7 @@ class QuestionAdd extends React.Component {
     event.target.reset()
     console.log(this.state)
     const {productID: id} = this.props;
+    console.log(typeof this.props.productID)
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`, {
       body: this.state.question,
       name: this.state.username,
@@ -57,6 +58,7 @@ class QuestionAdd extends React.Component {
     }, {headers: {'Authorization': API_KEY}})
     .then((res) => {
       console.log(res)
+      console.log(this.state, this.props.productID)
       console.log('submitted')
     })
     .catch((err) => {

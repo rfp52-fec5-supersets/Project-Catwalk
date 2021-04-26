@@ -80,11 +80,6 @@ class QuestionAnswerAdd extends React.Component {
     event.target.reset()
     console.log(this.state)
     const {id} = this.props;
-    // axios({
-    //   method: 'post',
-    //   url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${id}/answers`,
-    //   headers: {'Authorization': API_KEY}
-    // })
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${id}/answers`, {
       body: this.state.textArea,
       name: this.state.nickName,
