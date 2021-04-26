@@ -7,14 +7,17 @@ class MyOutfit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      outfits: [],
+      outfits: JSON.parse(localStorage.getItem('key')) || [],
       previewImage: '',
-      averageRating: ''
+      averageRating: '',
+      leftIndex: 0,
+      rightIndex: 3
     }
     this.addToOutfit = this.addToOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
     this.getOutfitImage = this.getOutfitImage.bind(this);
     this.getOutfitRating = this.getOutfitRating.bind(this);
+    this.handleOutfitScroll = this.handleOutfitScroll.bind(this);
 
   }
 
@@ -88,7 +91,9 @@ class MyOutfit extends React.Component {
       this.setState({
         outfits: outfits
       })
+      localStorage.setItem('key', JSON.stringify(this.state.outfits));
     }
+    console.log('local storage', localStorage);
   }
 
   deleteOutfit(outfit) {
@@ -99,89 +104,65 @@ class MyOutfit extends React.Component {
     this.setState({
       outfits: this.state.outfits
     })
+    localStorage.setItem('key', JSON.stringify(this.state.outfits));
   }
 
-
-  //   render() {
-  //     if (this.state.outfits.length === 0) {
-  //       return (
-  //         <div>
-  //           <h1>YOUR OUTFIT</h1>
-  //           <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-  //         </div>
-  //       )
-  //     } else {
-  //       return (
-  //         <div>
-  //           <h1>YOUR OUTFIT</h1>
-  //           <a className="prev">&#10094;</a>
-
-  //           <div className="outfit-container">
-
-  //             <div className="outfits-card" >
-  //               <img className="placeholder" src={this.props.previewImage}></img>
-  //               <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-  //               <div className="cardInfo">
-  //                 <div>{null}</div>
-  //                 <div>{null}</div>
-  //                 <div>{null}</div>
-  //                 <div>{null}</div>
-  //               </div>
-  //             </div >
-
-  //             {this.state.outfits.map(outfit => {
-  //               return <MyOutfitCard
-  //                 outfit={outfit} key={outfit.id} deleteOutfit={() => this.deleteOutfit(outfit)} />
-  //             })}
-
-  //           </div>
-
-  //           <a className="next">&#10095;</a>
-  //         </div>
-  //       )
-
-  //     }
-
-  //   }
-  // }
-
+  handleOutfitScroll(event) {
+    event.preventDefault();
+    console.log('scroll button clicked', event)
+    if (event.target.className === "left-outfit-button" && this.state.leftIndex !== 0) {
+      this.setState({
+        leftIndex: this.state.leftIndex - 1,
+        rightIndex: this.state.rightIndex - 1
+      })
+    }
+    if (event.target.className === "right-outfit-button" && this.state.rightIndex < this.state.outfits.length) {
+      this.setState({
+        leftIndex: this.state.leftIndex + 1,
+        rightIndex: this.state.rightIndex + 1
+      })
+    }
+  }
 
   render() {
+    let outfitsToDisplay = this.state.outfits.map(outfit => {
+      return <MyOutfitCard
+        outfit={outfit} key={outfit.rating} deleteOutfit={() => this.deleteOutfit(outfit)} />
+    })
+
+    let leftIndex = this.state.leftIndex;
+    let rightIndex = this.state.rightIndex;
+    let leftButton = <a className="left-outfit-button" onClick={this.handleOutfitScroll}>&#10094;</a>
+    let rightButton = <a className="right-outfit-button" onClick={this.handleOutfitScroll}>&#10095;</a>
+
     if (this.state.outfits.length === 0) {
       return (
-        <div className='related-items'>
+        <div className="related-items">
           <h1>YOUR OUTFIT</h1>
-          <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+          <div className="outfits-container">
+            <div className="outfits-card-button" >
+              <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
+            </div>
+          </div>
         </div>
       )
     } else {
       return (
-        <div className='related-items'>
-          <h1>YOUR OUTFIT</h1>
-          <a className="prev">&#10094;</a>
-          <div className="column">
+        <div className="related-items">
+          <div className="related-title">YOUR OUTFIT</div>
+          <div className="outfits-container">
             <div className="outfits-card" >
-              <img className="placeholder" src={this.props.previewImage}></img>
               <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-              <div className="cardInfo">
-                <div>{null}</div>
-                <div>{null}</div>
-                <div>{null}</div>
-                <div>{null}</div>
-              </div>
             </div >
+            {outfitsToDisplay.slice(leftIndex, rightIndex)}
           </div>
 
-          {this.state.outfits.map(outfit => {
-            return <MyOutfitCard
-              outfit={outfit} key={outfit.id} deleteOutfit={() => this.deleteOutfit(outfit)} />
-          })}
-          <a className="next">&#10095;</a>
+          {rightIndex >= this.state.outfits.length ? <div>{null}</div> : rightButton}
+          {leftIndex === 0 ? <div>{null}</div> : leftButton}
         </div>
       )
     }
   }
 }
-
 
 export default MyOutfit;

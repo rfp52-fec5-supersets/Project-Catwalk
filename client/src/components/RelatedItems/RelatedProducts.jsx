@@ -7,9 +7,8 @@ class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      previewImage: [],
-      averageRating: 0,
-      currentFeatures: []
+      relatedImage: [],
+      relatedRating: 0,
     }
     this.getRelatedProductsImage = this.getRelatedProductsImage.bind(this);
     this.getRelatedProductsRating = this.getRelatedProductsRating.bind(this);
@@ -18,6 +17,13 @@ class RelatedProducts extends React.Component {
   componentDidMount() {
     this.getRelatedProductsImage(this.props.relatedProduct.id);
     this.getRelatedProductsRating(this.props.relatedProduct.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.relatedProduct !== prevProps.relatedProduct) {
+      this.getRelatedProductsImage(this.props.relatedProduct.id);
+      this.getRelatedProductsRating(this.props.relatedProduct.id);
+    }
   }
 
   getRelatedProductsImage(id) {
@@ -29,7 +35,8 @@ class RelatedProducts extends React.Component {
       .then(response => {
         // console.log('response', response);
         this.setState({
-          previewImage: response.data.results[0].photos[0].thumbnail_url
+          relatedImage: response.data.results[0].photos[0].thumbnail_url
+          // salesPrice:
         });
       })
       .catch(err => {
@@ -60,7 +67,7 @@ class RelatedProducts extends React.Component {
         }
 
         this.setState({
-          averageRating: sum / divisor
+          relatedRating: sum / divisor
         });
       })
       .catch((err) => {
@@ -75,9 +82,10 @@ class RelatedProducts extends React.Component {
           relatedProduct={this.props.relatedProduct}
           currentProduct={this.props.currentProduct}
           handleCardClick={this.props.handleCardClick}
-          averageRating={this.state.averageRating}
-          previewImage={this.state.previewImage}
+          relatedRating={this.state.relatedRating}
+          relatedImage={this.state.relatedImage}
           currentFeatures={this.props.currentFeatures}
+          key={this.props.relatedProduct.id}
         />
       </div>
     )

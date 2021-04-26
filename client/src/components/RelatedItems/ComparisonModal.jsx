@@ -37,20 +37,20 @@ class ComparisonModal extends React.Component {
     console.log('featuresArray', featuresArray)
 
     return (
-      <div className='modal-overlay'>
+      <div className="modal-overlay">
 
-        <button type='button' className='close-button' onClick={this.props.onClose}> X</button>
+        <button type="button" className="close-button" onClick={this.props.onClose}> X</button>
 
-        <div className='comparison-table'>
+        <div className="comparison-table">
           <div className="comparison-product">{currentProduct.name}</div>
           <div className="comparison-title"> FEATURES </div>
           <div className="comparison-product">{relatedProduct.name}</div>
 
           <div className="left-column">
             <div>{featuresArray.map(feature => {
-              console.log('current value feature', currentValues);
+              // console.log('current value feature', currentValues);
               if (currentValues[feature] === undefined) {
-                return <div>{<br />}</div>
+                return <div>{<br/>}</div>
               } else {
                 return <div>{currentValues[feature]}</div>
               }
@@ -62,7 +62,7 @@ class ComparisonModal extends React.Component {
           <div className="right-column">
             <div>{featuresArray.map(feature => {
               if (relatedValues[feature] === undefined) {
-                return <div>{<br />}</div>
+                return <div>{<br/>}</div>
               } else {
                 return <div>{relatedValues[feature]}</div>
               }

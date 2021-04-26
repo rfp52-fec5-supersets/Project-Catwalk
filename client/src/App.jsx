@@ -19,7 +19,7 @@ class App extends React.Component {
       styles: [],
       currentStyleIndex: 0,
       currentStyle: {},
-      currentProductId: '17070', // initialized value, shouldn't matter
+      currentProductId: '17067', // initialized value, shouldn't matter
       currentStylePhotos: [],
       currentStyleSkusObj: {},
       // currentStyleSkus: [],
@@ -29,11 +29,14 @@ class App extends React.Component {
       ratings: {},
       averageRating: 0,
       reviewMeta: {},
-      relatedProducts: []
+      relatedProducts: [],
+      leftIndex: 0,
+      rightIndex: 4
     };
 
     this.setStyle = this.setStyle.bind(this);
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
+    this.handleProductScroll = this.handleProductScroll.bind(this);
   }
 
   getStyles() {
@@ -164,6 +167,22 @@ class App extends React.Component {
     })
   }
 
+  handleProductScroll(event) {
+    event.preventDefault();
+    console.log('scroll button clicked', event)
+    if (event.target.className === "left-button" && this.state.leftIndex !== 0) {
+      this.setState({
+        leftIndex: this.state.leftIndex - 1,
+        rightIndex: this.state.rightIndex - 1
+      })
+    }
+    if (event.target.className === "right-button" && this.state.rightIndex < this.state.relatedProducts.length) {
+      this.setState({
+        leftIndex: this.state.leftIndex + 1,
+        rightIndex: this.state.rightIndex + 1
+      })
+    }
+  }
 
   componentDidMount() {
     axios({
@@ -177,7 +196,6 @@ class App extends React.Component {
         this.getFeatures();
         this.getRatings();
         this.getRelatedProducts(this.state.currentProductId);
-        // console.log(this.state);
       })
       .catch((err) => {
         console.error(err);
@@ -195,23 +213,31 @@ class App extends React.Component {
   }
 
   relatedProductsRender() {
+    // let productsToDisplay = this.state.relatedProducts.slice(this.state.startIndex, this.state.endIndex);
+    let productsToDisplay = this.state.relatedProducts.map(product => {
+      return <RelatedProducts
+        relatedProduct={product}
+        handleCardClick={() => this.handleCardClick(product)}
+        currentProduct={this.state.currentProduct}
+        currentFeatures={this.state.currentProductFeatures} />
+    })
+
+    let leftButton = <a className="left-button" onClick={this.handleProductScroll}>&#10094;</a>
+    let rightButton = <a className="right-button" onClick={this.handleProductScroll}>&#10095;</a>
+    let leftIndex = this.state.leftIndex;
+    let rightIndex = this.state.rightIndex;
+
     return (
       <div className="related-items row">
-        <h1>RELATED PRODUCTS</h1>
-        <a className="prev">&#10094;</a>
-        {this.state.relatedProducts.map(product => {
-          return <RelatedProducts
-          relatedProduct={product}
-          handleCardClick={() => this.handleCardClick(product)}
-          currentProduct={this.state.currentProduct}
-          currentProductId={this.state.currentProductId}
-          currentFeatures={this.state.currentProductFeatures}/>
-        })}
-        <a className="next">&#10095;</a>
+        <div className="related-title">RELATED PRODUCTS</div>
+        <div className="related-products">
+          {productsToDisplay.slice(leftIndex, rightIndex)}
+        </div>
+        {rightIndex === this.state.relatedProducts.length ? <div>{null}</div> : rightButton}
+        {leftIndex === 0 ? <div>{null}</div> : leftButton}
       </div>
     )
   }
-
 
   render() {
     return (

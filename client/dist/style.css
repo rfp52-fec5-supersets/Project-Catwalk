@@ -546,71 +546,84 @@ select {
 
 
 /* RELATED PRODUCTS */
-.row > .column {
-  padding: 1 8px;
-}
-
-.outfits-container{
+.related-products,
+.outfits-container {
   display:grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  /* grid-template-rows: 1fr; */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 10px;
   grid-gap: 5px;
 }
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.column {
-  float: left;
-  width: 25%;
- }
 .related-products-card {
   border: 1px solid black;
   margin-left: 5px;
   margin-right: 5px;
 }
-.my-outfits-card {
+.outfits-card  {
   border: 1px solid black;
   margin-left: 5px;
   margin-right: 5px;
 }
-.cardInfo {
-  margin: 8px;
+.outfits-card-button {
+  height:387px;
+  border: 1px solid black;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.card-info {
+  margin: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.card-info-name {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+
 }
 .cursor {
   cursor: pointer;
 }
 img.hover-shadow {
-  transition: 0.3s;
+  transition: 0.1s;
   height: 300px;
   width: 100%;
 }
 .hover-shadow:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
-.prev,
-.next {
+.left-button,
+.right-button {
   cursor: pointer;
   position: absolute;
-  width: auto;
-  padding: 16px;
-  margin-top: 100px;
-  color: black;
+  margin-top: -250px;
+  color: lightseagreen;
+  border-color: black;
   font-size: 50px;
-  z-index: 9;
 }
-.next {
+.right-button {
   right: 0;
 }
-.prev:hover,
-.next:hover {
+.left-button:hover,
+.right-button:hover {
+  background-color: grey
+}
+.left-outfit-button,
+.right-outfit-button {
+  cursor: pointer;
+  position: absolute;
+  margin-top: -250px;
+  color: lightseagreen;
+  border-color: black;
+  font-size: 50px;
+}
+.right-outfit-button {
+  right: 0;
+}
+.left-outfit-button:hover,
+.right-outfit-button:hover {
   background-color: grey
 }
 .star-button {
   margin-top: 15px;
-  margin-left: 275px;
+  margin-left: 300px;
   position: absolute;
   cursor: pointer;
 }
@@ -619,7 +632,7 @@ img.hover-shadow {
   margin-left: -50px;
   position: absolute;
   cursor: pointer;
-  border:black;
+  color: grey;
   font-weight: bold;
   font-size: 30px;
 }
@@ -627,15 +640,16 @@ img.hover-shadow {
   color:cornflowerblue
 }
 .add-button {
-  width: 8px;
-  padding: 16px;
-  margin-top: 150px;
+  margin-top: 180px;
   margin-left: 100px;
   font-weight: bold;
   font-size: 20px;
   position: absolute;
   cursor: pointer;
   color: black;
+  }
+  .related-title{
+    font-family: Arial, Helvetica, sans-serif;
   }
 
 
@@ -650,17 +664,16 @@ img.hover-shadow {
     border: 1px solid #888;
     width: 50%;
   }
-
   .comparison-product {
     text-align: center;
   }
-
   .comparison-title {
     text-align: center;
   }
-
   .left-column, .middle-column, .right-column {
     text-align: center;
-    line-height: 30px;
+    line-height: 25px;
   }
-
+  .comparison-product {
+    font-family:Arial, Helvetica, sans-serif;
+  }
