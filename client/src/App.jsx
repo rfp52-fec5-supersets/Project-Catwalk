@@ -240,7 +240,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.currentProductId)
+    // console.log(this.state.currentProductId)
     return (
       <>
         <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} currentProductFeatures = {this.state.currentProductFeatures} reviewMeta = {this.state.reviewMeta}/>
