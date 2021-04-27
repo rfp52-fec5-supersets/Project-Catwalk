@@ -348,7 +348,7 @@ select {
 }
 #reviews-sort {
   grid-area: reviews-sort;
-  padding: 5%;
+  padding: 3% 5%;
   /* grid-column: 2;
   grid-row: 1; */
 }
