@@ -30,6 +30,22 @@ class QuestionsList extends React.Component {
     )
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      const { productID } = this.props;
+      axios({
+        method: 'get',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${productID}`,
+        headers: {'Authorization': API_KEY}
+      })
+      .then((res) =>
+        this.setState({
+          questions: res.data.results
+        })
+      )
+    }
+  }
+
   loadMoreQuestionsRender() {
     if (this.state.questions.length > 2 && this.state.sliceIndex < this.state.questions.length) {
       return (
