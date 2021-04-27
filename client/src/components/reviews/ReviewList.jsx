@@ -10,6 +10,7 @@ class ReviewList extends React.Component {
   }
 
   render() {
+
     let ReviewTiles = this.props.reviews.map((review)=> {
       return <ReviewTile key={review.review_id} review={review}/>
     });

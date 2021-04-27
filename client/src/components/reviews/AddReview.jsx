@@ -26,13 +26,13 @@ class AddReview extends React.Component {
       charaId = characteristics.map((chara)=>{return this.props.meta.characteristics[chara].id});
     }
     return (
-      <div id='reviews-add'>
-        <button onClick={this.handleToggle}>Add Review</button>
+      <>
+        <button id='reviews-add' onClick={this.handleToggle}>Add Review</button>
         {this.state.showModal &&
         <ModalImage onCloseRequest={this.handleToggle}>
           <AddReviewForm product={this.props.product} characteristics = {characteristics} charaId = {charaId}/>
         </ModalImage>}
-      </div>
+      </>
     );
   }
 }
