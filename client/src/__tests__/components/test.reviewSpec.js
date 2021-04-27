@@ -3,12 +3,13 @@ import { shallow, render, mount } from '../../../../enzyme.setup';
 import App from '../../App';
 import Reviews from '../../components/reviews/Reviews';
 import ReviewList from '../../components/reviews/ReviewList';
+import ReviewTile from '../../components/reviews/ReviewTile';
 import ReviewSort from '../../components/reviews/ReviewSort';
 import ReviewBreakdown from '../../components/reviews/ReviewBreakdown'
 import { expect } from 'chai';
 import sinon from 'sinon';
 import StarsDisplay from '../../components/StarsDisplay';
-import {ReviewProps} from '../../dummyProps';
+import {ReviewProps, ReviewState} from '../../dummyProps';
 
 
 describe('Reviews Component loads when App loads', () => {
@@ -21,24 +22,50 @@ describe('Reviews Component loads when App loads', () => {
     expect(wrapper.find('#reviews')).to.have.lengthOf(1);
     wrapper.unmount();
   });
-
-  test('Review-List: should not exist when no reviews, should exist when reviews', () => {
+});
+describe('Reviews List tests', () => {
+  // 'Review-List: should not exist when no reviews, should exist when reviews' fails integration, probably due to conditional rendering
+  test('Review-List: should render same number of reviewTiles as its props.reviews', () => {
     //  integration test is failing
     // when mounting App, reviews-list and reviews-more doesn't load
     // maybe because review-tile has multiple same id?
     // may have to render or mount, not just do shallow copy.
-    let wrapper = mount(<Reviews {...ReviewProps}/>);
-    wrapper.setState({currentReviews: [1,2,3], allReviews: [1,2,3]});
-    wrapper.setProps(ReviewProps);
-    wrapper = wrapper.update();
-    expect(wrapper.render().find(ReviewList)).to.have.lengthOf(1);
-    expect(wrapper.find(ReviewList)).to.have.lengthOf(0);
-    wrapper.unmount();
+    // Finally figured it out, need to set real state...
+    let props = {reviews: [{review_id: 1},{review_id: 2},{review_id: 3}]};
+    let props2 = {reviews: [{review_id: 1},{review_id: 2}]};
+    let wrapper = shallow(<ReviewList {...props}/>);
+    let wrapper2 = shallow(<ReviewList {...props2}/>);
+    expect(wrapper.find(ReviewTile)).to.have.lengthOf(3);
+    expect(wrapper2.find(ReviewTile)).to.have.lengthOf(2);
   });
+  test('Review-List: should render reviewList only if reviews are available', () => {
+    let wrapper = mount(<Reviews {...ReviewProps}/>);
+    expect(wrapper.find(ReviewList)).to.have.lengthOf(0);
+    wrapper.setState(ReviewState);
+    expect(wrapper.find(ReviewList)).to.have.lengthOf(1);
+    wrapper.unmount;
+  })
+});
+describe('More Reviews Button tests', () => {
+  test('Review-Button: Should increase currentCount', ()=>{
+    let wrapper = mount(<Reviews {...ReviewProps}/>);
+    wrapper.setState(ReviewState);
+    expect(wrapper.find('#reviews-more')).to.have.lengthOf(1);
+  });
+});
+describe('Reviews Tile tests', () => {
   test.todo('Review-Tile: Should contain expected items');
+});
+describe('Reviews Sort tests', () => {
   test.todo('Review-Sort: review-list should change when sort changes');
+});
+describe('Ratings Breakdown tests', () => {
   test.todo('Ratings-Breakdown: Should contain expected items');
+});
+describe('Product Breakdown tests', () => {
   test.todo('Product-Breakdown: Should contain expected items');
+});
+describe('Add Review tests', () => {
   test.todo('Add-Review: Should contain expected items');
 });
 

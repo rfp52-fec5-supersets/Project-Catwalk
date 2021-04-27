@@ -51,4 +51,69 @@ const ReviewProps = {
       "5": "3"
   }
 };
-export {ReviewProps};
+const ReviewState = {
+    "allReviews": [
+        {
+            "review_id": 348114,
+            "rating": 5,
+            "summary": "the be st",
+            "recommend": true,
+            "response": null,
+            "body": "really great product, I really love it. It's great!",
+            "date": "2021-04-26T00:00:00.000Z",
+            "reviewer_name": "Allison",
+            "helpfulness": 1,
+            "photos": [
+                {
+                    "id": 614274,
+                    "url": "https://i.imgur.com/pnD8EEY.jpg"
+                }
+            ]
+        },
+        {
+            "review_id": 348118,
+            "rating": 3,
+            "summary": "asdfasdf",
+            "recommend": false,
+            "response": null,
+            "body": "asdfasdfasdfasfadsfasdfasfdasfasfsdfasdasdfasdffgsdfgsdfgdfsg",
+            "date": "2021-04-26T00:00:00.000Z",
+            "reviewer_name": "asdfasdfasdf",
+            "helpfulness": 0,
+            "photos": [
+                {
+                    "id": 614278,
+                    "url": "https://i.imgur.com/6XvzhIo.png"
+                }
+            ]
+        },
+        {
+            "review_id": 348116,
+            "rating": 3,
+            "summary": "asdfasdfasd",
+            "recommend": false,
+            "response": null,
+            "body": "fasdfasdfasfsdfasdasdasd\nASDFSDFSDFSDFSDFSDFSDFSdfsdfg",
+            "date": "2021-04-26T00:00:00.000Z",
+            "reviewer_name": "asdfasdfsdf",
+            "helpfulness": 0,
+            "photos": [
+                {
+                    "id": 614276,
+                    "url": "https://i.imgur.com/OnRBzW3.png"
+                }
+            ]
+        }
+    ],
+    "currentReviews": [],
+    "sortType": "relevant",
+    "currentCount": 2,
+    "filter": {
+        "1": false,
+        "2": false,
+        "3": false,
+        "4": false,
+        "5": false
+    }
+};
+export {ReviewProps, ReviewState};
