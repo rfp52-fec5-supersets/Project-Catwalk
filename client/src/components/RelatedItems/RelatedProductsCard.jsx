@@ -37,7 +37,11 @@ class RelatedProductsCard extends React.Component {
     return (
       <div>
 
+<<<<<<< HEAD
         <a className="star-button" onClick={this.toggleModal}>{wholeStar}</a>
+=======
+          <a className="star-button" onClick={this.toggleModal}>{wholeStar}</a>
+>>>>>>> 4353dcc7b42882f67c6aba6158f598f98b8dd0db
         <div className="related-products-card" onClick={this.props.handleCardClick}>
           <img className="hover-shadow cursor" src={this.props.relatedImage} alt="IMAGE NOT FOUND"></img>
           <div className="card-info">

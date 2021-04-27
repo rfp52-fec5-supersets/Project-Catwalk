@@ -39,7 +39,10 @@ class StarsDisplay extends React.Component {
     // below should round starFragment to closest .25
     starFragment = Math.round(starFragment*4)/4;
     if (starFragment === 0) {
-      emptyCount = emptyCount + 1;
+      // if starCount = 3, and emptyCount = 2, may cause extra stars
+      if (wholeCount + emptyCount < 5) {
+        emptyCount = emptyCount + 1;
+      }
     } else if (starFragment === 1) {
       wholeCount = wholeCount + 1;
       starFragment = 0;
