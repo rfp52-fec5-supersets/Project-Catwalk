@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import API_KEY from './config.js';
 import Reviews from './components/reviews/Reviews.jsx';
-import Overview from './components/Overview.jsx'
+import Overview from './components/Overview/Overview.jsx'
 import QuestionsList from './components/questions/QuestionsList.jsx'
 import RelatedProducts from './components/RelatedItems/RelatedProducts.jsx';
 import MyOutfit from './components/RelatedItems/MyOutfit.jsx';

@@ -5,7 +5,7 @@ import ProductInfo2 from './ProductInfo2.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import Checkout from './Checkout.jsx';
 import axios from 'axios';
-import API_KEY from '../config.js'
+import API_KEY from '../../config.js'
 
 
 class Overview extends React.Component {

@@ -1,5 +1,5 @@
 import React from 'react';
-import StarsDisplay from './StarsDisplay.jsx';
+import StarsDisplay from '../StarsDisplay.jsx';
 
 class ProductInfo extends React.Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, render, mount } from '../../../../enzyme.setup';
 import App from '../../App';
-import Overview from '../../components/Overview';
+import Overview from '../../components/Overview/Overview';
 import RelatedProducts from '../../components/RelatedItems/RelatedProducts';
 import MyOutfit from '../../components/RelatedItems/MyOutfit';
 import QuestionsList from '../../components/questions/QuestionsList';
@@ -11,8 +11,8 @@ import ReviewSort from '../../components/reviews/ReviewSort';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import StarsDisplay from '../../components/StarsDisplay';
-import Gallery from '../../components/Gallery';
-import Checkout from '../../components/Checkout';
+import Gallery from '../../components/Overview/Gallery';
+import Checkout from '../../components/Overview/Checkout';
 import {ReviewProps} from '../../dummyProps';
 
 describe('App Component', () => {
@@ -213,7 +213,7 @@ describe('Overview Component', () => {
     expect(wrapper.exists()).to.equal(true);
     expect(wrapper.find('.style-selector')).to.have.lengthOf(1);
     expect(wrapper.find('.style-selector').text()).to.include('Forest Green');
-    expect(wrapper.find('.style-selector').children()).to.have.lengthOf(7);
+    expect(wrapper.find('#style-selector-icons').children()).to.have.lengthOf(6);
   });
 
   test('Style Selector: Clicking thumbnail updates the currently selected style and re-renders the page accordingly', () => {

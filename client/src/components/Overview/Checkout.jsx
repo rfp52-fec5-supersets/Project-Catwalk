@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import API_KEY from '../config.js';
+import API_KEY from '../../config.js';
 
 class Checkout extends React.Component {
   constructor(props) {
@@ -42,7 +42,9 @@ class Checkout extends React.Component {
       this.setState({pleaseSelectSize: true});
 
       var dropdown = document.getElementById('size-selector');
-      dropdown.size = dropdown.options.length;
+      if (dropdown) {
+        dropdown.size = dropdown.options.length;
+      }
       return;
     }
 
