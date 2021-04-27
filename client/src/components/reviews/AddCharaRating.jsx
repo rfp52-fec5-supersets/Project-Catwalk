@@ -39,11 +39,12 @@ class AddStarRating extends React.Component {
       <div className='add-review-chara'>
         <div><em>{this.props.chara}</em></div>
         <div className = 'flex-box flex-center add-review-chara-message'>{charaMessage}</div>
-        <div className='flex-box flex-between'>
+        <div className='flex-box flex-around'>
           {choices}
         </div>
-        <div className='flex-box flex-between'>
+        <div className='flex-box flex-around'>
           <span style={{fontSize:'15%'}} >{CharaMessages[chara][0]}</span>
+          <span/><span/><span/>
           <span style={{fontSize:'15%'}} >{CharaMessages[chara][4]}</span>
         </div>
         <br />

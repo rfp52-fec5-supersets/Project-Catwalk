@@ -315,7 +315,6 @@ select {
 
 /* REVIEWS AND RATINGS CSS */
 /* For Overall Reviews Grid */
-
 #reviews-add {
   grid-area: reviews-add;
 }
@@ -436,7 +435,9 @@ select {
   font-size: 80%;
   justify-content: space-between;
 }
-
+textarea {
+  font-family: Arial, Helvetica, sans-serif;
+}
 /* For Overall Reviews Grid */
 #reviews {
   /* vh = viewport height */
@@ -493,44 +494,40 @@ select {
 
 .add-star-rating {
   grid-area: star-rating;
-  padding: 1em;
 }
 .recommended-form {
   grid-area: recommended;
-  padding: 1em;
 }
 .add-review-charas {
   grid-area: charas;
-  padding: 1em;
 }
 .flex-center {
   justify-content: center;
+  align-items: center;
 }
 .flex-between {
   justify-content: space-between;
+}
+.flex-around {
+  justify-content: space-around;
 }
 .add-review-chara-message {
   font-size: 75%;
 }
 .add-review-summary {
   grid-area: summary;
-  padding: 1em;
 }
 .add-review-body {
   grid-area: body;
-  padding: 1em;
 }
 .add-review-photos {
   grid-area: photos;
-  padding: 1em;
 }
 .add-review-username {
   grid-area: username;
-  padding: 1em;
 }
 .add-review-email {
   grid-area: email;
-  padding: 1em;
 }
 .add-review-submit {
   grid-area: submit;
@@ -538,15 +535,17 @@ select {
 .add-reviews-form {
   height: 80vh;
   width: auto;
-  padding: 2em;
+  margin: 0 5%;
   /* overflow: hidden; */
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 5%;
   grid-template-areas:
-    "star-rating summary charas"
-    "recommended body charas"
-    "username photos charas"
-    "email . submit";
+    "star-rating username"
+    "recommended email"
+    "charas summary"
+    "charas body"
+    "charas photos"
+    ". submit"
 }
 
 /* The Modal (background) */
