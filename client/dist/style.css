@@ -353,13 +353,19 @@ select {
   grid-row: 1; */
 }
 /* For Reviews Tile */
-.review-tile-header {
-  display: flex;
-  justify-content: space-between;
-}
+
 .reviews.flex-child-right {
   margin-right: 3%;
   display: flex;
+}
+.review-body, .review-tile-header, .review-recommend,
+.review-summary, .review-helpfulness {
+  /* width: 90%; */
+  margin: 5%;
+}
+.review-body-text {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .reviews-thumbnail {

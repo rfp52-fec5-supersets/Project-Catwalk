@@ -63,7 +63,7 @@ class ReviewTile extends React.Component {
     let practiceResponse = 'you suck';
     return (
       <div className='reviews-tile reviews-component'>
-        <div className='review-tile-header'>
+        <div className='review-tile-header flex-box flex-between'>
           <div className='reviews flex-child-left'>
             <StarsDisplay stars={review.rating} />
           </div>
@@ -85,7 +85,7 @@ class ReviewTile extends React.Component {
         </div>
         <ReviewTileBody body={review.body} photos={review.photos}/>
         {(review.recommend)
-        ? <p>
+        ? <p className = 'review-recommend'>
           <span className='reviews-checkmark'>
               &#10003;
           </span>
