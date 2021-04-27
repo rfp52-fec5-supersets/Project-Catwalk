@@ -228,9 +228,9 @@ class App extends React.Component {
     let rightIndex = this.state.rightIndex;
 
     return (
-      <div className="related-items row">
+      <div className="related-products">
         <div className="related-title">RELATED PRODUCTS</div>
-        <div className="related-products">
+        <div className="related-products-container">
           {productsToDisplay.slice(leftIndex, rightIndex)}
         </div>
         {rightIndex === this.state.relatedProducts.length ? <div>{null}</div> : rightButton}
