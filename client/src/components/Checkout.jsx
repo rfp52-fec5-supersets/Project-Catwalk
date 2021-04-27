@@ -26,6 +26,8 @@ class Checkout extends React.Component {
 
     if (this.props.currentStyleSkusObj[event.target.value]) {
       this.setState({sizeSelected: event.target.value, currentSizeQuantity: this.props.currentStyleSkusObj[event.target.value].quantity, pleaseSelectSize: false});
+      var dropdown = document.getElementById('size-selector');
+      dropdown.size = 0;
       console.log(this.state);
     }
   }
@@ -38,6 +40,9 @@ class Checkout extends React.Component {
   handleClick(event) {
     if (this.state.sizeSelected === false) {
       this.setState({pleaseSelectSize: true});
+
+      var dropdown = document.getElementById('size-selector');
+      dropdown.size = dropdown.options.length;
       return;
     }
 
@@ -86,7 +91,7 @@ class Checkout extends React.Component {
             Select size:
             {this.state.pleaseSelectSize && <div id = "please-select-size">Please select size!</div>}
             {this.props.currentStyleTotalQuantity > 0 ?
-            <select onChange = {this.handleSelectSize}>
+            <select id = "size-selector" onChange = {this.handleSelectSize}>
               <option value = "select-size" defaultValue>Select Size</option>
               {skusArray.map((sku, index) => {
                 return (<option value = {sku} key = {index}>{this.props.currentStyleSkusObj[sku].size}</option>);

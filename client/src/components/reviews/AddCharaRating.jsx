@@ -32,7 +32,7 @@ class AddStarRating extends React.Component {
       charaMessage = CharaMessages[chara][charaRating - 1];
     }
     for (let i = 1; i <= 5; i++) {
-      let button = <input key={i} type='radio' name={'chara-'+chara} value={i} id={'add-review-char-rating-'+i} checked={charaRating === i} required='required' onChange={this.handleClick}></input>;
+      let button = <input key={i} type='radio' name={'chara-'+chara} value={i} className={'add-review-char-rating-'+i} checked={charaRating === i} required='required' onChange={this.handleClick}></input>;
       choices.push(button);
     }
     return (

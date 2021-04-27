@@ -21,7 +21,7 @@ class ProductInfo extends React.Component {
         <div id = "price">
         {this.props.currentStyle.sale_price ? <div className = "original-price-strikethrough">{'$'+this.props.currentStyle.original_price}</div> : <div className = "original-price">{'$'+this.props.currentStyle.original_price}</div>} {this.props.currentStyle.sale_price && <div className = "sale-price">{'$'+this.props.currentStyle.sale_price}</div>}
         </div>
-        <div id = "rating"><StarsDisplay stars = {this.props.rating} key = {this.props.rating}/> <div id = "rating-number">{this.props.rating}  (<a href = "#reviews">{totalReviews}</a>)</div></div>
+        <div id = "rating"><StarsDisplay stars = {this.props.rating} key = {this.props.rating}/> <div id = "rating-number">{this.props.rating}  {totalReviews > 0 && <span>(<a href = "#reviews">{totalReviews}</a>)</span>}</div></div>
 
         <div id = "category"><b>Category:</b> {this.props.currentProduct.category}</div>
         {/* <div id = "product-info-2">
