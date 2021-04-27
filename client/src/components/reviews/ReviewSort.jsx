@@ -19,7 +19,7 @@ class ReviewSort extends React.Component {
         <form>
           <label>
             Sort On:
-            <select value={this.props.currentSort} onChange={this.props.handleChange}>
+            <select value={this.props.currentSort} onChange={this.props.handleChange} className='reviews-sort-input'>
               <option value="newest">newest</option>
               <option value="relevant">relevant</option>
               <option value="helpful">helpful</option>

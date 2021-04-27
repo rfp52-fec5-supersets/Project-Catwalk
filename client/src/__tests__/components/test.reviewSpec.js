@@ -5,11 +5,15 @@ import Reviews from '../../components/reviews/Reviews';
 import ReviewList from '../../components/reviews/ReviewList';
 import ReviewTile from '../../components/reviews/ReviewTile';
 import ReviewSort from '../../components/reviews/ReviewSort';
-import ReviewBreakdown from '../../components/reviews/ReviewBreakdown'
+// import ReviewBreakdown from '../../components/reviews/ReviewBreakdown';
+import RatingsBreakdown from '../../components/reviews/ReviewRatings';
+import ProductBreakdown from '../../components/reviews/ReviewProduct';
+import ReviewTileBody from '../../components/reviews/ReviewTileBody';
+import AddReviewForm from '../../components/reviews/AddReviewForm';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import StarsDisplay from '../../components/StarsDisplay';
-import {ReviewProps, ReviewState} from '../../dummyProps';
+import {ReviewProps, ReviewState, ReviewTileProps, ReviewRatingsProps, ReviewProductProps, ReviewAddFormProps} from '../../dummyProps';
 
 
 describe('Reviews Component loads when App loads', () => {
@@ -32,41 +36,102 @@ describe('Reviews List tests', () => {
     // may have to render or mount, not just do shallow copy.
     // Finally figured it out, need to set real state...
     let props = {reviews: [{review_id: 1},{review_id: 2},{review_id: 3}]};
-    let props2 = {reviews: [{review_id: 1},{review_id: 2}]};
     let wrapper = shallow(<ReviewList {...props}/>);
-    let wrapper2 = shallow(<ReviewList {...props2}/>);
     expect(wrapper.find(ReviewTile)).to.have.lengthOf(3);
-    expect(wrapper2.find(ReviewTile)).to.have.lengthOf(2);
   });
   test('Review-List: should render reviewList only if reviews are available', () => {
     let wrapper = mount(<Reviews {...ReviewProps}/>);
     expect(wrapper.find(ReviewList)).to.have.lengthOf(0);
     wrapper.setState(ReviewState);
     expect(wrapper.find(ReviewList)).to.have.lengthOf(1);
-    wrapper.unmount;
+    wrapper.unmount();
   })
 });
 describe('More Reviews Button tests', () => {
-  test('Review-Button: Should increase currentCount', ()=>{
+  test('Review-Button increase currentCount by two', ()=>{
     let wrapper = mount(<Reviews {...ReviewProps}/>);
     wrapper.setState(ReviewState);
-    expect(wrapper.find('#reviews-more')).to.have.lengthOf(1);
+    expect(wrapper.state('currentCount')).to.equal(2);
+    wrapper.find('#reviews-more').simulate('click');
+    expect(wrapper.state('currentCount')).to.equal(4);
+    wrapper.unmount();
   });
 });
 describe('Reviews Tile tests', () => {
-  test.todo('Review-Tile: Should contain expected items');
+  test('Review-Tile: Should render up to currentCount or up to reviews.length', ()=>{
+    let wrapper = mount(<Reviews {...ReviewProps}/>);
+    wrapper.setState(ReviewState);
+    expect(wrapper.find(ReviewTile)).to.have.lengthOf(2);
+    wrapper.find('#reviews-more').simulate('click');
+    let minArray = [wrapper.state('allReviews').length, wrapper.state('currentCount')];
+    let minNum = Math.min(...minArray);
+    expect(wrapper.find(ReviewTile)).to.have.lengthOf(minNum);
+    wrapper.unmount();
+  });
+  test('Review-Tile: Should contain expected items', ()=>{
+    let wrapper = mount(<ReviewTile {...ReviewTileProps} />);
+    expect(wrapper.find(StarsDisplay)).to.have.lengthOf(1);
+    expect(wrapper.find('.review-username')).to.have.lengthOf(1);
+    expect(wrapper.find('.review-date')).to.have.lengthOf(1);
+    expect(wrapper.find('.review-summary')).to.have.lengthOf(1);
+    expect(wrapper.find('.review-body-text')).to.have.lengthOf(1);
+    expect(wrapper.find('.review-images')).to.have.lengthOf(1);
+    expect(wrapper.find('.review-helpfulness')).to.have.lengthOf(1);
+    if (ReviewTileProps.review.recommend) {
+      expect(wrapper.find('.reviews-checkmark')).to.have.lengthOf(1);
+    }
+    if (ReviewTileProps.review.response) {
+      expect(wrapper.find('.review-response')).to.have.lengthOf(1);
+    }
+    wrapper.unmount();
+  });
 });
 describe('Reviews Sort tests', () => {
-  test.todo('Review-Sort: review-list should change when sort changes');
+  test('Review sort changes reviews state', ()=>{
+    let wrapper = mount(<Reviews {...ReviewProps}/>);
+    wrapper.setState(ReviewState);
+    expect(wrapper.state('sortType')).to.equal('relevant');
+    wrapper.find('.reviews-sort-input').simulate('change', {target: {value: 'newest'}});
+    expect(wrapper.state('sortType')).to.equal('newest');
+    wrapper.unmount();
+  });
 });
 describe('Ratings Breakdown tests', () => {
-  test.todo('Ratings-Breakdown: Should contain expected items');
+  test('Ratings-Breakdown: Should contain expected items', ()=>{
+    let wrapper = mount(<RatingsBreakdown {...ReviewRatingsProps}/>);
+    expect(wrapper.find(StarsDisplay)).to.have.lengthOf(1);
+    expect(wrapper.find('.total-reviews-count')).to.have.lengthOf(1);
+    expect(wrapper.find('.ratings-breakdown')).to.have.lengthOf(1);
+    expect(wrapper.find('.ratings-recommendation')).to.have.lengthOf(1);
+    expect(wrapper.find('.ratings-and-filter')).to.have.lengthOf(5);
+    wrapper.unmount();
+  });
 });
 describe('Product Breakdown tests', () => {
-  test.todo('Product-Breakdown: Should contain expected items');
+  test('Product-Breakdown: Should contain expected items', ()=>{
+    let wrapper = mount(<ProductBreakdown {...ReviewProductProps}/>);
+    let charaNum = Object.keys(ReviewProductProps.characteristics).length;
+    expect(wrapper.find('.product-characteristic')).to.have.lengthOf(charaNum);
+    expect(wrapper.find('.characteristic-pointer')).to.have.lengthOf(charaNum);
+    expect(wrapper.find('.characteristic-bar')).to.have.lengthOf(charaNum);
+    expect(wrapper.find('.characteristic-message')).to.have.lengthOf(charaNum);
+    wrapper.unmount();
+  });
 });
 describe('Add Review tests', () => {
-  test.todo('Add-Review: Should contain expected items');
+  test('Add-Review: Form should contain expected items', ()=>{
+    let wrapper = mount(<AddReviewForm {...ReviewAddFormProps}/>);
+    expect(wrapper.find('.add-star-rating')).to.have.lengthOf(1);
+    expect(wrapper.find('.recommended-form')).to.have.lengthOf(1);
+    expect(wrapper.find('.add-review-charas')).to.have.lengthOf(1);
+    expect(wrapper.find('.add-review-summary')).to.have.lengthOf(1);
+    expect(wrapper.find('.add-review-body')).to.have.lengthOf(1);
+    expect(wrapper.find('.add-review-photos')).to.have.lengthOf(1);
+    expect(wrapper.find('.add-review-username')).to.have.lengthOf(1);
+    expect(wrapper.find('.add-review-email')).to.have.lengthOf(1);
+    expect(wrapper.find('.add-review-submit')).to.have.lengthOf(1);
+    wrapper.unmount();
+  });
 });
 
 //testState corresponds to Camo Onesie, default style 0

@@ -116,4 +116,84 @@ const ReviewState = {
         "5": false
     }
 };
-export {ReviewProps, ReviewState};
+const ReviewTileProps = {
+    "review": {
+        "review_id": 348208,
+        "rating": 2,
+        "summary": "dd",
+        "recommend": true,
+        "response": null,
+        "body": "ccjshbcvvzbvxbbbcbbcbbcbcbbcbcbcbcbcbvcvvcbhzhcnzncvvc",
+        "date": "2021-04-27T00:00:00.000Z",
+        "reviewer_name": "dd",
+        "helpfulness": 0,
+        "photos": []
+    }
+}
+const ReviewRatingsProps = {
+    "filter": {
+        "1": false,
+        "2": false,
+        "3": false,
+        "4": false,
+        "5": false
+    },
+    "averageRating": "3.47",
+    "ratings": {
+        "1": "1",
+        "2": "2",
+        "3": "5",
+        "4": "3",
+        "5": "4"
+    },
+    "recommended": {
+        "false": "5",
+        "true": "10"
+    }
+}
+const ReviewProductProps = {
+    "characteristics": {
+        "Size": {
+            "id": 57235,
+            "value": "3.0833333333333333"
+        },
+        "Width": {
+            "id": 57236,
+            "value": "3.2727272727272727"
+        },
+        "Comfort": {
+            "id": 57237,
+            "value": "3.3636363636363636"
+        },
+        "Quality": {
+            "id": 57238,
+            "value": "3.5000000000000000"
+        }
+    }
+}
+const ReviewAddFormProps = {
+    "product": {
+        "id": 17071,
+        "campus": "hr-rfp",
+        "name": "Heir Force Ones",
+        "slogan": "A sneaker dynasty",
+        "description": "Now where da boxes where I keep mine? You should peep mine, maybe once or twice but never three times. I'm just a sneaker pro, I love Pumas and shell toes, but can't nothin compare to a fresh crispy white pearl",
+        "category": "Kicks",
+        "default_price": "99.00",
+        "created_at": "2021-02-23T04:22:44.728Z",
+        "updated_at": "2021-02-23T04:22:44.728Z"
+    },
+    "characteristics": [
+        "Size",
+        "Width",
+        "Comfort",
+        "Quality"
+    ],
+    "charaId": [
+        57235,
+        57236,
+        57237,
+        57238
+    ]
+}
+export {ReviewProps, ReviewState, ReviewTileProps, ReviewRatingsProps, ReviewProductProps, ReviewAddFormProps};

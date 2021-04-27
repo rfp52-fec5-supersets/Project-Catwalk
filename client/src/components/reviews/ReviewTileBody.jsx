@@ -33,7 +33,7 @@ class ReviewTileBody extends React.Component {
     });
     return (
         <div className='review-body'>
-          <div className='review-body text'>
+          <div className='review-body-text'>
             {(this.state.expanded || body.length < limit)
             ? body
             : body.slice(0, limit) + '...'}
