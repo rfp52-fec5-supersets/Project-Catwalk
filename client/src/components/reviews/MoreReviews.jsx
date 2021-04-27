@@ -7,11 +7,11 @@ class MoreReviews extends React.Component {
 
   render() {
     return (
-      <div id='reviews-more' className='reviews-component'>
-        <button onClick={this.props.handleClick}>
+      <>
+        <button id='reviews-more' className='reviews-component' onClick={this.props.handleClick}>
           More Reviews
         </button>
-      </div>
+      </>
     );
   }
 }

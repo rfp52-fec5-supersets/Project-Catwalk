@@ -153,7 +153,7 @@ class AddReviewForm extends React.Component {
           <div className='add-review-summary'>
             <label>Review Summary</label>
             <br />
-            <input name='summary' onChange={this.handleTextChange} type='text' placeholder='Example: Best purchase ever!' maxLength={60} value={this.state.summary}></input>
+            <input name='summary' onChange={this.handleTextChange} type='text' placeholder='Example: Best purchase ever!' maxLength={60} size={40} value={this.state.summary}></input>
           </div>
           <div className='add-review-body'>
             <label>Review Body</label>
