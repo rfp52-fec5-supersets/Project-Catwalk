@@ -17,7 +17,7 @@ class StyleSelectorIcon extends React.Component {
   render() {
     return (
       this.props.clicked ?
-      <span id = "style-thumbnail-clicked-container"><img className = "style-thumbnail-clicked" id = {'ss-thumbnail-'+this.props.index} src = {this.props.style.photos[0].thumbnail_url} onClick = {this.handleClick} name = {this.props.index}></img><div class="check"></div></span>  : <img className = "style-thumbnail" id = {'ss-thumbnail-'+this.props.index} src = {this.props.style.photos[0].thumbnail_url} onClick = {this.handleClick} name = {this.props.index}></img>
+      <span id = "style-thumbnail-clicked-container"><img className = "style-thumbnail-clicked" id = {'ss-thumbnail-'+this.props.index} src = {this.props.style.photos[0].thumbnail_url} onClick = {this.handleClick} name = {this.props.index}></img><div className="check"></div></span>  : <img className = "style-thumbnail" id = {'ss-thumbnail-'+this.props.index} src = {this.props.style.photos[0].thumbnail_url} onClick = {this.handleClick} name = {this.props.index}></img>
     )
   }
 }
