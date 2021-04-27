@@ -9,7 +9,7 @@
     "test:coverage": "jest --verbose --coverage",
     "react-dev": "webpack --watch",
     "dev": "live-server ./client/dist",
-    "dev-server": "nodemon server.js"
+    "dev-server": "nodemon ./server/server.js"
   },
   "repository": {
     "type": "git",
