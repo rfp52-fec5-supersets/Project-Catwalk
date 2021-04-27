@@ -4,13 +4,16 @@ import App from '../../App';
 import Overview from '../../components/Overview';
 import RelatedProducts from '../../components/RelatedItems/RelatedProducts';
 import MyOutfit from '../../components/RelatedItems/MyOutfit';
-import QuestionsList from '../../components/QuestionsList';
+import QuestionsList from '../../components/questions/QuestionsList';
 import Reviews from '../../components/reviews/Reviews';
+import ReviewList from '../../components/reviews/ReviewList';
+import ReviewSort from '../../components/reviews/ReviewSort';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import StarsDisplay from '../../components/StarsDisplay';
 import Gallery from '../../components/Gallery';
 import Checkout from '../../components/Checkout';
+import {ReviewProps} from '../../dummyProps';
 
 describe('App Component', () => {
   test('Renders App Component', () => {
@@ -271,38 +274,6 @@ describe('MyOutfit Component', () => {
     expect(wrapper.exists()).to.equal(true);
 
   });
-});
-
-describe('Reviews Component loads when App loads', () => {
-  test('Renders Reviews Component', () => {
-    let wrapper = mount(
-      <App />,
-    );
-    wrapper.setState(testState);
-    expect(wrapper.exists()).to.equal(true);
-    // console.log(wrapper.find('.reviews'));
-    expect(wrapper.find('#reviews')).to.have.lengthOf(1);
-    wrapper.unmount();
-  });
-
-  test('Review-List: should not exist when no reviews, should exist when reviews', () => {
-    // when mounting App, reviews-list and reviews-more doesn't load
-    // maybe because review-tile has multiple same id?
-    // may have to render or mount, not just do shallow copy.
-    let wrapper = shallow(<Reviews />);
-    wrapper.setState({
-      allReviews:['1','2','3'],
-      currentReviews: ['1','2','3'],
-      currentCount: 2
-    });
-    // expect(wrapper.find('#reviews-list')).to.have.lengthOf(1);
-    wrapper.unmount();
-  });
-  test.todo('Review-Tile: Should contain expected items');
-  test.todo('Review-Sort: review-list should change when sort changes');
-  test.todo('Ratings-Breakdown: Should contain expected items');
-  test.todo('Product-Breakdown: Should contain expected items');
-  test.todo('Add-Review: Should contain expected items');
 });
 
 describe('QuestionsList Component', () => {
