@@ -317,6 +317,8 @@ select {
 /* For Overall Reviews Grid */
 #reviews-add {
   grid-area: reviews-add;
+  width: 70%;
+  justify-self: center;
 }
 #reviews-breakdown {
   grid-area: reviews-breakdown;
@@ -329,6 +331,8 @@ select {
 }
 #reviews-more {
   grid-area: reviews-more;
+  width: 70%;
+  justify-self: center;
 }
 #reviews-list {
   grid-area: reviews-list;
@@ -338,6 +342,7 @@ select {
   padding-left: 5%;
   padding-right: 5%;
   border-right: 100px;
+  justify-self: center;
 }
 .reviews-tile {
   border-bottom: 2px solid black;
@@ -348,7 +353,7 @@ select {
 }
 #reviews-sort {
   grid-area: reviews-sort;
-  padding: 3% 5%;
+  margin: 3% 10%;
   /* grid-column: 2;
   grid-row: 1; */
 }
