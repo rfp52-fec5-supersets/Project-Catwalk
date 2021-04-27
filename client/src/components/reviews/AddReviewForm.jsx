@@ -132,8 +132,6 @@ class AddReviewForm extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-    console.log(this.state);
     return (
       <div className='add-review-modal-content'>
         <h2>Write Your Review</h2>
