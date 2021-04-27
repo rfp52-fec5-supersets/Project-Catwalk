@@ -342,6 +342,7 @@ select {
 }
 .reviews-tile {
   border-bottom: 2px solid black;
+
 }
 .reviews-tile:first-of-type {
   border-top: 2px solid black;
@@ -361,9 +362,9 @@ select {
 .review-body, .review-tile-header, .review-recommend,
 .review-summary, .review-helpfulness {
   /* width: 90%; */
-  margin: 5%;
+  margin: 1% 5%;
 }
-.review-body-text {
+.review-body-text, .review-summary {
   word-wrap: break-word;
   overflow-wrap: break-word;
 }

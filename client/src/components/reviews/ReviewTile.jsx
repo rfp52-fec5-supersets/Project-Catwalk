@@ -79,9 +79,9 @@ class ReviewTile extends React.Component {
         <div className='review-summary'>
           {/* Unsure if need to ensure title is 60 chars or less */}
           {/* Also unsure if want to implement line break wraps like in the example */}
-          <h4>
+          <span>
             <b>{review.summary}</b>
-          </h4>
+          </span>
         </div>
         <ReviewTileBody body={review.body} photos={review.photos}/>
         {(review.recommend)
