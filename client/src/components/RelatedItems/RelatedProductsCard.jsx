@@ -33,39 +33,39 @@ class RelatedProductsCard extends React.Component {
     // } else if (this.props.item && this.props.item.data.sale_price === null) {
     //   price = this.props.item.data.original_price;
     // }
+    let starButton = <a className="star-button" onClick={this.toggleModal}>{wholeStar}</a>
+
+    let productCard =
+      <div className="related-products-card" onClick={this.props.handleCardClick}>
+        <img className="product-photo" className="hover-shadow cursor" src={this.props.relatedImage} alt="IMAGE NOT FOUND"></img>
+        <div className="card-info">
+          <div>{this.props.relatedProduct.category}</div>
+          <div className="card-info-name">{this.props.relatedProduct.name}</div>
+          <div>{'$' + this.props.relatedProduct.default_price}</div>
+          <div>
+            <StarsDisplay
+              stars={this.props.relatedRating}
+              key={this.props.relatedRating} />
+          </div>
+        </div>
+      </div >
+
+    let comparisonModal =
+      <div className="comparison-modal">
+        <ComparisonModal
+          renderModal={this.state.renderModal}
+          onClose={this.toggleModal}
+          currentProduct={this.props.currentProduct}
+          relatedProduct={this.props.relatedProduct}
+          currentFeatures={this.props.currentFeatures} />
+      </div>
 
     return (
-      <div>
-
-<<<<<<< HEAD
-        <a className="star-button" onClick={this.toggleModal}>{wholeStar}</a>
-=======
-          <a className="star-button" onClick={this.toggleModal}>{wholeStar}</a>
->>>>>>> 4353dcc7b42882f67c6aba6158f598f98b8dd0db
-        <div className="related-products-card" onClick={this.props.handleCardClick}>
-          <img className="hover-shadow cursor" src={this.props.relatedImage} alt="IMAGE NOT FOUND"></img>
-          <div className="card-info">
-            <div>{this.props.relatedProduct.category}</div>
-            <div className="card-info-name">{this.props.relatedProduct.name}</div>
-            <div>{'$' + this.props.relatedProduct.default_price}</div>
-            <div>
-              <StarsDisplay
-                stars={this.props.relatedRating}
-                key={this.props.relatedRating} />
-            </div>
-          </div>
-        </div >
-
-        <div className="comparison-modal">
-          <ComparisonModal
-            renderModal={this.state.renderModal}
-            onClose={this.toggleModal}
-            currentProduct={this.props.currentProduct}
-            relatedProduct={this.props.relatedProduct}
-            currentFeatures={this.props.currentFeatures} />
-        </div>
-
-      </div>
+      <>
+        {starButton}
+        {productCard}
+        {comparisonModal}
+      </>
     )
   }
 }

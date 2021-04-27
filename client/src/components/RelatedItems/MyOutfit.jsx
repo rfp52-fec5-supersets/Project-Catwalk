@@ -75,30 +75,38 @@ class MyOutfit extends React.Component {
     let rightIndex = this.state.rightIndex;
     let leftButton = <a className="left-outfit-button" onClick={this.handleOutfitScroll}>&#10094;</a>
     let rightButton = <a className="right-outfit-button" onClick={this.handleOutfitScroll}>&#10095;</a>
+    let addButton = <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> + </a>
+
+    let outfitsButton =
+      <div className="outfits-container">
+        <div className="outfits-card-button" >
+          {addButton}
+        </div>
+      </div>
+
+    let outfitsCard =
+      <div className="outfits-container">
+        <div className="outfits-card" >
+          {addButton}
+        </div >
+        {outfitsToDisplay.slice(leftIndex, rightIndex)}
+      </div>
+
 
     if (this.state.outfits.length === 0) {
       return (
         <div className="outfit">
-          <div className="related-title">YOUR OUTFIT</div>
-          <div className="outfits-container">
-            <div className="outfits-card-button" >
-              <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-            </div>
-          </div>
+          <>YOUR OUTFIT</>
+          {outfitsButton}
         </div>
       )
     } else {
       return (
         <div className="outfit">
-          <div className="related-title">YOUR OUTFIT</div>
-          <div className="outfits-container">
-            <div className="outfits-card" >
-              <a className="add-button" onClick={() => this.addToOutfit(this.props.currentProduct, this.props.averageRating, this.props.currentStylePhotos[0].thumbnail_url)}> Add Outfit+ </a>
-            </div >
-            {outfitsToDisplay.slice(leftIndex, rightIndex)}
-          </div>
-          {rightIndex >= this.state.outfits.length ? <div>{null}</div> : rightButton}
-          {leftIndex === 0 ? <div>{null}</div> : leftButton}
+          <>YOUR OUTFIT</>
+          {outfitsCard}
+          {rightIndex >= this.state.outfits.length ? <>{null}</> : rightButton}
+          {leftIndex === 0 ? <>{null}</> : leftButton}
         </div>
       )
     }
