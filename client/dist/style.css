@@ -453,6 +453,7 @@ textarea {
   font-size: 80%;
 }
 
+
 #reviews.reviews {
   /* overflow: hidden; */
   grid-template-columns: 40% 1fr 1fr;
