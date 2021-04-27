@@ -335,7 +335,7 @@ select {
   grid-area: reviews-list;
   /* overflow-y: auto;
   overflow-x: hidden; */
-  width: 90%;
+  width: 80%;
   padding-left: 5%;
   padding-right: 5%;
   border-right: 100px;
@@ -348,6 +348,7 @@ select {
 }
 #reviews-sort {
   grid-area: reviews-sort;
+  padding: 1em;
   /* grid-column: 2;
   grid-row: 1; */
 }
@@ -362,7 +363,7 @@ select {
 }
 
 .reviews-thumbnail {
-  height: 10vw;
+  height: 5vw;
   width: auto;
   border-radius: 50%;
 }
@@ -441,9 +442,9 @@ select {
 #reviews.reviews {
   /* overflow: hidden; */
   grid-template-columns: 40% 1fr 1fr;
-  grid-template-rows: 3% auto 50px;
+  grid-template-rows: 5% auto 50px;
   grid-template-areas:
-    ". reviews-sort ."
+    "reviews-breakdown reviews-sort reviews-sort"
     "reviews-breakdown reviews-list reviews-list"
     ". reviews-more reviews-add";
 }
