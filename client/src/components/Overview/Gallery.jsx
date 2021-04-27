@@ -1,6 +1,6 @@
 import React from 'react';
 import GalleryThumbnail from './GalleryThumbnail';
-import ModalImage from './reviews/ModalImage';
+import ModalImage from '../reviews/ModalImage';
 
 class Gallery extends React.Component {
   constructor(props) {
