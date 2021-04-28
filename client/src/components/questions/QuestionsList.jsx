@@ -11,6 +11,8 @@ class QuestionsList extends React.Component {
       questions: [],
       loadMoreQuestions: 'no',
       loadMoreAnswers: 'no',
+      search: 'no',
+      keywords: '',
       sliceIndex: 2
     };
   }
@@ -54,18 +56,31 @@ class QuestionsList extends React.Component {
     }
   }
 
+  onChangeSearch(event) {
+    this.setState({keywords: event.target.value})
+  }
+
+
   render() {
     let { questions } = this.state;
     questions = questions.slice(0, this.state.sliceIndex)
     questions.sort((a, b) => a.question_helpfulness < b.question_helpfulness)
 
+    if (this.state.keywords.length > 3) {
+      for (let question of questions) {
+        if (question.question_body.toLowerCase().includes(this.state.keywords.toLowerCase())) {
+          placeholder.push(question)
+        }
+      }
+      questions = placeholder
+    }
     const question = questions.map((question) => (
       <Question key={question.question_id} question={question}/>
     ));
     return (
-      <div>
+      <div className="questionsList blueBorder">
         <h1>QuestionsList</h1>
-        <QuestionSearchAnswer />
+        <QuestionSearchAnswer search={this.onChangeSearch.bind(this)}/>
         {question}
         {this.loadMoreQuestionsRender()}
         <QuestionAdd productID={this.props.productID} productName={this.props.productName}/>

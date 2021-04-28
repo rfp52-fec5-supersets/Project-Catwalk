@@ -12,7 +12,7 @@ class QuestionAnswer extends React.Component {
   render() {
     const {answer} = this.props;
     return (
-      <div className="answers">
+      <div className="answer">
       <p>
         {answer.body}
       </p>

@@ -455,6 +455,22 @@ select {
     ". . .";
 }
 
+
+.questionsList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F5F5F5;
+  border-radius: 0.5em;
+  margin: auto;
+  width: 50%;
+  padding-bottom: 1em
+}
+
+.questionsList h1 {
+  color: #1565c0
+}
+
 .questionAnswer {
   display: flex;
   align-items: baseline;
@@ -463,15 +479,25 @@ select {
 
 .answerColumn {
   margin-left: 15px;
-  height: auto
+  height: auto;
+  margin-top: 0.5em;
+}
+
+.blueBorder {
+  /* border-radius: .0px; */
+  border-style: solid;
+  border-color: #1565c0;
+  border-radius: 5px;
+  border-width: 2px
 }
 
 .questionHeader {
-  margin: 2px
+  margin: 2px;
 }
 
-.questionList {
-  padding-top: 3.5em;
+.questionColumn {
+  display: grid;
+  grid-template-columns: auto auto 50px;
 }
 
 .userHelpfulness {

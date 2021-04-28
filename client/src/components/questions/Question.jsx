@@ -2,12 +2,13 @@ import React from 'react';
 import QuestionAnswer from './QuestionAnswer.jsx';
 import QuestionHelpfulness from './QuestionHelpfulness.jsx';
 import QuestionAnswerAdd from './QuestionAnswerAdd.jsx';
+import QuestionSearchAnswer from './QuestionSearchAnswer.jsx'
 
 class Question extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadMoreAnswers: 'no'
+      loadMoreAnswers: 'no',
     }
   }
 
@@ -38,8 +39,8 @@ class Question extends React.Component {
       <QuestionAnswer key={answer.id} answer={answer}/>
     )
     return (
-      <div className="questionList">
-        <div className="questionBody">
+      <div className="question">
+        <div className="questionBody questionColumn">
         <h1 className="questionHeader">Q: {question.question_body}</h1>
         <QuestionHelpfulness id={question.question_id} helpfulness={question.question_helpfulness}/>
         <QuestionAnswerAdd id={question.question_id}/>
@@ -48,8 +49,8 @@ class Question extends React.Component {
         <h1 className="questionHeader">A:</h1>
         <div className="answerColumn">
         {answers}
-        {this.loadMoreAnswersRender()}
         </div>
+        {this.loadMoreAnswersRender()}
         </div>
       </div>
     )
