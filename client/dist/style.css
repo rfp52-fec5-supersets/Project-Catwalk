@@ -24,7 +24,7 @@
   grid-column-end: span 1;
 
   display: grid;
-  grid-template-columns: 45px 75px 1fr;
+  grid-template-columns: 45px 75px 10fr 1fr;
   grid-template-rows: 100%;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .main-image-container {
-  width: 860px;
+  width: 820px;
   display: flex;
   justify-content: center;
 }
@@ -43,8 +43,8 @@
   align-items: center;
   justify-content: space-between;
   grid-column: 3 / span 1;
-    /* position: absolute; */
-  left: 100px;
+  /* position: absolute; */
+  /* left: 100px; */
 }
 
 #main-image-expanded-window {
@@ -333,6 +333,7 @@
 
 select {
   margin-left: 4px;
+  margin-right: 0px;
 }
 
 .add-to-cart {
