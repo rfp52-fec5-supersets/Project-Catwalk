@@ -136,7 +136,8 @@ class AddReviewForm extends React.Component {
       })
       .then(()=>{
         alert('submitted!');
-        // should try to reset page to show review.
+        // closes the add review form page, should try to rerender with new review.
+        this.props.handleClose();
       })
       .catch((err)=>{
         console.log(err);
