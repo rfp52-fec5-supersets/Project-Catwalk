@@ -153,7 +153,7 @@ class AddReviewForm extends React.Component {
           <div className='add-review-summary'>
             <label>Review Summary</label>
             <br />
-            <input name='summary' onChange={this.handleTextChange} type='text' placeholder='Example: Best purchase ever!' maxLength={60} value={this.state.summary}></input>
+            <input name='summary' onChange={this.handleTextChange} type='text' placeholder='Example: Best purchase ever!' maxLength={60} size={40} value={this.state.summary}></input>
           </div>
           <div className='add-review-body'>
             <label>Review Body</label>
@@ -176,17 +176,17 @@ class AddReviewForm extends React.Component {
             </div>
           </div>
           <div className='add-review-username'>
-            <label>Review Nickname</label>
-            <input name='name' onChange={this.handleTextChange} type='text' placeholder='Example: jackson11!' maxLength={60} value={this.state.name} required='required'></input>
+            <label>Review Nickname</label><br />
+            <input name='name' size={40} onChange={this.handleTextChange} type='text' placeholder='Example: jackson11!' maxLength={60} value={this.state.name} required='required'></input>
             <div>For privacy reason, do not use your full name or email address</div>
           </div>
           <div className='add-review-email'>
-            <label>Review Email</label>
-            <input name='email' onChange={this.handleTextChange} type='email' placeholder='Example: jackson11@email.com' maxLength={60} value={this.state.email} required='required'></input>
+            <label>Review Email</label><br />
+            <input name='email' size={40} onChange={this.handleTextChange} type='email' placeholder='Example: jackson11@email.com' maxLength={60} value={this.state.email} required='required'></input>
             <div>For authentication reasons, you will not be emailed</div>
           </div>
-          <div className='add-review-submit'>
-            <input type='submit' value='Submit' />
+          <div className='add-review-submit flex-box flex-center'>
+            <input type='submit' value='Submit'/>
           </div>
         </form>
       </div>

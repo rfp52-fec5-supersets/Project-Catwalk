@@ -78,7 +78,7 @@ class QuestionsList extends React.Component {
       <Question key={question.question_id} question={question}/>
     ));
     return (
-      <div className="questionsList blueBorder">
+      <div className = 'questions-and-answers questionsList blueBorder"'>
         <h1>QuestionsList</h1>
         <QuestionSearchAnswer search={this.onChangeSearch.bind(this)}/>
         {question}

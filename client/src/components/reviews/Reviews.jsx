@@ -79,8 +79,18 @@ class Reviews extends React.Component {
       let toggle = !this.state.filter[rating];
       let filter = this.state.filter;
       filter[rating] = toggle;
+      //
+      // let filterObj = this.state.filter;
+      // let filterKeys = Object.keys(filter).filter((star)=> filter[star]);
+      // filterKeys = filterKeys.map((item)=> parseInt(item));
+      // if (filterKeys.length === 0) {
+      //   filterKeys = [1,2,3,4,5];
+      // }
+      // let currentReviews = this.state.allReviews.filter((review) => filterKeys.includes(review.rating));
+      //
       this.setState({
         filter: filter
+        // currentReviews: currentReviews
       });
     } else {
       this.setState({
@@ -90,6 +100,7 @@ class Reviews extends React.Component {
   }
 
   render() {
+    // console.log(this.props);
     let reviewsClass;
     if (this.state.allReviews.slice(0, this.state.currentCount).length === 0) {
       reviewsClass = 'grid-container no-reviews';

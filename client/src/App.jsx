@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import API_KEY from './config.js';
 import Reviews from './components/reviews/Reviews.jsx';
-import Overview from './components/Overview.jsx'
+import Overview from './components/Overview/Overview.jsx'
 import QuestionsList from './components/questions/QuestionsList.jsx'
 import RelatedProducts from './components/RelatedItems/RelatedProducts.jsx';
 import MyOutfit from './components/RelatedItems/MyOutfit.jsx';
@@ -145,7 +145,6 @@ class App extends React.Component {
         this.setState({
           relatedProducts: relatedProducts
         })
-        // console.log(relatedProducts);
       })
       .catch(err => {
         console.log(err.message);
@@ -154,8 +153,6 @@ class App extends React.Component {
 
 
   handleCardClick(product) {
-    //RERENDER WITH SELECTED PRODUCT
-    event.preventDefault();
     console.log('product card clicked', product);
     this.setState({
       currentProduct: product,
@@ -213,7 +210,6 @@ class App extends React.Component {
   }
 
   relatedProductsRender() {
-    // let productsToDisplay = this.state.relatedProducts.slice(this.state.startIndex, this.state.endIndex);
     let productsToDisplay = this.state.relatedProducts.map(product => {
       return <RelatedProducts
         relatedProduct={product}
@@ -222,28 +218,28 @@ class App extends React.Component {
         currentFeatures={this.state.currentProductFeatures} />
     })
 
-    let leftButton = <a className="left-button" onClick={this.handleProductScroll}>&#10094;</a>
-    let rightButton = <a className="right-button" onClick={this.handleProductScroll}>&#10095;</a>
     let leftIndex = this.state.leftIndex;
     let rightIndex = this.state.rightIndex;
+    let leftButton = <a className="left-button" onClick={this.handleProductScroll}>&#10094;</a>
+    let rightButton = <a className="right-button" onClick={this.handleProductScroll}>&#10095;</a>
 
     return (
-      <div className="related-items row">
-        <div className="related-title">RELATED PRODUCTS</div>
-        <div className="related-products">
+      <div className="related-products">
+        <>RELATED PRODUCTS</>
+        <div className="related-products-container">
           {productsToDisplay.slice(leftIndex, rightIndex)}
         </div>
-        {rightIndex === this.state.relatedProducts.length ? <div>{null}</div> : rightButton}
-        {leftIndex === 0 ? <div>{null}</div> : leftButton}
+        {rightIndex === this.state.relatedProducts.length ? <>{null}</> : rightButton}
+        {leftIndex === 0 ? <>{null}</> : leftButton}
       </div>
     )
   }
 
   render() {
-    console.log(this.state.currentProductId)
+    // console.log(this.state.currentProductId)
     return (
       <>
-        <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} currentProductFeatures = {this.state.currentProductFeatures} reviewMeta = {this.state.reviewMeta}/>
+        <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} currentProductFeatures={this.state.currentProductFeatures} reviewMeta={this.state.reviewMeta} />
         {this.relatedProductsRender()}
         <MyOutfit currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} averageRating={this.state.averageRating} currentStylePhotos={this.state.currentStylePhotos} />
         <Reviews product={this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating} ratings={this.state.ratings} />

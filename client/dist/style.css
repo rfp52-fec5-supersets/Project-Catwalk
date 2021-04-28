@@ -1,7 +1,11 @@
+#app{
+  font-family:Arial, Helvetica, sans-serif
+}
+
 #overview {
   display: grid;
   grid-template-columns: 1050px 400px;
-  grid-template-rows: 25% 35% 17% 18%;
+  grid-template-rows: 25% 275px 250px 18%;
 }
 
 .gallery {
@@ -245,6 +249,24 @@
 }
 
 /* Style Selector */
+:root {
+  --borderWidth: 3px;
+  --height: 12px;
+  --width: 6px;
+  --borderColor: #78b13f;
+}
+
+.check {
+  left: 30px;
+  transform: rotate(45deg);
+  height: var(--height);
+  width: var(--width);
+  border-bottom: var(--borderWidth) solid var(--borderColor);
+  border-right: var(--borderWidth) solid var(--borderColor);
+  grid-column: 8/span 1;
+  grid-row: 7/span 1;
+}
+
 .style-selector {
   grid-column-start: 2;
   grid-row-start: 2;
@@ -253,10 +275,23 @@
   width: 300px;
 }
 
+#style-selector-icons {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+}
+
 .style-thumbnail {
   height: 70px;
   width: 70px;
   border-radius: 50%;
+}
+#style-thumbnail-clicked-container {
+  height: 75px;
+  width: 75px;
+  display: grid;
+  grid-template-columns: repeat(10, 10%);
+  grid-template-rows: repeat(10, 10%);
 }
 
 .style-thumbnail-clicked {
@@ -276,9 +311,10 @@
   grid-row-start: 3;
 }
 .checkout-form {
-  width: 310px;
-  display: flex;
-  flex-wrap: wrap;
+  width: 320px;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  grid-template-rows: 40px 40px;
   justify-content: space-between;
   align-items: center;
   /* grid-column-start: 2; */
@@ -289,13 +325,15 @@ select {
 }
 
 .add-to-cart {
+  grid-column: 2/span 1;
+  grid-row: 2/span 1;
   border-radius: 4px;
   margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: gold;
-  width: 200px;
+  width: 130px;
   height: 25px;
   text-align: center;
 }
@@ -315,9 +353,10 @@ select {
 
 /* REVIEWS AND RATINGS CSS */
 /* For Overall Reviews Grid */
-
 #reviews-add {
   grid-area: reviews-add;
+  width: 70%;
+  justify-self: center;
 }
 #reviews-breakdown {
   grid-area: reviews-breakdown;
@@ -325,43 +364,55 @@ select {
   grid-row: 1 / 4; */
   /* overflow-y is here temporarily */
   overflow-y: auto;
-  padding: 3%;
-  border: 1px solid steelblue;
+  padding: 5%;
+  width: 90%;
 }
 #reviews-more {
   grid-area: reviews-more;
+  width: 70%;
+  justify-self: center;
 }
 #reviews-list {
   grid-area: reviews-list;
-  overflow-y: auto;
-  overflow-x: hidden;
-  width: 100%;
+  /* overflow-y: auto;
+  overflow-x: hidden; */
+  width: 80%;
+  padding-left: 5%;
+  padding-right: 5%;
   border-right: 100px;
-  border-top: 1px solid steelblue;
-  border-right: 1px solid steelblue;
-  border-bottom: 1px solid steelblue;
+  justify-self: center;
 }
-#reviews-tile {
+.reviews-tile {
   border-bottom: 2px solid black;
-  padding: 3%;
+
+}
+.reviews-tile:first-of-type {
+  border-top: 2px solid black;
 }
 #reviews-sort {
   grid-area: reviews-sort;
+  margin: 3% 10%;
   /* grid-column: 2;
   grid-row: 1; */
 }
 /* For Reviews Tile */
-.review-tile-header {
-  display: flex;
-  justify-content: space-between;
-}
+
 .reviews.flex-child-right {
   margin-right: 3%;
   display: flex;
 }
+.review-body, .review-tile-header, .review-recommend,
+.review-summary, .review-helpfulness {
+  /* width: 90%; */
+  margin: 1% 5%;
+}
+.review-body-text, .review-summary {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
 
 .reviews-thumbnail {
-  height: 10vw;
+  height: 5vw;
   width: auto;
   border-radius: 50%;
 }
@@ -427,25 +478,30 @@ select {
   font-size: 80%;
   justify-content: space-between;
 }
-
+textarea {
+  font-family: Arial, Helvetica, sans-serif;
+}
 /* For Overall Reviews Grid */
-#reviews.reviews {
+#reviews {
   /* vh = viewport height */
-  height: 80vh;
+  /* height: 80vh; */
   width: auto;
   padding: 2em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 80%;
+}
+
+
+#reviews.reviews {
   /* overflow: hidden; */
   grid-template-columns: 40% 1fr 1fr;
-  grid-template-rows: 3% auto 50px;
+  grid-template-rows: 5% auto 50px;
   grid-template-areas:
-    ". reviews-sort ."
+    "reviews-breakdown reviews-sort reviews-sort"
     "reviews-breakdown reviews-list reviews-list"
     ". reviews-more reviews-add";
 }
 #reviews.no-reviews {
-  height: 80vh;
-  width: auto;
-  padding: 2em;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 50px 25% auto 50px;
   grid-template-areas:
@@ -504,37 +560,44 @@ select {
   display: grid;
   /* flex-direction: column; */
   grid-template-columns: auto auto auto;
+}
+
 .add-star-rating {
   grid-area: star-rating;
-  padding: 1em;
 }
 .recommended-form {
   grid-area: recommended;
-  padding: 1em;
 }
 .add-review-charas {
   grid-area: charas;
-  padding: 1em;
+}
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+.flex-between {
+  justify-content: space-between;
+}
+.flex-around {
+  justify-content: space-around;
+}
+.add-review-chara-message {
+  font-size: 75%;
 }
 .add-review-summary {
   grid-area: summary;
-  padding: 1em;
 }
 .add-review-body {
   grid-area: body;
-  padding: 1em;
 }
 .add-review-photos {
   grid-area: photos;
-  padding: 1em;
 }
 .add-review-username {
   grid-area: username;
-  padding: 1em;
 }
 .add-review-email {
   grid-area: email;
-  padding: 1em;
 }
 .add-review-submit {
   grid-area: submit;
@@ -542,19 +605,20 @@ select {
 .add-reviews-form {
   height: 80vh;
   width: auto;
-  padding: 2em;
+  margin: 0 5%;
   /* overflow: hidden; */
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 5%;
   grid-template-areas:
-    "star-rating summary charas"
-    "recommended body charas"
-    "username photos charas"
-    "email . submit";
+    "star-rating username"
+    "recommended email"
+    "charas summary"
+    "charas body"
+    "charas photos"
+    ". submit"
 }
 
 /* The Modal (background) */
-}
 .modal-overlay {
   /* display: none; Hidden by default */
   /* display will always show. The react state will take care of the display
@@ -595,8 +659,8 @@ select {
 }
 
 
-/* RELATED PRODUCTS */
-.related-products,
+/* RELATED PRODUCTS AND MY OUTFIT */
+.related-products-container,
 .outfits-container {
   display:grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -621,12 +685,9 @@ select {
 }
 .card-info {
   margin: 5px;
-  font-family: Arial, Helvetica, sans-serif;
 }
 .card-info-name {
-  font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-
 }
 .cursor {
   cursor: pointer;
@@ -635,6 +696,10 @@ img.hover-shadow {
   transition: 0.1s;
   height: 300px;
   width: 100%;
+  height: 300px;
+}
+.product-photo {
+  height: 300px
 }
 .hover-shadow:hover {
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
@@ -674,8 +739,9 @@ img.hover-shadow {
 .star-button {
   margin-top: 15px;
   margin-left: 300px;
-  position: absolute;
+  position: fixed;
   cursor: pointer;
+  float: left;
 }
 .x-button {
   padding: 12px;
@@ -687,19 +753,16 @@ img.hover-shadow {
   font-size: 30px;
 }
 .x-button:hover {
-  color:cornflowerblue
+  color:lightseagreen
 }
 .add-button {
-  margin-top: 180px;
-  margin-left: 100px;
+  margin-top: 140px;
+  margin-left: 140px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 100px;
   position: absolute;
   cursor: pointer;
   color: black;
-  }
-  .related-title{
-    font-family: Arial, Helvetica, sans-serif;
   }
 
 
@@ -716,14 +779,13 @@ img.hover-shadow {
   }
   .comparison-product {
     text-align: center;
+    font-weight: bold;
   }
   .comparison-title {
     text-align: center;
+    font-weight: bold;
   }
   .left-column, .middle-column, .right-column {
     text-align: center;
     line-height: 25px;
-  }
-  .comparison-product {
-    font-family:Arial, Helvetica, sans-serif;
   }
