@@ -488,7 +488,7 @@ textarea {
   width: auto;
   padding: 2em;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 80%;
+  /* font-size: 80%; */
 }
 
 
@@ -556,7 +556,7 @@ textarea {
   justify-content: space-around;
 }
 .add-review-chara-message {
-  font-size: 75%;
+  font-size: 80%;
 }
 .add-review-summary {
   grid-area: summary;
