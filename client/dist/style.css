@@ -1,3 +1,7 @@
+#app{
+  font-family:Arial, Helvetica, sans-serif
+}
+
 #overview {
   display: grid;
   grid-template-columns: 1050px 400px;
@@ -577,7 +581,6 @@ select {
 }
 
 /* The Modal (background) */
-
 .modal-overlay {
   /* display: none; Hidden by default */
   /* display will always show. The react state will take care of the display
@@ -618,8 +621,8 @@ select {
 }
 
 
-/* RELATED PRODUCTS */
-.related-products,
+/* RELATED PRODUCTS AND MY OUTFIT */
+.related-products-container,
 .outfits-container {
   display:grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -644,12 +647,9 @@ select {
 }
 .card-info {
   margin: 5px;
-  font-family: Arial, Helvetica, sans-serif;
 }
 .card-info-name {
-  font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-
 }
 .cursor {
   cursor: pointer;
@@ -658,6 +658,10 @@ img.hover-shadow {
   transition: 0.1s;
   height: 300px;
   width: 100%;
+  height: 300px;
+}
+.product-photo {
+  height: 300px
 }
 .hover-shadow:hover {
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
@@ -697,8 +701,9 @@ img.hover-shadow {
 .star-button {
   margin-top: 15px;
   margin-left: 300px;
-  position: absolute;
+  position: fixed;
   cursor: pointer;
+  float: left;
 }
 .x-button {
   padding: 12px;
@@ -710,19 +715,16 @@ img.hover-shadow {
   font-size: 30px;
 }
 .x-button:hover {
-  color:cornflowerblue
+  color:lightseagreen
 }
 .add-button {
-  margin-top: 180px;
-  margin-left: 100px;
+  margin-top: 140px;
+  margin-left: 140px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 100px;
   position: absolute;
   cursor: pointer;
   color: black;
-  }
-  .related-title{
-    font-family: Arial, Helvetica, sans-serif;
   }
 
 
@@ -739,14 +741,13 @@ img.hover-shadow {
   }
   .comparison-product {
     text-align: center;
+    font-weight: bold;
   }
   .comparison-title {
     text-align: center;
+    font-weight: bold;
   }
   .left-column, .middle-column, .right-column {
     text-align: center;
     line-height: 25px;
-  }
-  .comparison-product {
-    font-family:Arial, Helvetica, sans-serif;
   }
