@@ -667,8 +667,9 @@ img.hover-shadow {
 .star-button {
   margin-top: 15px;
   margin-left: 300px;
-  position: absolute;
+  position: fixed;
   cursor: pointer;
+  float: left;
 }
 .x-button {
   padding: 12px;
