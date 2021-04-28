@@ -50,6 +50,7 @@ class AddReviewForm extends React.Component {
     let currentRatings = this.state.charaRatings;
     currentRatings[chara] = rating;
     let charaId = this.props.charaId[this.props.characteristics.indexOf(chara)];
+    charaId = charaId.toString();
     let characteristics = this.state.characteristics;
     characteristics[charaId] = parseInt(rating);
     this.setState({
@@ -71,6 +72,7 @@ class AddReviewForm extends React.Component {
     let imgurFormData = new FormData();
     imgurFormData.append('image', e.target.files[0]);
     // {image: e.target.files[0]}
+    // imgur doesn't show images in live server, doesn't allow posts to imgur api in localhost
     axios.post('https://api.imgur.com/3/image', imgurFormData, {
       headers: {
         // Authorization: Client-ID {your-client-id}
@@ -117,18 +119,18 @@ class AddReviewForm extends React.Component {
     } else {
       recommend = false;
     }
-    let reviewParams = {product_id, rating, summary, body, recommend, name, email, characteristics, photos};
-    console.log(reviewParams);
-    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', reviewParams, {
+    let reviewParams = {product_id, rating, summary, body, recommend, name, email, photos, characteristics};
+    // maybe have product_id be integer instead of number?
+    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', {...reviewParams}, {
       headers: {'Authorization': API_KEY}
-    })
+      })
       .then(()=>{
         alert('submitted!');
         // should try to reset page to show review.
       })
       .catch((err)=>{
-        console.log(err)
-      })
+        console.log(err);
+      });
   }
 
   render() {
