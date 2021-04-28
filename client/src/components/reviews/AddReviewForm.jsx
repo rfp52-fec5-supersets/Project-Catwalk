@@ -98,11 +98,15 @@ class AddReviewForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let errorMessage = '';
+    let emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|edu|museum)\b/;
     if (this.state.starRating === 0) {
       errorMessage = errorMessage + 'Need to fill out star rating!\n';
     }
     if (this.state.body.length < 50) {
       errorMessage = errorMessage + 'Need to have 50 or more characters in body!\n';
+    }
+    if (!emailRegex.test(this.state.email)) {
+      errorMessage = errorMessage + 'Please check your email is a valid email (example@example.com)\n';
     }
     if (this.state.photos.length !== this.state.photoURLs.length) {
       errorMessage = errorMessage + 'Please wait a bit for photos to finish uploading to form!';
