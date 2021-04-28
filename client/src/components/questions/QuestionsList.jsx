@@ -63,7 +63,7 @@ class QuestionsList extends React.Component {
       <Question key={question.question_id} question={question}/>
     ));
     return (
-      <div>
+      <div className = 'questions-and-answers'>
         <h1>QuestionsList</h1>
         <QuestionSearchAnswer />
         {question}
