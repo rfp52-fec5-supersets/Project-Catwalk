@@ -28,7 +28,8 @@ class AddReviewForm extends React.Component {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handlePhotos = this.handlePhotos.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.imageInput = React.createRef();
+    // this.imageInput = React.createRef();
+    this.handleValidation = this.handleValidation.bind(this);
   }
 
   handleStar(starCount) {
@@ -95,8 +96,7 @@ class AddReviewForm extends React.Component {
     });
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
+  handleValidation(e) {
     let errorMessage = '';
     let emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|edu|museum)\b/;
     if (this.state.starRating === 0) {
@@ -111,6 +111,12 @@ class AddReviewForm extends React.Component {
     if (this.state.photos.length !== this.state.photoURLs.length) {
       errorMessage = errorMessage + 'Please wait a bit for photos to finish uploading to form!';
     }
+    return errorMessage;
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let errorMessage = this.handleValidation(e);
     if (errorMessage) {
       alert(errorMessage);
       return;
@@ -172,7 +178,8 @@ class AddReviewForm extends React.Component {
           <div className='add-review-photos'>
             <span>Upload photos: </span>
             {this.state.photos.length < 5 &&
-            <input type='file' accept='image/*' onChange={this.handlePhotos} ref={this.imageInput}/>}
+            <input type='file' accept='image/*' onChange={this.handlePhotos} />}
+            {/* had ref={this.imageInput} */}
             <div>
               {this.state.photos.length > 0 &&
               this.state.photos.map((photo) => {
