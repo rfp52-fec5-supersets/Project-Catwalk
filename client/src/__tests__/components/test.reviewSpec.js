@@ -133,7 +133,7 @@ describe('Ratings Breakdown tests', () => {
     expect(wrapper.find('.ratings-and-filter')).to.have.lengthOf(5);
     wrapper.unmount();
   });
-  test('Clicking on filter should update filter in Reviews', ()=>{
+  test('Ratings: Clicking on filter should update filter in Reviews', ()=>{
     let wrapper = mount(<Reviews {...ReviewProps}/>);
     wrapper.setState(ReviewState);
     expect(wrapper.find('.ratings-breakdown>div>span')).to.have.lengthOf(5);
@@ -160,6 +160,7 @@ describe('Product Breakdown tests', () => {
 
 describe('Add Review tests', () => {
   test('Add-Review: Form should contain expected items', ()=>{
+    // don't forget to check for photos
     let wrapper = mount(<AddReviewForm {...ReviewAddFormProps}/>);
     expect(wrapper.find('.add-star-rating')).to.have.lengthOf(1);
     expect(wrapper.find('.recommended-form')).to.have.lengthOf(1);
@@ -170,6 +171,16 @@ describe('Add Review tests', () => {
     expect(wrapper.find('.add-review-username')).to.have.lengthOf(1);
     expect(wrapper.find('.add-review-email')).to.have.lengthOf(1);
     expect(wrapper.find('.add-review-submit')).to.have.lengthOf(1);
+    wrapper.unmount();
+  });
+  test('Add-Review: Form should handle changes and submissions', ()=>{
+    let starSpy = sinon.spy(AddReviewForm.prototype, 'handleStar');
+    let recSpy = sinon.spy(AddReviewForm.prototype, 'handleRecommended');
+    let charaSpy = sinon.spy(AddReviewForm.prototype, 'handleChara');
+    let textSpy = sinon.spy(AddReviewForm.prototype, 'handleTextChange');
+    let photoSpy = sinon.spy(AddReviewForm.prototype, 'handlePhotos');
+    let submitSpy = sinon.spy(AddReviewForm.prototype, 'handleSubmit');
+    let wrapper = mount(<AddReviewForm {...ReviewAddFormProps}/>);
     wrapper.unmount();
   });
 });
