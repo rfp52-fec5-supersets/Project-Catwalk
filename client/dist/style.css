@@ -445,7 +445,7 @@ select {
 
 .reviews-thumbnail {
   height: 5vw;
-  width: auto;
+  width: 5vw;
   border-radius: 50%;
 }
 .reviews-checkmark {
@@ -518,6 +518,7 @@ textarea {
   /* vh = viewport height */
   /* height: 80vh; */
   width: 80vw;
+  /* width: auto; */
   padding: 2em;
   font-family: Arial, Helvetica, sans-serif;
   /* font-size: 80%; */
