@@ -22,6 +22,7 @@ class Reviews extends React.Component {
     this.handleMore = this.handleMore.bind(this);
     this.handleSort = this.handleSort.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
+    this.handleReviewsUpdate = this.handleReviewsUpdate.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -99,6 +100,28 @@ class Reviews extends React.Component {
     }
   }
 
+  handleReviewsUpdate() {
+    // updates the reviews list
+    axios({
+      method: 'get',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
+      headers: {'Authorization': API_KEY},
+      params: {
+        product_id: `${this.props.product.id}`,
+        sort: `${this.state.sortType}`,
+        count: 1000
+      }
+    }).then((values)=> {
+        let allReviews = values.data.results;
+        this.setState({
+          allReviews: allReviews
+        });
+      })
+      .catch((err)=> {
+        console.log('err in trying to update reviews status', err);
+      });
+  }
+
   render() {
     // console.log(this.props);
     // maybe do the currentViews here.
@@ -128,7 +151,7 @@ class Reviews extends React.Component {
             {(this.state.currentCount >= currentReviews.length || currentReviews.slice(0, this.state.currentCount).length === 0)
             ? null
             : <MoreReviews handleClick = {this.handleMore}/>}
-            <AddReview product={this.props.product} meta={this.props.reviewMeta}/>
+            <AddReview handleUpdate = {this.handleReviewsUpdate} product={this.props.product} meta={this.props.reviewMeta}/>
           </div>
         </div>
       </>
