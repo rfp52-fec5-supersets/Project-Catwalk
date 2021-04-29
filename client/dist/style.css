@@ -367,6 +367,7 @@ select {
 /* REVIEWS AND RATINGS CSS */
 /* For Overall Reviews Grid */
 #reviews-add {
+  margin-top: 2%;
   grid-area: reviews-add;
   width: 70%;
   justify-self: center;
@@ -381,6 +382,7 @@ select {
   width: 90%;
 }
 #reviews-more {
+  margin-top: 2%;
   grid-area: reviews-more;
   width: 70%;
   justify-self: center;
@@ -528,7 +530,7 @@ textarea {
   grid-template-columns: 40% 1fr 1fr;
   grid-template-rows: 5% 10% auto 50px;
   grid-template-areas:
-    "reviews-breakdown reviews-sort ."
+    "reviews-breakdown reviews-sort reviews-sort"
     "reviews-breakdown reviews-add ."
     "reviews-breakdown . ."
     ". . .";
