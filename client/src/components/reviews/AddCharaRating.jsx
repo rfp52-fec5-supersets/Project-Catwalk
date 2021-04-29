@@ -43,9 +43,9 @@ class AddStarRating extends React.Component {
           {choices}
         </div>
         <div className='flex-box flex-around'>
-          <span style={{fontSize:'15%'}} >{CharaMessages[chara][0]}</span>
+          <span style={{fontSize:'75%'}} >{CharaMessages[chara][0]}</span>
           <span/><span/><span/>
-          <span style={{fontSize:'15%'}} >{CharaMessages[chara][4]}</span>
+          <span style={{fontSize:'75%'}} >{CharaMessages[chara][4]}</span>
         </div>
         <br />
       </div>
