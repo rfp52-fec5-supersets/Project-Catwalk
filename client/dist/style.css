@@ -372,6 +372,7 @@ select {
   width: 70%;
   justify-self: center;
 }
+
 #reviews-breakdown {
   grid-area: reviews-breakdown;
   /* grid-column: 1;
@@ -404,13 +405,18 @@ select {
 .reviews-tile:first-of-type {
   border-top: 2px solid black;
 }
-/*
-webkit appearance: none
 
- */
+ #reviews-search {
+  grid-area: reviews-search;
+  margin: 3%;
+  margin-right: 20%;
+  width: 80%;
+}
 #reviews-sort {
   grid-area: reviews-sort;
-  margin: 3% 10%;
+  margin: 3%;
+  margin-left: 20%;
+  width: 80%;
   /* grid-column: 2;
   grid-row: 1; */
 }
@@ -522,7 +528,7 @@ textarea {
   grid-template-columns: 40% 1fr 1fr;
   grid-template-rows: 5% auto 50px;
   grid-template-areas:
-    "reviews-breakdown reviews-sort reviews-sort"
+    "reviews-breakdown reviews-sort reviews-search"
     "reviews-breakdown reviews-list reviews-list"
     ". reviews-more reviews-add";
 }
@@ -530,7 +536,7 @@ textarea {
   grid-template-columns: 40% 1fr 1fr;
   grid-template-rows: 5% 10% auto 50px;
   grid-template-areas:
-    "reviews-breakdown reviews-sort reviews-sort"
+    "reviews-breakdown reviews-sort reviews-search"
     "reviews-breakdown reviews-add ."
     "reviews-breakdown . ."
     ". . .";

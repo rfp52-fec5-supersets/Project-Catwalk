@@ -128,7 +128,6 @@ class Reviews extends React.Component {
     this.setState({
       search: e.target.value
     });
-    console.log(this.state);
   }
 
   render() {
@@ -151,7 +150,8 @@ class Reviews extends React.Component {
       currentReviews = currentReviews.filter((review) => {
         let includeSummary = review.summary.includes(this.state.search);
         let includeBody = review.body.includes(this.state.search);
-        return includeBody || includeSummary;
+        let includeUser = review.reviewer_name.includes(this.state.search);
+        return includeBody || includeSummary || includeUser;
       })
     }
     return (
@@ -160,7 +160,7 @@ class Reviews extends React.Component {
           <h2>Ratings and Reviews</h2>
           <div id='reviews' className={reviewsClass}>
             <ReviewBreakdown filter={this.state.filter} averageRating={this.props.averageRating} meta={this.props.reviewMeta} ratings={this.props.ratings} handleClick = {this.handleFilter}/>
-            <input id='reviews-search' className='reviews-search' name='search' size={40} onChange={this.handleSearchChange} type='text' placeholder='At least 3 characters!' maxLength={60} value={this.state.search}></input>
+            <input id='reviews-search' className='reviews-search' name='search' size={30} onChange={this.handleSearchChange} type='text' placeholder='Search Reviews' maxLength={60} value={this.state.search}></input>
             <ReviewSort handleChange = {this.handleSort} currentSort = {this.state.sortType}/>
             {(currentReviews.slice(0, this.state.currentCount).length !== 0)
             ? <ReviewList reviews = {currentReviews.slice(0, this.state.currentCount)}/>
