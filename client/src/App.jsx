@@ -266,8 +266,10 @@ class App extends React.Component {
     // console.log(this.state.currentProductId)
     return (
       <>
-        <input name='search product id' onChange={this.handleSearchChange} type='text' placeholder='Search by product id' value={this.state.search}></input>
-        <button name='search product button' onClick={this.handleSearchClick}>Search</button>
+        <div className='product-search'>
+          <input name='search product id' onChange={this.handleSearchChange} type='text' placeholder='Search by product id' value={this.state.search}></input>
+          <button name='search product button' onClick={this.handleSearchClick}>Search</button>
+        </div>
         <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} currentProductFeatures={this.state.currentProductFeatures} reviewMeta={this.state.reviewMeta} />
         {this.relatedProductsRender()}
         <MyOutfit currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} averageRating={this.state.averageRating} currentStylePhotos={this.state.currentStylePhotos} />
