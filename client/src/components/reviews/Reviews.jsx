@@ -16,13 +16,15 @@ class Reviews extends React.Component {
       sortType: 'relevant',
       currentCount: 2,
       // filter is an array to make toggling filters easier
-      filter: {1: false, 2: false, 3:false, 4:false, 5:false}
+      filter: {1: false, 2: false, 3:false, 4:false, 5:false},
+      search: ''
     };
     // sortTypes are either newest, helpful, or relevant
     this.handleMore = this.handleMore.bind(this);
     this.handleSort = this.handleSort.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
     this.handleReviewsUpdate = this.handleReviewsUpdate.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -122,6 +124,13 @@ class Reviews extends React.Component {
       });
   }
 
+  handleSearchChange(e) {
+    this.setState({
+      search: e.target.value
+    });
+    console.log(this.state);
+  }
+
   render() {
     // console.log(this.props);
     // maybe do the currentViews here.
@@ -138,12 +147,20 @@ class Reviews extends React.Component {
     } else {
       reviewsClass = 'grid-container reviews';
     }
+    if (this.state.search.length >= 3) {
+      currentReviews = currentReviews.filter((review) => {
+        let includeSummary = review.summary.includes(this.state.search);
+        let includeBody = review.body.includes(this.state.search);
+        return includeBody || includeSummary;
+      })
+    }
     return (
       <>
         <div className='reviews'>
           <h2>Ratings and Reviews</h2>
           <div id='reviews' className={reviewsClass}>
             <ReviewBreakdown filter={this.state.filter} averageRating={this.props.averageRating} meta={this.props.reviewMeta} ratings={this.props.ratings} handleClick = {this.handleFilter}/>
+            <input id='reviews-search' className='reviews-search' name='search' size={40} onChange={this.handleSearchChange} type='text' placeholder='At least 3 characters!' maxLength={60} value={this.state.search}></input>
             <ReviewSort handleChange = {this.handleSort} currentSort = {this.state.sortType}/>
             {(currentReviews.slice(0, this.state.currentCount).length !== 0)
             ? <ReviewList reviews = {currentReviews.slice(0, this.state.currentCount)}/>
