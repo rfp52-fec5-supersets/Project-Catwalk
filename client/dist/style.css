@@ -1,5 +1,7 @@
 #app {
   font-family: Arial, Helvetica, sans-serif;
+  color: slategray;
+  background-color: whitesmoke;
 }
 
 .click-tracker {
@@ -399,11 +401,11 @@ select {
   justify-self: center;
 }
 .reviews-tile {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid lightseagreen;
 
 }
 .reviews-tile:first-of-type {
-  border-top: 2px solid black;
+  border-top: 2px solid lightseagreen;
 }
 
  #reviews-search {
@@ -427,6 +429,8 @@ select {
   border-bottom: 2px solid black;
   font-size: inherit;
   font-weight: bold;
+  color: inherit;
+  background-color: inherit;
 }
 /* For Reviews Tile */
 .reviews.flex-child-right {
@@ -487,7 +491,7 @@ select {
   justify-content: space-evenly;
 }
 .reviews.ratings-and-filter:hover {
-  background-color: steelblue;
+  background-color: lightseagreen;
 }
 /* For Reviews Product Breakdown/Characteristics */
 .reviews.product-breakdown {
@@ -502,7 +506,7 @@ select {
   justify-content: space-between;
 }
 .reviews.characteristic-bar-part {
-  background-color: gray;
+  background-color: lightseagreen;
   width: 33%;
   height: .5em;
 }
@@ -520,7 +524,6 @@ textarea {
   width: 80vw;
   /* width: auto; */
   padding: 2em;
-  font-family: Arial, Helvetica, sans-serif;
   /* font-size: 80%; */
 }
 
