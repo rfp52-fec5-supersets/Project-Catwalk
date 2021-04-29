@@ -25,7 +25,6 @@ class ReviewTileBody extends React.Component {
       let imageUrl = image.url;
       if (imageUrl.includes('http')) {
         imageUrl = imageUrl.replace('http', 'https');
-        console.log(imageUrl);
       }
       return (
       <ImageThumbnail key={image.id} source={imageUrl} />
