@@ -1,4 +1,28 @@
-#app {
+/* CSS Reset for a small handful of elements */
+html, body, h1, header {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+header {
+  margin-bottom: 30px;
+}
+
+#header-top {
+  background-color: #091824;
+  color: white;
+  height: 100px;
+}
+
+#header-bottom {
+  background-color: whitesmoke;
+}
+
+body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
