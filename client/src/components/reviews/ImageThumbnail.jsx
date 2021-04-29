@@ -21,10 +21,10 @@ class ImageThumbnail extends React.Component {
     let imgSource = this.props.source;
     return (
       <>
-        <img onClick={this.handleToggle} src={imgSource} className='reviews-thumbnail'/>
+        <img onClick={this.handleToggle} src={imgSource} className='reviews-thumbnail' alt={'image for review'}/>
         {this.state.showModal &&
         <ModalImage onCloseRequest={this.handleToggle}>
-          <img src={imgSource} style={{maxWidth: '100%'}}/>
+          <img src={imgSource} style={{maxWidth: '100%'}} alt={'full resolution image for review'}/>
         </ModalImage>}
       </>
     );

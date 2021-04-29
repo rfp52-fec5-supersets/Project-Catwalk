@@ -16,9 +16,9 @@ class ReviewList extends React.Component {
     });
     return (
       <div id='reviews-list' className='reviews-component'>
-        <h4>
+        <p style={{fontWeight: 'bold', fontSize:'bigger'}}>
           ReviewList:
-        </h4>
+        </p>
         {ReviewTiles}
       </div>
     );
