@@ -361,7 +361,7 @@ body {
   --borderWidth: 3px;
   --height: 12px;
   --width: 6px;
-  --borderColor: #78b13f;
+  --borderColor: lightseagreen;
 }
 
 .check {
@@ -410,7 +410,7 @@ body {
   height: 70px;
   width: 70px;
   border-radius: 50%;
-  border: 3px solid limegreen;
+  border: 3px solid lightseagreen;
 }
 
 /* Checkout / Add to Cart */
@@ -453,7 +453,7 @@ select {
 
 .add-to-cart:hover {
   cursor: pointer;
-  background-color: orange;
+  background-color: lightseagreen;
 }
 
 .add-to-cart:active {
