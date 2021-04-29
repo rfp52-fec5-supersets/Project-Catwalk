@@ -17,7 +17,7 @@ class ProductInfo extends React.Component {
 
     return (
       <div className = "product-info">
-        <header id = "title"> {this.props.currentProduct.name}</header>
+        <h1 id = "title"> {this.props.currentProduct.name}</h1>
         <div id = "price">
         {this.props.currentStyle.sale_price ? <div className = "original-price-strikethrough">{'$'+this.props.currentStyle.original_price}</div> : <div className = "original-price">{'$'+this.props.currentStyle.original_price}</div>} {this.props.currentStyle.sale_price && <div className = "sale-price">{'$'+this.props.currentStyle.sale_price}</div>}
         </div>
