@@ -10,6 +10,7 @@ import RatingsBreakdown from '../../components/reviews/ReviewRatings';
 import ProductBreakdown from '../../components/reviews/ReviewProduct';
 import ReviewTileBody from '../../components/reviews/ReviewTileBody';
 import AddReviewForm from '../../components/reviews/AddReviewForm';
+import ImageThumbnail from '../../components/reviews/ImageThumbnail';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import StarsDisplay from '../../components/StarsDisplay';
@@ -45,6 +46,7 @@ describe('Reviews List tests', () => {
     wrapper.unmount();
   })
 });
+
 describe('More Reviews Button tests', () => {
   test('Review-Button increase currentCount by two', ()=>{
     let wrapper = mount(<Reviews {...ReviewProps}/>);
@@ -55,6 +57,7 @@ describe('More Reviews Button tests', () => {
     wrapper.unmount();
   });
 });
+
 describe('Reviews Tile tests', () => {
   test('Review-Tile: Should render up to currentCount or up to reviews.length', ()=>{
     let wrapper = mount(<Reviews {...ReviewProps}/>);
@@ -83,7 +86,32 @@ describe('Reviews Tile tests', () => {
     }
     wrapper.unmount();
   });
+  test('Review-Tile: Clicking on helpfulness and report', ()=>{
+    // simulate click on helpfulness
+    // simulate click on report
+    let spyHelpful = sinon.spy(ReviewTile.prototype, 'handleHelpful');
+    let spyReport = sinon.spy(ReviewTile.prototype, 'handleReport');
+    let wrapper = mount(<ReviewTile {...ReviewTileProps} />);
+    expect(wrapper.find('.review-helpfulness > p > span')).to.have.lengthOf(2);
+    wrapper.find('.review-helpfulness > p > span').first().simulate('click');
+    wrapper.find('.review-helpfulness > p > span').last().simulate('click');
+    expect(spyHelpful.called);
+    expect(spyReport.called);
+    wrapper.unmount();
+  })
 });
+
+describe('ImageThumbnail Modal Window', () => {
+  test('ImageThumbnail should toggle modal window by clicking on thumbnail', ()=>{
+    let imageProps = {source: "https://i.imgur.com/R2UqMBy.jpg"};
+    let wrapper = mount(<ImageThumbnail {...imageProps}/>);
+    expect(wrapper.find('.modal-overlay')).to.have.lengthOf(0);
+    wrapper.find('.reviews-thumbnail').first().simulate('click');
+    expect(wrapper.find('.modal-overlay')).to.have.lengthOf(1);
+    wrapper.unmount();
+  });
+});
+
 describe('Reviews Sort tests', () => {
   test('Review sort changes reviews state', ()=>{
     let wrapper = mount(<Reviews {...ReviewProps}/>);
@@ -94,6 +122,7 @@ describe('Reviews Sort tests', () => {
     wrapper.unmount();
   });
 });
+
 describe('Ratings Breakdown tests', () => {
   test('Ratings-Breakdown: Should contain expected items', ()=>{
     let wrapper = mount(<RatingsBreakdown {...ReviewRatingsProps}/>);
@@ -104,7 +133,19 @@ describe('Ratings Breakdown tests', () => {
     expect(wrapper.find('.ratings-and-filter')).to.have.lengthOf(5);
     wrapper.unmount();
   });
+  test('Clicking on filter should update filter in Reviews', ()=>{
+    let wrapper = mount(<Reviews {...ReviewProps}/>);
+    wrapper.setState(ReviewState);
+    expect(wrapper.find('.ratings-breakdown>div>span')).to.have.lengthOf(5);
+    expect(wrapper.state().filter['1']).to.equal(false);
+    wrapper.find('.ratings-breakdown>div>span').first().simulate('click');
+    expect(wrapper.state().filter['1']).to.equal(true);
+    expect(wrapper.find('.ratings-filter-view>button')).to.have.lengthOf(1);
+    wrapper.find('.ratings-filter-view>button').simulate('click');
+    expect(wrapper.state().filter['1']).to.equal(false);
+  })
 });
+
 describe('Product Breakdown tests', () => {
   test('Product-Breakdown: Should contain expected items', ()=>{
     let wrapper = mount(<ProductBreakdown {...ReviewProductProps}/>);
@@ -116,6 +157,7 @@ describe('Product Breakdown tests', () => {
     wrapper.unmount();
   });
 });
+
 describe('Add Review tests', () => {
   test('Add-Review: Form should contain expected items', ()=>{
     let wrapper = mount(<AddReviewForm {...ReviewAddFormProps}/>);
