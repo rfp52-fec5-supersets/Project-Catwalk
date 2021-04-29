@@ -125,7 +125,7 @@ class Gallery extends React.Component {
           </div>
           <div className = "main-image-container">
           {this.props.currentStylePhotos.length > 0 &&
-          (<img className = "main-image" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleModal}/>)}
+          (<img alt="gallery main image" className = "main-image" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleModal}/>)}
           </div>
           <div className = "expanded-button-div">
           {this.state.currentImageIndex < this.props.currentStylePhotos.length - 1 && <button id = "right-arrow-default" className = "arrow-button" name = "right" onClick = {this.handleButtonClick}>{'⇒'}</button>}
@@ -149,9 +149,9 @@ class Gallery extends React.Component {
             </div>
           <div id = "main-image-expanded-container">
             {this.state.expandedImageZoomed ?
-            <img className = "main-image-expanded-zoomed" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleZoom} onMouseMove = {this.handleMouseMove}/>
+            <img alt="main image expanded zoomed" className = "main-image-expanded-zoomed" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleZoom} onMouseMove = {this.handleMouseMove}/>
             :
-            <img className = "main-image-expanded" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleZoom}/>
+            <img alt="main image expanded"className = "main-image-expanded" src = {this.props.currentStylePhotos[this.state.currentImageIndex].url} onClick = {this.toggleZoom}/>
             }
           </div>
           <div className = "expanded-button-div">

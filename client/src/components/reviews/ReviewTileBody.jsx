@@ -23,10 +23,10 @@ class ReviewTileBody extends React.Component {
     let limit = this.state.bodyLimit;
     let imageThumbnails = photos.map((image)=> {
       let imageUrl = image.url;
-      // if (imageUrl.includes('https')) {
-      //   imageUrl = imageUrl.replace('https', 'http');
-      //   console.log(imageUrl);
-      // }
+      if (imageUrl.includes('http')) {
+        imageUrl = imageUrl.replace('http', 'https');
+        console.log(imageUrl);
+      }
       return (
       <ImageThumbnail key={image.id} source={imageUrl} />
       );
