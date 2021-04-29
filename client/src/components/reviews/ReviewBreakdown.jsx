@@ -14,7 +14,7 @@ class ReviewBreakdown extends React.Component {
       <div id='reviews-breakdown' className='reviews-component'>
         Review Breakdown
         <RatingsBreakdown filter={this.props.filter} handleClick={this.props.handleClick} averageRating={this.props.averageRating} ratings={this.props.ratings} recommended={this.props.meta.recommended}/>
-        <hr class="rounded" style={{border: '2px solid #bbb', borderRadius: '2px'}}/>
+        <hr className="rounded" style={{border: '2px solid #bbb', borderRadius: '2px'}}/>
         Product Breakdown
         <ProductBreakdown characteristics = {this.props.meta.characteristics}/>
       </div>
