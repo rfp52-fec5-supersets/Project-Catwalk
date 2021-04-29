@@ -101,12 +101,6 @@ class Reviews extends React.Component {
 
   render() {
     // console.log(this.props);
-    let reviewsClass;
-    if (this.state.allReviews.slice(0, this.state.currentCount).length === 0) {
-      reviewsClass = 'grid-container no-reviews';
-    } else {
-      reviewsClass = 'grid-container reviews';
-    }
     // maybe do the currentViews here.
     let filterObj = this.state.filter;
     let filter = Object.keys(filterObj).filter((star)=> filterObj[star]);
@@ -115,6 +109,12 @@ class Reviews extends React.Component {
       filter = [1,2,3,4,5];
     }
     let currentReviews = this.state.allReviews.filter((review) => filter.includes(review.rating));
+    let reviewsClass;
+    if (currentReviews.length === 0) {
+      reviewsClass = 'grid-container no-reviews';
+    } else {
+      reviewsClass = 'grid-container reviews';
+    }
     return (
       <>
         <div className='reviews'>
