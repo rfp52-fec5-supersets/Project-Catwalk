@@ -45,7 +45,7 @@ class MyOutfit extends React.Component {
     this.setState({
       outfits: this.state.outfits
     })
-    localStorage.setItem('key', JSON.stringify(this.state.outfits));
+    localStorage.setItem('outfit', JSON.stringify(this.state.outfits));
   }
 
   handleOutfitScroll(event) {
@@ -92,18 +92,17 @@ class MyOutfit extends React.Component {
         {outfitsToDisplay.slice(leftIndex, rightIndex)}
       </div>
 
-
     if (this.state.outfits.length === 0) {
       return (
         <div className="outfit">
-          <>YOUR OUTFIT</>
+          <div className="outfits-title">YOUR OUTFIT</div>
           {outfitsButton}
         </div>
       )
     } else {
       return (
         <div className="outfit">
-          <>YOUR OUTFIT</>
+          <div className="outfits-title">YOUR OUTFIT</div>
           {outfitsCard}
           {rightIndex >= this.state.outfits.length ? <>{null}</> : rightButton}
           {leftIndex === 0 ? <>{null}</> : leftButton}
