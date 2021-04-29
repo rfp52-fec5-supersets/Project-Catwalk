@@ -18,7 +18,7 @@ class QuestionAnswer extends React.Component {
       </p>
       <div className="userHelpfulness">
       <QuestionAnswerUser answer={answer} />
-      <p>| {moment(answer.date).format('MMMM Do YYYY')} |</p>
+      <p>{moment(answer.date).format('MMMM Do YYYY')}</p>
       <QuestionAnswerHelpfulness helpfulness={answer}/>
       </div>
       </div>

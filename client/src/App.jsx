@@ -209,40 +209,40 @@ class App extends React.Component {
     }
   }
 
-  relatedProductsRender() {
-    let productsToDisplay = this.state.relatedProducts.map(product => {
-      return <RelatedProducts
-        relatedProduct={product}
-        handleCardClick={() => this.handleCardClick(product)}
-        currentProduct={this.state.currentProduct}
-        currentFeatures={this.state.currentProductFeatures} />
-    })
+  // relatedProductsRender() {
+  //   let productsToDisplay = this.state.relatedProducts.map(product => {
+  //     return <RelatedProducts
+  //       relatedProduct={product}
+  //       handleCardClick={() => this.handleCardClick(product)}
+  //       currentProduct={this.state.currentProduct}
+  //       currentFeatures={this.state.currentProductFeatures} />
+  //   })
 
-    let leftIndex = this.state.leftIndex;
-    let rightIndex = this.state.rightIndex;
-    let leftButton = <a className="left-button" onClick={this.handleProductScroll}>&#10094;</a>
-    let rightButton = <a className="right-button" onClick={this.handleProductScroll}>&#10095;</a>
+  //   let leftIndex = this.state.leftIndex;
+  //   let rightIndex = this.state.rightIndex;
+  //   let leftButton = <a className="left-button" onClick={this.handleProductScroll}>&#10094;</a>
+  //   let rightButton = <a className="right-button" onClick={this.handleProductScroll}>&#10095;</a>
 
-    return (
-      <div className="related-products">
-        <>RELATED PRODUCTS</>
-        <div className="related-products-container">
-          {productsToDisplay.slice(leftIndex, rightIndex)}
-        </div>
-        {rightIndex === this.state.relatedProducts.length ? <>{null}</> : rightButton}
-        {leftIndex === 0 ? <>{null}</> : leftButton}
-      </div>
-    )
-  }
+  //   return (
+  //     <div className="related-products">
+  //       <>RELATED PRODUCTS</>
+  //       <div className="related-products-container">
+  //         {productsToDisplay.slice(leftIndex, rightIndex)}
+  //       </div>
+  //       {rightIndex === this.state.relatedProducts.length ? <>{null}</> : rightButton}
+  //       {leftIndex === 0 ? <>{null}</> : leftButton}
+  //     </div>
+  //   )
+  // }
 
   render() {
     // console.log(this.state.currentProductId)
     return (
       <>
-        <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} currentProductFeatures={this.state.currentProductFeatures} reviewMeta={this.state.reviewMeta} />
+        {/* <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} currentProductFeatures={this.state.currentProductFeatures} reviewMeta={this.state.reviewMeta} />
         {this.relatedProductsRender()}
         <MyOutfit currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} averageRating={this.state.averageRating} currentStylePhotos={this.state.currentStylePhotos} />
-        <Reviews product={this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating} ratings={this.state.ratings} />
+        <Reviews product={this.state.currentProduct} reviewMeta={this.state.reviewMeta} averageRating={this.state.averageRating} ratings={this.state.ratings} /> */}
         {/* Invoke our conditional render of QuestionList component*/}
         {this.questionListRender()}
       </>
