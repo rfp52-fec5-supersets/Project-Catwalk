@@ -389,6 +389,10 @@ select {
 .reviews-tile:first-of-type {
   border-top: 2px solid black;
 }
+/*
+webkit appearance: none
+
+ */
 #reviews-sort {
   grid-area: reviews-sort;
   margin: 3% 10%;
@@ -396,7 +400,6 @@ select {
   grid-row: 1; */
 }
 /* For Reviews Tile */
-
 .reviews.flex-child-right {
   margin-right: 3%;
   display: flex;
