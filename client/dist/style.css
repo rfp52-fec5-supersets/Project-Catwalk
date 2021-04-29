@@ -711,11 +711,12 @@ img.hover-shadow {
   background-color: grey
 }
 .star-button {
-  margin-top: 15px;
-  margin-left: 300px;
-  position: fixed;
+  /* margin-top: 15px; */
+  top: 2em;
+  margin-left: 80%;
+  position: relative;
   cursor: pointer;
-  float: left;
+  /* float: left; */
 }
 .x-button {
   padding: 12px;
