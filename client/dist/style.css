@@ -10,17 +10,80 @@ html, body, h1, header {
 
 header {
   margin-bottom: 30px;
-}
-
-#header-top {
   background-color: #091824;
-  color: white;
-  height: 100px;
 }
 
-#header-bottom {
-  background-color: whitesmoke;
+#header-main {
+  /* background-color: #091824; */
+  /* display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-around; */
+  color: white;
+  height: 75px;
+  font-size: 15px;
+  margin-left: 1%;
 }
+
+#header-secondary {
+  height: 24px;
+  background-color: whitesmoke;
+  color: black;
+  font-family: Lato;
+  text-align: center;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Currently not using this
+.header-bold {
+  color: #1D8DEE;
+} */
+
+.bar {
+  color: gray;
+}
+
+.details {
+  font-size: 10px;
+}
+
+.details:hover {
+  cursor: pointer;
+}
+
+#logo {
+  width: 132px;
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#logo:hover {
+  cursor: pointer;
+  background-color: #606060;
+}
+
+#dog-logo {
+  height: 45%;
+  margin-left: 34px;
+}
+
+.logo-text {
+  font-family: Garamond;
+}
+
+#outfitters {
+  margin-left: 19px;
+}
+
+/* #header-bottom {
+  background-color: whitesmoke;
+  text-align: center;
+} */
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -194,12 +257,16 @@ body {
 #title {
   font-size: 32px;
   font-weight: bold;
+  font-family: Lato;
 }
 
 .product-info {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  padding-bottom: 10px;
+  border-bottom: 1px solid gray;
   /* display: grid;
   grid-template-rows: subgrid;
   grid-template-columns: subgrid; */
@@ -231,7 +298,10 @@ body {
   justify-content: space-between;
 
   display: grid;
-  grid-template-columns: 10% 60% 30%;
+  grid-template-columns: 2% 60% 38%;
+  border: 1px solid gray;
+  padding-top: 5px;
+  padding-bottom: 7%;
 }
 
 #product-overview {
@@ -241,7 +311,8 @@ body {
 }
 
 #slogan {
-  margin-bottom: 15px;
+  margin-bottom: 8px;
+  font-size: 20px;
 }
 
 
@@ -255,6 +326,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  padding-right: 15px;
 }
 
 .feature-table, td {
@@ -308,7 +380,11 @@ body {
   grid-row-start: 2;
   padding-top: 20px;
   padding-bottom: 20px;
-  width: 300px;
+  border-bottom: 1px solid gray;
+}
+
+#style-selector-title {
+  margin-bottom: 8px;
 }
 
 #style-selector-icons {
@@ -347,7 +423,7 @@ body {
   grid-row-start: 3;
 }
 .checkout-form {
-  width: 320px;
+  width: 370px;
   display: grid;
   grid-template-columns: 55% 45%;
   grid-template-rows: 40px 40px;
