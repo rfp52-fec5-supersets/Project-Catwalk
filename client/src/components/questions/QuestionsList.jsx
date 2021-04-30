@@ -30,6 +30,9 @@ class QuestionsList extends React.Component {
     //     questions: res.data.results
     //   })
     // )
+    // .catch((err) => {
+    //   console.log(err)
+    // })
 
     this.setState({
       questions: [
@@ -150,7 +153,7 @@ class QuestionsList extends React.Component {
   }
 
   // componentDidUpdate(prevProps) {
-  //   if (prevProps !== this.props) {
+  //   if (prevProps.productID !== this.props.productID) {
   //     const { productID } = this.props;
   //     console.log(productID)
   //     axios({
@@ -183,8 +186,8 @@ class QuestionsList extends React.Component {
     let { questions } = this.state;
     questions = questions.slice(0, this.state.sliceIndex)
     questions.sort((a, b) => a.question_helpfulness < b.question_helpfulness)
-
-    if (this.state.keywords.length > 3) {
+    let placeholder = []
+    if (this.state.keywords.length >= 3) {
       for (let question of questions) {
         if (question.question_body.toLowerCase().includes(this.state.keywords.toLowerCase())) {
           placeholder.push(question)
@@ -196,7 +199,8 @@ class QuestionsList extends React.Component {
       <Question key={question.question_id} question={question}/>
     ));
     return (
-      <div className = 'questions-and-answers"'>
+      <div className = 'questions-and-answers'>
+        <h1 style={{textAlign: "center"}}>Questions and Answers</h1>
         <QuestionSearchAnswer search={this.onChangeSearch.bind(this)}/>
         {question}
         <div className="load-more-add">

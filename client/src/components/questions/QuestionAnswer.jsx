@@ -23,7 +23,7 @@ class QuestionAnswer extends React.Component {
       <span>|</span>
       <QuestionAnswerHelpfulness helpfulness={answer}/>
       </div>
-      <hr/>
+      <hr className="answer-hr"/>
       </div>
     )
   }
