@@ -18,7 +18,8 @@ class QuestionAnswerAdd extends React.Component {
     }
   }
 
-  handleToggle() {
+  handleToggle(event) {
+    event.preventDefault()
     let newState = !this.state.showModal;
     this.setState({
       showModal: newState
@@ -105,7 +106,7 @@ class QuestionAnswerAdd extends React.Component {
       }
       return (
       <div>
-        <button onClick={this.handleToggle}>Add Answer</button>
+        <a href="#" onClick={this.handleToggle}>Add Answer</a>
        {this.state.showModal &&
         <QuestionModal onCloseRequest={this.handleToggle}>
           <form onSubmit={(event) => this.onSubmitAnswer(event)}>

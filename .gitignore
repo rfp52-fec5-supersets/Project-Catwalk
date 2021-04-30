@@ -87,7 +87,7 @@ client/src/config.js
 # Webpack bundle files
 client/dist/bundle.js
 client/dist/bundle.js.map
-
+catwalkkey.pem
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and *not* Next.js

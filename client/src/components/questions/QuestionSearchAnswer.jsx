@@ -6,11 +6,9 @@ class QuestionSearchAnswer extends React.Component {
   }
 
   render() {
+    const {search} = this.props
     return (
-      <div>
-        <h1>Search Answers</h1>
-        <input type="text" placeholder="Search.." name="search"/>
-      </div>
+      <input className="question-search" onChange={(event) => search(event)} type="text" placeholder="Have a question? Search for answers…" name="search"/>
     )
   }
 }
