@@ -31,7 +31,8 @@ class App extends React.Component {
       reviewMeta: {},
       relatedProducts: [],
       leftIndex: 0,
-      rightIndex: 4
+      rightIndex: 4,
+      search: ''
     };
 
     this.setStyle = this.setStyle.bind(this);
