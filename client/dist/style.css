@@ -767,7 +767,7 @@ textarea {
 }
 .close-button:hover,
 .close-button:focus {
-  color: black;
+  color: lightseagreen;
   text-decoration: none;
   cursor: pointer;
 }
