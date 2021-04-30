@@ -1,5 +1,5 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 import API_KEY from './config.js';
 import Reviews from './components/reviews/Reviews.jsx';
@@ -7,6 +7,7 @@ import Overview from './components/Overview/Overview.jsx'
 import QuestionsList from './components/questions/QuestionsList.jsx'
 import RelatedProducts from './components/RelatedItems/RelatedProducts.jsx';
 import MyOutfit from './components/RelatedItems/MyOutfit.jsx';
+import SearchBar from './components/SearchBar.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -31,12 +32,16 @@ class App extends React.Component {
       reviewMeta: {},
       relatedProducts: [],
       leftIndex: 0,
-      rightIndex: 4
+      rightIndex: 4,
+      search: ''
     };
 
     this.setStyle = this.setStyle.bind(this);
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
     this.handleProductScroll = this.handleProductScroll.bind(this);
+    this.handleSearchClick = this.handleSearchClick.bind(this);
+    this.searchBarRender = this.searchBarRender.bind(this);
+    // this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   getStyles() {
@@ -201,6 +206,32 @@ class App extends React.Component {
       })
   }
 
+  handleSearchChange(e) {
+    this.setState({
+      search: e.target.value
+    })
+  }
+
+  handleSearchClick(id) {
+    let new_product_id = id;
+    console.log(new_product_id);
+    //
+    axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${new_product_id}`,
+      headers: { 'Authorization': API_KEY }
+    })
+      .then(({ data: product } = res) => {
+        this.setState({ currentProduct: product, currentProductId: product.id });
+        this.getStyles();
+        this.getFeatures();
+        this.getRatings();
+        this.getRelatedProducts(this.state.currentProductId);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+  }
 
   // Renders our question list once we have received our products and current product
   questionListRender() {
@@ -237,10 +268,19 @@ class App extends React.Component {
     )
   }
 
+  searchBarRender() {
+    ReactDOM.render(<SearchBar handleSearchClick = {this.handleSearchClick} />, document.getElementById('product-search'));
+  }
+
   render() {
     // console.log(this.state.currentProductId)
     return (
       <>
+        {/* <div className='product-search'>
+          <input name='search product id' onChange={this.handleSearchChange} type='text' placeholder='Search by product id' value={this.state.search}></input>
+          <button name='search product button' onClick={this.handleSearchClick}>Search</button>
+        </div> */}
+        {this.searchBarRender()}
         <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} currentProductFeatures={this.state.currentProductFeatures} reviewMeta={this.state.reviewMeta} />
         {this.relatedProductsRender()}
         <MyOutfit currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} averageRating={this.state.averageRating} currentStylePhotos={this.state.currentStylePhotos} />
