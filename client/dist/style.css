@@ -1037,6 +1037,10 @@ img.product-photo {
   color:lightseagreen
 }
 
+.questions-and-answers a:link {
+  color:lightseagreen
+}
+
 .questions-and-answers h1 {
   font-weight: bold;
 
