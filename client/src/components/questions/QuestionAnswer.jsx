@@ -12,15 +12,18 @@ class QuestionAnswer extends React.Component {
   render() {
     const {answer} = this.props;
     return (
-      <div className="answer">
+      <div className="answer-column">
       <p>
         {answer.body}
       </p>
-      <div className="userHelpfulness">
+      <div className="answer-helpfullness">
       <QuestionAnswerUser answer={answer} />
+      <span>|</span>
       <p>{moment(answer.date).format('MMMM Do YYYY')}</p>
+      <span>|</span>
       <QuestionAnswerHelpfulness helpfulness={answer}/>
       </div>
+      <hr/>
       </div>
     )
   }

@@ -152,6 +152,7 @@ class QuestionsList extends React.Component {
   // componentDidUpdate(prevProps) {
   //   if (prevProps !== this.props) {
   //     const { productID } = this.props;
+  //     console.log(productID)
   //     axios({
   //       method: 'get',
   //       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${productID}`,
@@ -168,7 +169,7 @@ class QuestionsList extends React.Component {
   loadMoreQuestionsRender() {
     if (this.state.questions.length > 2 && this.state.sliceIndex < this.state.questions.length) {
       return (
-        <button onClick={() => this.setState({loadMoreQuestions: 'yes', sliceIndex: this.state.sliceIndex + 2})}type="button">More Answered Questions</button>
+        <button className="load-more-questions" onClick={() => this.setState({loadMoreQuestions: 'yes', sliceIndex: this.state.sliceIndex + 2})}type="button">More Answered Questions</button>
       )
     }
   }
@@ -195,12 +196,13 @@ class QuestionsList extends React.Component {
       <Question key={question.question_id} question={question}/>
     ));
     return (
-      <div className = 'questions-and-answers questionsList blueBorder"'>
-        <h1>QuestionsList</h1>
+      <div className = 'questions-and-answers"'>
         <QuestionSearchAnswer search={this.onChangeSearch.bind(this)}/>
         {question}
+        <div className="load-more-add">
         {this.loadMoreQuestionsRender()}
         <QuestionAdd productID={this.props.productID} productName={this.props.productName}/>
+        </div>
       </div>
     );
   }

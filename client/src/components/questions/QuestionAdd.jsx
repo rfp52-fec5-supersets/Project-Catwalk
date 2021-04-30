@@ -70,7 +70,7 @@ class QuestionAdd extends React.Component {
   render() {
     return (
       <div>
-      <button onClick={this.handleToggle}>Add Question</button>
+      <button className="add-question" onClick={this.handleToggle}>Add Question</button>
      {this.state.showModal &&
       <QuestionModal onCloseRequest={this.handleToggle}>
         <div>
