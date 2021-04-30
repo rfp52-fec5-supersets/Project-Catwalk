@@ -15,11 +15,11 @@ header {
 }
 
 #header-main {
-  /* background-color: #091824; */
-  /* display: flex;
-  flex-direction: column;
-  align-items: baseline;
-  justify-content: space-around; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
   color: white;
   height: 75px;
   font-size: 15px;
@@ -80,6 +80,26 @@ header {
 #outfitters {
   margin-left: 19px;
 }
+
+/* this refers to the div holding the product-search bar*/
+#product-search {
+  width: 250px;
+}
+
+/* this refers to the product-search bar itself*/
+.product-search {
+}
+
+#product-search-text {
+  background-color: powderblue;
+}
+
+#product-search-button {
+  background-color: #1e88e5;
+  border: 0px;
+}
+
+
 
 /* #header-bottom {
   background-color: whitesmoke;
