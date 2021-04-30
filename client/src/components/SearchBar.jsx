@@ -32,7 +32,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className='product-search'>
-      <input name='search product id' id = "product-search-text" onChange={this.handleSearchChange} type='text' placeholder='Search by product id' value={this.state.search}></input>
+      <input name='search product id' id = "product-search-text" onChange={this.handleSearchChange} type='text' placeholder='Search by Product ID' value={this.state.search}></input>
       <button name='search product button' id = "product-search-button" onClick={this.handleSubmit}><i class = "fas fa-search"></i></button>
     </div>
     )

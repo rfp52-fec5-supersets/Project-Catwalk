@@ -88,15 +88,29 @@ header {
 
 /* this refers to the product-search bar itself*/
 .product-search {
+  display: flex;
+  flex-direction: row;
+  height: 25px;
 }
 
 #product-search-text {
-  background-color: powderblue;
+  background-color: whitesmoke;
+  font-family: Lato;
+  height: 23px;
+  border-style: none;
+  /* border-radius: 8px; */
+  padding-left: 10px;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
 
 #product-search-button {
   background-color: #1e88e5;
-  border: 0px;
+  border-style: none;
+  /* border-radius: 50%; */
+  height: 25px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 
