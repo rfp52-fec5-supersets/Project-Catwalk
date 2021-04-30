@@ -11,7 +11,7 @@ class MyOutfitCard extends React.Component {
   render() {
     return (
       <div className="outfits-card">
-        <img className="hover-shadow cursor" src={this.props.outfit.photo}></img>
+        <img className="product-photo" src={this.props.outfit.photo}></img>
         <a className="x-button" onClick={this.props.deleteOutfit}> {"X"}</a>
         <div className="card-info">
           <div>{this.props.outfit.product.category}</div>
