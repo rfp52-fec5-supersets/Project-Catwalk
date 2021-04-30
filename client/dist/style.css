@@ -589,6 +589,9 @@ select {
   /* justify-content: center; */
   font-size: 2em;
 }
+meter::-webkit-meter-optimum-value {
+  background-color: darkseagreen;
+}
 .reviews.ratings-and-filter {
   justify-content: space-evenly;
 }
@@ -740,7 +743,7 @@ textarea {
 }
 .close-button:hover,
 .close-button:focus {
-  color: black;
+  color: lightseagreen;
   text-decoration: none;
   cursor: pointer;
 }
