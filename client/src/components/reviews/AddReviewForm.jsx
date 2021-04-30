@@ -28,7 +28,8 @@ class AddReviewForm extends React.Component {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handlePhotos = this.handlePhotos.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.imageInput = React.createRef();
+    // this.imageInput = React.createRef();
+    this.handleValidation = this.handleValidation.bind(this);
   }
 
   handleStar(starCount) {
@@ -50,6 +51,7 @@ class AddReviewForm extends React.Component {
     let currentRatings = this.state.charaRatings;
     currentRatings[chara] = rating;
     let charaId = this.props.charaId[this.props.characteristics.indexOf(chara)];
+    charaId = charaId.toString();
     let characteristics = this.state.characteristics;
     characteristics[charaId] = parseInt(rating);
     this.setState({
@@ -71,6 +73,7 @@ class AddReviewForm extends React.Component {
     let imgurFormData = new FormData();
     imgurFormData.append('image', e.target.files[0]);
     // {image: e.target.files[0]}
+    // imgur doesn't show images in live server, doesn't allow posts to imgur api in localhost
     axios.post('https://api.imgur.com/3/image', imgurFormData, {
       headers: {
         // Authorization: Client-ID {your-client-id}
@@ -93,18 +96,27 @@ class AddReviewForm extends React.Component {
     });
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
+  handleValidation(e) {
     let errorMessage = '';
+    let emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|edu|museum)\b/;
     if (this.state.starRating === 0) {
       errorMessage = errorMessage + 'Need to fill out star rating!\n';
     }
     if (this.state.body.length < 50) {
       errorMessage = errorMessage + 'Need to have 50 or more characters in body!\n';
     }
+    if (!emailRegex.test(this.state.email)) {
+      errorMessage = errorMessage + 'Please check your email is a valid email (example@example.com)\n';
+    }
     if (this.state.photos.length !== this.state.photoURLs.length) {
       errorMessage = errorMessage + 'Please wait a bit for photos to finish uploading to form!';
     }
+    return errorMessage;
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let errorMessage = this.handleValidation(e);
     if (errorMessage) {
       alert(errorMessage);
       return;
@@ -117,18 +129,19 @@ class AddReviewForm extends React.Component {
     } else {
       recommend = false;
     }
-    let reviewParams = {product_id, rating, summary, body, recommend, name, email, characteristics, photos};
-    console.log(reviewParams);
-    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', reviewParams, {
+    let reviewParams = {product_id, rating, summary, body, recommend, name, email, photos, characteristics};
+    // maybe have product_id be integer instead of number?
+    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', {...reviewParams}, {
       headers: {'Authorization': API_KEY}
-    })
+      })
       .then(()=>{
         alert('submitted!');
-        // should try to reset page to show review.
+        // closes the add review form page, should try to rerender with new review.
+        this.props.handleClose();
       })
       .catch((err)=>{
-        console.log(err)
-      })
+        console.log(err);
+      });
   }
 
   render() {
@@ -166,12 +179,13 @@ class AddReviewForm extends React.Component {
           <div className='add-review-photos'>
             <span>Upload photos: </span>
             {this.state.photos.length < 5 &&
-            <input type='file' accept='image/*' onChange={this.handlePhotos} ref={this.imageInput}/>}
+            <input type='file' accept='image/*' onChange={this.handlePhotos} />}
+            {/* had ref={this.imageInput} */}
             <div>
               {this.state.photos.length > 0 &&
               this.state.photos.map((photo) => {
                 let index = this.state.photos.indexOf(photo);
-                return <img key={index} className='reviews-thumbnail' src={URL.createObjectURL(photo)} />
+                return <img key={index} className='reviews-thumbnail' src={URL.createObjectURL(photo)} alt={'image not loaded'}/>
               })}
             </div>
           </div>
