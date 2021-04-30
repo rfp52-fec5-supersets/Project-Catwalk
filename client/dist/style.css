@@ -231,7 +231,7 @@ body {
 .gallery-thumbnail-clicked {
   height: 60px;
   width: 60px;
-  border: 2.5px solid orange;
+  border: 3px solid lightseagreen;
   margin-right: 10px;
 }
 
@@ -337,7 +337,7 @@ body {
 }
 
 .feature-name {
-  background-color: whitesmoke;
+  background-color: lightgray;
   padding-left: 4px;
 }
 
@@ -448,7 +448,7 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: gold;
+  background-color: lightseagreen;
   width: 130px;
   height: 25px;
   text-align: center;
@@ -456,11 +456,11 @@ select {
 
 .add-to-cart:hover {
   cursor: pointer;
-  background-color: lightseagreen;
+  background-color: gold;
 }
 
 .add-to-cart:active {
-  background-color: gold;
+  background-color: lightseagreen;
 }
 
 .grid-container {
@@ -750,11 +750,15 @@ textarea {
   margin-top: 40px;
   margin-left: 26px;
   position: absolute;
+  font-weight: bold;
+  font-size: 22px;
 }
 .outfits-title {
   margin-top: 15px;
   margin-left: 26px;
   position: absolute;
+  font-weight: bold;
+  font-size: 22px;
 }
 .related-products-container,
 .outfits-container {
