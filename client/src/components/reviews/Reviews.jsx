@@ -148,9 +148,9 @@ class Reviews extends React.Component {
     }
     if (this.state.search.length >= 3) {
       currentReviews = currentReviews.filter((review) => {
-        let includeSummary = review.summary.includes(this.state.search);
-        let includeBody = review.body.includes(this.state.search);
-        let includeUser = review.reviewer_name.includes(this.state.search);
+        let includeSummary = review.summary.toLowerCase().includes(this.state.search);
+        let includeBody = review.body.toLowerCase().includes(this.state.search);
+        let includeUser = review.reviewer_name.toLowerCase().includes(this.state.search);
         return includeBody || includeSummary || includeUser;
       })
     }
