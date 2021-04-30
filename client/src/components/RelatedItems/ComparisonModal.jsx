@@ -43,7 +43,7 @@ class ComparisonModal extends React.Component {
 
         <div className="comparison-table">
           <div className="comparison-product">{currentProduct.name}</div>
-          <div className="comparison-title"> FEATURES </div>
+          <div className="comparison-title"> Features </div>
           <div className="comparison-product">{relatedProduct.name}</div>
 
           <div className="left-column">

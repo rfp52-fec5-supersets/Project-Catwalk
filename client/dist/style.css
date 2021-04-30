@@ -11,6 +11,7 @@ html, body, h1, header {
 header {
   margin-bottom: 30px;
   background-color: #091824;
+  /* background-color: lightseagreen; */
 }
 
 #header-main {
@@ -28,7 +29,7 @@ header {
 #header-secondary {
   height: 24px;
   background-color: whitesmoke;
-  color: black;
+  color: darkslategray;
   font-family: Lato;
   text-align: center;
 
@@ -87,14 +88,14 @@ header {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  color: black;
+  color: darkslategray;
   background-color: whitesmoke;
 }
 
 .click-tracker {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items:center;
 }
 
 #overview {
@@ -770,49 +771,62 @@ textarea {
 
 
 /* RELATED PRODUCTS AND MY OUTFIT */
+.related-products-title {
+  margin-top: 40px;
+  margin-left: 26px;
+  position: absolute;
+}
+.outfits-title {
+  margin-top: 15px;
+  margin-left: 26px;
+  position: absolute;
+}
 .related-products-container,
 .outfits-container {
   display:grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  padding: 10px;
-  grid-gap: 5px;
+  padding: 20px;
+  grid-gap: 10px;
+  margin-top: 30px;
 }
-.related-products-card {
-  border: 1px solid black;
+.related-products-card,
+.outfits-card {
+  border: 1px solid lightseagreen;
   margin-left: 5px;
   margin-right: 5px;
+  box-shadow: 3px 3px lightseagreen;
 }
-.outfits-card  {
-  border: 1px solid black;
-  margin-left: 5px;
-  margin-right: 5px;
+.related-products-card:hover,
+.outfits-card:hover {
+  box-shadow:  5px 5px lightseagreen;
+  cursor: pointer;
+  transition: 0.5s;
 }
 .outfits-card-button {
   height:387px;
-  border: 1px solid black;
+  width: 300px;
+  border: 1px solid lightseagreen;
   margin-left: 5px;
   margin-right: 5px;
+  box-shadow: 3px 3px lightseagreen;
+  position: relative;
+}
+.outfits-card-button:hover {
+  box-shadow:  5px 5px lightseagreen;
+  cursor: pointer;
+  transition: 0.5s;
 }
 .card-info {
   margin: 5px;
 }
 .card-info-name {
-  font-weight: bold;
+  font-weight:bold;
+  font-size:18px;
 }
-.cursor {
-  cursor: pointer;
-}
-img.hover-shadow {
-  transition: 0.1s;
+img.product-photo {
   height: 300px;
   width: 100%;
-  height: 300px;
-}
-.product-photo {
-  height: 300px
-}
-.hover-shadow:hover {
-  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px lightseagreen;
 }
 .left-button,
 .right-button {
@@ -820,15 +834,16 @@ img.hover-shadow {
   position: absolute;
   margin-top: -250px;
   color: lightseagreen;
-  border-color: black;
   font-size: 50px;
 }
 .right-button {
   right: 0;
+  position: relative;
+  float: right;
 }
 .left-button:hover,
 .right-button:hover {
-  background-color: grey
+  background-color: slategray
 }
 .left-outfit-button,
 .right-outfit-button {
@@ -836,7 +851,6 @@ img.hover-shadow {
   position: absolute;
   margin-top: -250px;
   color: lightseagreen;
-  border-color: black;
   font-size: 50px;
 }
 .right-outfit-button {
@@ -848,33 +862,36 @@ img.hover-shadow {
 }
 .star-button {
   /* margin-top: 15px; */
-  top: 2em;
-  margin-left: 80%;
+  top: 2.5em;
+  margin-left: 85%;
   position: relative;
   cursor: pointer;
   /* float: left; */
 }
 .x-button {
-  padding: 12px;
-  margin-left: -50px;
+  padding: 10px;
+  margin-left: -40px;
   position: absolute;
   cursor: pointer;
-  color: grey;
+  color: lightseagreen;
   font-weight: bold;
   font-size: 30px;
 }
 .x-button:hover {
-  color:lightseagreen
+  color:slategray
 }
 .add-button {
-  margin-top: 140px;
-  margin-left: 140px;
+  margin-top: 120px;
+  margin-left: 120px;
   font-weight: bold;
-  font-size: 100px;
+  font-size: 125px;
   position: absolute;
   cursor: pointer;
-  color: black;
+  color:slategray;
   }
+.add-button:hover {
+  color:lightseagreen;
+}
 
 
   /* COMPARISON MODAL */
@@ -882,21 +899,29 @@ img.hover-shadow {
     display: grid;
     grid-template-columns: 30% 40% 30%;
     grid-template-rows: 1fr 3fr;
-    background-color: #fefefe;
+    background-color: whitesmoke;
     margin: 5% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 5px solid lightseagreen;
     width: 50%;
   }
-  .comparison-product {
+  .comparison-product{
     text-align: center;
     font-weight: bold;
+    font-size: 20px;
+    color:darkslategray
   }
   .comparison-title {
     text-align: center;
+    font-size: 20px;
+  }
+  .left-column,
+  .right-column {
+    text-align: center;
+    line-height: 30px;
     font-weight: bold;
   }
-  .left-column, .middle-column, .right-column {
+  .middle-column {
     text-align: center;
-    line-height: 25px;
+    line-height: 30px;
   }
