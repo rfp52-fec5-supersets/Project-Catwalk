@@ -113,6 +113,10 @@ header {
   border-bottom-right-radius: 12px;
 }
 
+#product-search-button:hover {
+  cursor: pointer;
+}
+
 
 
 /* #header-bottom {
