@@ -156,11 +156,13 @@ class App extends React.Component {
     console.log('product card clicked', product);
     this.setState({
       currentProduct: product,
-      currentProductId: product.id
+      currentProductId: product.id,
+      currentStyleIndex: 0
     }, () => {
       this.getStyles();
       this.getFeatures();
       this.getRatings();
+      this.getRelatedProducts(product.id);
     })
   }
 
