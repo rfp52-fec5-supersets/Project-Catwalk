@@ -11,7 +11,8 @@
     "dev": "live-server ./client/dist",
     "dev-server": "nodemon ./server/server.js",
     "react-prod": "webpack",
-    "prod-server": "node ./server/server.js"
+    "prod-server": "node ./server/server.js",
+    "start:prod": "webpack & node ./server/server.js"
   },
   "repository": {
     "type": "git",

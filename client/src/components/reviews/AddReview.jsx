@@ -30,7 +30,7 @@ class AddReview extends React.Component {
         <button id='reviews-add' onClick={this.handleToggle}>Add Review</button>
         {this.state.showModal &&
         <ModalImage onCloseRequest={this.handleToggle}>
-          <AddReviewForm product={this.props.product} characteristics = {characteristics} charaId = {charaId} handleClose={this.handleToggle}/>
+          <AddReviewForm product={this.props.product} characteristics = {characteristics} charaId = {charaId} handleClose={this.handleToggle} handleUpdate={this.props.handleUpdate}/>
         </ModalImage>}
       </>
     );
