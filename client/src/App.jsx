@@ -253,7 +253,7 @@ class App extends React.Component {
 
     return (
       <div className="related-products">
-        <>RELATED PRODUCTS</>
+        <div className="related-products-title">RELATED PRODUCTS</div>
         <div className="related-products-container">
           {productsToDisplay.slice(leftIndex, rightIndex)}
         </div>

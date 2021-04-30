@@ -9,6 +9,7 @@ class RelatedProducts extends React.Component {
     this.state = {
       relatedImage: [],
       relatedRating: 0,
+      salePrice: null
     }
     this.getRelatedProductsImage = this.getRelatedProductsImage.bind(this);
     this.getRelatedProductsRating = this.getRelatedProductsRating.bind(this);
@@ -32,13 +33,32 @@ class RelatedProducts extends React.Component {
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/styles`,
       headers: { 'Authorization': API_KEY }
     })
-      .then(response => {
-        // console.log('response', response);
-        this.setState({
-          relatedImage: response.data.results[0].photos[0].thumbnail_url
-          // salesPrice:
-        });
+    .then(response => {
+      this.setState({
+        relatedImage: response.data.results[0].photos[0].thumbnail_url
       })
+    })
+      //   .then(response => {
+      //     console.log('response', response);
+      //     let styles = [];
+      //     response.data.results.map(style => {
+      //       if (style['default?'] === true) {
+      //         styles.push(style.original_price);
+      //         styles.push(style.sale_price);
+      //         styles.push(style.photos[0].thumbnail_url)
+      //       }
+      //     })
+      //     if (styles.length === 0) {
+      //       styles.push(response.data.results[0].original_price);
+      //       styles.push(response.data.results[0].sale_price);
+      //       styles.push(response.data.results[0].photos[0].thumbnail_url)
+      //     }
+      //     debugger;
+      //     this.setState({
+      //       relatedImage: styles[2],
+      //       salePrice: styles[1]
+      //     });
+      //   })
       .catch(err => {
         console.log(err.message);
       })
@@ -84,6 +104,7 @@ class RelatedProducts extends React.Component {
           handleCardClick={this.props.handleCardClick}
           relatedRating={this.state.relatedRating}
           relatedImage={this.state.relatedImage}
+          salesPrice={this.state.salesPrice}
           currentFeatures={this.props.currentFeatures}
           key={this.props.relatedProduct.id}
         />
