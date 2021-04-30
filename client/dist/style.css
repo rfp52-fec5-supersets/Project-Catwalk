@@ -90,6 +90,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: darkslategray;
   background-color: whitesmoke;
+  font-size: 15px !important;
 }
 
 .click-tracker {
@@ -747,6 +748,8 @@ textarea {
 
 /* RELATED PRODUCTS AND MY OUTFIT */
 .related-products-title {
+  font-weight: bold;
+  font-size: 22px;
   margin-top: 40px;
   margin-left: 26px;
   position: absolute;
@@ -754,6 +757,8 @@ textarea {
   font-size: 22px;
 }
 .outfits-title {
+  font-weight: bold;
+  font-size: 22px;
   margin-top: 15px;
   margin-left: 26px;
   position: absolute;
@@ -806,6 +811,7 @@ img.product-photo {
   height: 300px;
   width: 100%;
   box-shadow: 1px 1px 1px lightseagreen;
+  background-image:url('https://i.imgur.com/bLIxvoi.png');
 }
 .left-button,
 .right-button {
@@ -832,8 +838,15 @@ img.product-photo {
   color: lightseagreen;
   font-size: 50px;
 }
+.left-outfit-button {
+  position: relative;
+  margin-left: 330px;
+  float: left;
+}
 .right-outfit-button {
   right: 0;
+  position: relative;
+  float:right;
 }
 .left-outfit-button:hover,
 .right-outfit-button:hover {
@@ -871,7 +884,12 @@ img.product-photo {
 .add-button:hover {
   color:lightseagreen;
 }
-
+.sale-price {
+  color: red;
+}
+/* .default-price {
+  text-decoration: line-through;
+} */
 
   /* COMPARISON MODAL */
   .comparison-table {
@@ -881,7 +899,7 @@ img.product-photo {
     background-color: whitesmoke;
     margin: 5% auto;
     padding: 20px;
-    border: 5px solid lightseagreen;
+    border: 3px solid lightseagreen;
     width: 50%;
   }
   .comparison-product{
