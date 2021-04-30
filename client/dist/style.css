@@ -1031,6 +1031,7 @@ img.product-photo {
 .questions-and-answers {
   display: grid;
   grid-template-columns: auto;
+  margin-left: -9em;
 }
 
 .questions-and-answers a:visited {
