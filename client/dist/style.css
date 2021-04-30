@@ -853,8 +853,15 @@ img.product-photo {
   color: lightseagreen;
   font-size: 50px;
 }
+.left-outfit-button {
+  position: relative;
+  margin-left: 330px;
+  float: left;
+}
 .right-outfit-button {
   right: 0;
+  position: relative;
+  float:right;
 }
 .left-outfit-button:hover,
 .right-outfit-button:hover {
