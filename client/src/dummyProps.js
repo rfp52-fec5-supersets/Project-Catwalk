@@ -122,7 +122,7 @@ const ReviewTileProps = {
         "rating": 2,
         "summary": "dd",
         "recommend": true,
-        "response": null,
+        "response": 'yo',
         "body": "ccjshbcvvzbvxbbbcbbcbbcbcbbcbcbcbcbcbvcvvcbhzhcnzncvvc",
         "date": "2021-04-27T00:00:00.000Z",
         "reviewer_name": "dd",
@@ -196,4 +196,28 @@ const ReviewAddFormProps = {
         57238
     ]
 }
-export {ReviewProps, ReviewState, ReviewTileProps, ReviewRatingsProps, ReviewProductProps, ReviewAddFormProps};
+const ReviewAddFormState = {
+    "product_id": 17071,
+    "starRating": 3,
+    "charaRatings": {
+        "Size": "4",
+        "Width": "4",
+        "Comfort": "4",
+        "Quality": "4"
+    },
+    "characteristics": {
+        "57235": 4,
+        "57236": 4,
+        "57237": 4,
+        "57238": 4
+    },
+    "summary": "Meh",
+    "body": "asdfasdfasdfasdfa asdfasdfalsdfasdhlj;klj;kj; asdf;lkj",
+    "photos": [],
+    "photoURLs": [],
+    "name": "asdf",
+    "email": "asdf@asdf.com",
+    "recommend": "false"
+}
+
+export {ReviewProps, ReviewState, ReviewTileProps, ReviewRatingsProps, ReviewProductProps, ReviewAddFormProps, ReviewAddFormState};

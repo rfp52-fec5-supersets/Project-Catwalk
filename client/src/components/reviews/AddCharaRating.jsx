@@ -8,7 +8,7 @@ const CharaMessages = {
   Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long']
 }
 
-class AddStarRating extends React.Component {
+class AddCharaRating extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -49,4 +49,4 @@ class AddStarRating extends React.Component {
   }
 }
 
-export default AddStarRating
+export default AddCharaRating
