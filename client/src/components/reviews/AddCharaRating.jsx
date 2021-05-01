@@ -19,10 +19,6 @@ class AddStarRating extends React.Component {
   }
 
   render() {
-    // For each charac rating, input as array of 5 radio buttons.
-    // Meaning of lowest and highest selection appear below array of buttons.
-    // Default no button selected
-    // Above buttons, meaning of current selection explicitly presented, default = none selected.
     let chara = this.props.chara;
     let choices = [];
     let charaRating = this.props.charaRatings[chara];

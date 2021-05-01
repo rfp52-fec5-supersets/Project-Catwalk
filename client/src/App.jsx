@@ -214,7 +214,6 @@ class App extends React.Component {
 
   handleSearchClick(id) {
     let new_product_id = id;
-    console.log(new_product_id);
     //
     axios({
       method: 'get',
@@ -233,11 +232,8 @@ class App extends React.Component {
       })
   }
 
-  // Renders our question list once we have received our products and current product
   questionListRender() {
-    // Check that our products state isn't empty - indicates we have recevied our current product
     if (this.state.products.length > 0) {
-      // Render our QuestionsList component while passing in the product ID
       return <QuestionsList productName={this.state.currentProduct.name} productID={this.state.currentProduct.id} />
     }
   }
@@ -273,13 +269,8 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log(this.state.currentProductId)
     return (
       <>
-        {/* <div className='product-search'>
-          <input name='search product id' onChange={this.handleSearchChange} type='text' placeholder='Search by product id' value={this.state.search}></input>
-          <button name='search product button' onClick={this.handleSearchClick}>Search</button>
-        </div> */}
         {this.searchBarRender()}
         <Overview currentProduct={this.state.currentProduct} currentProductId={this.state.currentProductId} currentStylePhotos={this.state.currentStylePhotos} currentProductFull={this.state.currentProductFull} currentStyle={this.state.currentStyle} averageRating={this.state.averageRating} styles={this.state.styles} currentStyleIndex={this.state.currentStyleIndex} setStyle={this.setStyle} currentStyleSkusObj={this.state.currentStyleSkusObj} currentStyleTotalQuantity={this.state.currentStyleTotalQuantity} currentProductFeatures={this.state.currentProductFeatures} reviewMeta={this.state.reviewMeta} />
         {this.relatedProductsRender()}

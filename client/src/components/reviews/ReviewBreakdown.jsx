@@ -8,8 +8,6 @@ class ReviewBreakdown extends React.Component {
   }
 
   render() {
-    // ratings breakdown needs: avg rating, individual star ratings, and recommendations
-    // product breakdown needs: characteristics
     return (
       <div id='reviews-breakdown' className='reviews-component'>
         Review Breakdown

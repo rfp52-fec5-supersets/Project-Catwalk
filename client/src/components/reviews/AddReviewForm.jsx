@@ -3,9 +3,7 @@ import axios from 'axios';
 import AddStarRating from './AddStarRating.jsx';
 import AddCharaRating from './AddCharaRating.jsx';
 import API_KEY from './../../config.js'
-
-// client_id: 121adb5801ad1ad
-// client_secret: c70e64b379cdfb1709afc07ba3214ed577fb2aca
+import imgur_CLIENT_ID from './../../config.imgur.js'
 
 class AddReviewForm extends React.Component {
   constructor(props) {
@@ -28,13 +26,10 @@ class AddReviewForm extends React.Component {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handlePhotos = this.handlePhotos.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.imageInput = React.createRef();
     this.handleValidation = this.handleValidation.bind(this);
   }
 
   handleStar(starCount) {
-    // When AddStarRating Component receives a click, it returns the star Count of the star.
-    // 1-5
     this.setState({
       starRating: starCount
     })
@@ -47,7 +42,6 @@ class AddReviewForm extends React.Component {
   }
 
   handleChara(chara, rating) {
-    // this.state.charaRating = {chara1: rating1, chara2: rating2, etc.}
     let currentRatings = this.state.charaRatings;
     currentRatings[chara] = rating;
     let charaId = this.props.charaId[this.props.characteristics.indexOf(chara)];
@@ -67,17 +61,13 @@ class AddReviewForm extends React.Component {
   }
 
   handlePhotos(e) {
-    // this.imageInput.current === e.target in this case
     let photos = this.state.photos;
     photos.push(e.target.files[0]);
     let imgurFormData = new FormData();
     imgurFormData.append('image', e.target.files[0]);
-    // {image: e.target.files[0]}
-    // imgur doesn't show images in live server, doesn't allow posts to imgur api in localhost
     axios.post('https://api.imgur.com/3/image', imgurFormData, {
       headers: {
-        // Authorization: Client-ID {your-client-id}
-        'Authorization': 'Client-ID 121adb5801ad1ad'
+        'Authorization': `Client-ID ${imgur_CLIENT_ID}`
       }
     })
       .then((response)=> {
@@ -130,13 +120,11 @@ class AddReviewForm extends React.Component {
       recommend = false;
     }
     let reviewParams = {product_id, rating, summary, body, recommend, name, email, photos, characteristics};
-    // maybe have product_id be integer instead of number?
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', {...reviewParams}, {
       headers: {'Authorization': API_KEY}
       })
       .then(()=>{
         alert('submitted!');
-        // closes the add review form page, should try to rerender with new review.
         this.props.handleClose();
         this.props.handleUpdate();
       })
@@ -181,7 +169,6 @@ class AddReviewForm extends React.Component {
             <span>Upload photos: </span>
             {this.state.photos.length < 5 &&
             <input type='file' accept='image/*' onChange={this.handlePhotos} />}
-            {/* had ref={this.imageInput} */}
             <div>
               {this.state.photos.length > 0 &&
               this.state.photos.map((photo) => {

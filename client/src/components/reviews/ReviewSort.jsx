@@ -5,17 +5,9 @@ class ReviewSort extends React.Component {
     super(props);
   }
 
-  // handleChange(e) {
-  //   this.setState({
-  //     value: e.target.value
-  //   });
-  //   this.props.handleSort(e.target.value);
-  // }
-
   render() {
     return (
       <div id='reviews-sort' className='reviews-component'>
-        {/* <form onSubmit={this.handleSubmit}> */}
         <form>
           <label>
             Sort On:
@@ -25,7 +17,6 @@ class ReviewSort extends React.Component {
               <option value="helpful">helpful</option>
             </select>
           </label>
-          {/* <input type="submit" value="Submit" /> */}
         </form>
       </div>
     );

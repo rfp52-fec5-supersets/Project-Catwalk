@@ -1,4 +1,3 @@
-// Product Breakdown in ReviewBreakdown parent
 import React from 'react';
 import CharaBar from './CharaBar.jsx'
 

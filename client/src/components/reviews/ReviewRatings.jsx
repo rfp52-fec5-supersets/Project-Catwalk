@@ -13,10 +13,6 @@ class RatingsBreakdown extends React.Component {
   }
 
   render() {
-    // Breakdown: bars for each star rating, left of bar: star rating #, right of bar: count
-    //   hover on bar changes background color
-    //   click on star count turns on filter
-    // Recommendations: shows percentage of reviews that recommend product
     let averageRating = Math.round(this.props.averageRating * 10) / 10;
     let total = 0;
     let recommendTrue = 0;
