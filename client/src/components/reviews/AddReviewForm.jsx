@@ -3,6 +3,7 @@ import axios from 'axios';
 import AddStarRating from './AddStarRating.jsx';
 import AddCharaRating from './AddCharaRating.jsx';
 import API_KEY from './../../config.js'
+import imgur_CLIENT_ID from './../../config.imgur.js'
 
 // client_id: 121adb5801ad1ad
 // client_secret: c70e64b379cdfb1709afc07ba3214ed577fb2aca
@@ -67,7 +68,6 @@ class AddReviewForm extends React.Component {
   }
 
   handlePhotos(e) {
-    // this.imageInput.current === e.target in this case
     let photos = this.state.photos;
     photos.push(e.target.files[0]);
     let imgurFormData = new FormData();
@@ -76,8 +76,8 @@ class AddReviewForm extends React.Component {
     // imgur doesn't show images in live server, doesn't allow posts to imgur api in localhost
     axios.post('https://api.imgur.com/3/image', imgurFormData, {
       headers: {
-        // Authorization: Client-ID {your-client-id}
-        'Authorization': 'Client-ID 121adb5801ad1ad'
+        // Authorization: Client-ID {your-imgur-client-id}
+        'Authorization': `Client-ID ${imgur_CLIENT_ID}`
       }
     })
       .then((response)=> {
@@ -130,13 +130,11 @@ class AddReviewForm extends React.Component {
       recommend = false;
     }
     let reviewParams = {product_id, rating, summary, body, recommend, name, email, photos, characteristics};
-    // maybe have product_id be integer instead of number?
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', {...reviewParams}, {
       headers: {'Authorization': API_KEY}
       })
       .then(()=>{
         alert('submitted!');
-        // closes the add review form page, should try to rerender with new review.
         this.props.handleClose();
         this.props.handleUpdate();
       })
