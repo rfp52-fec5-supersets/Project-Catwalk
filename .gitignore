@@ -83,7 +83,7 @@ typings/
 
 # API Key
 client/src/config.js
-clinet/src/config.imgur.js
+client/src/config.imgur.js
 
 # Webpack bundle files
 client/dist/bundle.js

@@ -38,8 +38,8 @@ class RatingsBreakdown extends React.Component {
             return (
               <div key={star}>
                 <span onClick={()=>(this.props.handleClick(star))} className='reviews ratings-and-filter flex-box'>
-                  {star} star ratings:
-                  <meter value={this.props.ratings[star]} max={total}></meter>
+                  {star} star ratings: &nbsp;
+                  <meter value={this.props.ratings[star]} max={total}></meter> &nbsp;
                   {this.props.ratings[star] || 0}
                 </span>
               </div>
