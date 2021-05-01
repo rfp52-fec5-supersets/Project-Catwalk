@@ -10,11 +10,14 @@ import RatingsBreakdown from '../../components/reviews/ReviewRatings';
 import ProductBreakdown from '../../components/reviews/ReviewProduct';
 import ReviewTileBody from '../../components/reviews/ReviewTileBody';
 import AddReviewForm from '../../components/reviews/AddReviewForm';
+import AddCharaRating from '../../components/reviews/AddCharaRating';
 import ImageThumbnail from '../../components/reviews/ImageThumbnail';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import StarsDisplay from '../../components/StarsDisplay';
 import {ReviewProps, ReviewState, ReviewTileProps, ReviewRatingsProps, ReviewProductProps, ReviewAddFormProps} from '../../dummyProps';
+import axios from 'axios';
+// jest.mock('axios');
 
 
 describe('Reviews Component renders', () => {
@@ -87,13 +90,16 @@ describe('Reviews Tile tests', () => {
     wrapper.unmount();
   });
   test('Review-Tile: Clicking on helpfulness and report', ()=>{
-    // simulate click on helpfulness
-    // simulate click on report
     let spyHelpful = sinon.spy(ReviewTile.prototype, 'handleHelpful');
     let spyReport = sinon.spy(ReviewTile.prototype, 'handleReport');
-    let wrapper = mount(<ReviewTile {...ReviewTileProps} />);
+    let wrapper = shallow(<ReviewTile {...ReviewTileProps} />);
+    // axios.get.mockImplementationOnce(() => Promise.resolve());
     expect(wrapper.find('.review-helpfulness > p > span')).to.have.lengthOf(2);
     wrapper.find('.review-helpfulness > p > span').first().simulate('click');
+    // wrapper.instance().handleHelpful().then((4)=>{
+    //   console.log(wrapper.state());
+    //   expect(wrapper.state('voted')).to.equal('voted-yes');
+    // })
     wrapper.find('.review-helpfulness > p > span').last().simulate('click');
     expect(spyHelpful.called);
     expect(spyReport.called);
@@ -174,13 +180,26 @@ describe('Add Review tests', () => {
     wrapper.unmount();
   });
   test('Add-Review: Form should handle changes and submissions', ()=>{
+    global.URL.createObjectURL = jest.fn();
     let starSpy = sinon.spy(AddReviewForm.prototype, 'handleStar');
     let recSpy = sinon.spy(AddReviewForm.prototype, 'handleRecommended');
-    let charaSpy = sinon.spy(AddReviewForm.prototype, 'handleChara');
+    // let charaSpy = sinon.spy(AddReviewForm.prototype, 'handleChara');
     let textSpy = sinon.spy(AddReviewForm.prototype, 'handleTextChange');
     let photoSpy = sinon.spy(AddReviewForm.prototype, 'handlePhotos');
     let submitSpy = sinon.spy(AddReviewForm.prototype, 'handleSubmit');
     let wrapper = mount(<AddReviewForm {...ReviewAddFormProps}/>);
+    wrapper.find('.star-1').simulate('click');
+    expect(starSpy.called);
+    wrapper.find('#add-review-recommended-yes').simulate('change');
+    expect(recSpy.called);
+    wrapper.find('.add-review-summary > input').simulate('change', {target: {value: 'hi'}});
+    expect(textSpy.called);
+    wrapper.find('.add-review-photos > input').simulate('change');
+    // , {target: {files: {
+    //   "0": {}
+    // }}}
+    expect(photoSpy.called);
+    // wrapper.find()
     wrapper.unmount();
   });
 });

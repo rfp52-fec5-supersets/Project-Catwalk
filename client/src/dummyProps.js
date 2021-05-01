@@ -122,7 +122,7 @@ const ReviewTileProps = {
         "rating": 2,
         "summary": "dd",
         "recommend": true,
-        "response": null,
+        "response": 'yo',
         "body": "ccjshbcvvzbvxbbbcbbcbbcbcbbcbcbcbcbcbvcvvcbhzhcnzncvvc",
         "date": "2021-04-27T00:00:00.000Z",
         "reviewer_name": "dd",
@@ -196,4 +196,5 @@ const ReviewAddFormProps = {
         57238
     ]
 }
+
 export {ReviewProps, ReviewState, ReviewTileProps, ReviewRatingsProps, ReviewProductProps, ReviewAddFormProps};
