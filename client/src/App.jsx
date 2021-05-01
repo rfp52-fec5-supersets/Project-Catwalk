@@ -16,14 +16,12 @@ class App extends React.Component {
     this.state = {
       products: [],
       currentProduct: {},
-      /* added from Overview.jsx */
       styles: [],
       currentStyleIndex: 0,
       currentStyle: {},
       currentProductId: '17067', // initialized value, shouldn't matter
       currentStylePhotos: [],
       currentStyleSkusObj: {},
-      // currentStyleSkus: [],
       currentStyleTotalQuantity: 0,
       currentProductFull: {},
       currentProductFeatures: [],
@@ -41,7 +39,6 @@ class App extends React.Component {
     this.handleProductScroll = this.handleProductScroll.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
     this.searchBarRender = this.searchBarRender.bind(this);
-    // this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   getStyles() {
@@ -74,7 +71,6 @@ class App extends React.Component {
     })
       .then(({ data: productObj } = res) => {
         this.setState({ currentProductFull: productObj, currentProductFeatures: productObj.features });
-        // console.log(this.state);
       })
       .catch((err) => {
         console.error(err);
@@ -105,7 +101,6 @@ class App extends React.Component {
         }
 
         this.setState({ ratings: ratings, averageRating: (sum / divisor).toFixed(2), reviewMeta: metaObj });
-        //console.log(this.state);
       })
       .catch((err) => {
         console.error(err);
@@ -114,7 +109,6 @@ class App extends React.Component {
 
   setStyle(index) {
     this.setState({ currentStyleIndex: index, currentStyle: this.state.styles[index], currentStylePhotos: this.state.styles[index].photos, currentStyleSkusObj: this.state.styles[index].skus })
-    // console.log(this.state);
     var skusObj = this.state.currentStyle.skus;
     var skusObjKeys = Object.keys(skusObj);
     var currentStyleTotalQuantity = 0;
@@ -123,7 +117,6 @@ class App extends React.Component {
       currentStyleTotalQuantity += skusObj[key].quantity;
     }
     this.setState({ currentStyleTotalQuantity: currentStyleTotalQuantity });
-    // console.log(this.state);
   }
 
   getRelatedProducts(id) {
@@ -214,7 +207,6 @@ class App extends React.Component {
 
   handleSearchClick(id) {
     let new_product_id = id;
-    //
     axios({
       method: 'get',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${new_product_id}`,

@@ -24,19 +24,6 @@ class ProductInfo extends React.Component {
         <div id = "rating"><StarsDisplay stars = {this.props.rating} key = {this.props.rating}/> <div id = "rating-number">{this.props.rating}  {totalReviews > 0 && <span>(<a href = "#reviews">{totalReviews}</a>)</span>}</div></div>
 
         <div id = "category"><b>Category:</b> {this.props.currentProduct.category}</div>
-        {/* <div id = "product-info-2">
-          <div id = "product-overview">Product Overview: {this.props.currentProduct.description}</div>
-          <div id = "product-features">
-          {this.props.currentProductFeatures.map((feature) => {
-          return (
-            <div className = "feature">
-              {feature.feature}: {feature.value}
-            </div>
-          )
-        })}
-          </div>
-        </div> */}
-        {/* {JSON.stringify(this.props.currentProduct.features)} */}
 
         <div id = "socials">
         <b id = "share-title">Share:</b>

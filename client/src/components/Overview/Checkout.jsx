@@ -28,13 +28,11 @@ class Checkout extends React.Component {
       this.setState({sizeSelected: event.target.value, currentSizeQuantity: this.props.currentStyleSkusObj[event.target.value].quantity, pleaseSelectSize: false});
       var dropdown = document.getElementById('size-selector');
       dropdown.size = 0;
-      console.log(this.state);
     }
   }
 
   handleSelectQuantity(event) {
     this.setState({selectedQuantity: Number(event.target.value)});
-    console.log(this.state);
   }
 
   handleClick(event) {
@@ -49,7 +47,6 @@ class Checkout extends React.Component {
     }
 
     var promises = [];
-    // console.log(this.state.selectedQuantity);
     for (var i = 0; i < this.state.selectedQuantity; i++) {
 
       var promise = axios({

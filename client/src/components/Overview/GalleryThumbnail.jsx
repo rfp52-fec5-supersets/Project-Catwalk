@@ -9,23 +9,10 @@ class GalleryThumbnail extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
-
-    // console.log(this.props);
   }
 
-  // componentDidMount() {
-  //   this.setState({photos: this.props.currentStylePhotos})
-  //   //console.log(this.props.currentStylePhotos);
-  // }
-
-  // imageRender() {
-  //   if (this.props.currentStylePhotos.length > 0) {
-  //     return (<img src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}></img>)
-  //   }
-  // }
   handleClick(event) {
     this.props.selectPhoto(Number(event.target.name))
-    // console.log(event.target.name);
   }
 
   render() {

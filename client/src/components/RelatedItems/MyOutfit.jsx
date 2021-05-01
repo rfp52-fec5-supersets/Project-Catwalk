@@ -17,7 +17,6 @@ class MyOutfit extends React.Component {
   }
 
   addToOutfit(product, rating, photo) {
-    // console.log('addToOutfit', this.state.outfits);
     var outfitExists = false;
     for (var i = 0; i < this.state.outfits.length; i++) {
       if (this.state.outfits[i].product.id === product.id) {
@@ -34,7 +33,6 @@ class MyOutfit extends React.Component {
       })
       localStorage.setItem('outfit', JSON.stringify(this.state.outfits));
     }
-    // console.log('local storage', localStorage);
   }
 
   deleteOutfit(outfit) {

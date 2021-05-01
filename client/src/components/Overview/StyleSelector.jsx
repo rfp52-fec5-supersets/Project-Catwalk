@@ -12,8 +12,6 @@ class StyleSelector extends React.Component {
   handleClick(event) {
     event.preventDefault();
     this.props.setStyle(event.target.name);
-    //debugger;
-    //console.log(event.target.name);
   }
 
     render() {
@@ -26,21 +24,6 @@ class StyleSelector extends React.Component {
       </div>
     )
   }
-
-  // render() {
-  //   return (
-  //     <div className = "style-selector">
-  //       Style Selector
-  //       {this.props.styles.map((style, index) => {
-
-  //         if (this.props.currentStyleIndex == index) {
-  //           return ((index === this.props.currentStyleIndex) ? <img className = "style-thumbnail-clicked" src = {style.photos[0].thumbnail_url} key = {index} name = {index} onClick = {this.handleClick}></img> : <img className = "style-thumbnail" src = {style.photos[0].thumbnail_url} key = {index} name = {index} onClick = {this.handleClick}></img>)
-  //         }
-  //         return ((index == this.props.currentStyleIndex) ? <img className = "style-thumbnail-clicked" src = {style.photos[0].thumbnail_url} key = {index} name = {index} onClick = {this.handleClick}></img> : <img className = "style-thumbnail" src = {style.photos[0].thumbnail_url} key = {index} name = {index} onClick = {this.handleClick}></img>)
-  //       })}
-  //     </div>
-  //   )
-  // }
 }
 
 export default StyleSelector;

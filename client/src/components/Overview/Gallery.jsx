@@ -14,24 +14,12 @@ class Gallery extends React.Component {
       expandedImageZoomed: false
     };
 
-    // console.log(this.props);
     this.selectPhoto = this.selectPhoto.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleZoom = this.toggleZoom.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
   }
-
-  // componentDidMount() {
-  //   this.setState({photos: this.props.currentStylePhotos})
-  //   //console.log(this.props.currentStylePhotos);
-  // }
-
-  // imageRender() {
-  //   if (this.props.currentStylePhotos.length > 0) {
-  //     return (<img src = {this.props.currentStylePhotos[this.state.currentImageIndex].url}></img>)
-  //   }
-  // }
 
   selectPhoto(index) {
     this.setState({currentImageIndex: index});
@@ -56,9 +44,6 @@ class Gallery extends React.Component {
         }
 
         this.setState({currentImageIndex: this.state.currentImageIndex - 1, minThumbnailIndex: newMinIndex, maxThumbnailIndex: newMaxIndex});
-
-        // console.log(this.state.minThumbnailIndex, this.state.maxThumbnailIndex)
-
       }
     }
 
@@ -115,7 +100,6 @@ class Gallery extends React.Component {
 
   render() {
     var thumbnailsToRender = this.props.currentStylePhotos.slice(this.state.minThumbnailIndex, this.state.maxThumbnailIndex + 1);
-    //console.log(thumbnailsToRender);
 
     return (
       <div className = "gallery">

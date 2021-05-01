@@ -9,9 +9,7 @@ class StyleSelectorIcon extends React.Component {
   }
 
   handleClick(event) {
-    //event.preventDefault();
     this.props.setStyle(event.target.name);
-    //console.log(event.target.name);
   }
 
   render() {

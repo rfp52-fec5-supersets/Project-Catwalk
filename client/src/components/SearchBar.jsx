@@ -14,9 +14,6 @@ class SearchBar extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // searchBarRender() {
-  //   ReactDOM.render(,);
-  // }
 
   handleSearchChange(e) {
     this.setState({
@@ -25,7 +22,6 @@ class SearchBar extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log(this.state.search);
     this.props.handleSearchClick(this.state.search);
   }
 

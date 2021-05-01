@@ -20,7 +20,6 @@ class Overview extends React.Component {
   render() {
     return (
       <div id = "overview" className = 'overview'>
-      {/* {console.log(this.props.currentProduct)} */}
       <Gallery currentStylePhotos = {this.props.currentStylePhotos}/>
       <ProductInfo currentProduct = {this.props.currentProductFull} currentStyle = {this.props.currentStyle} rating = {this.props.averageRating} currentProductFeatures = {this.props.currentProductFeatures} reviewMeta = {this.props.reviewMeta}/>
       <StyleSelector styles = {this.props.styles} currentStyle = {this.props.currentStyle} setStyle = {this.props.setStyle} currentStyleIndex = {this.props.currentStyleIndex}/>
