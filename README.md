@@ -6,7 +6,8 @@ atvo912, mooseygoose, kwakster4, Alex-Garay
 
 ## Installation
 Create a Github API key and save it to client/src/config.js.
-Use the template in client/src/config.example.js.
+Create a imgur Client ID and save it to client/src/config.imgur.js.
+Use the template in client/src/config.example.js for both github and imgur keys.
 
 From the project directory:
 
