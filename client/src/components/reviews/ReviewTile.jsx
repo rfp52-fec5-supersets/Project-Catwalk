@@ -16,7 +16,6 @@ class ReviewTile extends React.Component {
   }
 
   handleReport() {
-    // api call to report
     let id = this.props.review.review_id;
     axios({
       method: 'put',
@@ -37,7 +36,6 @@ class ReviewTile extends React.Component {
   }
 
   handleHelpful() {
-    // api call to increment helpful
     let id = this.props.review.review_id;
     axios({
       method: 'put',
@@ -77,8 +75,6 @@ class ReviewTile extends React.Component {
           </div>
         </div>
         <div className='review-summary'>
-          {/* Unsure if need to ensure title is 60 chars or less */}
-          {/* Also unsure if want to implement line break wraps like in the example */}
           <span>
             <b>{review.summary}</b>
           </span>

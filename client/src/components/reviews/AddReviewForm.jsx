@@ -5,9 +5,6 @@ import AddCharaRating from './AddCharaRating.jsx';
 import API_KEY from './../../config.js'
 import imgur_CLIENT_ID from './../../config.imgur.js'
 
-// client_id: 121adb5801ad1ad
-// client_secret: c70e64b379cdfb1709afc07ba3214ed577fb2aca
-
 class AddReviewForm extends React.Component {
   constructor(props) {
     super(props);
@@ -29,13 +26,10 @@ class AddReviewForm extends React.Component {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handlePhotos = this.handlePhotos.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.imageInput = React.createRef();
     this.handleValidation = this.handleValidation.bind(this);
   }
 
   handleStar(starCount) {
-    // When AddStarRating Component receives a click, it returns the star Count of the star.
-    // 1-5
     this.setState({
       starRating: starCount
     })
@@ -48,7 +42,6 @@ class AddReviewForm extends React.Component {
   }
 
   handleChara(chara, rating) {
-    // this.state.charaRating = {chara1: rating1, chara2: rating2, etc.}
     let currentRatings = this.state.charaRatings;
     currentRatings[chara] = rating;
     let charaId = this.props.charaId[this.props.characteristics.indexOf(chara)];
@@ -72,11 +65,8 @@ class AddReviewForm extends React.Component {
     photos.push(e.target.files[0]);
     let imgurFormData = new FormData();
     imgurFormData.append('image', e.target.files[0]);
-    // {image: e.target.files[0]}
-    // imgur doesn't show images in live server, doesn't allow posts to imgur api in localhost
     axios.post('https://api.imgur.com/3/image', imgurFormData, {
       headers: {
-        // Authorization: Client-ID {your-imgur-client-id}
         'Authorization': `Client-ID ${imgur_CLIENT_ID}`
       }
     })
@@ -179,7 +169,6 @@ class AddReviewForm extends React.Component {
             <span>Upload photos: </span>
             {this.state.photos.length < 5 &&
             <input type='file' accept='image/*' onChange={this.handlePhotos} />}
-            {/* had ref={this.imageInput} */}
             <div>
               {this.state.photos.length > 0 &&
               this.state.photos.map((photo) => {

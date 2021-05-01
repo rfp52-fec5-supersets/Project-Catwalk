@@ -20,9 +20,6 @@ class AddStarRating extends React.Component {
   }
 
   render() {
-    // has row of five stars
-    // if star is clicked on, set the current
-    // fills up star up to the currently clicked star. if no star clicked yet, stars are all empty.
     let stars = [];
     let star = wholeStar;
     let starCount = this.props.starCount;

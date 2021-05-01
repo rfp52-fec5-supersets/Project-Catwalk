@@ -15,11 +15,9 @@ class Reviews extends React.Component {
       currentReviews: [],
       sortType: 'relevant',
       currentCount: 2,
-      // filter is an array to make toggling filters easier
       filter: {1: false, 2: false, 3:false, 4:false, 5:false},
       search: ''
     };
-    // sortTypes are either newest, helpful, or relevant
     this.handleMore = this.handleMore.bind(this);
     this.handleSort = this.handleSort.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
@@ -28,7 +26,6 @@ class Reviews extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // updates component if the props changes. Count as 1000 to ensure gets all reviews.
     if (this.props.product !== prevProps.product|| this.state.sortType !== prevState.sortType) {
       let promises = [];
       promises.push(axios({
@@ -41,14 +38,6 @@ class Reviews extends React.Component {
           count: 1000
         }
       }));
-      // promises.push(axios({
-      //   method: 'get',
-      //   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta',
-      //   headers: {'Authorization': API_KEY},
-      //   params: {
-      //     product_id: `${this.props.product.id}`
-      //   }
-      // }));
       Promise.all(promises)
         .then((values)=> {
           let allReviews = values[0].data.results;
@@ -66,12 +55,10 @@ class Reviews extends React.Component {
     let count = this.state.currentCount + 2;
     this.setState({
       currentCount: count
-      // currentCount: 0
     });
   }
 
   handleSort(e) {
-    // handleChange of ReviewSort, changing sortType.
     this.setState({
       sortType: e.target.value
     });
@@ -82,18 +69,8 @@ class Reviews extends React.Component {
       let toggle = !this.state.filter[rating];
       let filter = this.state.filter;
       filter[rating] = toggle;
-      //
-      // let filterObj = this.state.filter;
-      // let filterKeys = Object.keys(filter).filter((star)=> filter[star]);
-      // filterKeys = filterKeys.map((item)=> parseInt(item));
-      // if (filterKeys.length === 0) {
-      //   filterKeys = [1,2,3,4,5];
-      // }
-      // let currentReviews = this.state.allReviews.filter((review) => filterKeys.includes(review.rating));
-      //
       this.setState({
         filter: filter
-        // currentReviews: currentReviews
       });
     } else {
       this.setState({
@@ -103,7 +80,6 @@ class Reviews extends React.Component {
   }
 
   handleReviewsUpdate() {
-    // updates the reviews list
     axios({
       method: 'get',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
@@ -131,8 +107,6 @@ class Reviews extends React.Component {
   }
 
   render() {
-    // console.log(this.props);
-    // maybe do the currentViews here.
     let filterObj = this.state.filter;
     let filter = Object.keys(filterObj).filter((star)=> filterObj[star]);
     filter = filter.map((item)=> parseInt(item));

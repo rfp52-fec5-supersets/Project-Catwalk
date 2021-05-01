@@ -23,7 +23,6 @@ class ClickTracker extends React.Component {
     }
     currentTime = JSON.stringify(currentTime);
     let clickTrackParams = {element: e.target.outerHTML, widget: widget, time: currentTime};
-    // console.log(clickTrackParams);
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/interactions', clickTrackParams, {
       headers: {'Authorization': API_KEY}
     })
