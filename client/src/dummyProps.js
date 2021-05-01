@@ -196,5 +196,28 @@ const ReviewAddFormProps = {
         57238
     ]
 }
+const ReviewAddFormState = {
+    "product_id": 17071,
+    "starRating": 3,
+    "charaRatings": {
+        "Size": "4",
+        "Width": "4",
+        "Comfort": "4",
+        "Quality": "4"
+    },
+    "characteristics": {
+        "57235": 4,
+        "57236": 4,
+        "57237": 4,
+        "57238": 4
+    },
+    "summary": "Meh",
+    "body": "asdfasdfasdfasdfa asdfasdfalsdfasdhlj;klj;kj; asdf;lkj",
+    "photos": [],
+    "photoURLs": [],
+    "name": "asdf",
+    "email": "asdf@asdf.com",
+    "recommend": "false"
+}
 
-export {ReviewProps, ReviewState, ReviewTileProps, ReviewRatingsProps, ReviewProductProps, ReviewAddFormProps};
+export {ReviewProps, ReviewState, ReviewTileProps, ReviewRatingsProps, ReviewProductProps, ReviewAddFormProps, ReviewAddFormState};

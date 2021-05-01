@@ -15,7 +15,7 @@ import ImageThumbnail from '../../components/reviews/ImageThumbnail';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import StarsDisplay from '../../components/StarsDisplay';
-import {ReviewProps, ReviewState, ReviewTileProps, ReviewRatingsProps, ReviewProductProps, ReviewAddFormProps} from '../../dummyProps';
+import {ReviewProps, ReviewState, ReviewTileProps, ReviewRatingsProps, ReviewProductProps, ReviewAddFormProps, ReviewAddFormState} from '../../dummyProps';
 import axios from 'axios';
 // jest.mock('axios');
 
@@ -187,6 +187,7 @@ describe('Add Review tests', () => {
     let textSpy = sinon.spy(AddReviewForm.prototype, 'handleTextChange');
     let photoSpy = sinon.spy(AddReviewForm.prototype, 'handlePhotos');
     let submitSpy = sinon.spy(AddReviewForm.prototype, 'handleSubmit');
+    let validSpy = sinon.spy(AddReviewForm.prototype, 'handleValidation');
     let wrapper = mount(<AddReviewForm {...ReviewAddFormProps}/>);
     wrapper.find('.star-1').simulate('click');
     expect(starSpy.called);
@@ -195,10 +196,12 @@ describe('Add Review tests', () => {
     wrapper.find('.add-review-summary > input').simulate('change', {target: {value: 'hi'}});
     expect(textSpy.called);
     wrapper.find('.add-review-photos > input').simulate('change');
-    // , {target: {files: {
-    //   "0": {}
-    // }}}
     expect(photoSpy.called);
+    wrapper.find('.add-reviews-form').simulate('submit');
+    expect(validSpy.called);
+    wrapper.setState(ReviewAddFormState);
+    wrapper.find('.add-reviews-form').simulate('submit');
+    expect(submitSpy.called);
     // wrapper.find()
     wrapper.unmount();
   });
