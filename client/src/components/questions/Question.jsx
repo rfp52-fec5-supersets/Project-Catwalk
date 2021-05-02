@@ -30,7 +30,7 @@ class Question extends React.Component {
 
     for (let key in question.answers) {
       answersArray.push(question.answers[key])
-    }
+    };
     if (this.state.loadMoreAnswers === 'no') {
       answersArray = answersArray.slice(0, 2)
     }
